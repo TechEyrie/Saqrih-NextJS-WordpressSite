@@ -32,7 +32,7 @@ export default function LoadingScreen({ onComplete }) {
     });
 
     tl
-      // ── Phase 1: Logo appears ──
+      // ── Phase 1: Logo appears (kept snappy) ──
       .to(logo, {
         opacity: 1,
         scale: 1,
@@ -51,34 +51,34 @@ export default function LoadingScreen({ onComplete }) {
 
       .addLabel("waveStart", 0.5)
 
-      // ── Phase 2: Smooth Curved Glow rises and expands ──
+      // ── Phase 2: Smooth Curved Glow rises and expands (SLOW & SMOOTH) ──
       .to(blackGlow, {
         opacity: 1,
-        scale: 4, // Scales up 400% to push the curve completely over the top edge
-        duration: 0.85,
-        ease: "power2.inOut",
+        scale: 4, // Scales up massively
+        duration: 1.8, // Doubled duration for a slow, cinematic rise
+        ease: "power3.inOut", // power3 creates a very smooth glide
       }, "waveStart")
       
-      // Solid black base fades in slightly delayed to ensure the glow edge leads the visual
+      // Solid black base slowly fills in trailing behind the glow
       .to(blackBase, {
         opacity: 1,
-        duration: 0.5,
-        ease: "power2.in",
-      }, "waveStart+=0.25")
+        duration: 1.2,
+        ease: "power2.inOut",
+      }, "waveStart+=0.6")
 
-      // Logo fades out as the darkness rises over it
+      // Logo slowly fades out as darkness reaches it
       .to(logo, {
         opacity: 0,
-        duration: 0.28,
-        ease: "power2.in",
-      }, "waveStart+=0.2")
+        duration: 0.6,
+        ease: "power2.inOut",
+      }, "waveStart+=0.7")
 
-      // ── Phase 3: Smooth fade out of the entire loading screen ──
+      // ── Phase 3: Ultra-smooth fade out of the entire loading screen ──
       .to(overlay, {
         opacity: 0,
-        duration: 0.75,
-        ease: "power1.inOut",
-      }, "waveStart+=0.9"); // starts right as the dark wave finishes covering
+        duration: 1.0, // Longer, softer exit
+        ease: "power2.inOut",
+      }, "waveStart+=1.8"); // Starts just as the slow dark wave finishes covering
 
     return () => tl.kill();
   }, []);
@@ -136,12 +136,12 @@ export default function LoadingScreen({ onComplete }) {
           position: "absolute",
           inset: 0,
           zIndex: 4,
-          // Perfect ellipse at bottom center creates the smooth curved dome
+          // Softened gradient stops so the edge feels like a misty glow
           background: `radial-gradient(
             ellipse 100% 100% at 50% 100%,
             #2a2a2a 0%,
-            #1a1a1a 45%,
-            rgba(17,17,17,0.7) 80%,
+            #1a1a1a 40%,
+            rgba(17,17,17,0.4) 75%,
             transparent 100%
           )`,
           pointerEvents: "none",
