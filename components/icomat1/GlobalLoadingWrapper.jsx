@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import LoadingScreen from "./LoadingScreen";
+import ScrollToTopButton from "./ScrollToTopButton";
 
 export default function GlobalLoadingWrapper({ children }) {
   const pathname = usePathname();
@@ -10,7 +11,8 @@ export default function GlobalLoadingWrapper({ children }) {
   const [showLoader, setShowLoader] = useState(true);
   const [loaderKey, setLoaderKey] = useState(0);
 
-  useEffect(() => {
+  // useLayoutEffect: show loader before paint so route changes don’t flash underlying page (or black layers)
+  useLayoutEffect(() => {
     if (prevPathRef.current !== pathname) {
       prevPathRef.current = pathname;
       setShowLoader(true);
@@ -27,6 +29,7 @@ export default function GlobalLoadingWrapper({ children }) {
         />
       )}
       {children}
+      <ScrollToTopButton />
     </>
   );
 }

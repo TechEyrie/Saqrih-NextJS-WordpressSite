@@ -168,8 +168,9 @@ export default function CustomersSection() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       const totalCards  = CLIENTS.length;
-      const VH_PER_CARD = 350;
-      const TOTAL_VH    = totalCards * VH_PER_CARD;
+      // Pin distance (px): higher = more wheel/trackpad travel per card (slower progression).
+      const SCROLL_PX_PER_CARD = 1750;
+      const TOTAL_PIN_SCROLL   = totalCards * SCROLL_PX_PER_CARD;
       const COLLAPSED_H = 52;
       const EXPANDED_H  = 460;
 
@@ -208,33 +209,33 @@ export default function CustomersSection() {
         const newCol = newEl.querySelector(".card-collapsed");
 
         gsap.to(oldEl, {
-          height: COLLAPSED_H, duration: 0.8, ease: "power3.inOut",
+          height: COLLAPSED_H, duration: 1.05, ease: "power3.inOut",
           onStart: () => {
             oldEl.style.background = "rgba(255,255,255,0.07)";
             oldEl.style.border = "1px solid rgba(255,255,255,0.1)";
           },
         });
         gsap.to(oldExp, {
-          opacity: 0, duration: 0.3, ease: "power2.in",
+          opacity: 0, duration: 0.4, ease: "power2.in",
           onComplete: () => {
             gsap.set(oldExp, { display: "none" });
             gsap.set(oldCol, { display: "flex", opacity: 0 });
-            gsap.to(oldCol, { opacity: 1, duration: 0.35, ease: "power2.out" });
+            gsap.to(oldCol, { opacity: 1, duration: 0.45, ease: "power2.out" });
           },
         });
         gsap.to(newEl, {
-          height: EXPANDED_H, duration: 0.85, ease: "power3.inOut", delay: 0.1,
+          height: EXPANDED_H, duration: 1.1, ease: "power3.inOut", delay: 0.12,
           onStart: () => {
             newEl.style.background = "linear-gradient(135deg,#e8eaed 0%,#d0d4da 100%)";
             newEl.style.border = "1px solid rgba(255,255,255,0.2)";
           },
         });
         gsap.to(newCol, {
-          opacity: 0, duration: 0.25, ease: "power2.in",
+          opacity: 0, duration: 0.35, ease: "power2.in",
           onComplete: () => {
             gsap.set(newCol, { display: "none" });
             gsap.set(newExp, { display: "flex", opacity: 0 });
-            gsap.to(newExp, { opacity: 1, duration: 0.55, ease: "power2.out", delay: 0.18 });
+            gsap.to(newExp, { opacity: 1, duration: 0.7, ease: "power2.out", delay: 0.22 });
           },
         });
       };
@@ -243,7 +244,7 @@ export default function CustomersSection() {
       ScrollTrigger.create({
         trigger: wrapperRef.current,
         start: "top top",
-        end: `+=${TOTAL_VH}vh`,
+        end: `+=${TOTAL_PIN_SCROLL}`,
         pin: true,
         pinSpacing: true,
         anticipatePin: 1,
@@ -253,8 +254,14 @@ export default function CustomersSection() {
       ScrollTrigger.create({
         trigger: wrapperRef.current,
         start: "top top",
-        end: `+=${TOTAL_VH}vh`,
-        scrub: 2,
+        end: `+=${TOTAL_PIN_SCROLL}`,
+        scrub: 10,
+        snap: {
+          snapTo: gsap.utils.snap(1 / totalCards),
+          duration: { min: 0.85, max: 1.75 },
+          delay: 0.12,
+          ease: "power3.inOut",
+        },
         onUpdate: (self) => {
           const p = self.progress;
 

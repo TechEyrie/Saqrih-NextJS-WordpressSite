@@ -869,11 +869,39 @@ export default function Header({ quoteOpen = false, setQuoteOpen = () => {} }) {
   const [menuOpen,    setMenuOpen]     = useState(false);
   const [hoveredNav,  setHoveredNav]   = useState(null);
   const [megaOpen,    setMegaOpen]     = useState(false);
+  const [headerHidden, setHeaderHidden] = useState(false);
+  const lastScrollYRef                 = useRef(0);
 
   useEffect(() => {
     document.body.style.overflow = (menuOpen || quoteOpen) ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen, quoteOpen]);
+
+  useEffect(() => {
+    if (megaOpen || menuOpen || quoteOpen) {
+      setHeaderHidden(false);
+      lastScrollYRef.current = typeof window !== "undefined" ? window.scrollY : 0;
+      return;
+    }
+
+    const onScroll = () => {
+      const y = window.scrollY || document.documentElement.scrollTop;
+      const prev = lastScrollYRef.current;
+      const delta = y - prev;
+      lastScrollYRef.current = y;
+
+      if (y < 32) {
+        setHeaderHidden(false);
+        return;
+      }
+      if (delta > 10 && y > 72) setHeaderHidden(true);
+      else if (delta < -6) setHeaderHidden(false);
+    };
+
+    lastScrollYRef.current = window.scrollY || 0;
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [megaOpen, menuOpen, quoteOpen]);
 
   useEffect(() => {
     const onClick = (e) => {
@@ -890,9 +918,23 @@ export default function Header({ quoteOpen = false, setQuoteOpen = () => {} }) {
 
   return (
     <>
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 150,
+          transform: headerHidden ? "translateY(calc(-100% - 40px))" : "translateY(0)",
+          transition: "transform 0.95s cubic-bezier(0.33, 1, 0.28, 1)",
+          willChange: "transform",
+          pointerEvents: headerHidden ? "none" : "auto",
+        }}
+      >
       <header ref={headerRef} style={{
-        position: "fixed", top: 0, left: 0, right: 0,
-        zIndex: 150, height: "56px",
+        position: "relative",
+        width: "100%",
+        height: "56px",
         display: "flex", alignItems: "center", justifyContent: "space-between",
         padding: "4px clamp(14px, 2.5vw, 28px) 0",
         background: megaOpen
@@ -975,6 +1017,7 @@ export default function Header({ quoteOpen = false, setQuoteOpen = () => {} }) {
             setQuoteOpen(true);
           }}
         />
+      </div>
       </div>
       <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
       <QuoteDrawer open={quoteOpen} onClose={() => setQuoteOpen(false)} />
