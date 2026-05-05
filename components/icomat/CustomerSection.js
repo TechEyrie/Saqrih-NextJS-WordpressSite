@@ -461,7 +461,7 @@ export default function CustomersSection() {
             {/* Main background video */}
             <video
               style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
-              src="https://icomat.cdn.prismic.io/icomat/aWZQUwIvOtkhBcXM_ICOMAT-HOMEPAGE_1.mp4"
+              src="/wp-content/uploads/icomat-cdn/aWZQUwIvOtkhBcXM_ICOMAT-HOMEPAGE_1.mp4"
               autoPlay muted loop playsInline preload="auto"
             />
 

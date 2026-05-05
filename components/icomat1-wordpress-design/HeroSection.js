@@ -1,5 +1,7 @@
 "use client";
 
+import HeroScrollDownIndicator, { defaultHeroScrollDownOnClick } from "../icomat1/HeroScrollDownIndicator";
+
 const STATS = [
   { value: "300+", label: "5-star Google reviews" },
   { value: "100%", label: "Satisfaction guaranteed" },
@@ -19,7 +21,7 @@ export default function HeroSection() {
       }}
     >
       <video
-        src="https://icomat.cdn.prismic.io/icomat/aWEfyAIvOtkhBOsl_ICOMAT-TECHHEROVIDEO_1.mp4"
+        src="/wp-content/uploads/icomat-cdn/aWEfyAIvOtkhBOsl_ICOMAT-TECHHEROVIDEO_1.mp4"
         autoPlay
         muted
         loop
@@ -148,6 +150,8 @@ export default function HeroSection() {
           ))}
         </div>
       </div>
+
+      <HeroScrollDownIndicator onClick={defaultHeroScrollDownOnClick} />
 
       <style>{`
         @media (max-width: 1200px) {

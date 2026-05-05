@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import HeroScrollDownIndicator from "./HeroScrollDownIndicator";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
@@ -201,7 +202,7 @@ export default function HeroSection({ onQuoteClick }) {
       <video
         ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover"
-        src="https://icomat.cdn.prismic.io/icomat/aWZQUwIvOtkhBcXM_ICOMAT-HOMEPAGE_1.mp4"
+        src="/wp-content/uploads/icomat-cdn/aWZQUwIvOtkhBcXM_ICOMAT-HOMEPAGE_1.mp4"
         autoPlay muted loop playsInline preload="auto"
       />
 
@@ -266,22 +267,7 @@ export default function HeroSection({ onQuoteClick }) {
 
       </div>
 
-      {/* Scroll Indicator */}
-      <div
-        ref={scrollIndicatorRef}
-        className="absolute bottom-8 right-2 sm:right-4 md:right-8 lg:right-10 z-20"
-      >
-        <div className="w-20 h-12 rounded-[10px] flex items-center justify-center bg-white/10 backdrop-blur-sm cursor-pointer hover:bg-white/20 transition-colors duration-300">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-4 h-4 text-white"
-            fill="none" viewBox="0 0 24 24"
-            stroke="currentColor" strokeWidth={2}
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 5v14M6 13l6 6 6-6" />
-          </svg>
-        </div>
-      </div>
+      <HeroScrollDownIndicator scrollIndicatorRef={scrollIndicatorRef} />
     </section>
   );
 }

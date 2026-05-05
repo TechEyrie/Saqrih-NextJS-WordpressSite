@@ -395,7 +395,7 @@ export default function RTSCombinedSection() {
       >
         <video
           className="absolute inset-0 w-full h-full object-contain"
-          src="https://icomat.cdn.prismic.io/icomat/aWZQUwIvOtkhBcXM_ICOMAT-HOMEPAGE_1.mp4"
+          src="/wp-content/uploads/icomat-cdn/aWZQUwIvOtkhBcXM_ICOMAT-HOMEPAGE_1.mp4"
           autoPlay muted loop playsInline preload="auto"
           style={{ opacity: 0.85 }}
         />

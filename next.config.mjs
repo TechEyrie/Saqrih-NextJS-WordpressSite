@@ -1,5 +1,21 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: "/wp-json/",
+        destination: "/wp-json",
+      },
+      {
+        source: "/wp-content/uploads/icomat-cdn/:path*",
+        destination: "https://icomat.cdn.prismic.io/icomat/:path*",
+      },
+      {
+        source: "/wp-content/uploads/icomat-img/:path*",
+        destination: "https://images.prismic.io/icomat/:path*",
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {
@@ -84,21 +100,6 @@ const nextConfig = {
         pathname: "/**",
       },
 
-      {
-        
-        protocol: "https",
-        hostname: "icomat.cdn.prismic.io",
-        port: "",
-        pathname: "/**",
-      },
-
-
-
-  
-    
-      
-     
-     
     ],
   },
 };

@@ -99,7 +99,7 @@ export default function HowWeOperateSection() {
           style={{ aspectRatio: "16/10" }}
         >
           <img
-            src="https://images.prismic.io/icomat/aWZQUwIvOtkhBcXM_robot.jpg"
+            src="/wp-content/uploads/icomat-img/aWZQUwIvOtkhBcXM_robot.jpg"
             alt="ICOMAT robot arm"
             className="absolute inset-0 w-full h-full object-cover"
             onError={(e) => {
@@ -128,7 +128,7 @@ export default function HowWeOperateSection() {
           style={{ aspectRatio: "16/10" }}
         >
           <img
-            src="https://images.prismic.io/icomat/aWZQUwIvOtkhBcXM_inspect.jpg"
+            src="/wp-content/uploads/icomat-img/aWZQUwIvOtkhBcXM_inspect.jpg"
             alt="ICOMAT composite inspection"
             className="absolute inset-0 w-full h-full object-cover"
             onError={(e) => {
