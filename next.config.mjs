@@ -1,10 +1,31 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          {
+            key: "Link",
+            value: '</wp-json/>; rel="https://api.w.org/"',
+          },
+        ],
+      },
+    ];
+  },
   async rewrites() {
     return [
       {
         source: "/wp-json/",
         destination: "/wp-json",
+      },
+      {
+        source: "/wp-json/wp/v2/",
+        destination: "/wp-json/wp/v2",
+      },
+      {
+        source: "/feed/",
+        destination: "/feed",
       },
       {
         source: "/wp-content/uploads/icomat-cdn/:path*",

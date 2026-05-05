@@ -596,7 +596,7 @@ function MegaDropdown({ visible, onMouseEnter, onMouseLeave, onQuoteClick }) {
         position: "fixed", top: "56px", left: 0, right: 0, zIndex: 140,
         background: "#0a0a09", borderBottom: "1px solid rgba(255,255,255,0.07)",
         boxShadow: "0 32px 80px rgba(0,0,0,0.6)", opacity: 0, pointerEvents: "none",
-        padding: "0 clamp(32px, 5vw, 80px)",
+        padding: "clamp(18px, 2.2vw, 28px) clamp(32px, 5vw, 80px)",
       }}
     >
       <div style={{
