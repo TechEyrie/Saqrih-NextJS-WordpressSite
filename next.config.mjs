@@ -27,14 +27,6 @@ const nextConfig = {
         source: "/feed/",
         destination: "/feed",
       },
-      {
-        source: "/wp-content/uploads/icomat-cdn/:path*",
-        destination: "https://icomat.cdn.prismic.io/icomat/:path*",
-      },
-      {
-        source: "/wp-content/uploads/icomat-img/:path*",
-        destination: "https://images.prismic.io/icomat/:path*",
-      },
     ];
   },
   images: {
