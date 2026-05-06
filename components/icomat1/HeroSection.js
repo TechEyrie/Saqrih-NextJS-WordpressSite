@@ -258,7 +258,7 @@ export default function HeroSection({ onQuoteClick }) {
               className="text-[14px] sm:text-[15px] lg:text-[17px] leading-relaxed"
               style={{ color: "rgba(255,255,255,0.72)" }}
             >
-              US-based firm | Web design & development | WP hosting, maintenance, & support | Search engine optimization
+              Middle East Based Firm | Web design & development | WP hosting, maintenance, & support | Search engine optimization
             </p>
 
             <HeroQuoteButton onClick={onQuoteClick} />
