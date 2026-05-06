@@ -49,7 +49,7 @@ function CardVideo({ src, badge, footerContent }) {
           </div>
         </div>
       </div>
-      <div className="bg-[#f5f5f5] border border-[#e0e0e0] py-3 px-4">{footerContent}</div>
+      <div className="bg-[#f5f5f5] border border-[#e0e0e0] py-3 px-4 min-h-[92px] flex items-start">{footerContent}</div>
     </div>
   );
 }
@@ -73,10 +73,10 @@ const CARD_ITEMS = [
     src: "https://www.icomat.co.uk/videos/composites/A01.mp4",
     badge: "Design + Dev",
     footer: (
-      <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">
+      <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug m-0">
         WordPress website design
         <br />
-        <span className="font-normal text-[#666]">Beautiful websites made by top WordPress designers</span>
+        <span className="font-normal text-[#666] block min-h-[2.6em]">Beautiful websites made by top WordPress designers</span>
       </p>
     ),
   },
@@ -84,10 +84,10 @@ const CARD_ITEMS = [
     src: "https://www.icomat.co.uk/videos/composites/A02.mp4",
     badge: "Managed Services",
     footer: (
-      <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">
+      <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug m-0">
         WordPress development
         <br />
-        <span className="font-normal text-[#666]">A dedicated WordPress development team with strong technical expertise</span>
+        <span className="font-normal text-[#666] block min-h-[2.6em]">A dedicated WordPress development team with strong technical expertise</span>
       </p>
     ),
   },
@@ -95,10 +95,10 @@ const CARD_ITEMS = [
     src: "https://www.icomat.co.uk/videos/composites/A01.mp4",
     badge: "Maintenance",
     footer: (
-      <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">
+      <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug m-0">
         WordPress maintenance
         <br />
-        <span className="font-normal text-[#666]">Always secure, always available, always updated</span>
+        <span className="font-normal text-[#666] block min-h-[2.6em]">Always secure, always available, always updated</span>
       </p>
     ),
   },
@@ -106,10 +106,10 @@ const CARD_ITEMS = [
     src: "https://www.icomat.co.uk/videos/composites/A02.mp4",
     badge: "Hosting",
     footer: (
-      <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">
+      <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug m-0">
         WordPress managed hosting
         <br />
-        <span className="font-normal text-[#666]">Optimized for top-tier security and performance</span>
+        <span className="font-normal text-[#666] block min-h-[2.6em]">Optimized for top-tier security and performance</span>
       </p>
     ),
   },
@@ -117,10 +117,10 @@ const CARD_ITEMS = [
     src: "https://www.icomat.co.uk/videos/composites/A01.mp4",
     badge: "Support",
     footer: (
-      <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">
+      <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug m-0">
         Premium support
         <br />
-        <span className="font-normal text-[#666]">A dedicated contact with fast, priority assistance whenever you need it</span>
+        <span className="font-normal text-[#666] block min-h-[2.6em]">A dedicated contact with fast, priority assistance whenever you need it</span>
       </p>
     ),
   },
@@ -128,10 +128,10 @@ const CARD_ITEMS = [
     src: "https://www.icomat.co.uk/videos/composites/A02.mp4",
     badge: "SEO",
     footer: (
-      <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">
+      <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug m-0">
         Search engine optimization
         <br />
-        <span className="font-normal text-[#666]">Position your website for sustainable, long-term growth</span>
+        <span className="font-normal text-[#666] block min-h-[2.6em]">Position your website for sustainable, long-term growth</span>
       </p>
     ),
   },

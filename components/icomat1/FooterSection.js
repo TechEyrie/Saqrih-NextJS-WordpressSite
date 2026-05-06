@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -97,6 +97,80 @@ const SOCIALS = [
   { icon: <XIcon />,        href: "#x",        label: "X (Twitter)" },
   { icon: <YouTubeIcon />,  href: "#youtube",  label: "YouTube" },
 ];
+
+/** Same order as row-major CSS grid: col0 = 0,3,6… col1 = 1,4,7… — avoids huge gaps when another cell wraps. */
+function splitSubsIntoRowMajorColumns(subs, columnCount) {
+  if (columnCount <= 1) return [subs];
+  const cols = Array.from({ length: columnCount }, () => []);
+  subs.forEach((sub, i) => {
+    cols[i % columnCount].push(sub);
+  });
+  return cols;
+}
+
+const SUB_LINK_STYLE = {
+  color: "rgba(255,255,255,0.35)",
+  fontSize: "clamp(0.76rem, 0.9vw, 0.88rem)",
+  fontWeight: 500,
+  letterSpacing: "0.1em",
+  textDecoration: "none",
+  transition: "color 0.2s",
+};
+
+function FooterServicesSubLink({ sub }) {
+  return (
+    <a
+      href={`#${sub.toLowerCase().replace(/\s/g, "-")}`}
+      className="block min-w-0 max-w-full whitespace-normal break-words [overflow-wrap:anywhere]"
+      style={SUB_LINK_STYLE}
+      onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.7)")}
+      onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.35)")}
+    >
+      {sub}
+    </a>
+  );
+}
+
+function FooterServicesLinks({ subs }) {
+  const wrapRef = useRef(null);
+  const [columnCount, setColumnCount] = useState(3);
+
+  useLayoutEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    const applyWidth = (w) => {
+      if (w < 320) setColumnCount(1);
+      else if (w < 480) setColumnCount(2);
+      else setColumnCount(3);
+    };
+    applyWidth(el.getBoundingClientRect().width);
+    const ro = new ResizeObserver(([entry]) => {
+      applyWidth(entry.contentRect.width);
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  const columns = useMemo(
+    () => splitSubsIntoRowMajorColumns(subs, columnCount),
+    [subs, columnCount]
+  );
+
+  return (
+    <div
+      ref={wrapRef}
+      className="flex w-full min-w-0 items-start gap-x-[clamp(10px,1.8vw,24px)]"
+    >
+      {columns.map((chunk, i) => (
+        <div key={i} className="flex min-w-0 flex-1 flex-col gap-1.5">
+          {chunk.map((sub) => (
+            <FooterServicesSubLink key={sub} sub={sub} />
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+}
 
 // ── Wave lines background ──────────────────────────────────────
 function WaveLines() {
@@ -301,20 +375,20 @@ export default function FooterSection() {
 
         <div style={{ display: "flex", flexDirection: "column", gap: "20px", width: "100%" }}>
           <div style={{ display: "flex", flexDirection: "column", alignItems: "stretch", gap: "20px", width: "100%", marginTop: "48px" }}>
-            <nav aria-label="Footer navigation">
+            <nav aria-label="Footer navigation" className="w-full min-w-0 overflow-x-auto">
               <div
+                className="footer-nav-row grid w-full items-start gap-x-[clamp(20px,3vw,56px)]"
                 style={{
-                  display: "grid",
-                  gridTemplateColumns: "2.2fr 1fr 1fr",
-                  gap: "clamp(34px, 4vw, 72px)",
-                  alignItems: "flex-start",
                   width: "100%",
+                  minWidth: "680px",
+                  gridTemplateColumns: "minmax(0, 2.2fr) minmax(0, 1fr) minmax(0, 1fr)",
                 }}
               >
                 {NAV_MAIN.map((item) => (
-                  <div key={item.label} style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                  <div key={item.label} className="flex min-w-0 max-w-full flex-col gap-[6px]">
                     <a
                       href={item.href}
+                      className="block whitespace-normal break-words"
                       style={{
                         color: "rgba(255,255,255,0.82)",
                         fontSize: "clamp(0.6rem, 0.72vw, 0.7rem)",
@@ -322,43 +396,38 @@ export default function FooterSection() {
                         letterSpacing: "0.12em",
                         textDecoration: "none",
                         transition: "color 0.2s",
-                        whiteSpace: "nowrap",
                       }}
                       onMouseEnter={(e) => e.currentTarget.style.color = "#fff"}
                       onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255,255,255,0.82)"}
                     >
                       {item.label}
                     </a>
-                    {item.sub && (
-                      <div
-                        style={{
-                          display: item.label === "OUR SERVICES" ? "grid" : "flex",
-                          gridTemplateColumns: item.label === "OUR SERVICES" ? "repeat(3, minmax(0, 1fr))" : undefined,
-                          gap: item.label === "OUR SERVICES" ? "6px 30px" : "8px",
-                          flexDirection: item.label === "OUR SERVICES" ? undefined : "column",
-                        }}
-                      >
-                        {item.sub.map((sub) => (
-                          <a
-                            key={sub}
-                            href={`#${sub.toLowerCase().replace(/\s/g, "-")}`}
-                            style={{
-                              color: "rgba(255,255,255,0.35)",
-                          fontSize: "clamp(0.76rem, 0.9vw, 0.88rem)",
-                              fontWeight: 500,
-                              letterSpacing: "0.1em",
-                              textDecoration: "none",
-                              transition: "color 0.2s",
-                              whiteSpace: "nowrap",
-                            }}
-                            onMouseEnter={(e) => e.currentTarget.style.color = "rgba(255,255,255,0.7)"}
-                            onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255,255,255,0.35)"}
-                          >
-                            {sub}
-                          </a>
-                        ))}
-                      </div>
-                    )}
+                    {item.sub &&
+                      (item.label === "OUR SERVICES" ? (
+                        <FooterServicesLinks subs={item.sub} />
+                      ) : (
+                        <div className="flex min-w-0 max-w-full flex-col gap-2">
+                          {item.sub.map((sub) => (
+                            <a
+                              key={sub}
+                              href={`#${sub.toLowerCase().replace(/\s/g, "-")}`}
+                              className="block min-w-0 max-w-full whitespace-normal break-words [overflow-wrap:anywhere]"
+                              style={{
+                                color: "rgba(255,255,255,0.35)",
+                                fontSize: "clamp(0.76rem, 0.9vw, 0.88rem)",
+                                fontWeight: 500,
+                                letterSpacing: "0.1em",
+                                textDecoration: "none",
+                                transition: "color 0.2s",
+                              }}
+                              onMouseEnter={(e) => e.currentTarget.style.color = "rgba(255,255,255,0.7)"}
+                              onMouseLeave={(e) => e.currentTarget.style.color = "rgba(255,255,255,0.35)"}
+                            >
+                              {sub}
+                            </a>
+                          ))}
+                        </div>
+                      ))}
                   </div>
                 ))}
               </div>

@@ -49,7 +49,7 @@ function CardVideo({ src, badge, footerContent }) {
           </div>
         </div>
       </div>
-      <div className="bg-[#f5f5f5] border border-[#e0e0e0] py-3 px-4">{footerContent}</div>
+      <div className="bg-[#f5f5f5] border border-[#e0e0e0] py-3 px-4 min-h-[78px] flex items-start">{footerContent}</div>
     </div>
   );
 }

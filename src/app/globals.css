@@ -81,6 +81,7 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Yantramanav', var(--font-inter), Inter, Arial, sans-serif;
+    font-weight: 500;
   }
 
   nav, nav * {
@@ -90,6 +91,19 @@
   /* Force Helvetica font stack */
   .font-helvetica {
     font-family: var(--font-inter), Inter, Arial, sans-serif;
+  }
+
+  /* Site-wide weight normalization: avoid heavy bold text by default. */
+  .font-semibold,
+  .font-bold,
+  .font-extrabold,
+  .font-black {
+    font-weight: 400 !important;
+  }
+
+  strong,
+  b {
+    font-weight: 600;
   }
 }
 
@@ -466,7 +480,7 @@
 .homepage-font-scope h5,
 .homepage-font-scope h6 {
   font-family: var(--font-inter), Inter, Arial, sans-serif !important;
-  font-weight: 600 !important;
+  font-weight: 500 !important;
 }
 
 .homepage-font-scope h1 *,
@@ -481,7 +495,7 @@
 .homepage-font-scope .font-bold,
 .homepage-font-scope .font-extrabold,
 .homepage-font-scope .font-black {
-  font-weight: 600 !important;
+  font-weight: 400 !important;
 }
 
 
@@ -702,3 +716,4 @@ body {
 [data-theme="dark"] .wordpress-content-wrapper pre {
   background-color: rgba(255, 255, 255, 0.05);
 }
+

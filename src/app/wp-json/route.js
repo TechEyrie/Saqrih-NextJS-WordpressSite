@@ -1,8 +1,9 @@
 export async function GET() {
   return Response.json(
     {
-      name: "TechEyrie",
-      description: "",
+      name: "Eyrion",
+      description:
+        "Eyrion is a premier WordPress agency delivering design, development, hosting, maintenance, and ongoing support.",
       url: "/",
       home: "/",
       gmt_offset: "0",
