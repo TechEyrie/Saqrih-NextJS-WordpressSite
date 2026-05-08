@@ -9,23 +9,33 @@ gsap.registerPlugin(ScrollTrigger);
 const ITEMS = [
   {
     number: "1",
-    title: "Peace of mind",
-    body: "Select the best WordPress website maintenance package for your specific needs. Our team provides a range of recurring WordPress maintenance plans tailored for premium management projects, ideal for businesses, agencies, and firms across the USA.",
+    title: "Reliable, up-to-date WordPress backups",
+    body: "We perform database WordPress backups hourly to ensure that you never lose any of your hard work. File system backups are performed daily, for even greater security.",
   },
   {
     number: "2",
-    title: "Improve performance",
-    body: "You'll meet with Eyrion's expert WordPress management team to discuss your project and our ongoing optimization and development strategies. Our tailored approach ensures premium performance, whether managing standard WordPress sites or specialized WooCommerce development.",
+    title: "A schedule to suit you",
+    body: "We understand that you're busy! Simply tell us when you want to back up your site, and our team of experts will handle the rest.",
   },
   {
     number: "3",
-    title: "Enhanced security",
-    body: "Our professional WordPress maintenance services include enhanced security measures designed specifically to protect your WordPress or WooCommerce website from cyber threats. Our expert developers work behind the scenes, providing ongoing, comprehensive security management that ensures your website - and your users' data - remains safe, secure, and performing at its best, with minimal impact on your company or customers.",
+    title: "A consistent user experience",
+    body: "Our WordPress backups run quietly in the background and are guaranteed not to negatively impact your site's performance. Your customers won't have a clue that a backup is taking place!",
   },
   {
     number: "4",
-    title: "Cost-effective ongoing management",
-    body: "Our WordPress maintenance packages are designed to be cost-effective, offering professional WordPress maintenance services that provide ongoing support and updates without straining your budget. As a leading WordPress management company in the USA, we ensure your website remains secure and up-to-date with our comprehensive WordPress maintenance plans. Plus, Eyrion will always be on hand to manage any future issues, ensuring your WordPress site is managed regularly, no matter what might come its way.",
+    title: "Off-site and offline WordPress backups",
+    body: "We've hand-picked all of our backup sources to provide the highest level of reliability and availability. However, at Freshy we're always prepared for the edge cases and worst-case scenarios. That's why we create multiple WordPress backups of your site across multiple sources. This includes Amazon S3 Cloud and a physical hard drive. In the extremely unlikely event that one backup source is unavailable, we can restore your site from a second source (or a third, or a fourth...).",
+  },
+  {
+    number: "5",
+    title: "Lightning-fast site recovery",
+    body: "Our specialist support team is always on hand to restore your website. Just give us a date and a time, and we'll roll back the clock for you.",
+  },
+  {
+    number: "6",
+    title: "Ultimate peace of mind",
+    body: "Do you need us to make some changes to your site? Our experienced support team understands the importance of regular WordPress backups. That's why they always take the time to create a complete, up-to-the-minute backup, before commencing any work on your website. Don't sweat it. We've got your back(up).",
   },
 ];
 
@@ -175,7 +185,10 @@ export default function BenefitsSection() {
       >
         <div
           style={{
-            flex: "0 0 clamp(240px, 34%, 420px)",
+            position: "sticky",
+            top: "clamp(80px, 10vw, 120px)",
+            flex: "0 0 clamp(300px, 44%, 560px)",
+            alignSelf: "flex-start",
           }}
         >
           <h2
@@ -190,8 +203,38 @@ export default function BenefitsSection() {
               opacity: 0,
             }}
           >
-            Benefits of our WordPress maintenance packages
+            Your professional WordPress backup solution
           </h2>
+          <p
+            style={{
+              margin: "16px 0 0",
+              color: "rgba(255,255,255,0.78)",
+              fontSize: "clamp(1rem, 1.1vw, 1.2rem)",
+              lineHeight: 1.7,
+              maxWidth: "46ch",
+            }}
+          >
+            When you partner with Freshy, we promise to be at your side every
+            step of the way with reliable service.
+          </p>
+          <p
+            style={{
+              margin: "14px 0 0",
+              color: "rgba(255,255,255,0.62)",
+              fontSize: "clamp(0.95rem, 1.05vw, 1.15rem)",
+              lineHeight: 1.75,
+              maxWidth: "52ch",
+            }}
+          >
+            This includes initial research and development, right through to
+            helping you win the Search Engine Optimization (SEO) game - as well
+            as creating regular WordPress backups. Losing content is something
+            no website owner wants to think about. With Freshy in your corner,
+            this worry will become a thing of the past. Our team of WordPress
+            backup experts can manage the entire backup process for you. This
+            leaves you more time to focus on what really matters - running a
+            world-class website!
+          </p>
         </div>
 
         <div

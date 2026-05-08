@@ -99,7 +99,7 @@ export default function OurAdvantageSection() {
             Foundation first: SEO essentials
           </p>
 
-          <h2 ref={headingRef} className="text-white font-bold leading-[1.0] tracking-tight" style={{ fontSize: "clamp(2.8rem, 4vw, 4rem)", maxWidth: "26ch" }}>
+          <h2 ref={headingRef} className="text-white font-bold leading-[1.0] tracking-tight" style={{ fontSize: "54px", maxWidth: "26ch" }}>
             Foundation first: SEO Basics
           </h2>
 

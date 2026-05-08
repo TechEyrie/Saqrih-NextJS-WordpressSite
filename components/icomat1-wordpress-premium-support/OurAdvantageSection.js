@@ -190,7 +190,7 @@ export default function OurAdvantageSection({
             How it works
           </p>
 
-          <h2 ref={headingRef} className="text-white font-bold leading-[1.0] tracking-tight" style={{ fontSize: "clamp(2.8rem, 4vw, 4rem)", maxWidth: "26ch" }}>
+          <h2 ref={headingRef} className="text-white font-bold leading-[1.0] tracking-tight" style={{ fontSize: "54px", maxWidth: "26ch" }}>
             Skip the hassle of long support tickets and waiting in queues.
           </h2>
 

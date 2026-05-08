@@ -273,7 +273,7 @@ export default function OurAdvantageSection({
           <h2
             ref={headingRef}
             className="text-white font-bold leading-[1.0] tracking-tight"
-            style={{ fontSize: "clamp(2.8rem, 4vw, 4rem)", maxWidth: "26ch" }}
+            style={{ fontSize: "54px", maxWidth: "26ch" }}
           >
             Guaranteed 100% uptime. Powered by industry-leading infrastructure, hardware, and advanced tools.
           </h2>

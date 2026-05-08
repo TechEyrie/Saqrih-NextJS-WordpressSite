@@ -67,11 +67,31 @@ const CARDS = [
 const CARD_W = 620;
 const CARD_GAP = 24;
 
-export default function EndToEndSection() {
+export default function EndToEndSection({ theme = "dark" }) {
   const wrapperRef = useRef(null);
   const headingRef = useRef(null);
   const trackRef   = useRef(null);
   const splitRef   = useRef(null);
+  const isLight = theme === "light";
+
+  const colors = {
+    sectionBg: isLight ? "#F7F7F5" : "#162D24",
+    headingStart: isLight ? "#b8b8b8" : "#333333",
+    headingEnd: isLight ? "#101010" : "#ffffff",
+    number: isLight ? "rgba(0,0,0,0.35)" : "rgba(255,255,255,0.35)",
+    dottedLine: isLight
+      ? "repeating-linear-gradient(to right, rgba(0,0,0,0.2) 0px, rgba(0,0,0,0.2) 4px, transparent 4px, transparent 10px)"
+      : "repeating-linear-gradient(to right, rgba(255,255,255,0.2) 0px, rgba(255,255,255,0.2) 4px, transparent 4px, transparent 10px)",
+    cardBg: isLight ? "#f4f4f4" : "#1a1a1a",
+    subText: isLight ? "rgba(0,0,0,0.62)" : "rgba(255,255,255,0.55)",
+    labelText: isLight ? "rgba(0,0,0,0.32)" : "rgba(255,255,255,0.25)",
+    actionText: isLight ? "#111111" : "#ffffff",
+    actionBorder: isLight ? "1px solid rgba(0,0,0,0.24)" : "1px solid rgba(255,255,255,0.28)",
+    actionBg: isLight ? "rgba(0,0,0,0.06)" : "rgba(255,255,255,0.08)",
+    soonText: isLight ? "rgba(0,0,0,0.5)" : "rgba(255,255,255,0.5)",
+    soonBorder: isLight ? "1px solid rgba(0,0,0,0.14)" : "1px solid rgba(255,255,255,0.15)",
+    soonBg: isLight ? "rgba(0,0,0,0.03)" : "rgba(255,255,255,0.03)",
+  };
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -81,10 +101,10 @@ export default function EndToEndSection() {
         const split = new SplitText(headingRef.current, { type: "chars,words" });
         splitRef.current = split;
 
-        gsap.set(split.chars, { color: "#333333" });
+        gsap.set(split.chars, { color: colors.headingStart });
 
         gsap.to(split.chars, {
-          color: "#ffffff",
+          color: colors.headingEnd,
           ease: "none",
           stagger: {
             each: 0.03,
@@ -130,13 +150,13 @@ export default function EndToEndSection() {
       splitRef.current = null;
       ctx.revert();
     };
-  }, []);
+  }, [colors.headingEnd, colors.headingStart]);
 
   return (
     <section
       ref={wrapperRef}
-      className="w-full bg-[#162D24] overflow-hidden pb-24"
-      style={{ minHeight: "100vh" }}
+      className="w-full overflow-hidden pb-24"
+      style={{ minHeight: "100vh", backgroundColor: colors.sectionBg }}
     >
       {/* ── Heading ───────────────────────────────────────────────── */}
       <div className="flex items-center justify-center pt-28 pb-14 px-6">
@@ -167,7 +187,7 @@ export default function EndToEndSection() {
                     className="font-mono font-bold tracking-[0.18em] flex-shrink-0"
                     style={{
                       fontSize: "clamp(1rem, 1.4vw, 1.4rem)",
-                      color: "rgba(255,255,255,0.35)",
+                      color: colors.number,
                       fontFamily: "'Doto', monospace",
                       fontVariationSettings: "'wght' 700, 'ROND' 100",
                     }}
@@ -177,16 +197,15 @@ export default function EndToEndSection() {
                   <div
                     className="flex-1 h-px"
                     style={{
-                      backgroundImage:
-                        "repeating-linear-gradient(to right, rgba(255,255,255,0.2) 0px, rgba(255,255,255,0.2) 4px, transparent 4px, transparent 10px)",
+                      backgroundImage: colors.dottedLine,
                     }}
                   />
                 </div>
 
                 {/* Image */}
                 <div
-                  className="relative w-full overflow-hidden rounded-xl bg-[#1a1a1a]"
-                  style={{ aspectRatio: "4/3" }}
+                  className="relative w-full overflow-hidden rounded-xl"
+                  style={{ aspectRatio: "4/3", backgroundColor: colors.cardBg }}
                 >
                   <img
                     src={card.img}
@@ -202,14 +221,14 @@ export default function EndToEndSection() {
                 <div className="mt-4 flex flex-col gap-1">
                   <p
                     className="text-[12px] tracking-[0.14em] uppercase leading-snug"
-                    style={{ color: "rgba(255,255,255,0.55)" }}
+                    style={{ color: colors.subText }}
                   >
                     {card.sub ? card.sub : card.label}
                   </p>
                   {card.sub && (
                     <p
                       className="text-[11px] tracking-[0.1em] uppercase"
-                      style={{ color: "rgba(255,255,255,0.25)" }}
+                      style={{ color: colors.labelText }}
                     >
                       {card.label}
                     </p>
@@ -222,9 +241,9 @@ export default function EndToEndSection() {
                     <span
                       className={actionPillClass}
                       style={{
-                        color: "#fff",
-                        border: "1px solid rgba(255,255,255,0.28)",
-                        background: "rgba(255,255,255,0.08)",
+                        color: colors.actionText,
+                        border: colors.actionBorder,
+                        background: colors.actionBg,
                       }}
                     >
                       View Project
@@ -233,9 +252,9 @@ export default function EndToEndSection() {
                     <span
                       className={actionPillClass}
                       style={{
-                        color: "rgba(255,255,255,0.5)",
-                        border: "1px solid rgba(255,255,255,0.15)",
-                        background: "rgba(255,255,255,0.03)",
+                        color: colors.soonText,
+                        border: colors.soonBorder,
+                        background: colors.soonBg,
                       }}
                     >
                       Coming Soon
@@ -255,7 +274,7 @@ export default function EndToEndSection() {
                   <Link
                     href={card.href}
                     aria-label={`${card.label} case study`}
-                    className="flex flex-col text-left no-underline text-inherit cursor-pointer rounded-xl outline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white/50"
+                    className="flex flex-col text-left no-underline text-inherit cursor-pointer rounded-xl outline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-black/50"
                   >
                     {body}
                   </Link>

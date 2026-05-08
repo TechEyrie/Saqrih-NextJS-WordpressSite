@@ -9,23 +9,23 @@ gsap.registerPlugin(ScrollTrigger);
 const ITEMS = [
   {
     number: "1",
-    title: "Peace of mind",
-    body: "Select the best WordPress website maintenance package for your specific needs. Our team provides a range of recurring WordPress maintenance plans tailored for premium management projects, ideal for businesses, agencies, and firms across the USA.",
+    title: "Kick off your program",
+    body: "Your dedicated team will set up a kickoff call to get to know all aspects of your organization, website, and project goals. We'll start learning the ins and outs of your site, and you'll get to meet your ongoing team. We'll listen to all concerns, issues, and goals - and provide an implementation plan for your work.",
   },
   {
     number: "2",
-    title: "Improve performance",
-    body: "You'll meet with Eyrion's expert WordPress management team to discuss your project and our ongoing optimization and development strategies. Our tailored approach ensures premium performance, whether managing standard WordPress sites or specialized WooCommerce development.",
+    title: "Set check-in frequency",
+    body: "All of our retained services clients have the option of one-on-one check-in meetings. We'll help you decide what frequency works best for your goals, based on our decades of experience with all types of WordPress sites and projects. We'll work at your pace and continue to set best practice standards as your projects make progress.",
   },
   {
     number: "3",
-    title: "Enhanced security",
-    body: "Our professional WordPress maintenance services include enhanced security measures designed specifically to protect your WordPress or WooCommerce website from cyber threats. Our expert developers work behind the scenes, providing ongoing, comprehensive security management that ensures your website - and your users' data - remains safe, secure, and performing at its best, with minimal impact on your company or customers.",
+    title: "Onboard into your custom workflow",
+    body: "Our team will train and onboard you into your organization's custom workflow. This will provide you direct access to the people you'll be working with on an ongoing basis. We understand that all sites and clients have different requirements, so we'll custom create a workflow process that fits all your needs.",
   },
   {
     number: "4",
-    title: "Cost-effective ongoing management",
-    body: "Our WordPress maintenance packages are designed to be cost-effective, offering professional WordPress maintenance services that provide ongoing support and updates without straining your budget. As a leading WordPress management company in the USA, we ensure your website remains secure and up-to-date with our comprehensive WordPress maintenance plans. Plus, Eyrion will always be on hand to manage any future issues, ensuring your WordPress site is managed regularly, no matter what might come its way.",
+    title: "Add your web design, web development, & support tasks",
+    body: "Once onboarded into the system, you can submit your own feature requests, updates, and support and development tasks directly to your dedicated team. We'll work with you to set timelines for larger requests, and aim for a 1 business day turnaround for smaller items.",
   },
 ];
 
@@ -175,7 +175,10 @@ export default function BenefitsSection() {
       >
         <div
           style={{
+            position: "sticky",
+            top: "clamp(80px, 10vw, 120px)",
             flex: "0 0 clamp(240px, 34%, 420px)",
+            alignSelf: "flex-start",
           }}
         >
           <h2
@@ -190,7 +193,7 @@ export default function BenefitsSection() {
               opacity: 0,
             }}
           >
-            Benefits of our WordPress maintenance packages
+            How it works
           </h2>
         </div>
 

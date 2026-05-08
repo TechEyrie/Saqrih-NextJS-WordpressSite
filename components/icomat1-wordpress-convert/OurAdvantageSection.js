@@ -88,7 +88,7 @@ function GlassQuoteButton({ onClick }) {
           whiteSpace: "nowrap",
         }}
       >
-        Book a free consultation
+        Book a Free Consultation
       </span>
       <span
         ref={cloneRef}
@@ -101,7 +101,7 @@ function GlassQuoteButton({ onClick }) {
           position: "absolute",
         }}
       >
-        Book a free consultation
+        Book a Free Consultation
       </span>
     </button>
   );
@@ -109,20 +109,12 @@ function GlassQuoteButton({ onClick }) {
 
 const FEATURES = [
   {
-    title: "Your comprehensive digital ecosystem",
-    desc: "Eyrion provides an end-to-end partnership, expertly engineering, hosting, and maintaining your custom-built or redesigned WordPress platform to ensure peak performance.",
+    title: "The database",
+    desc: "This is where all of your settings, pages, posts, and comments are stored.",
   },
   {
-    title: "Experienced WordPress team",
-    desc: "With a strong track record across numerous projects, our team brings deep expertise in WordPress development, design, and support.",
-  },
-  {
-    title: "Dedicated strategic project management",
-    desc: "Your dedicated project lead will provide expert guidance, navigating you through every phase of the lifecycle with transparency and precision.",
-  },
-  {
-    title: "Continuous support",
-    desc: "Even after launch, our WordPress support team is always available to provide assistance, updates, and ongoing improvements whenever you need",
+    title: "The files",
+    desc: "These contain all of the media, attachments, themes, and plugins that can really give your site a wow factor.",
   },
 ];
 
@@ -137,11 +129,14 @@ export default function OurAdvantageSection({
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-
-      gsap.fromTo(labelRef.current,
+      gsap.fromTo(
+        labelRef.current,
         { opacity: 0, y: 16 },
         {
-          opacity: 1, y: 0, duration: 0.8, ease: "power3.out",
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
           scrollTrigger: {
             trigger: sectionRef.current,
             start: "top 85%",
@@ -154,7 +149,11 @@ export default function OurAdvantageSection({
         const split = new SplitText(headingRef.current, { type: "lines,words" });
         gsap.set(split.words, { opacity: 0, y: 40 });
         gsap.to(split.words, {
-          opacity: 1, y: 0, duration: 1, ease: "power3.out", stagger: 0.1,
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          stagger: 0.1,
           scrollTrigger: {
             trigger: sectionRef.current,
             start: "top 80%",
@@ -163,10 +162,14 @@ export default function OurAdvantageSection({
         });
       }
 
-      gsap.fromTo(rightColRef.current,
+      gsap.fromTo(
+        rightColRef.current,
         { opacity: 0, y: 30 },
         {
-          opacity: 1, y: 0, duration: 1, ease: "power3.out",
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
           scrollTrigger: {
             trigger: rightColRef.current,
             start: "top 85%",
@@ -176,10 +179,15 @@ export default function OurAdvantageSection({
       );
 
       const featureEls = featuresRef.current.filter(Boolean);
-      gsap.fromTo(featureEls,
+      gsap.fromTo(
+        featureEls,
         { opacity: 0, y: 24 },
         {
-          opacity: 1, y: 0, duration: 0.8, ease: "power3.out", stagger: 0.15,
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          stagger: 0.15,
           scrollTrigger: {
             trigger: featureEls[0],
             start: "top 88%",
@@ -187,7 +195,6 @@ export default function OurAdvantageSection({
           },
         }
       );
-
     }, sectionRef);
 
     return () => ctx.revert();
@@ -198,22 +205,14 @@ export default function OurAdvantageSection({
       ref={sectionRef}
       className="w-full bg-[#162D24] py-24 md:py-32 px-6 sm:px-10 md:px-16 lg:px-20"
     >
-      {/*
-        Three-column grid:
-        Left  45% — label + big heading
-        Gap   10% — empty breathing room
-        Right 45% — right content pushed to far right with inner max-width
-      */}
       <div className="grid grid-cols-1 md:grid-cols-[45%_10%_45%] items-start">
-
-        {/* ── LEFT ─────────────────────────────────────────────────── */}
         <div className="flex flex-col gap-4 md:gap-6">
           <p
             ref={labelRef}
             className="text-[13px] sm:text-[14px] font-medium tracking-wide"
             style={{ color: "rgba(255,255,255,0.45)" }}
           >
-            Why Eyrion as your WordPress partner?
+            WordPress backup fundamentals
           </p>
 
           <h2
@@ -221,48 +220,52 @@ export default function OurAdvantageSection({
             className="text-white font-bold leading-[1.0] tracking-tight"
             style={{ fontSize: "54px", maxWidth: "26ch" }}
           >
-            Premium WordPress
-            <br />
-            website design
+            The 101 on a WordPress backup service
           </h2>
 
           <p
             className="text-[13px] sm:text-[18px] font-normal leading-relaxed max-w-[520px]"
             style={{ color: "rgba(255,255,255,0.92)" }}
           >
-            We’re committed to delivering high-quality WordPress website design backed by years of experience. Our team brings together skilled project managers, designers, developers, and support specialists to deliver reliable, results-driven solutions as a leading WordPress agency.
+            Backing up WordPress consists of two parts:
           </p>
 
-          <GlassQuoteButton onClick={onQuoteClick} />
+          <button
+            type="button"
+            onClick={onQuoteClick}
+            className="mt-2 inline-flex w-fit items-center justify-center rounded-[38px] px-12 py-6 text-[13px] sm:text-[14px] tracking-[0.09em] font-semibold"
+            style={{
+              position: "relative",
+              overflow: "hidden",
+              background: "rgba(255,255,255,0.12)",
+              border: "1px solid rgba(255,255,255,0.34)",
+              color: "#ffffff",
+              backdropFilter: "blur(10px)",
+              WebkitBackdropFilter: "blur(10px)",
+              boxShadow:
+                "inset 0 1px 0 rgba(255,255,255,0.35), 0 8px 24px rgba(0,0,0,0.3)",
+              cursor: "pointer",
+            }}
+          >
+            Book a Free Consultation
+          </button>
         </div>
 
-        {/* ── GAP ──────────────────────────────────────────────────── */}
         <div className="hidden md:block" />
 
-        {/* ── RIGHT ────────────────────────────────────────────────── */}
-        {/*
-          The right column is 45% of the grid.
-          We constrain the actual text to max-w-[300px] and push it
-          to the far right with ml-auto — matching the reference where
-          the right text block is narrow and hugs the right edge.
-        */}
         <div className="mt-14 md:mt-0 flex justify-end">
           <div className="w-full max-w-[500px] flex flex-col gap-10">
-
-            {/* Body copy */}
             <div ref={rightColRef} className="flex flex-col gap-5">
               <p
                 className="text-[13px] sm:text-[18px] font-semibold leading-relaxed"
                 style={{ color: "rgba(255,255,255,0.92)" }}
               >
-                Your trusted team for end-to-end WordPress success.
+                Not all tools that perform WordPress backup solutions preserve every element on your site, so it's important to choose your method carefully. With the right solution in place, you'll have easy access to an almost up-to-the-minute record of your entire website with a WordPress full backup. You can rest assured that regardless of what fate (and the internet) throws your way, you'll always be able to restore your site with a single click. What website owner wouldn't want that peace of mind?
               </p>
             </div>
 
-            {/* Divider */}
             <div className="w-full h-px bg-white/10" />
 
-            {/* Feature list */}
             <div className="flex flex-col gap-8">
               {FEATURES.map((f, i) => (
                 <div
@@ -271,7 +274,7 @@ export default function OurAdvantageSection({
                   className="flex flex-col gap-1.5"
                 >
                   <p
-                    className="text-[13px] sm:text-[18px] font-medium"
+                    className="text-[13px] sm:text-[18px] font-semibold"
                     style={{ color: "rgba(255,255,255,0.92)" }}
                   >
                     {f.title}
@@ -285,10 +288,8 @@ export default function OurAdvantageSection({
                 </div>
               ))}
             </div>
-
           </div>
         </div>
-
       </div>
     </section>
   );

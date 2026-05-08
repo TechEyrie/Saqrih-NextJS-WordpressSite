@@ -226,7 +226,7 @@ export default function OurAdvantageSection({
           <h2
             ref={headingRef}
             className="text-white font-bold leading-[1.0] tracking-tight"
-            style={{ fontSize: "clamp(2.8rem, 4vw, 4rem)", maxWidth: "26ch" }}
+            style={{ fontSize: "54px", maxWidth: "26ch" }}
           >
             Our elite WordPress maintenance team ensures your platform remains impenetrable, optimized, and performing at its absolute peak.
           </h2>

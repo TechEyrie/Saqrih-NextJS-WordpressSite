@@ -10,23 +10,23 @@ gsap.registerPlugin(ScrollTrigger);
 const ITEMS = [
   {
     number: "1",
-    title: "Strategic direction & analysis",
-    body: "The first phase of our process is Strategic Direction & Analysis. In this phase we will learn all about your goals and objectives, discuss target audience, and possible keywords. This will help us get an overall picture of your company, goals, and the direction to lead in.",
+    title: "Data loss can happen fast",
+    body: "You might lose your data due to a malicious third party that manages to gain access to your WordPress dashboard and wreaks havoc. Alternatively, the issue might be something as simple as human error, such as a client or coworker pressing the wrong button in your site's backend.",
   },
   {
     number: "2",
-    title: "Keyword research & development",
-    body: "In the keyword research & development stage we will take all of our notes and discussions to determine what keywords will be best to use for your site. We will use keyword research tools to provide statistics and numbers on certain keywords and find which words could be best for your business to rank for. With your approval of the keywords we will be ready to move to the next stage.",
+    title: "Sometimes the issue is internal",
+    body: "Sometimes, the problem may even be a misjudged design or development decision. You might spend hours overhauling your site, only to realize that it looked and functioned better before (we've all been there!)",
   },
   {
     number: "3",
-    title: "Total on-page website optimization",
-    body: "Our expert consultants implement best practices for each website. We configure meta titles, alt tags, robots.txt, sitemap.xml, and more — to ensure your site benefits from professional SEO services, with ongoing support to maintain optimal performance.",
+    title: "Recover quickly and move forward",
+    body: "You've already wasted enough time, without having to undo every single change manually. Restoring from our backup can save you a lot of effort, and help you move on from this misstep as quickly as possible.",
   },
   {
     number: "4",
-    title: "Tracking & reporting configuration",
-    body: "We set up Google Analytics and tracking as part of our SEO support services, allowing you to see every visitor, every metric, every conversion, and make better-informed decisions about your website, marketing, and business or organization.",
+    title: "Backups should not stay on the to-do list",
+    body: "As a website owner, we understand that you have a mile long To Do list. It's easy to keep pushing WordPress backups to the bottom of that list. However, every minute that you delay is another minute you risk losing your website.",
   },
 ];
 
@@ -174,8 +174,23 @@ export default function SEOResultsSection() {
             margin: 0,
           }}
         >
-          WordPress SEO optimization results you can see and track
+          Why should I back up my website with a WordPress backup service from
+          Freshy?
         </h2>
+        <p
+          style={{
+            margin: "18px auto 0",
+            maxWidth: "920px",
+            color: "rgba(255,255,255,0.76)",
+            fontSize: "clamp(1.02rem, 1.2vw, 1.2rem)",
+            lineHeight: 1.75,
+          }}
+        >
+          There's an assumption that when something's on the internet, it's
+          there forever. However, that's not necessarily true. If you don't
+          back up your WordPress site, you risk losing 100 percent of your
+          content, with no chance of recovery.
+        </p>
       </div>
 
       {/* ── 2-column card grid ── */}
@@ -192,6 +207,29 @@ export default function SEOResultsSection() {
         {ITEMS.map((item, i) => (
           <SEOCard key={item.number} item={item} index={i} />
         ))}
+      </div>
+
+      <div
+        style={{
+          maxWidth: "1120px",
+          margin: "clamp(52px, 6vw, 84px) auto 0",
+        }}
+      >
+        <p
+          style={{
+            margin: 0,
+            color: "rgba(255,255,255,0.78)",
+            fontSize: "clamp(1.02rem, 1.2vw, 1.2rem)",
+            lineHeight: 1.78,
+          }}
+        >
+          Contact Freshy today, and you'll never have to start completely from
+          scratch. Just let us know how often we should back up your site, and
+          we'll sit in the background, silently creating WordPress backups to
+          suit your schedule. With our WordPress backup solutions, we'll
+          properly backup WordPress, and you'll get complete peace of mind, with
+          zero effort.
+        </p>
       </div>
 
       {/* ── Responsive styles ── */}

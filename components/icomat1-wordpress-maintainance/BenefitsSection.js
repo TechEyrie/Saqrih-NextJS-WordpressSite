@@ -185,7 +185,7 @@ export default function BenefitsSection() {
             ref={titleRef}
             style={{
               fontWeight: 600,
-              fontSize: "clamp(2.4rem, 3.6vw, 4rem)",
+              fontSize: "54px",
               lineHeight: 1.07,
               letterSpacing: "-0.025em",
               color: "#ffffff",
