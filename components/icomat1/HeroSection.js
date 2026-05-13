@@ -8,7 +8,7 @@ import HeroScrollDownIndicator from "./HeroScrollDownIndicator";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
-function HeroQuoteButton({ onClick }) {
+export function HeroQuoteButton({ onClick, className }) {
   const wrapRef  = useRef(null);
   const textRef  = useRef(null);
   const cloneRef = useRef(null);
@@ -67,7 +67,10 @@ function HeroQuoteButton({ onClick }) {
       ref={wrapRef}
       type="button"
       onClick={onClick}
-      className="mt-6 inline-flex items-center justify-center text-[14px] sm:text-[15px] tracking-[0.09em] font-semibold uppercase"
+      className={
+        className ??
+        "mt-6 inline-flex items-center justify-center text-[14px] sm:text-[15px] tracking-[0.09em] font-semibold uppercase"
+      }
       style={{
         position: "relative",
         overflow: "hidden",

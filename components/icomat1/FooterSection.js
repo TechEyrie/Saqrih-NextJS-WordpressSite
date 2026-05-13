@@ -365,7 +365,11 @@ export default function FooterSection() {
             <img
               src="/logo/Eyrion_real_logo.png"
               alt="Eyrion"
-              style={{ height: "42px", width: "auto", objectFit: "contain" }}
+              style={{
+                height: "clamp(56px, 5vw, 76px)",
+                width: "auto",
+                objectFit: "contain",
+              }}
             />
           </div>
           <div style={{ marginTop: 0, paddingTop: 0, textAlign: "right" }}>
