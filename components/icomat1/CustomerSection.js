@@ -167,13 +167,55 @@ export default function CustomersSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const totalCards  = CLIENTS.length;
-      // Pin distance (px): higher = more wheel/trackpad travel per card (slower progression).
+      const totalCards = CLIENTS.length;
       const SCROLL_PX_PER_CARD = 1750;
-      const TOTAL_PIN_SCROLL   = totalCards * SCROLL_PX_PER_CARD;
+      const TOTAL_PIN_SCROLL = totalCards * SCROLL_PX_PER_CARD;
       const COLLAPSED_H = 52;
-      const EXPANDED_H  = 460;
+      const EXPANDED_H = 460;
 
+      const mm = gsap.matchMedia();
+
+      // ── Mobile: no pin, scroll-scrub, or accordion — static stacked cards ──
+      mm.add("(max-width: 768px)", () => {
+        cardRefs.current.forEach((el) => {
+          if (!el) return;
+          const collapsed = el.querySelector(".card-collapsed");
+          const expanded = el.querySelector(".card-expanded");
+          gsap.set(el, { clearProps: "all" });
+          el.style.height = "auto";
+          el.style.background = "linear-gradient(135deg,#e8eaed 0%,#d0d4da 100%)";
+          el.style.border = "1px solid rgba(255,255,255,0.2)";
+          if (collapsed) gsap.set(collapsed, { display: "none" });
+          if (expanded) gsap.set(expanded, { display: "flex", opacity: 1 });
+        });
+
+        const videoWrap = videoWrapRef.current;
+        const miniCard = miniCardRef.current;
+        if (videoWrap) {
+          gsap.set(videoWrap, {
+            clearProps: "all",
+            position: "relative",
+            top: "auto",
+            left: "auto",
+            x: 0,
+            y: 0,
+            transform: "none",
+            width: "100%",
+            maxWidth: "100%",
+            height: "auto",
+            borderRadius: "12px",
+          });
+        }
+        if (miniCard) {
+          gsap.set(miniCard, { clearProps: "all", opacity: 1, y: 0, scale: 1 });
+        }
+        if (headingRef.current) {
+          gsap.set(headingRef.current, { opacity: 1, y: 0, clearProps: "all" });
+        }
+      });
+
+      // ── Desktop: pinned accordion + scroll-driven transitions ──
+      mm.add("(min-width: 769px)", () => {
       // ── Initial card states ──────────────────────────────────
       cardRefs.current.forEach((el, i) => {
         if (!el) return;
@@ -240,43 +282,40 @@ export default function CustomersSection() {
         });
       };
 
-      // ── PIN + SCRUB (desktop only — pin spacers can cause horizontal overflow on mobile) ──
-      const mmPin = gsap.matchMedia();
-      mmPin.add("(min-width: 769px)", () => {
-        ScrollTrigger.create({
-          trigger: wrapperRef.current,
-          start: "top top",
-          end: `+=${TOTAL_PIN_SCROLL}`,
-          pin: true,
-          pinSpacing: true,
-          anticipatePin: 1,
-        });
+      ScrollTrigger.create({
+        trigger: wrapperRef.current,
+        start: "top top",
+        end: `+=${TOTAL_PIN_SCROLL}`,
+        pin: true,
+        pinSpacing: true,
+        anticipatePin: 1,
+      });
 
-        ScrollTrigger.create({
-          trigger: wrapperRef.current,
-          start: "top top",
-          end: `+=${TOTAL_PIN_SCROLL}`,
-          scrub: 10,
-          snap: {
-            snapTo: gsap.utils.snap(1 / totalCards),
-            duration: { min: 0.85, max: 1.75 },
-            delay: 0.12,
-            ease: "power3.inOut",
-          },
-          onUpdate: (self) => {
-            const p = self.progress;
+      ScrollTrigger.create({
+        trigger: wrapperRef.current,
+        start: "top top",
+        end: `+=${TOTAL_PIN_SCROLL}`,
+        scrub: 10,
+        snap: {
+          snapTo: gsap.utils.snap(1 / totalCards),
+          duration: { min: 0.85, max: 1.75 },
+          delay: 0.12,
+          ease: "power3.inOut",
+        },
+        onUpdate: (self) => {
+          const p = self.progress;
 
-            if (progressFillRef.current)
-              gsap.set(progressFillRef.current, { scaleX: p, transformOrigin: "left center" });
+          if (progressFillRef.current)
+            gsap.set(progressFillRef.current, { scaleX: p, transformOrigin: "left center" });
 
-            transitionToCard(Math.min(Math.floor(p * totalCards), totalCards - 1));
+          transitionToCard(Math.min(Math.floor(p * totalCards), totalCards - 1));
 
-            if (bgGradientRef.current) {
-              const bW = 55 + p * 126;
-              const bH = bW * 0.62;
-              const op1 = 0.45 + p * 0.5;
-              const op2 = op1 * 0.5;
-              bgGradientRef.current.style.background = `
+          if (bgGradientRef.current) {
+            const bW = 55 + p * 126;
+            const bH = bW * 0.62;
+            const op1 = 0.45 + p * 0.5;
+            const op2 = op1 * 0.5;
+            bgGradientRef.current.style.background = `
               radial-gradient(ellipse 60% 45% at 50% 50%,
                 rgba(67, 87, 44, ${0.2 + p * 0.35}) 0%,
                 rgba(67, 87, 44, ${0.1 + p * 0.2}) 45%,
@@ -288,81 +327,68 @@ export default function CustomersSection() {
                 transparent 68%
               )
             `;
-            }
-          },
-        });
+          }
+        },
       });
 
-      // ── Heading ──────────────────────────────────────────────
-      gsap.fromTo(headingRef.current,
+      gsap.fromTo(
+        headingRef.current,
         { opacity: 0, y: 28 },
         {
-          opacity: 1, y: 0, duration: 1.1, ease: "power3.out",
+          opacity: 1,
+          y: 0,
+          duration: 1.1,
+          ease: "power3.out",
           scrollTrigger: {
             trigger: wrapperRef.current,
             start: "top 82%",
             toggleActions: "play none none reverse",
           },
-        }
+        },
       );
 
-      // ── VIDEO EXPAND (desktop only — 100vw overflows on mobile) ──
       const videoWrap = videoWrapRef.current;
       const miniCard = miniCardRef.current;
       const videoSection = videoSectionRef.current;
 
       if (videoWrap && miniCard && videoSection) {
-        const mmVideo = gsap.matchMedia();
+        gsap.set(videoWrap, { width: "32vw", height: "20vw", borderRadius: "20px" });
+        gsap.set(miniCard, { opacity: 0, y: 24, scale: 0.88 });
 
-        mmVideo.add("(max-width: 768px)", () => {
-          gsap.set(videoWrap, {
-            width: "100%",
-            maxWidth: "100%",
-            height: "auto",
-            aspectRatio: "16 / 9",
-            borderRadius: "12px",
-            clearProps: "transform",
-          });
-          gsap.set(miniCard, { opacity: 1, y: 0, scale: 1 });
-        });
-
-        mmVideo.add("(min-width: 769px)", () => {
-          gsap.set(videoWrap, { width: "32vw", height: "20vw", borderRadius: "20px" });
-          gsap.set(miniCard, { opacity: 0, y: 24, scale: 0.88 });
-
-          gsap.timeline({
-            scrollTrigger: {
-              trigger: videoSection,
-              start: "top bottom",
-              end: "top top",
-              scrub: 1.5,
-              invalidateOnRefresh: true,
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: videoSection,
+            start: "top bottom",
+            end: "top top",
+            scrub: 1.5,
+            invalidateOnRefresh: true,
+          },
+        })
+          .to(
+            videoWrap,
+            {
+              width: "100%",
+              height: "100vh",
+              borderRadius: "0px",
+              ease: "power2.inOut",
+              duration: 1,
             },
-          })
-            .to(
-              videoWrap,
-              {
-                width: "100%",
-                height: "100vh",
-                borderRadius: "0px",
-                ease: "power2.inOut",
-                duration: 1,
-              },
-              0,
-            )
-            .to(
-              miniCard,
-              {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                ease: "power3.out",
-                duration: 0.5,
-              },
-              0.65,
-            );
-        });
+            0,
+          )
+          .to(
+            miniCard,
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              ease: "power3.out",
+              duration: 0.5,
+            },
+            0.65,
+          );
       }
+
+      }); // end desktop matchMedia
 
     }, outerRef);
 
@@ -417,16 +443,27 @@ export default function CustomersSection() {
         ══════════════════════════════════════ */}
         <section
           ref={wrapperRef}
+          className="customers-cards-section"
           style={{
-            position: "relative", width: "100%",
-            minHeight: "100vh", background: "transparent", overflow: "hidden",
+            position: "relative",
+            width: "100%",
+            background: "transparent",
+            overflow: "hidden",
           }}
         >
-          {/* Progress bar */}
-          <div style={{
-            position: "absolute", top: "14px", left: 0, right: 0,
-            height: "1px", background: "rgba(255,255,255,0.12)", zIndex: 30,
-          }}>
+          {/* Progress bar — desktop only */}
+          <div
+            className="customers-progress-bar hidden md:block"
+            style={{
+              position: "absolute",
+              top: "14px",
+              left: 0,
+              right: 0,
+              height: "1px",
+              background: "rgba(255,255,255,0.12)",
+              zIndex: 30,
+            }}
+          >
             <div ref={progressFillRef} style={{
               width: "100%", height: "100%",
               background: "rgba(255,255,255,0.7)",
@@ -434,7 +471,7 @@ export default function CustomersSection() {
             }} />
           </div>
 
-          <div className="relative z-10 h-screen flex items-center px-6 sm:px-10 md:px-16 lg:px-20">
+          <div className="relative z-10 flex items-center px-5 py-14 sm:px-10 md:h-screen md:px-16 md:py-0 lg:px-20">
             <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center">
 
               {/* LEFT */}
@@ -447,21 +484,21 @@ export default function CustomersSection() {
 
               {/* RIGHT */}
               <div className="flex flex-col">
-                <p className="text-[12px] font-medium mb-4" style={{ color: "rgba(255,255,255,0.45)" }}>
+                <p className="text-[12px] font-medium mb-4 hidden md:block" style={{ color: "rgba(255,255,255,0.45)" }}>
                   Eyrion testimonial highlights ↓
                 </p>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-3 md:gap-2">
                   {CLIENTS.map((client, i) => (
                     <div
                       key={client.id}
                       ref={(el) => (cardRefs.current[i] = el)}
-                      className="relative overflow-hidden rounded-2xl will-change-[height,background]"
+                      className="customers-card relative overflow-hidden rounded-2xl md:will-change-[height,background]"
                       style={{ background: "rgba(255,255,255,0.07)", border: "1px solid rgba(255,255,255,0.1)" }}
                     >
-                      <div className="card-collapsed px-5 items-center" style={{ height: "52px", display: "flex" }}>
+                      <div className="card-collapsed hidden h-[52px] items-center px-5 md:flex">
                         <ClientLogo client={client} dark={false} />
                       </div>
-                      <div className="card-expanded p-7 flex-col gap-6" style={{ display: "none" }}>
+                      <div className="card-expanded flex flex-col gap-5 p-5 sm:gap-6 sm:p-7">
                         <ClientLogo client={client} dark={true} />
                         <div className="h-2" />
                         <p className="font-semibold leading-relaxed"
@@ -487,20 +524,20 @@ export default function CustomersSection() {
         ══════════════════════════════════════ */}
         <section
           ref={videoSectionRef}
+          className="customers-video-section"
           style={{
-            position: "relative", width: "100%", height: "100vh",
-            background: "transparent", overflow: "hidden",
-            display: "flex", alignItems: "center", justifyContent: "center",
+            position: "relative",
+            width: "100%",
+            background: "transparent",
+            overflow: "hidden",
           }}
         >
           <div
             ref={videoWrapRef}
+            className="customers-video-wrap"
             style={{
-              position: "absolute",
-              top: "50%", left: "50%",
-              transform: "translate(-50%, -50%)",
-              width: "32vw", height: "20vw",
-              borderRadius: "20px", overflow: "hidden",
+              borderRadius: "20px",
+              overflow: "hidden",
             }}
           >
             {/* Main background video */}
@@ -520,19 +557,14 @@ export default function CustomersSection() {
             <div
               ref={miniCardRef}
               onClick={() => setModalOpen(true)}
+              className="customers-mini-card mini-card-hover"
               style={{
-                position: "absolute",
-                bottom: "24px", right: "24px",
-                width: "280px",        /* ← was 220px */
-                height: "175px",       /* ← was 140px */
                 borderRadius: "14px",
                 overflow: "hidden",
                 background: "#000",
                 boxShadow: "0 12px 48px rgba(0,0,0,0.55)",
                 cursor: "pointer",
-                // Subtle hover handled via CSS class below
               }}
-              className="mini-card-hover"
             >
               {/* Preview thumbnail / video */}
               <video
@@ -589,14 +621,88 @@ export default function CustomersSection() {
 
       </div>
 
-      {/* Hover style for mini card */}
       <style>{`
+        /* Mobile: static layout — no pin / scroll / expand animations */
+        @media (max-width: 768px) {
+          .customers-cards-section {
+            min-height: 0 !important;
+          }
+          .customers-card {
+            height: auto !important;
+            background: linear-gradient(135deg, #e8eaed 0%, #d0d4da 100%) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+          }
+          .customers-card .card-collapsed {
+            display: none !important;
+          }
+          .customers-card .card-expanded {
+            display: flex !important;
+            opacity: 1 !important;
+          }
+          .customers-video-section {
+            height: auto !important;
+            min-height: 0 !important;
+            padding: 40px 20px 48px;
+            display: block !important;
+          }
+          .customers-video-wrap {
+            position: relative !important;
+            top: auto !important;
+            left: auto !important;
+            transform: none !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            height: auto !important;
+            aspect-ratio: 16 / 9;
+          }
+          .customers-mini-card {
+            position: relative !important;
+            bottom: auto !important;
+            right: auto !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            height: auto !important;
+            aspect-ratio: 16 / 10;
+            margin-top: 12px;
+          }
+        }
+
+        /* Desktop: video + mini card positioning */
+        @media (min-width: 769px) {
+          .customers-cards-section {
+            min-height: 100vh;
+          }
+          .customers-video-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+          .customers-video-wrap {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 32vw;
+            height: 20vw;
+          }
+          .customers-mini-card {
+            position: absolute;
+            bottom: 24px;
+            right: 24px;
+            width: 280px;
+            height: 175px;
+          }
+        }
+
         .mini-card-hover {
           transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
-        .mini-card-hover:hover {
-          transform: scale(1.03);
-          box-shadow: 0 16px 56px rgba(0,0,0,0.65) !important;
+        @media (min-width: 769px) {
+          .mini-card-hover:hover {
+            transform: scale(1.03);
+            box-shadow: 0 16px 56px rgba(0,0,0,0.65) !important;
+          }
         }
       `}</style>
     </>

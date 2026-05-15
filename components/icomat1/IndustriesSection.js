@@ -11,18 +11,16 @@ const INDUSTRIES = [
     id: "services",
     label: "Services",
     heading: "Explore our\nWordPress website services.",
-    subheading:
-      "This is WordPress at its best.",
+    subheading: "This is WordPress at its best.",
     src: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1600&q=85&fit=crop",
     alt: "Web team planning WordPress project",
   },
-
   {
     id: "testimonials",
     label: "Testimonials",
     heading: "Testimonials from\nhappy customers.",
     subheading:
-      "\"Their team is highly responsive, thorough, and consultative in guiding us through a website technical optimization.\"",
+      '"Their team is highly responsive, thorough, and consultative in guiding us through a website technical optimization."',
     src: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1600&q=85&fit=crop",
     alt: "Client meeting and testimonials discussion",
   },
@@ -30,54 +28,77 @@ const INDUSTRIES = [
     id: "projects",
     label: "Case studies",
     heading: "Featured projects",
-    subheading:
-      "HRchitect, Tiger, Azelis A&ES, and Acertus.",
+    subheading: "HRchitect, Tiger, Azelis A&ES, and Acertus.",
     src: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1600&q=85&fit=crop",
     alt: "Project case study dashboard on laptop",
   },
 ];
 
-/** Time each tab stays visible before auto-advancing (ms). */
 const AUTO_TAB_INTERVAL_MS = 6000;
-
-/** Scroll-out only: uniform scale. ~1.6% smaller at full progress (still “almost” full width). */
 const PIC_SCROLLOUT_SCALE_MIN = 0.7;
 const PIC_SCROLLOUT_END_RADIUS_PX = 6;
+const MOBILE_MQ = "(max-width: 768px)";
+
+function isMobileViewport() {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia(MOBILE_MQ).matches;
+}
 
 export default function IndustriesSection() {
-  const sectionRef   = useRef(null);
+  const sectionRef = useRef(null);
   const containerRef = useRef(null);
-  const picInnerRef  = useRef(null);
-  const contentRef   = useRef(null);
-  const headingRef   = useRef(null);
-  const subRef       = useRef(null);
-  const learnRef     = useRef(null);
+  const picInnerRef = useRef(null);
+  const contentRef = useRef(null);
+  const headingRef = useRef(null);
+  const subRef = useRef(null);
+  const learnRef = useRef(null);
   const imgLayersRef = useRef([]);
 
   const [active, setActive] = useState(0);
-  const activeRef           = useRef(0);
-  const isAnimating         = useRef(false);
+  const activeRef = useRef(0);
+  const isAnimating = useRef(false);
 
-  // ── Scroll expand (desktop only — 100vw causes horizontal overflow on mobile) ──
+  const applyMobileSlide = useCallback((idx) => {
+    imgLayersRef.current.forEach((img, i) => {
+      if (!img) return;
+      const visible = i === idx;
+      img.style.zIndex = visible ? "1" : "0";
+      img.style.clipPath = visible ? "inset(0% 0% 0% 0%)" : "inset(0% 0% 100% 0%)";
+      img.style.opacity = visible ? "1" : "0";
+    });
+    if (headingRef.current) headingRef.current.textContent = INDUSTRIES[idx].heading;
+    if (subRef.current) subRef.current.textContent = INDUSTRIES[idx].subheading;
+  }, []);
+
+  // ── Desktop: scroll expand + content reveal ─────────────────
   useEffect(() => {
     const ctx = gsap.context(() => {
       const container = containerRef.current;
       const content = contentRef.current;
-      if (!container || !content) return;
+      const section = sectionRef.current;
+      if (!container || !content || !section) return;
 
       const mm = gsap.matchMedia();
 
-      mm.add("(max-width: 768px)", () => {
+      mm.add(MOBILE_MQ, () => {
         gsap.set(container, {
+          clearProps: "all",
           width: "100%",
           maxWidth: "100%",
-          height: "clamp(280px, 56vh, 420px)",
+          height: "auto",
           borderRadius: "12px",
           x: 0,
           xPercent: 0,
-          clearProps: "transform",
         });
-        gsap.set(content, { opacity: 1, y: 0 });
+        gsap.set(content, { opacity: 1, y: 0, clearProps: "all" });
+        if (picInnerRef.current) {
+          gsap.set(picInnerRef.current, {
+            clearProps: "all",
+            scale: 1,
+            borderRadius: "12px",
+          });
+        }
+        applyMobileSlide(activeRef.current);
       });
 
       mm.add("(min-width: 769px)", () => {
@@ -91,7 +112,7 @@ export default function IndustriesSection() {
 
         gsap.timeline({
           scrollTrigger: {
-            trigger: sectionRef.current,
+            trigger: section,
             start: "top bottom",
             end: "top top",
             scrub: 1.6,
@@ -118,155 +139,160 @@ export default function IndustriesSection() {
             0.55,
           );
       });
-
-      return () => mm.revert();
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [applyMobileSlide]);
 
-  // ── Scroll out: photo stack only (own effect — avoids gsap.context + ST quirks) ──
+  // ── Desktop only: photo scale-out on scroll ─────────────────
   useEffect(() => {
     const section = sectionRef.current;
     const pic = picInnerRef.current;
     if (!section || !pic) return;
 
-    gsap.set(pic, {
-      transformOrigin: "50% 50%",
-      scale: 1,
-      borderRadius: "0px",
-    });
+    const mm = gsap.matchMedia();
+    let tween = null;
+    let rafId = 0;
 
-    const tween = gsap.fromTo(
-      pic,
-      { scale: 1, borderRadius: "0px" },
-      {
-        scale: PIC_SCROLLOUT_SCALE_MIN,
-        borderRadius: `${PIC_SCROLLOUT_END_RADIUS_PX}px`,
-        ease: "none",
-        scrollTrigger: {
-          trigger: section,
-          /* "bottom bottom" + relative end often never scrubs with sticky 200vh — use section bottom crossing viewport */
-          start: "bottom 92%",
-          end: "bottom top",
-          scrub: 1.2,
-          invalidateOnRefresh: true,
-        },
-      }
-    );
-
-    const id = requestAnimationFrame(() => ScrollTrigger.refresh());
-
-    return () => {
-      cancelAnimationFrame(id);
-      tween.scrollTrigger?.kill();
-      tween.kill();
-      gsap.set(pic, { scale: 1, borderRadius: "0px" });
-    };
-  }, []);
-
-  // ── Tab switch ─────────────────────────────────────────────
-  const switchTo = useCallback((idx) => {
-    if (idx === activeRef.current || isAnimating.current) return;
-    isAnimating.current = true;
-
-    const oldIdx = activeRef.current;
-    activeRef.current = idx;
-    setActive(idx);
-
-    const newImg  = imgLayersRef.current[idx];
-    const oldImg  = imgLayersRef.current[oldIdx];
-    const heading = headingRef.current;
-    const sub     = subRef.current;
-    const learn   = learnRef.current;
-
-    // Image: clips from top → reveals downward
-    gsap.set(newImg, { zIndex: 2, clipPath: "inset(0% 0% 100% 0%)" });
-    gsap.to(newImg, {
-      clipPath: "inset(0% 0% 0% 0%)",
-      duration: 0.95,
-      ease: "power3.inOut",
-      onComplete: () => {
-        gsap.set(oldImg, { zIndex: 1 });
-        gsap.set(newImg, { zIndex: 1 });
-        isAnimating.current = false;
-      },
-    });
-
-    // Text: fade out → swap → fade in
-    gsap.timeline()
-      .to([heading, sub, learn], {
-        opacity: 0, y: -10,
-        duration: 0.22, ease: "power2.in", stagger: 0.04,
-      })
-      .call(() => {
-        if (heading) heading.textContent = INDUSTRIES[idx].heading;
-        if (sub)     sub.textContent     = INDUSTRIES[idx].subheading;
-      })
-      .to([heading, sub, learn], {
-        opacity: 1, y: 0,
-        duration: 0.45, ease: "power3.out", stagger: 0.06,
+    mm.add("(min-width: 769px)", () => {
+      gsap.set(pic, {
+        transformOrigin: "50% 50%",
+        scale: 1,
+        borderRadius: "0px",
       });
+
+      tween = gsap.fromTo(
+        pic,
+        { scale: 1, borderRadius: "0px" },
+        {
+          scale: PIC_SCROLLOUT_SCALE_MIN,
+          borderRadius: `${PIC_SCROLLOUT_END_RADIUS_PX}px`,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "bottom 92%",
+            end: "bottom top",
+            scrub: 1.2,
+            invalidateOnRefresh: true,
+          },
+        },
+      );
+
+      rafId = requestAnimationFrame(() => ScrollTrigger.refresh());
+
+      return () => {
+        cancelAnimationFrame(rafId);
+        tween?.scrollTrigger?.kill();
+        tween?.kill();
+        gsap.set(pic, { scale: 1, borderRadius: "0px" });
+      };
+    });
+
+    mm.add(MOBILE_MQ, () => {
+      gsap.set(pic, { clearProps: "all", scale: 1, borderRadius: "12px" });
+    });
+
+    return () => mm.revert();
   }, []);
 
-  // ── Auto-advance tabs (loop); interval resets when tab changes ──
+  const switchTo = useCallback(
+    (idx) => {
+      if (idx === activeRef.current) return;
+
+      if (isMobileViewport()) {
+        activeRef.current = idx;
+        setActive(idx);
+        applyMobileSlide(idx);
+        return;
+      }
+
+      if (isAnimating.current) return;
+      isAnimating.current = true;
+
+      const oldIdx = activeRef.current;
+      activeRef.current = idx;
+      setActive(idx);
+
+      const newImg = imgLayersRef.current[idx];
+      const oldImg = imgLayersRef.current[oldIdx];
+      const heading = headingRef.current;
+      const sub = subRef.current;
+      const learn = learnRef.current;
+
+      gsap.set(newImg, { zIndex: 2, clipPath: "inset(0% 0% 100% 0%)" });
+      gsap.to(newImg, {
+        clipPath: "inset(0% 0% 0% 0%)",
+        duration: 0.95,
+        ease: "power3.inOut",
+        onComplete: () => {
+          gsap.set(oldImg, { zIndex: 1 });
+          gsap.set(newImg, { zIndex: 1 });
+          isAnimating.current = false;
+        },
+      });
+
+      gsap
+        .timeline()
+        .to([heading, sub, learn], {
+          opacity: 0,
+          y: -10,
+          duration: 0.22,
+          ease: "power2.in",
+          stagger: 0.04,
+        })
+        .call(() => {
+          if (heading) heading.textContent = INDUSTRIES[idx].heading;
+          if (sub) sub.textContent = INDUSTRIES[idx].subheading;
+        })
+        .to([heading, sub, learn], {
+          opacity: 1,
+          y: 0,
+          duration: 0.45,
+          ease: "power3.out",
+          stagger: 0.06,
+        });
+    },
+    [applyMobileSlide],
+  );
+
   useEffect(() => {
     const id = setInterval(() => {
-      if (isAnimating.current) return;
+      if (!isMobileViewport() && isAnimating.current) return;
       const next = (activeRef.current + 1) % INDUSTRIES.length;
       switchTo(next);
     }, AUTO_TAB_INTERVAL_MS);
     return () => clearInterval(id);
-  }, [active, switchTo]);
+  }, [switchTo]);
 
   return (
     <section
       ref={sectionRef}
+      className="industries-section"
       style={{
         position: "relative",
         width: "100%",
         maxWidth: "100%",
-        height: "200vh",
         background: "#162D24",
-        display: "flex",
-        alignItems: "flex-start",
-        justifyContent: "center",
         overflow: "hidden",
       }}
     >
-      {/* Sticky wrapper */}
-      <div
-        style={{
-          position: "sticky",
-          top: 0,
-          width: "100%",
-          height: "100vh",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          overflow: "hidden",
-        }}
-      >
-
-        {/* ── Expanding image container ── */}
+      <div className="industries-sticky-wrap">
         <div
           ref={containerRef}
+          className="industries-visual"
           style={{
             position: "relative",
             overflow: "hidden",
             background: "#111",
-            willChange: "width, height, border-radius",
           }}
         >
-
-          {/* Images + vignette only — this layer shrinks on scroll-out; overlay stays full size. */}
           <div
             ref={picInnerRef}
+            className="industries-pic-inner"
             style={{
               position: "absolute",
               inset: 0,
               overflow: "hidden",
-              borderRadius: 0,
               zIndex: 1,
             }}
           >
@@ -278,6 +304,7 @@ export default function IndustriesSection() {
                 alt={ind.alt}
                 loading={i === 0 ? "eager" : "lazy"}
                 decoding="async"
+                className="industries-slide-img"
                 style={{
                   position: "absolute",
                   inset: 0,
@@ -285,14 +312,13 @@ export default function IndustriesSection() {
                   height: "100%",
                   objectFit: "cover",
                   zIndex: i === 0 ? 1 : 0,
-                  clipPath: i === 0
-                    ? "inset(0% 0% 0% 0%)"
-                    : "inset(0% 0% 100% 0%)",
+                  clipPath: i === 0 ? "inset(0% 0% 0% 0%)" : "inset(0% 0% 100% 0%)",
                 }}
               />
             ))}
 
             <div
+              aria-hidden
               style={{
                 position: "absolute",
                 inset: 0,
@@ -306,9 +332,9 @@ export default function IndustriesSection() {
             />
           </div>
 
-          {/* ── Content overlay ── */}
           <div
             ref={contentRef}
+            className="industries-content"
             style={{
               position: "absolute",
               inset: 0,
@@ -316,16 +342,7 @@ export default function IndustriesSection() {
               opacity: 0,
             }}
           >
-
-            {/* TOP LEFT — heading + sub + link — absolutely positioned */}
-            <div
-              style={{
-                position: "absolute",
-                top: "clamp(28px, 5vw, 64px)",
-                left: "clamp(28px, 5vw, 64px)",
-                maxWidth: "520px",
-              }}
-            >
+            <div className="industries-content-copy">
               <h2
                 ref={headingRef}
                 style={{
@@ -382,30 +399,26 @@ export default function IndustriesSection() {
               >
                 Learn more
                 <svg width="13" height="13" viewBox="0 0 16 16" fill="none">
-                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                  <path
+                    d="M3 8h10M9 4l4 4-4 4"
+                    stroke="currentColor"
+                    strokeWidth="1.8"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </a>
             </div>
 
-            {/* BOTTOM LEFT — flat text tabs, anchored to bottom-left */}
-            <div
-              style={{
-                position: "absolute",
-                bottom: "clamp(28px, 4vw, 56px)",
-                left: "clamp(28px, 5vw, 64px)",
-                display: "flex",
-                alignItems: "center",
-                gap: "32px",
-                flexWrap: "wrap",
-              }}
-            >
+            <div className="industries-tabs">
               {INDUSTRIES.map((ind, i) => (
                 <button
                   key={ind.id}
+                  type="button"
                   onClick={() => switchTo(i)}
                   style={{
                     position: "relative",
-                    padding: "0",
+                    padding: 0,
                     paddingBottom: "6px",
                     border: "none",
                     background: "none",
@@ -414,9 +427,8 @@ export default function IndustriesSection() {
                     fontWeight: 600,
                     letterSpacing: "0.12em",
                     textTransform: "uppercase",
-                    color: active === i
-                      ? "rgba(255,255,255,0.95)"
-                      : "rgba(255,255,255,0.38)",
+                    color:
+                      active === i ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.38)",
                     transition: "color 0.25s ease",
                   }}
                   onMouseEnter={(e) => {
@@ -427,8 +439,6 @@ export default function IndustriesSection() {
                   }}
                 >
                   {ind.label}
-
-                  {/* Animated underline */}
                   <span
                     style={{
                       position: "absolute",
@@ -444,10 +454,107 @@ export default function IndustriesSection() {
                 </button>
               ))}
             </div>
-
           </div>
         </div>
       </div>
+
+      <style>{`
+        /* Desktop: tall scroll section + sticky stage */
+        .industries-section {
+          height: 200vh;
+          display: flex;
+          align-items: flex-start;
+          justify-content: center;
+        }
+        .industries-sticky-wrap {
+          position: sticky;
+          top: 0;
+          width: 100%;
+          height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          overflow: hidden;
+        }
+        .industries-visual {
+          will-change: width, height, border-radius;
+        }
+        .industries-content-copy {
+          position: absolute;
+          top: clamp(28px, 5vw, 64px);
+          left: clamp(28px, 5vw, 64px);
+          max-width: 520px;
+        }
+        .industries-tabs {
+          position: absolute;
+          bottom: clamp(28px, 4vw, 56px);
+          left: clamp(28px, 5vw, 64px);
+          display: flex;
+          align-items: center;
+          gap: 32px;
+          flex-wrap: wrap;
+        }
+
+        /* Mobile: static block — no sticky / scroll / expand */
+        @media (max-width: 768px) {
+          .industries-section {
+            height: auto !important;
+            min-height: 0 !important;
+            padding: 40px 0 48px;
+          }
+          .industries-sticky-wrap {
+            position: relative !important;
+            top: auto !important;
+            height: auto !important;
+            min-height: 0 !important;
+            padding: 0 20px;
+            overflow: visible !important;
+          }
+          .industries-visual {
+            width: 100% !important;
+            max-width: 100% !important;
+            height: clamp(280px, 70vw, 400px) !important;
+            border-radius: 12px !important;
+            transform: none !important;
+            will-change: auto !important;
+          }
+          .industries-pic-inner {
+            border-radius: 12px !important;
+            transform: none !important;
+          }
+          .industries-content {
+            opacity: 1 !important;
+          }
+          .industries-content-copy {
+            top: 20px !important;
+            left: 16px !important;
+            right: 16px !important;
+            max-width: none !important;
+          }
+          .industries-content-copy h2 {
+            font-size: clamp(1.5rem, 6.5vw, 2rem) !important;
+            margin-bottom: 12px !important;
+          }
+          .industries-content-copy p {
+            font-size: 0.9rem !important;
+            margin-bottom: 16px !important;
+            max-width: 100% !important;
+          }
+          .industries-tabs {
+            position: absolute !important;
+            bottom: 14px !important;
+            left: 12px !important;
+            right: 12px !important;
+            gap: 12px 20px !important;
+          }
+          .industries-tabs button {
+            font-size: 0.65rem !important;
+          }
+          .industries-slide-img {
+            transition: opacity 0.35s ease;
+          }
+        }
+      `}</style>
     </section>
   );
 }
