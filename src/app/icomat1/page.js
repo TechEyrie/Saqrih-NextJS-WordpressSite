@@ -77,15 +77,34 @@ export default function IcomatPage() {
   }, [])
 
   return (
-    <div data-theme="dark" className={`icomat1-laygrotesk ${montserrat.variable}`} style={{ backgroundColor: '#162D24', minHeight: '100vh' }}>
+    <div
+      data-theme="dark"
+      className={`icomat1-laygrotesk homepage-root ${montserrat.variable}`}
+      style={{
+        backgroundColor: '#162D24',
+        minHeight: '100vh',
+        width: '100%',
+        maxWidth: '100%',
+        overflowX: 'clip',
+      }}
+    >
       <style jsx global>{`
         html, body {
           -ms-overflow-style: none;
           scrollbar-width: none;
+          overflow-x: clip;
+          max-width: 100%;
+          width: 100%;
         }
         html::-webkit-scrollbar,
         body::-webkit-scrollbar {
           display: none;
+        }
+        .homepage-root,
+        .homepage-font-scope {
+          overflow-x: clip;
+          max-width: 100%;
+          width: 100%;
         }
       `}</style>
 

@@ -198,6 +198,9 @@ export default function HeroSection({ onQuoteClick }) {
       className="relative w-full h-screen min-h-[600px] bg-[#162D24]"
       style={{
         overflow: "clip",
+        overflowX: "clip",
+        width: "100%",
+        maxWidth: "100%",
         perspective: "1200px",
       }}
     >
@@ -262,8 +265,8 @@ export default function HeroSection({ onQuoteClick }) {
 
           <div ref={badgeRef} className="mt-4 max-w-[760px]">
             <p
-              className="text-[14px] sm:text-[15px] lg:text-[17px] leading-relaxed"
-              style={{ color: "rgba(255,255,255,0.72)" }}
+              className="text-[14px] sm:text-[15px] lg:text-[17px] leading-relaxed break-words"
+              style={{ color: "rgba(255,255,255,0.72)", maxWidth: "100%" }}
             >
               Middle East Based Firm | Web design & development | WP hosting, maintenance, & support | Search engine optimization
             </p>

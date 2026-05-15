@@ -102,7 +102,7 @@ export default function RTSSection() {
     <section
       ref={sectionRef}
       className="relative w-full bg-[#f5f5f5] flex items-center justify-center"
-      style={{ minHeight: "100vh" }}
+      style={{ minHeight: "100vh", overflow: "hidden", maxWidth: "100%" }}
     >
       {/* Dots */}
       {DOTS.map((pos, i) => (

@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -201,6 +202,11 @@ function QuoteDrawer({ open, onClose }) {
   const overlayRef = useRef(null);
   const drawerRef  = useRef(null);
   const tlRef      = useRef(null);
+  const [portalTarget, setPortalTarget] = useState(null);
+
+  useLayoutEffect(() => {
+    setPortalTarget(document.body);
+  }, []);
 
   const [form, setForm] = useState({
     fullName: "", email: "", phone: "", company: "", project: "",
@@ -250,17 +256,32 @@ function QuoteDrawer({ open, onClose }) {
     if (!overlay || !drawer) return;
     tlRef.current?.kill();
     tlRef.current = gsap.timeline();
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+
     if (open) {
       gsap.set(overlay, { display: "block" });
-      gsap.set(drawer,  { display: "flex"  });
+      gsap.set(drawer, { display: "flex", clearProps: "transform" });
+      if (isMobile) {
+        gsap.set(drawer, { x: 0, y: "100%" });
+        tlRef.current
+          .fromTo(overlay, { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0)
+          .fromTo(drawer, { y: "100%" }, { y: "0%", duration: 0.5, ease: "power4.out" }, 0);
+      } else {
+        gsap.set(drawer, { x: "110%", y: 0 });
+        tlRef.current
+          .fromTo(overlay, { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0)
+          .fromTo(drawer, { x: "110%" }, { x: "0%", duration: 0.58, ease: "power4.out" }, 0);
+      }
+    } else if (isMobile) {
       tlRef.current
-        .fromTo(overlay, { opacity: 0 }, { opacity: 1, duration: 0.4,  ease: "power2.out" }, 0)
-        .fromTo(drawer,  { x: "110%" },  { x: "0%",   duration: 0.58, ease: "power4.out"  }, 0);
+        .to(drawer, { y: "100%", duration: 0.42, ease: "power4.inOut" }, 0)
+        .to(overlay, { opacity: 0, duration: 0.38, ease: "power2.in" }, 0.05)
+        .set([overlay, drawer], { display: "none", clearProps: "transform" });
     } else {
       tlRef.current
-        .to(drawer,  { x: "110%",  duration: 0.45, ease: "power4.inOut" }, 0)
-        .to(overlay, { opacity: 0, duration: 0.38, ease: "power2.in"    }, 0.05)
-        .set([overlay, drawer], { display: "none" });
+        .to(drawer, { x: "110%", duration: 0.45, ease: "power4.inOut" }, 0)
+        .to(overlay, { opacity: 0, duration: 0.38, ease: "power2.in" }, 0.05)
+        .set([overlay, drawer], { display: "none", clearProps: "transform" });
     }
     return () => tlRef.current?.kill();
   }, [open]);
@@ -316,17 +337,16 @@ function QuoteDrawer({ open, onClose }) {
     letterSpacing: "0.03em",
   };
 
-  return (
+  const drawerUi = (
     <>
-      {/* Backdrop */}
       <div
         ref={overlayRef}
+        className="quote-drawer-overlay"
         onClick={onClose}
         style={{
           display: "none",
           position: "fixed",
           inset: 0,
-          zIndex: 300,
           background: "rgba(0,0,0,0.6)",
           backdropFilter: "blur(8px)",
           WebkitBackdropFilter: "blur(8px)",
@@ -335,17 +355,12 @@ function QuoteDrawer({ open, onClose }) {
 
       <div
         ref={drawerRef}
+        className="quote-drawer-panel"
         style={{
           display: "none",
           position: "fixed",
-          top: "20px",
-          bottom: "20px",
-          right: "20px",
-          zIndex: 301,
-          width: "clamp(360px, 38vw, 540px)",
           flexDirection: "column",
           background: "linear-gradient(160deg, #162D24 0%, #162D24 50%, #1B4732 100%)",
-          borderRadius: "12px",
           border: "1px solid rgba(200,240,74,0.12)",
           boxShadow: `
             0 32px 80px rgba(0,0,0,0.55),
@@ -377,11 +392,10 @@ function QuoteDrawer({ open, onClose }) {
             overflowX: "hidden",
           }}
         >
-          <div style={{
+          <div className="quote-drawer-header" style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            padding: "28px 32px 0",
             flexShrink: 0,
           }}>
             <BrandLogo height="39px" />
@@ -413,8 +427,8 @@ function QuoteDrawer({ open, onClose }) {
             >✕</button>
           </div>
 
-          <div style={{ padding: "22px 32px 0", flexShrink: 0 }}>
-            <h2 style={{
+          <div className="quote-drawer-intro" style={{ flexShrink: 0 }}>
+            <h2 className="quote-drawer-title" style={{
               color: "#f8f8f4",
               fontSize: "clamp(1.9rem, 3vw, 2.6rem)",
               fontWeight: 300,
@@ -442,7 +456,7 @@ function QuoteDrawer({ open, onClose }) {
             }} />
           </div>
 
-          <div style={{ padding: "22px 32px 28px", flex: 1 }}>
+          <div className="quote-drawer-body" style={{ flex: 1 }}>
             {submitted ? (
               <div style={{
                 display: "flex", flexDirection: "column",
@@ -487,7 +501,7 @@ function QuoteDrawer({ open, onClose }) {
                   {errors.fullName && <span style={errorStyle}>{errors.fullName}</span>}
                 </div>
 
-                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
+                <div className="quote-form-row-2">
                   <div>
                     <label style={labelStyle}>Email <span style={{ color: "#c8f04a" }}>*</span></label>
                     <input type="email" placeholder="jane@company.com" value={form.email}
@@ -561,12 +575,11 @@ function QuoteDrawer({ open, onClose }) {
             )}
           </div>
 
-          <div style={{
+          <div className="quote-drawer-footer" style={{
             flexShrink: 0,
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            padding: "16px 32px",
             marginTop: "auto",
             borderTop: "1px solid rgba(255,255,255,0.06)",
           }}>
@@ -581,6 +594,9 @@ function QuoteDrawer({ open, onClose }) {
       </div>
     </>
   );
+
+  if (!portalTarget) return null;
+  return createPortal(drawerUi, portalTarget);
 }
 
 // ── Service item ──────────────────────────────────────────────

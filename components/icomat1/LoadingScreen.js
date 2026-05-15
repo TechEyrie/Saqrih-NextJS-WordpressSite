@@ -69,7 +69,12 @@ export default function LoadingScreen({ onComplete }) {
     rafRef.id = requestAnimationFrame(frame);
 
     gsap.set(overlay, { opacity: 1, pointerEvents: "all" });
-    gsap.set(logo, { opacity: 0, scale: 0.85 });
+    gsap.set(logo, {
+      opacity: 0,
+      scale: 0.85,
+      transformOrigin: "50% 50%",
+      force3D: true,
+    });
     gsap.set(paintState, { wave: 0, solid: 0 });
 
     const tl = gsap.timeline({
@@ -136,11 +141,15 @@ export default function LoadingScreen({ onComplete }) {
   return (
     <div
       ref={overlayRef}
+      className="loading-screen-overlay"
       style={{
         position: "fixed",
         inset: 0,
         zIndex: 9999,
         overflow: "hidden",
+        width: "100%",
+        height: "100%",
+        minHeight: "100dvh",
         background:
           "radial-gradient(ellipse at center, #ffffff 32%, #e8ebe9 100%)",
       }}
@@ -159,30 +168,31 @@ export default function LoadingScreen({ onComplete }) {
         }}
       />
 
-      <div
-        ref={logoRef}
-        style={{
-          position: "absolute",
-          inset: 0,
-          zIndex: 2,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          pointerEvents: "none",
-          opacity: 0,
-          transform: "scale(0.85)",
-        }}
-      >
-        <img
-          src="/logo/Eyrion_real_logo.png"
-          alt="Eyrion"
+      {/* Fixed center shell — GSAP must not transform this (mobile viewport + flex center drift) */}
+      <div className="loading-screen-logo-anchor">
+        <div
+          ref={logoRef}
           style={{
-            width: "clamp(47px, 5.9vw, 83px)",
-            height: "auto",
-            objectFit: "contain",
-            filter: "brightness(0) saturate(100%)",
+            opacity: 0,
+            transformOrigin: "center center",
+            willChange: "transform, opacity",
           }}
-        />
+        >
+          <img
+            src="/logo/Eyrion_real_logo.png"
+            alt="Eyrion"
+            width={83}
+            height={83}
+            style={{
+              display: "block",
+              width: "clamp(47px, 5.9vw, 83px)",
+              height: "auto",
+              maxWidth: "100%",
+              objectFit: "contain",
+              filter: "brightness(0) saturate(100%)",
+            }}
+          />
+        </div>
       </div>
     </div>
   );

@@ -58,42 +58,68 @@ export default function IndustriesSection() {
   const activeRef           = useRef(0);
   const isAnimating         = useRef(false);
 
-  // ── Scroll expand ──────────────────────────────────────────
+  // ── Scroll expand (desktop only — 100vw causes horizontal overflow on mobile) ──
   useEffect(() => {
     const ctx = gsap.context(() => {
+      const container = containerRef.current;
+      const content = contentRef.current;
+      if (!container || !content) return;
 
-      gsap.set(containerRef.current, {
-        width: "36vw",
-        height: "56vh",
-        borderRadius: "20px",
-        x: "50%",
-        xPercent: -50,
+      const mm = gsap.matchMedia();
+
+      mm.add("(max-width: 768px)", () => {
+        gsap.set(container, {
+          width: "100%",
+          maxWidth: "100%",
+          height: "clamp(280px, 56vh, 420px)",
+          borderRadius: "12px",
+          x: 0,
+          xPercent: 0,
+          clearProps: "transform",
+        });
+        gsap.set(content, { opacity: 1, y: 0 });
       });
 
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top bottom",
-          end: "top top",
-          scrub: 1.6,
-          invalidateOnRefresh: true,
-        },
-      })
-      .to(containerRef.current, {
-        width: "100vw",
-        height: "100vh",
-        borderRadius: "0px",
-        x: 0,
-        xPercent: 0,
-        ease: "power2.inOut",
-        duration: 1,
-      }, 0)
-      .fromTo(contentRef.current,
-        { opacity: 0, y: 18 },
-        { opacity: 1, y: 0, ease: "power3.out", duration: 0.45 },
-        0.55
-      );
+      mm.add("(min-width: 769px)", () => {
+        gsap.set(container, {
+          width: "36vw",
+          height: "56vh",
+          borderRadius: "20px",
+          x: "50%",
+          xPercent: -50,
+        });
 
+        gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top bottom",
+            end: "top top",
+            scrub: 1.6,
+            invalidateOnRefresh: true,
+          },
+        })
+          .to(
+            container,
+            {
+              width: "100%",
+              height: "100vh",
+              borderRadius: "0px",
+              x: 0,
+              xPercent: 0,
+              ease: "power2.inOut",
+              duration: 1,
+            },
+            0,
+          )
+          .fromTo(
+            content,
+            { opacity: 0, y: 18 },
+            { opacity: 1, y: 0, ease: "power3.out", duration: 0.45 },
+            0.55,
+          );
+      });
+
+      return () => mm.revert();
     }, sectionRef);
 
     return () => ctx.revert();
@@ -199,11 +225,13 @@ export default function IndustriesSection() {
       style={{
         position: "relative",
         width: "100%",
+        maxWidth: "100%",
         height: "200vh",
         background: "#162D24",
         display: "flex",
         alignItems: "flex-start",
         justifyContent: "center",
+        overflow: "hidden",
       }}
     >
       {/* Sticky wrapper */}

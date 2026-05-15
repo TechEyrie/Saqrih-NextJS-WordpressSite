@@ -149,6 +149,7 @@ function FeatureCard({ card, animRef }) {
     return (
       <div
         ref={setRef}
+        className="unlocking-feature-card"
         style={{
           background: "#162D24",
           borderRadius: "18px",
@@ -217,6 +218,7 @@ function FeatureCard({ card, animRef }) {
   return (
     <div
       ref={setRef}
+      className="unlocking-feature-card"
       style={{
         background: "#efefed",
         borderRadius: "18px",
@@ -328,12 +330,14 @@ function ImageLinkCard({ card, animRef }) {
     <a
       ref={setRef}
       href={card.href}
+      className="unlocking-image-card"
       style={{
         position: "relative",
         display: "block",
         borderRadius: "18px",
         overflow: "hidden",
         height: "clamp(260px, 32vw, 480px)",
+        minHeight: "220px",
         cursor: "pointer",
         textDecoration: "none",
       }}
@@ -377,6 +381,7 @@ function ImageLinkCard({ card, animRef }) {
       >
         <div
           ref={pillRef}
+          className="unlocking-image-pill"
           style={{
             position: "relative",
             overflow: "hidden",
@@ -388,22 +393,25 @@ function ImageLinkCard({ card, animRef }) {
             WebkitBackdropFilter: "blur(10px)",
             border: "1px solid rgba(255,255,255,0.34)",
             borderRadius: "38px",
-            padding: "36px 46px",
-            fontSize: "clamp(11px, 0.75vw, 12px)",
+            padding: "clamp(18px, 4vw, 36px) clamp(22px, 5vw, 46px)",
+            fontSize: "clamp(10px, 2.5vw, 12px)",
             fontWeight: 300,
             letterSpacing: "0.09em",
             textTransform: "uppercase",
             boxShadow: "inset 0 1px 0 rgba(255,255,255,0.35), 0 8px 24px rgba(0,0,0,0.3)",
-            lineHeight: 1,
+            lineHeight: 1.2,
+            maxWidth: "min(92%, 100%)",
           }}
         >
           <span
             ref={textRef}
+            className="unlocking-pill-label"
             style={{
               display: "block",
               color: "#ffffff",
               whiteSpace: "nowrap",
-              lineHeight: 1,
+              lineHeight: 1.2,
+              textAlign: "center",
             }}
           >
             {card.label}
@@ -411,12 +419,14 @@ function ImageLinkCard({ card, animRef }) {
           <span
             ref={cloneRef}
             aria-hidden="true"
+            className="unlocking-pill-label"
             style={{
               display: "block",
               color: "#101010",
               whiteSpace: "nowrap",
               position: "absolute",
-              lineHeight: 1,
+              lineHeight: 1.2,
+              textAlign: "center",
             }}
           >
             {card.label}
@@ -502,10 +512,13 @@ export default function UnlockingSection() {
   return (
     <section
       ref={sectionRef}
+      className="unlocking-section"
       style={{
         width: "100%",
         background: "#f7f7f5",
         padding: "clamp(64px, 10vw, 130px) clamp(24px, 5vw, 80px)",
+        boxSizing: "border-box",
+        overflow: "hidden",
       }}
     >
 
@@ -513,6 +526,7 @@ export default function UnlockingSection() {
       <div style={{ textAlign: "center", marginBottom: "clamp(52px, 7vw, 90px)" }}>
         <h2
           ref={headingRef}
+          className="unlocking-heading"
           style={{
             fontWeight: 600,
             fontSize: "clamp(2.4rem, 4.5vw, 4.5rem)",
@@ -521,6 +535,7 @@ export default function UnlockingSection() {
             maxWidth: "820px",
             margin: "0 auto",
             color: "rgba(0,0,0,0.1)",
+            padding: "0 clamp(4px, 2vw, 12px)",
           }}
         >
           Premier WordPress design and development services in the Middle East.
@@ -530,6 +545,7 @@ export default function UnlockingSection() {
       {/* ── Feature cards grid ────────────────────────────────── */}
       <div
         ref={gridRef}
+        className="unlocking-cards-grid"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(3, 1fr)",
@@ -549,6 +565,7 @@ export default function UnlockingSection() {
       {/* ── Image link row ────────────────────────────────────── */}
       <div
         ref={imageRowRef}
+        className="unlocking-image-row"
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
@@ -564,6 +581,49 @@ export default function UnlockingSection() {
         ))}
       </div>
 
+      <style>{`
+        @media (max-width: 1100px) {
+          .unlocking-cards-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+          }
+        }
+        @media (max-width: 720px) {
+          .unlocking-section {
+            padding-left: clamp(16px, 4vw, 24px) !important;
+            padding-right: clamp(16px, 4vw, 24px) !important;
+          }
+          .unlocking-heading {
+            font-size: clamp(1.85rem, 7vw, 2.4rem) !important;
+            line-height: 1.12 !important;
+          }
+          .unlocking-cards-grid {
+            grid-template-columns: 1fr !important;
+          }
+          .unlocking-image-row {
+            grid-template-columns: 1fr !important;
+          }
+          .unlocking-feature-card {
+            min-height: 240px !important;
+          }
+          .unlocking-image-card {
+            height: clamp(220px, 55vw, 320px) !important;
+          }
+          .unlocking-image-pill {
+            padding: 16px 22px !important;
+            border-radius: 28px !important;
+          }
+          .unlocking-pill-label {
+            white-space: normal !important;
+            font-size: clamp(9px, 2.2vw, 11px) !important;
+          }
+        }
+        @media (max-width: 400px) {
+          .unlocking-feature-card {
+            padding: 22px !important;
+            min-height: 220px !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

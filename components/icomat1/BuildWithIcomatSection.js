@@ -81,11 +81,12 @@ export default function BuildWithIcomatSection() {
     >
       {/* ── Two-col layout ────────────────────────────────────── */}
       <div
+        className="build-with-icomat-grid"
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
           gap: "clamp(40px, 6vw, 100px)",
-          alignItems: "start",   /* top-align so right can offset down */
+          alignItems: "start",
         }}
       >
 
@@ -109,13 +110,14 @@ export default function BuildWithIcomatSection() {
         {/* RIGHT — offset down so bold tagline aligns with heading */}
         <div
           ref={rightRef}
+          className="build-with-icomat-right"
           style={{
             display: "flex",
             flexDirection: "column",
             gap: "24px",
             maxWidth: "460px",
             justifySelf: "end",
-            marginTop: "clamp(20px, 12vw, 0px)", /* ← pushes right col down */
+            marginTop: "clamp(20px, 12vw, 0px)",
           }}
         >
 
@@ -171,6 +173,7 @@ export default function BuildWithIcomatSection() {
           <div style={{ marginTop: "12px" }}>
             <a
               ref={btnRef}
+              className="build-with-icomat-cta"
               href="#"
               onClick={(e) => {
                 e.preventDefault();
@@ -214,6 +217,31 @@ export default function BuildWithIcomatSection() {
 
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 960px) {
+          .build-with-icomat-grid {
+            grid-template-columns: 1fr !important;
+            gap: clamp(28px, 5vw, 40px) !important;
+          }
+          .build-with-icomat-right {
+            justify-self: stretch !important;
+            max-width: 100% !important;
+            margin-top: 0 !important;
+          }
+          .build-with-icomat-cta {
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+          }
+        }
+        @media (max-width: 480px) {
+          .build-with-icomat-cta {
+            padding: 16px 24px !important;
+            min-width: 0 !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

@@ -75,22 +75,22 @@
   }
   
   body {
-    font-family: var(--font-inter), Inter, Arial, sans-serif;
+    font-family: var(--font-montserrat), Montserrat, Arial, sans-serif;
     background-color: #E8E8E8; /* Light gray background for the whole page */
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Yantramanav', var(--font-inter), Inter, Arial, sans-serif;
+    font-family: var(--font-inter), Inter, Arial, sans-serif;
     font-weight: 500;
   }
 
   nav, nav * {
-    font-family: var(--font-inter), Inter, Arial, sans-serif;
+    font-family: var(--font-montserrat), Montserrat, Arial, sans-serif;
   }
 
   /* Force Helvetica font stack */
   .font-helvetica {
-    font-family: var(--font-inter), Inter, Arial, sans-serif;
+    font-family: var(--font-montserrat), Montserrat, Arial, sans-serif;
   }
 
   /* Site-wide weight normalization: avoid heavy bold text by default. */
@@ -437,7 +437,7 @@
 .icomat1-laygrotesk textarea,
 .icomat1-laygrotesk label,
 .icomat1-laygrotesk small {
-  font-family: var(--font-inter), Inter, Arial, sans-serif;
+  font-family: var(--font-montserrat), Montserrat, Arial, sans-serif;
 }
 
 .icomat1-laygrotesk h1,
@@ -446,7 +446,7 @@
 .icomat1-laygrotesk h4,
 .icomat1-laygrotesk h5,
 .icomat1-laygrotesk h6 {
-  font-family: 'Yantramanav', var(--font-inter), Inter, Arial, sans-serif !important;
+  font-family: var(--font-inter), Inter, Arial, sans-serif !important;
 }
 
 .icomat1-laygrotesk h1 *,
@@ -556,9 +556,148 @@ html {
 }
 
 /* Ensure body doesn't clip triangles */
+html {
+  overflow-x: clip;
+  max-width: 100%;
+}
+
 body {
   position: relative;
-  overflow-x: hidden;
+  overflow-x: clip;
+  max-width: 100%;
+  width: 100%;
+}
+
+.homepage-root,
+.homepage-font-scope {
+  overflow-x: clip;
+  max-width: 100%;
+  width: 100%;
+}
+
+/* Loading screen — true viewport center on mobile (iOS address bar / dvh) */
+.loading-screen-overlay {
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
+}
+
+@supports (height: 100dvh) {
+  .loading-screen-overlay {
+    height: 100dvh;
+  }
+}
+
+.loading-screen-logo-anchor {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  z-index: 10000;
+  margin: 0;
+  padding: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+}
+
+@supports (top: 1dvh) {
+  .loading-screen-logo-anchor {
+    left: 50dvw;
+    top: 50dvh;
+  }
+}
+
+/* Get a quote drawer (portaled to body) */
+.quote-drawer-overlay {
+  z-index: 10050;
+}
+
+.quote-drawer-panel {
+  z-index: 10051;
+  box-sizing: border-box;
+  top: 20px;
+  right: 20px;
+  bottom: 20px;
+  left: auto;
+  width: min(540px, calc(100% - 40px));
+  max-width: calc(100% - 40px);
+  height: auto;
+  max-height: calc(100vh - 40px);
+  max-height: calc(100dvh - 40px);
+  border-radius: 12px;
+}
+
+.quote-drawer-header {
+  padding: 28px 32px 0;
+}
+
+.quote-drawer-intro {
+  padding: 22px 32px 0;
+}
+
+.quote-drawer-body {
+  padding: 22px 32px 28px;
+}
+
+.quote-drawer-footer {
+  padding: 16px 32px;
+}
+
+.quote-form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 768px) {
+  .quote-drawer-panel {
+    top: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: 100% !important;
+    max-height: 100vh !important;
+    max-height: 100dvh !important;
+    border-radius: 0 !important;
+    border-left: none !important;
+    border-right: none !important;
+  }
+
+  .quote-drawer-header {
+    padding: 20px 20px 0;
+  }
+
+  .quote-drawer-intro {
+    padding: 16px 20px 0;
+  }
+
+  .quote-drawer-body {
+    padding: 16px 20px 24px;
+  }
+
+  .quote-drawer-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 14px 20px;
+  }
+
+  .quote-drawer-title {
+    font-size: clamp(1.5rem, 6vw, 1.9rem) !important;
+  }
+
+  .quote-form-row-2 {
+    grid-template-columns: 1fr !important;
+  }
+
+  .quote-drawer-panel .quote-scroll-inner {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .quote-drawer-panel input,
+  .quote-drawer-panel textarea {
+    font-size: 16px; /* prevents iOS zoom on focus */
+  }
 }
 
 /* Theme Toggle Button */

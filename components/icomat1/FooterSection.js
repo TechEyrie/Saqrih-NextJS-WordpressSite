@@ -66,6 +66,22 @@ const WORDPRESS_SERVICE_LINKS = [
 ];
 
 // ── Nav data ──────────────────────────────────────────────────
+const NAV_WORK_LINKS = [
+  { label: "Markets we serve", href: "/markets" },
+  { label: "Industries we serve", href: "/industries" },
+];
+
+const NAV_ABOUT_LINKS = [
+  { label: "Why Eyrion", href: "/why-eyrion" },
+  { label: "Read the blog", href: "/blog" },
+  { label: "How to sell your agency guide", href: "/sell-my-agency" },
+  { label: "WordPress resource guides", href: "/resources" },
+  { label: "WordPress security bulletins", href: "/security-bulletins" },
+  { label: "Compare WordPress agencies", href: "/reviews" },
+  { label: "Privacy policy", href: "/privacy-policy" },
+  { label: "AI disclosure (llms.txt)", href: "/llms.txt" },
+];
+
 const NAV_MAIN = [
   {
     label: "Our services",
@@ -75,27 +91,18 @@ const NAV_MAIN = [
   {
     label: "Our work",
     href: "/work",
-    sub: ["Markets we serve", "Industries we serve"],
+    sub: NAV_WORK_LINKS,
   },
   {
     label: "About us",
     href: "/about-us",
-    sub: [
-      "Why Eyrion",
-      "Read the blog",
-      "How to sell your agency guide",
-      "WordPress resource guides",
-      "WordPress security bulletins",
-      "Compare WordPress agencies",
-      "Privacy policy",
-      "AI disclosure (llms.txt)",
-    ],
+    sub: NAV_ABOUT_LINKS,
   },
 ];
 
 const NAV_LEGAL = [
   { label: "LEGAL", href: "/about-us", bold: true },
-  { label: "PRIVACY POLICY", href: "/about-us", bold: false },
+  { label: "PRIVACY POLICY", href: "/privacy-policy", bold: false },
 ];
 
 const SOCIALS = [
@@ -130,7 +137,7 @@ const SUB_LINK_STYLE = {
   transition: "color 0.2s",
 };
 
-function FooterServicesSubLink({ item }) {
+function FooterSubLink({ item }) {
   return (
     <a
       href={item.href}
@@ -177,7 +184,7 @@ function FooterServicesLinks({ subs }) {
       {columns.map((chunk, i) => (
         <div key={i} className="flex min-w-0 flex-1 flex-col gap-[0.35rem]">
           {chunk.map((item) => (
-            <FooterServicesSubLink key={item.label} item={item} />
+            <FooterSubLink key={item.label} item={item} />
           ))}
         </div>
       ))}
@@ -432,18 +439,7 @@ export default function FooterSection() {
                       ) : (
                         <div className="flex min-w-0 max-w-full flex-col" style={{ gap: "0.35rem" }}>
                           {item.sub.map((sub) => (
-                            <a
-                              key={sub}
-                              href={`#${sub.toLowerCase().replace(/\s/g, "-")}`}
-                              className="footer-hover-line min-w-0 max-w-full whitespace-normal break-words [overflow-wrap:anywhere]"
-                              style={{
-                                ...SUB_LINK_STYLE,
-                              }}
-                              onMouseEnter={(e) => (e.currentTarget.style.color = "#ffffff")}
-                              onMouseLeave={(e) => (e.currentTarget.style.color = FOOTER_LINK_COLOR)}
-                            >
-                              {sub}
-                            </a>
+                            <FooterSubLink key={sub.label} item={sub} />
                           ))}
                         </div>
                       ))}

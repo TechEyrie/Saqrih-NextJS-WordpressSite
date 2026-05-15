@@ -1,9 +1,13 @@
-import { Inter } from "next/font/google";
+import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import Script from 'next/script'
 import GlobalLoadingWrapper from "../../components/icomat1/GlobalLoadingWrapper";
 const inter = Inter({
   variable: "--font-inter",
+  subsets: ["latin"],
+});
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
 });
 
@@ -61,7 +65,7 @@ export default function RootLayout({ children }) {
         />
         <link rel="alternate" type="application/rss+xml" title="Eyrion" href="/feed/" />
       </head>
-      <body className={inter.variable}>
+      <body className={`${inter.variable} ${montserrat.variable}`}>
         <Script
           src="/wp-includes/js/wp-embed.min.js"
           strategy="beforeInteractive"

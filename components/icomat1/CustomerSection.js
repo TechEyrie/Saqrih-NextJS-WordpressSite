@@ -240,43 +240,43 @@ export default function CustomersSection() {
         });
       };
 
-      // ── PIN ──────────────────────────────────────────────────
-      ScrollTrigger.create({
-        trigger: wrapperRef.current,
-        start: "top top",
-        end: `+=${TOTAL_PIN_SCROLL}`,
-        pin: true,
-        pinSpacing: true,
-        anticipatePin: 1,
-      });
+      // ── PIN + SCRUB (desktop only — pin spacers can cause horizontal overflow on mobile) ──
+      const mmPin = gsap.matchMedia();
+      mmPin.add("(min-width: 769px)", () => {
+        ScrollTrigger.create({
+          trigger: wrapperRef.current,
+          start: "top top",
+          end: `+=${TOTAL_PIN_SCROLL}`,
+          pin: true,
+          pinSpacing: true,
+          anticipatePin: 1,
+        });
 
-      // ── SCRUB ────────────────────────────────────────────────
-      ScrollTrigger.create({
-        trigger: wrapperRef.current,
-        start: "top top",
-        end: `+=${TOTAL_PIN_SCROLL}`,
-        scrub: 10,
-        snap: {
-          snapTo: gsap.utils.snap(1 / totalCards),
-          duration: { min: 0.85, max: 1.75 },
-          delay: 0.12,
-          ease: "power3.inOut",
-        },
-        onUpdate: (self) => {
-          const p = self.progress;
+        ScrollTrigger.create({
+          trigger: wrapperRef.current,
+          start: "top top",
+          end: `+=${TOTAL_PIN_SCROLL}`,
+          scrub: 10,
+          snap: {
+            snapTo: gsap.utils.snap(1 / totalCards),
+            duration: { min: 0.85, max: 1.75 },
+            delay: 0.12,
+            ease: "power3.inOut",
+          },
+          onUpdate: (self) => {
+            const p = self.progress;
 
-          if (progressFillRef.current)
-            gsap.set(progressFillRef.current, { scaleX: p, transformOrigin: "left center" });
+            if (progressFillRef.current)
+              gsap.set(progressFillRef.current, { scaleX: p, transformOrigin: "left center" });
 
-          transitionToCard(Math.min(Math.floor(p * totalCards), totalCards - 1));
+            transitionToCard(Math.min(Math.floor(p * totalCards), totalCards - 1));
 
-          if (bgGradientRef.current) {
-            // Grow the gradient noticeably more during scroll (~40% extra spread)
-            const bW  = 55 + p * 126;
-            const bH  = bW * 0.62;
-            const op1 = 0.45 + p * 0.5;
-            const op2 = op1 * 0.5;
-            bgGradientRef.current.style.background = `
+            if (bgGradientRef.current) {
+              const bW = 55 + p * 126;
+              const bH = bW * 0.62;
+              const op1 = 0.45 + p * 0.5;
+              const op2 = op1 * 0.5;
+              bgGradientRef.current.style.background = `
               radial-gradient(ellipse 60% 45% at 50% 50%,
                 rgba(67, 87, 44, ${0.2 + p * 0.35}) 0%,
                 rgba(67, 87, 44, ${0.1 + p * 0.2}) 45%,
@@ -288,8 +288,9 @@ export default function CustomersSection() {
                 transparent 68%
               )
             `;
-          }
-        },
+            }
+          },
+        });
       });
 
       // ── Heading ──────────────────────────────────────────────
@@ -305,27 +306,63 @@ export default function CustomersSection() {
         }
       );
 
-      // ── VIDEO EXPAND ─────────────────────────────────────────
-      gsap.set(videoWrapRef.current, { width: "32vw", height: "20vw", borderRadius: "20px" });
-      gsap.set(miniCardRef.current,  { opacity: 0, y: 24, scale: 0.88 });
+      // ── VIDEO EXPAND (desktop only — 100vw overflows on mobile) ──
+      const videoWrap = videoWrapRef.current;
+      const miniCard = miniCardRef.current;
+      const videoSection = videoSectionRef.current;
 
-      gsap.timeline({
-        scrollTrigger: {
-          trigger: videoSectionRef.current,
-          start: "top bottom",
-          end: "top top",
-          scrub: 1.5,
-          invalidateOnRefresh: true,
-        },
-      })
-      .to(videoWrapRef.current, {
-        width: "100vw", height: "100vh", borderRadius: "0px",
-        ease: "power2.inOut", duration: 1,
-      }, 0)
-      .to(miniCardRef.current, {
-        opacity: 1, y: 0, scale: 1,
-        ease: "power3.out", duration: 0.5,
-      }, 0.65);
+      if (videoWrap && miniCard && videoSection) {
+        const mmVideo = gsap.matchMedia();
+
+        mmVideo.add("(max-width: 768px)", () => {
+          gsap.set(videoWrap, {
+            width: "100%",
+            maxWidth: "100%",
+            height: "auto",
+            aspectRatio: "16 / 9",
+            borderRadius: "12px",
+            clearProps: "transform",
+          });
+          gsap.set(miniCard, { opacity: 1, y: 0, scale: 1 });
+        });
+
+        mmVideo.add("(min-width: 769px)", () => {
+          gsap.set(videoWrap, { width: "32vw", height: "20vw", borderRadius: "20px" });
+          gsap.set(miniCard, { opacity: 0, y: 24, scale: 0.88 });
+
+          gsap.timeline({
+            scrollTrigger: {
+              trigger: videoSection,
+              start: "top bottom",
+              end: "top top",
+              scrub: 1.5,
+              invalidateOnRefresh: true,
+            },
+          })
+            .to(
+              videoWrap,
+              {
+                width: "100%",
+                height: "100vh",
+                borderRadius: "0px",
+                ease: "power2.inOut",
+                duration: 1,
+              },
+              0,
+            )
+            .to(
+              miniCard,
+              {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                ease: "power3.out",
+                duration: 0.5,
+              },
+              0.65,
+            );
+        });
+      }
 
     }, outerRef);
 
@@ -344,7 +381,7 @@ export default function CustomersSection() {
 
       <div
         ref={outerRef}
-        style={{ background: "#162D24", position: "relative" }}
+        style={{ background: "#162D24", position: "relative", overflowX: "clip", maxWidth: "100%" }}
       >
         {/* Animated gradient */}
         <div
