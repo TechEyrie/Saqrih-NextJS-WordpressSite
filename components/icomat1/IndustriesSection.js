@@ -35,8 +35,6 @@ const INDUSTRIES = [
 ];
 
 const AUTO_TAB_INTERVAL_MS = 6000;
-const PIC_SCROLLOUT_SCALE_MIN = 0.7;
-const PIC_SCROLLOUT_END_RADIUS_PX = 6;
 const MOBILE_MQ = "(max-width: 768px)";
 
 function isMobileViewport() {
@@ -62,15 +60,12 @@ export default function IndustriesSection() {
     imgLayersRef.current.forEach((img, i) => {
       if (!img) return;
       const visible = i === idx;
-
       img.style.zIndex = visible ? "1" : "0";
       img.style.clipPath = visible ? "inset(0% 0% 0% 0%)" : "inset(0% 0% 100% 0%)";
       img.style.opacity = visible ? "1" : "0";
     });
-
     if (headingRef.current) headingRef.current.textContent = INDUSTRIES[idx].heading;
     if (subRef.current) subRef.current.textContent = INDUSTRIES[idx].subheading;
-
     if (contentRef.current) {
       contentRef.current.style.opacity = "1";
       contentRef.current.style.transform = "translateY(0px)";
@@ -79,26 +74,27 @@ export default function IndustriesSection() {
   }, []);
 
   useEffect(() => {
-    ScrollTrigger.saveStyles([
+    const els = [
       containerRef.current,
       contentRef.current,
       picInnerRef.current,
-      ...imgLayersRef.current,
-    ]);
+      ...imgLayersRef.current.filter(Boolean),
+    ];
+    ScrollTrigger.saveStyles(els);
   }, []);
 
-  // ── Desktop: scroll expand + content reveal ─────────────────
+  // Desktop: small → large full-screen; Mobile: simple block
   useEffect(() => {
     const ctx = gsap.context(() => {
+      const section = sectionRef.current;
       const container = containerRef.current;
       const content = contentRef.current;
-      const section = sectionRef.current;
       const picInner = picInnerRef.current;
-
-      if (!container || !content || !section || !picInner) return;
+      if (!section || !container || !content || !picInner) return;
 
       const mm = gsap.matchMedia();
 
+      // Mobile layout (no pin)
       mm.add(MOBILE_MQ, () => {
         gsap.set(container, {
           clearProps: "all",
@@ -109,66 +105,74 @@ export default function IndustriesSection() {
           x: 0,
           xPercent: 0,
         });
-
         gsap.set(content, {
           clearProps: "all",
           opacity: 1,
           y: 0,
           visibility: "visible",
         });
-
         gsap.set(picInner, {
           clearProps: "all",
           scale: 1,
           borderRadius: "12px",
         });
-
         applyMobileSlide(activeRef.current);
       });
 
+      // Desktop layout + scroll behavior
       mm.add("(min-width: 769px)", () => {
+        // Start smaller, centered
         gsap.set(container, {
-          width: "36vw",
+          width: "40vw",
           height: "56vh",
           borderRadius: "20px",
           x: "50%",
           xPercent: -50,
         });
-
         gsap.set(content, {
           opacity: 0,
           y: 18,
           visibility: "visible",
         });
+        gsap.set(picInner, {
+          scale: 1,
+          borderRadius: "0px",
+          transformOrigin: "50% 50%",
+        });
 
-        gsap.timeline({
+        const tl = gsap.timeline({
           scrollTrigger: {
             trigger: section,
-            start: "top bottom",
-            end: "top top",
-            scrub: 1.6,
+            start: "top top",
+            end: "+=120%", // pin duration
+            scrub: 1.2,
+            pin: true,
+            anticipatePin: 1,
             invalidateOnRefresh: true,
           },
-        })
-          .to(
-            container,
-            {
-              width: "100%",
-              height: "100vh",
-              borderRadius: "0px",
-              x: 0,
-              xPercent: 0,
-              ease: "power2.inOut",
-              duration: 1,
-            },
-            0
-          )
-          .fromTo(
-            content,
-            { opacity: 0, y: 18 },
-            { opacity: 1, y: 0, ease: "power3.out", duration: 0.45 },
-            0.55
-          );
+        });
+
+        // Phase 1: grow to full 100% width + 100vh & reveal text
+        tl.to(
+          container,
+          {
+            width: "100%",
+            height: "100vh",
+            x: 0,
+            xPercent: 0,
+            borderRadius: "0px",
+            ease: "power2.inOut",
+            duration: 0.6,
+          },
+          0
+        ).fromTo(
+          content,
+          { opacity: 0, y: 18 },
+          { opacity: 1, y: 0, ease: "power3.out", duration: 0.35 },
+          0.2
+        );
+
+        // No ending animation – stays full view until unpinned
       });
 
       return () => mm.revert();
@@ -176,61 +180,6 @@ export default function IndustriesSection() {
 
     return () => ctx.revert();
   }, [applyMobileSlide]);
-
-  // ── Desktop only: photo scale-out on scroll ─────────────────
-  useEffect(() => {
-    const section = sectionRef.current;
-    const pic = picInnerRef.current;
-    if (!section || !pic) return;
-
-    const mm = gsap.matchMedia();
-    let tween = null;
-    let rafId = 0;
-
-    mm.add("(min-width: 769px)", () => {
-      gsap.set(pic, {
-        transformOrigin: "50% 50%",
-        scale: 1,
-        borderRadius: "0px",
-      });
-
-      tween = gsap.fromTo(
-        pic,
-        { scale: 1, borderRadius: "0px" },
-        {
-          scale: PIC_SCROLLOUT_SCALE_MIN,
-          borderRadius: `${PIC_SCROLLOUT_END_RADIUS_PX}px`,
-          ease: "none",
-          scrollTrigger: {
-            trigger: section,
-            start: "bottom 92%",
-            end: "bottom top",
-            scrub: 1.2,
-            invalidateOnRefresh: true,
-          },
-        }
-      );
-
-      rafId = requestAnimationFrame(() => ScrollTrigger.refresh());
-
-      return () => {
-        cancelAnimationFrame(rafId);
-        tween?.scrollTrigger?.kill();
-        tween?.kill();
-        gsap.set(pic, { clearProps: "all" });
-      };
-    });
-
-    mm.add(MOBILE_MQ, () => {
-      gsap.set(pic, {
-        clearProps: "all",
-        scale: 1,
-        borderRadius: "12px",
-      });
-    });
-
-    return () => mm.revert();
-  }, []);
 
   const switchTo = useCallback(
     (idx) => {
@@ -261,23 +210,14 @@ export default function IndustriesSection() {
         return;
       }
 
-      gsap.set(newImg, {
-        zIndex: 2,
-        opacity: 1,
-        clipPath: "inset(0% 0% 100% 0%)",
-      });
-
+      gsap.set(newImg, { zIndex: 2, clipPath: "inset(0% 0% 100% 0%)" });
       gsap.to(newImg, {
         clipPath: "inset(0% 0% 0% 0%)",
         duration: 0.95,
         ease: "power3.inOut",
         onComplete: () => {
-          gsap.set(oldImg, {
-            zIndex: 1,
-            opacity: 0,
-            clipPath: "inset(0% 0% 100% 0%)",
-          });
-          gsap.set(newImg, { zIndex: 1, opacity: 1 });
+          gsap.set(oldImg, { zIndex: 1 });
+          gsap.set(newImg, { zIndex: 1 });
           isAnimating.current = false;
         },
       });
@@ -365,7 +305,8 @@ export default function IndustriesSection() {
                   objectFit: "cover",
                   zIndex: i === 0 ? 1 : 0,
                   opacity: i === 0 ? 1 : 0,
-                  clipPath: i === 0 ? "inset(0% 0% 0% 0%)" : "inset(0% 0% 100% 0%)",
+                  clipPath:
+                    i === 0 ? "inset(0% 0% 0% 0%)" : "inset(0% 0% 100% 0%)",
                 }}
               />
             ))}
@@ -488,10 +429,12 @@ export default function IndustriesSection() {
                     transition: "color 0.25s ease",
                   }}
                   onMouseEnter={(e) => {
-                    if (active !== i) e.currentTarget.style.color = "rgba(255,255,255,0.65)";
+                    if (active !== i)
+                      e.currentTarget.style.color = "rgba(255,255,255,0.65)";
                   }}
                   onMouseLeave={(e) => {
-                    if (active !== i) e.currentTarget.style.color = "rgba(255,255,255,0.38)";
+                    if (active !== i)
+                      e.currentTarget.style.color = "rgba(255,255,255,0.38)";
                   }}
                 >
                   {ind.label}
@@ -516,15 +459,11 @@ export default function IndustriesSection() {
 
       <style>{`
         .industries-section {
-          height: 200vh;
-          display: flex;
-          align-items: flex-start;
-          justify-content: center;
+          /* ScrollTrigger pin creates the extra space; no fixed 200vh. */
         }
 
         .industries-sticky-wrap {
-          position: sticky;
-          top: 0;
+          position: relative;
           width: 100%;
           height: 100vh;
           display: flex;
@@ -557,8 +496,6 @@ export default function IndustriesSection() {
 
         @media (max-width: 768px) {
           .industries-section {
-            height: auto !important;
-            min-height: 0 !important;
             padding: 40px 0 48px;
           }
 

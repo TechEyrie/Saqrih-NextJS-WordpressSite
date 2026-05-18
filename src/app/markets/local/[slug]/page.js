@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import cities from "../../../../../components/icomat1-market/market-cities.json";
 import { cityLineSlug } from "../../../../../components/icomat1-market/citySlug";
+import { getLocalCityLines } from "../../../../../components/icomat1-market/marketsData";
+
+const cities = getLocalCityLines();
 
 const GREEN = "#162D24";
 const BODY = "rgba(22, 45, 36, 0.82)";

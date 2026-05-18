@@ -8,6 +8,8 @@ import HeroScrollDownIndicator from "./HeroScrollDownIndicator";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
+const HERO_BACKGROUND_VIDEO = "/videos/eyrion-hero-background-video.mp4";
+
 export function HeroQuoteButton({ onClick, className }) {
   const wrapRef  = useRef(null);
   const textRef  = useRef(null);
@@ -192,6 +194,35 @@ export default function HeroSection({ onQuoteClick }) {
     return () => ctx.revert();
   }, []);
 
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    if (prefersReducedMotion) {
+      video.pause();
+      video.removeAttribute("autoplay");
+      return;
+    }
+
+    const tryPlay = () => {
+      const p = video.play();
+      if (p?.catch) p.catch(() => {});
+    };
+
+    tryPlay();
+    video.addEventListener("loadeddata", tryPlay, { once: true });
+    video.addEventListener("canplay", tryPlay, { once: true });
+
+    return () => {
+      video.removeEventListener("loadeddata", tryPlay);
+      video.removeEventListener("canplay", tryPlay);
+    };
+  }, []);
+
   return (
     <section
       ref={containerRef}
@@ -204,18 +235,31 @@ export default function HeroSection({ onQuoteClick }) {
         perspective: "1200px",
       }}
     >
-      {/* Background Video */}
-      <video
-        ref={videoRef}
-        className="absolute inset-0 w-full h-full object-cover"
-        src="/wp-content/uploads/icomat-cdn/aWZQUwIvOtkhBcXM_ICOMAT-HOMEPAGE_1.mp4"
-        autoPlay muted loop playsInline preload="auto"
-      />
+      {/* Background video — served from public/videos */}
+      <div
+        className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
+        aria-hidden="true"
+      >
+        <video
+          ref={videoRef}
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ minWidth: "100%", minHeight: "100%" }}
+          src={HERO_BACKGROUND_VIDEO}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          disablePictureInPicture
+          disableRemotePlayback
+          tabIndex={-1}
+        />
+      </div>
 
       {/* Gradient Overlay */}
       <div
         ref={overlayRef}
-        className="absolute inset-0"
+        className="absolute inset-0 z-[1] pointer-events-none"
         style={{
           background:
             "linear-gradient(to right, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0.1) 100%)",
@@ -224,7 +268,7 @@ export default function HeroSection({ onQuoteClick }) {
 
       {/* Bottom fade */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
+        className="absolute bottom-0 left-0 right-0 z-[1] h-32 pointer-events-none"
         style={{ background: "linear-gradient(to bottom, transparent, rgba(0,0,0,0.55))" }}
       />
 

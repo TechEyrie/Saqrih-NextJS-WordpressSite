@@ -1,22 +1,16 @@
 "use client";
 
 import { MapPin } from "lucide-react";
-import US_MARKET_LOCAL_CITIES from "./market-cities.json";
-// Phase 2 (city pages): import { cityLineSlug } from "./citySlug";
-
-const GREEN = "#162D24";
-const BODY = "rgba(22, 45, 36, 0.82)";
-const MUTED = "rgba(22, 45, 36, 0.45)";
+import { LOCAL_AREAS_BY_MARKET } from "./marketsData";
+import { BODY, GREEN, cellStyle, headingStyle, introStyle, sectionPadding } from "./marketTheme";
 
 export default function MarketsLocalCitiesSection() {
   return (
     <section
       className="markets-local-cities-section"
       style={{
-        width: "100%",
-        backgroundColor: "#ffffff",
-        boxSizing: "border-box",
-        padding: "clamp(56px, 7vw, 96px) clamp(16px, 4vw, 72px) clamp(64px, 8vw, 112px)",
+        ...sectionPadding,
+        borderTop: "1px solid rgba(22, 45, 36, 0.08)",
       }}
     >
       <div
@@ -26,29 +20,10 @@ export default function MarketsLocalCitiesSection() {
           textAlign: "center",
         }}
       >
-        <h2
-          style={{
-            margin: 0,
-            fontWeight: 700,
-            fontSize: "clamp(1.85rem, 3.4vw, 2.85rem)",
-            lineHeight: 1.12,
-            letterSpacing: "-0.025em",
-            color: GREEN,
-          }}
-        >
-          Eyrion also offers website design services to your local city.
-        </h2>
-        <p
-          style={{
-            margin: "clamp(16px, 2vw, 22px) auto 0",
-            maxWidth: "min(68ch, 100%)",
-            fontWeight: 400,
-            fontSize: "clamp(1.05rem, 1.25vw, 1.2rem)",
-            lineHeight: 1.75,
-            color: BODY,
-          }}
-        >
-          Most of our offices operate regular business hours, but on an appointment basis.
+        <h2 style={headingStyle}>Local cities and areas we cover</h2>
+        <p style={introStyle}>
+          From districts in Doha and Lusail to major hubs across the Gulf and Turkey — we deliver
+          WordPress design, development, and support where your business operates.
         </p>
       </div>
 
@@ -56,72 +31,68 @@ export default function MarketsLocalCitiesSection() {
         style={{
           maxWidth: "min(1400px, 100%)",
           margin: "clamp(40px, 5vw, 56px) auto 0",
+          display: "flex",
+          flexDirection: "column",
+          gap: "clamp(40px, 5vw, 56px)",
         }}
       >
-        <div className="markets-local-cities-grid">
-          {US_MARKET_LOCAL_CITIES.map((label) => {
-            // Phase 2: const href = `/markets/local/${cityLineSlug(label)}`;
-            // Phase 2: replace <div> below with <a key={label} href={href} className="markets-local-cities-cell" …>
-            return (
-              <div
-                key={label}
-                className="markets-local-cities-cell"
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "flex-start",
-                  gap: "clamp(10px, 1.2vw, 14px)",
-                  minHeight: "52px",
-                  padding: "clamp(10px, 1.2vw, 14px) 0",
-                  color: "rgba(22, 45, 36, 0.9)",
-                  fontSize: "clamp(1rem, 1.15vw, 1.18rem)",
-                  fontWeight: 500,
-                  letterSpacing: "-0.01em",
-                  lineHeight: 1.35,
-                  borderRadius: "6px",
-                }}
-              >
-                <MapPin
-                  size={20}
-                  strokeWidth={1.65}
-                  color={MUTED}
-                  aria-hidden
-                  style={{ flexShrink: 0 }}
-                />
-                <span className="markets-local-cities-label">{label}</span>
-              </div>
-            );
-          })}
-        </div>
+        {LOCAL_AREAS_BY_MARKET.map(({ market, cities }) => (
+          <article key={market} className="markets-local-group">
+            <h3
+              style={{
+                margin: "0 0 clamp(18px, 2.5vw, 24px)",
+                paddingBottom: "clamp(10px, 1.2vw, 14px)",
+                borderBottom: "2px solid rgba(22, 45, 36, 0.12)",
+                fontSize: "clamp(1.15rem, 2vw, 1.45rem)",
+                fontWeight: 600,
+                letterSpacing: "-0.02em",
+                color: GREEN,
+                display: "flex",
+                alignItems: "center",
+                gap: "8px",
+              }}
+            >
+              <MapPin size={14} strokeWidth={1.5} color={GREEN} aria-hidden style={{ flexShrink: 0 }} />
+              {market}
+            </h3>
+            <div className="markets-local-cities-grid">
+              {cities.map((city) => (
+                <div
+                  key={`${market}-${city}`}
+                  className="markets-local-cities-cell markets-local-cities-cell--plain"
+                  style={cellStyle}
+                >
+                  <span className="markets-local-cities-label">{city}</span>
+                </div>
+              ))}
+            </div>
+          </article>
+        ))}
       </div>
 
       <style>{`
+        .markets-local-cities-cell--plain {
+          padding-left: 0 !important;
+        }
         .markets-local-cities-grid {
           display: grid;
           width: 100%;
-          grid-template-columns: repeat(6, minmax(0, 1fr));
-          column-gap: clamp(28px, 4.2vw, 64px);
-          row-gap: clamp(16px, 2.4vw, 32px);
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          column-gap: clamp(24px, 3.5vw, 48px);
+          row-gap: clamp(8px, 1.5vw, 16px);
           align-items: start;
         }
-        /* Phase 2 (links): restore hover/focus styles for <a class="markets-local-cities-cell"> */
         @media (max-width: 1100px) {
-          .markets-local-cities-grid {
-            grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-          }
-        }
-        @media (max-width: 780px) {
           .markets-local-cities-grid {
             grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
           }
         }
-        @media (max-width: 520px) {
+        @media (max-width: 780px) {
           .markets-local-cities-grid {
             grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
           }
         }
-        @media (max-width: 340px) {
+        @media (max-width: 400px) {
           .markets-local-cities-grid {
             grid-template-columns: 1fr !important;
           }

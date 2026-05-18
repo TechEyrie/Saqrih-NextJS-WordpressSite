@@ -79,33 +79,34 @@ export default function MarketHeroSection() {
               maxWidth: "min(48ch, 100%)",
             }}
           >
-            Serving your location
+            Based in Qatar, serving the Gulf and beyond
           </h1>
 
           <p
             style={{
               margin: "12px 0 0",
               color: "rgba(255,255,255,0.8)",
-              fontSize: "18px",
+              fontSize: "clamp(0.95rem, 2.2vw, 1.125rem)",
               lineHeight: 1.65,
               maxWidth: "68ch",
             }}
           >
-            We bring our WordPress design, development, and support expertise to businesses in your
-            area, delivering professional website solutions tailored to your local market.
+            Eyrion is headquartered in Qatar. We partner with businesses in Doha, Lusail, and across
+            the country — and support clients in Dubai, Abu Dhabi, Oman, Bahrain, Saudi Arabia, Turkey,
+            and beyond.
           </p>
 
           <p
             style={{
               margin: "1rem 0 0",
               color: "rgba(255,255,255,0.8)",
-              fontSize: "18px",
+              fontSize: "clamp(0.95rem, 2.2vw, 1.125rem)",
               lineHeight: 1.65,
               maxWidth: "68ch",
             }}
           >
-            Visit your local market page to learn more about our services and how Eyrion can support
-            your business online.
+            Explore the markets and local areas below to see where we deliver WordPress design,
+            development, hosting, and ongoing support.
           </p>
         </div>
 
