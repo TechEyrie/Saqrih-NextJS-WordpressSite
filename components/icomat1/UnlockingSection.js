@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { HOMEPAGE_UNLOCKING_IMAGE_CARDS } from "../../lib/homepageImages";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
@@ -85,22 +86,7 @@ const CARDS = [
 ];
 
 // ── Image link cards data ───────────────────────────────────────
-const IMAGE_CARDS = [
-  {
-    id: "manifesto",
-    label: "FEATURED PROJECTS",
-    href: "https://freshysites.com/portfolio/",
-    src: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1400&q=80&fit=crop",
-    alt: "Featured projects",
-  },
-  {
-    id: "industries",
-    label: "TESTIMONIALS",
-    href: "https://freshysites.com/",
-    src: "https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=1400&q=80&fit=crop",
-    alt: "Testimonials",
-  },
-];
+const IMAGE_CARDS = HOMEPAGE_UNLOCKING_IMAGE_CARDS;
 
 // ── Feature card ────────────────────────────────────────────────
 function FeatureCard({ card, animRef }) {
@@ -293,7 +279,7 @@ function ImageLinkCard({ card, animRef }) {
     gsap.set(text, { y: 0, opacity: 1 });
 
     const onEnter = () => {
-      gsap.to(img,  { scale: 1.05, duration: 0.7, ease: "power2.out" });
+      gsap.to(img,  { scale: 1.04, duration: 0.7, ease: "power2.out" });
       gsap.to(pill, {
         backgroundColor: "rgba(255,255,255,0.96)",
         borderColor: "rgba(255,255,255,1)",
@@ -345,7 +331,8 @@ function ImageLinkCard({ card, animRef }) {
           width: "100%",
           height: "100%",
           objectFit: "cover",
-          transformOrigin: "center",
+          objectPosition: "center top",
+          transformOrigin: "center top",
         }}
       />
 

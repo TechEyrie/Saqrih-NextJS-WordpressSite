@@ -3,36 +3,11 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { HOMEPAGE_INDUSTRIES } from "../../lib/homepageImages";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const INDUSTRIES = [
-  {
-    id: "services",
-    label: "Services",
-    heading: "Explore our\nWordPress website services.",
-    subheading: "This is WordPress at its best.",
-    src: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1600&q=85&fit=crop",
-    alt: "Web team planning WordPress project",
-  },
-  {
-    id: "testimonials",
-    label: "Testimonials",
-    heading: "Testimonials from\nhappy customers.",
-    subheading:
-      '"Their team is highly responsive, thorough, and consultative in guiding us through a website technical optimization."',
-    src: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1600&q=85&fit=crop",
-    alt: "Client meeting and testimonials discussion",
-  },
-  {
-    id: "projects",
-    label: "Case studies",
-    heading: "Featured projects",
-    subheading: "HRchitect, Tiger, Azelis A&ES, and Acertus.",
-    src: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=1600&q=85&fit=crop",
-    alt: "Project case study dashboard on laptop",
-  },
-];
+const INDUSTRIES = HOMEPAGE_INDUSTRIES;
 
 const AUTO_TAB_INTERVAL_MS = 6000;
 const MOBILE_MQ = "(max-width: 768px)";
@@ -56,13 +31,76 @@ export default function IndustriesSection() {
   const activeRef = useRef(0);
   const isAnimating = useRef(false);
 
-  const applyMobileSlide = useCallback((idx) => {
+  const animateSlideText = useCallback((idx) => {
+    const heading = headingRef.current;
+    const sub = subRef.current;
+    const learn = learnRef.current;
+    if (!heading || !sub) return;
+
+    gsap
+      .timeline()
+      .to([heading, sub, learn], {
+        opacity: 0,
+        y: -10,
+        duration: 0.22,
+        ease: "power2.in",
+        stagger: 0.04,
+      })
+      .call(() => {
+        heading.textContent = INDUSTRIES[idx].heading;
+        sub.textContent = INDUSTRIES[idx].subheading;
+      })
+      .to([heading, sub, learn], {
+        opacity: 1,
+        y: 0,
+        duration: 0.45,
+        ease: "power3.out",
+        stagger: 0.06,
+      });
+  }, []);
+
+  const animateSlideImage = useCallback((oldIdx, idx, onComplete) => {
+    const newImg = imgLayersRef.current[idx];
+    const oldImg = imgLayersRef.current[oldIdx];
+    if (!newImg || !oldImg) {
+      onComplete?.();
+      return;
+    }
+
+    gsap.killTweensOf([newImg, oldImg]);
+
+    gsap.set(newImg, {
+      zIndex: 2,
+      opacity: 1,
+      clipPath: "inset(0% 0% 100% 0%)",
+    });
+    gsap.set(oldImg, { zIndex: 1, opacity: 1 });
+
+    gsap.to(newImg, {
+      clipPath: "inset(0% 0% 0% 0%)",
+      duration: 0.95,
+      ease: "power3.inOut",
+      onComplete: () => {
+        gsap.set(oldImg, {
+          zIndex: 0,
+          opacity: 0,
+          clipPath: "inset(0% 0% 100% 0%)",
+        });
+        gsap.set(newImg, { zIndex: 1, opacity: 1 });
+        onComplete?.();
+      },
+    });
+  }, []);
+
+  const initSlideLayers = useCallback((idx) => {
     imgLayersRef.current.forEach((img, i) => {
       if (!img) return;
       const visible = i === idx;
-      img.style.zIndex = visible ? "1" : "0";
-      img.style.clipPath = visible ? "inset(0% 0% 0% 0%)" : "inset(0% 0% 100% 0%)";
-      img.style.opacity = visible ? "1" : "0";
+      gsap.set(img, {
+        zIndex: visible ? 1 : 0,
+        opacity: visible ? 1 : 0,
+        clipPath: visible ? "inset(0% 0% 0% 0%)" : "inset(0% 0% 100% 0%)",
+      });
     });
     if (headingRef.current) headingRef.current.textContent = INDUSTRIES[idx].heading;
     if (subRef.current) subRef.current.textContent = INDUSTRIES[idx].subheading;
@@ -81,7 +119,8 @@ export default function IndustriesSection() {
       ...imgLayersRef.current.filter(Boolean),
     ];
     ScrollTrigger.saveStyles(els);
-  }, []);
+    initSlideLayers(0);
+  }, [initSlideLayers]);
 
   // Desktop: small → large full-screen; Mobile: simple block
   useEffect(() => {
@@ -116,7 +155,7 @@ export default function IndustriesSection() {
           scale: 1,
           borderRadius: "12px",
         });
-        applyMobileSlide(activeRef.current);
+        initSlideLayers(activeRef.current);
       });
 
       // Desktop layout + scroll behavior
@@ -179,76 +218,28 @@ export default function IndustriesSection() {
     }, sectionRef);
 
     return () => ctx.revert();
-  }, [applyMobileSlide]);
+  }, [initSlideLayers]);
 
   const switchTo = useCallback(
     (idx) => {
-      if (idx === activeRef.current) return;
+      if (idx === activeRef.current || isAnimating.current) return;
 
-      if (isMobileViewport()) {
-        activeRef.current = idx;
-        setActive(idx);
-        applyMobileSlide(idx);
-        return;
-      }
-
-      if (isAnimating.current) return;
       isAnimating.current = true;
-
       const oldIdx = activeRef.current;
       activeRef.current = idx;
       setActive(idx);
 
-      const newImg = imgLayersRef.current[idx];
-      const oldImg = imgLayersRef.current[oldIdx];
-      const heading = headingRef.current;
-      const sub = subRef.current;
-      const learn = learnRef.current;
-
-      if (!newImg || !oldImg) {
+      animateSlideImage(oldIdx, idx, () => {
         isAnimating.current = false;
-        return;
-      }
-
-      gsap.set(newImg, { zIndex: 2, clipPath: "inset(0% 0% 100% 0%)" });
-      gsap.to(newImg, {
-        clipPath: "inset(0% 0% 0% 0%)",
-        duration: 0.95,
-        ease: "power3.inOut",
-        onComplete: () => {
-          gsap.set(oldImg, { zIndex: 1 });
-          gsap.set(newImg, { zIndex: 1 });
-          isAnimating.current = false;
-        },
       });
-
-      gsap
-        .timeline()
-        .to([heading, sub, learn], {
-          opacity: 0,
-          y: -10,
-          duration: 0.22,
-          ease: "power2.in",
-          stagger: 0.04,
-        })
-        .call(() => {
-          if (heading) heading.textContent = INDUSTRIES[idx].heading;
-          if (sub) sub.textContent = INDUSTRIES[idx].subheading;
-        })
-        .to([heading, sub, learn], {
-          opacity: 1,
-          y: 0,
-          duration: 0.45,
-          ease: "power3.out",
-          stagger: 0.06,
-        });
+      animateSlideText(idx);
     },
-    [applyMobileSlide]
+    [animateSlideImage, animateSlideText]
   );
 
   useEffect(() => {
     const id = setInterval(() => {
-      if (!isMobileViewport() && isAnimating.current) return;
+      if (isAnimating.current) return;
       const next = (activeRef.current + 1) % INDUSTRIES.length;
       switchTo(next);
     }, AUTO_TAB_INTERVAL_MS);
@@ -476,6 +467,10 @@ export default function IndustriesSection() {
           will-change: width, height, border-radius;
         }
 
+        .industries-slide-img {
+          will-change: clip-path, opacity;
+        }
+
         .industries-content-copy {
           position: absolute;
           top: clamp(28px, 5vw, 64px);
@@ -487,9 +482,10 @@ export default function IndustriesSection() {
           position: absolute;
           bottom: clamp(28px, 4vw, 56px);
           left: clamp(28px, 5vw, 64px);
+          right: clamp(28px, 5vw, 64px);
           display: flex;
           align-items: center;
-          gap: 32px;
+          gap: clamp(16px, 2.5vw, 28px);
           flex-wrap: wrap;
           z-index: 6;
         }
@@ -559,7 +555,7 @@ export default function IndustriesSection() {
           }
 
           .industries-slide-img {
-            transition: opacity 0.35s ease;
+            will-change: clip-path, opacity;
           }
         }
       `}</style>

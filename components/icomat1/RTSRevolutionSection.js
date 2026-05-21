@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { USEFUL_VIDEO_1, USEFUL_VIDEO_2 } from "../../lib/siteVideos";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -219,7 +220,7 @@ export default function RTSRevolutionSection() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-4">
             <div ref={leftCardRef} className="will-change-transform">
               <CardVideo
-                src="https://www.icomat.co.uk/videos/composites/A01.mp4"
+                src={USEFUL_VIDEO_1}
                 badge="Before RTS"
                 footerContent={
                   <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">
@@ -231,7 +232,7 @@ export default function RTSRevolutionSection() {
             </div>
             <div ref={rightCardRef} className="will-change-transform">
               <CardVideo
-                src="https://www.icomat.co.uk/videos/composites/A02.mp4"
+                src={USEFUL_VIDEO_2}
                 badge="RTS Design"
                 footerContent={
                   <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">

@@ -363,7 +363,7 @@ function MockupContent({ type, isMobile }) {
         <div
           style={{
             flex: 1,
-            background: "linear-gradient(rgba(30,60,120,0.55), rgba(20,40,100,0.7)), url('https://picsum.photos/seed/hrchitect/800/450') center/cover",
+            background: "linear-gradient(rgba(30,60,120,0.55), rgba(20,40,100,0.7)), url('/pics/eyrion-6.png') center/cover",
             display: "flex",
             flexDirection: "column",
             justifyContent: "center",
@@ -402,7 +402,7 @@ function MockupContent({ type, isMobile }) {
           <div style={{ display: "inline-block", width: "90px", height: "14px", borderRadius: "3px", background: "rgba(255,255,255,0.85)" }} />
         </div>
         {/* Hero */}
-        <div style={{ flex: 1, background: "linear-gradient(rgba(20,50,100,0.6), rgba(20,50,100,0.7)), url('https://picsum.photos/seed/mobile/400/600') center/cover", padding: "10px" }}>
+        <div style={{ flex: 1, background: "linear-gradient(rgba(20,50,100,0.6), rgba(20,50,100,0.7)), url('/pics/eyrion-8.png') center/cover", padding: "10px" }}>
           <div style={{ width: "90%", height: "8px", borderRadius: "2px", background: "rgba(255,255,255,0.85)", marginBottom: "5px" }} />
           <div style={{ width: "70%", height: "8px", borderRadius: "2px", background: "rgba(255,255,255,0.85)", marginBottom: "10px" }} />
           <div style={{ width: "60px", height: "18px", borderRadius: "4px", background: "#4caf50" }} />

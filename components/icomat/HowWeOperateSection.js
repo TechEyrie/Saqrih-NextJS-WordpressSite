@@ -4,8 +4,20 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { eyrionPic } from "../../lib/siteImages";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
+
+const OPERATE_IMAGES = [
+  {
+    src: eyrionPic(1),
+    alt: "Eyrion automated manufacturing workflow",
+  },
+  {
+    src: eyrionPic(2),
+    alt: "Eyrion composite inspection and quality control",
+  },
+];
 
 export default function HowWeOperateSection() {
   const sectionRef = useRef(null);
@@ -15,16 +27,12 @@ export default function HowWeOperateSection() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-
-      // ── Character-by-character color reveal on scroll ──────────────
       if (textRef.current) {
         const split = new SplitText(textRef.current, { type: "chars,words" });
         const chars = split.chars;
 
-        // All chars start muted gray
         gsap.set(chars, { color: "#555555" });
 
-        // Scrub each char from gray → white as section scrolls through viewport
         gsap.to(chars, {
           color: "#ffffff",
           ease: "none",
@@ -41,7 +49,6 @@ export default function HowWeOperateSection() {
         });
       }
 
-      // ── Images slide up + fade in ──────────────────────────────────
       gsap.fromTo(
         [img1Ref.current, img2Ref.current],
         { opacity: 0, y: 60 },
@@ -58,7 +65,6 @@ export default function HowWeOperateSection() {
           },
         }
       );
-
     }, sectionRef);
 
     return () => ctx.revert();
@@ -69,18 +75,12 @@ export default function HowWeOperateSection() {
       ref={sectionRef}
       className="w-full bg-[#0a0a0a] pt-20 pb-24 px-6 sm:px-10 md:px-16 lg:px-20"
     >
-      {/* ── Large text block ─────────────────────────────────────────── */}
       <div className="mb-10 md:mb-14 max-w-[95%]">
         <p
           ref={textRef}
           className="font-medium leading-[1.12] tracking-tight"
           style={{ fontSize: "clamp(1.2rem, 3.2vw, 3.2rem)" }}
         >
-          {/*
-            "How we operate." renders as its own span so it can start
-            visually distinct — GSAP will still split all chars uniformly,
-            but the label phrase sits inline before the main copy.
-          */}
           How we operate.{" "}
           We build fully integrated factories for composite parts. Using
           proprietary hardware and software, we automate and control the
@@ -89,77 +89,23 @@ export default function HowWeOperateSection() {
         </p>
       </div>
 
-      {/* ── Two images ───────────────────────────────────────────────── */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-
-        {/* Left image — robot arm */}
-        <div
-          ref={img1Ref}
-          className="relative w-full overflow-hidden rounded-sm bg-[#1a1a1a]"
-          style={{ aspectRatio: "16/10" }}
-        >
-          <img
-            src="/wp-content/uploads/icomat-img/aWZQUwIvOtkhBcXM_robot.jpg"
-            alt="Eyrion robot arm"
-            className="absolute inset-0 w-full h-full object-cover"
-            onError={(e) => {
-              // Fallback gradient if image 404s
-              e.currentTarget.style.display = "none";
-            }}
-          />
-          {/* Fallback visual if image fails */}
+        {OPERATE_IMAGES.map((image, index) => (
           <div
-            className="absolute inset-0 flex items-end p-5"
-            style={{
-              background:
-                "linear-gradient(135deg, #e8e8e8 0%, #c0c0c0 40%, #1a1a1a 100%)",
-            }}
+            key={image.src}
+            ref={index === 0 ? img1Ref : img2Ref}
+            className="relative w-full overflow-hidden rounded-sm bg-[#1a1a1a]"
+            style={{ aspectRatio: "16/10" }}
           >
-            <span className="text-[10px] font-semibold tracking-[0.15em] uppercase text-white/50">
-              Eyrion Robot Arm
-            </span>
+            <img
+              src={image.src}
+              alt={image.alt}
+              className="absolute inset-0 w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
           </div>
-        </div>
-
-        {/* Right image — studio / inspection */}
-        <div
-          ref={img2Ref}
-          className="relative w-full overflow-hidden rounded-sm bg-[#111]"
-          style={{ aspectRatio: "16/10" }}
-        >
-          <img
-            src="/wp-content/uploads/icomat-img/aWZQUwIvOtkhBcXM_inspect.jpg"
-            alt="Eyrion composite inspection"
-            className="absolute inset-0 w-full h-full object-cover"
-            onError={(e) => {
-              e.currentTarget.style.display = "none";
-            }}
-          />
-          {/* Fallback visual */}
-          <div
-            className="absolute inset-0 flex items-end p-5"
-            style={{
-              background:
-                "linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #2a2a2a 100%)",
-            }}
-          >
-            {/* Abstract shape mimicking the reference right image */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div
-                className="bg-white/90 rounded-[40%]"
-                style={{ width: "38%", height: "55%", transform: "rotate(-15deg) translateX(30%)" }}
-              />
-              <div
-                className="absolute bg-white/90 rounded-full"
-                style={{ width: "18%", height: "28%", transform: "translateX(80%) translateY(20%)" }}
-              />
-            </div>
-            <span className="relative z-10 text-[10px] font-semibold tracking-[0.15em] uppercase text-white/50">
-              Composite Inspection
-            </span>
-          </div>
-        </div>
-
+        ))}
       </div>
     </section>
   );

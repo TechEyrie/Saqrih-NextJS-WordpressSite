@@ -1,5 +1,6 @@
 "use client";
 
+import { eyrionPicAt } from "../../lib/siteImages";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -10,19 +11,19 @@ const CARDS = [
   {
     id: "production",
     label: "Automated high-speed production",
-    src: "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?w=900&q=80&fit=crop",
+    src: eyrionPicAt(0),
     alt: "Automated composite production machinery",
   },
   {
     id: "design",
     label: "From design to parts",
-    src: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=900&q=80&fit=crop",
+    src: eyrionPicAt(1),
     alt: "Engineers reviewing 3D design on screen",
   },
   {
     id: "tailored",
     label: "Tailored to your needs",
-    src: "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=900&q=80&fit=crop",
+    src: eyrionPicAt(2),
     alt: "Engineer inspecting manufacturing machine",
   },
 ];

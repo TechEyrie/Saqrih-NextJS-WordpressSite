@@ -5,6 +5,7 @@ import Link from "next/link";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { eyrionPicAt } from "../../lib/siteImages";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
@@ -14,46 +15,46 @@ const CARDS = [
     label: "HRCHITECT",
     sub: "Website migration, infrastructure review, and a comprehensive audit result in strategic planning for phase II redesign project.",
     href: "/portfolio/hrchitect",
-    img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1400&q=85&fit=crop",
+    img: eyrionPicAt(0),
   },
   {
     num: "02",
     label: "TIGER",
     sub: "Five sister websites get fresh looks and added features",
     href: "/portfolio/tiger",
-    img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1400&q=85&fit=crop",
+    img: eyrionPicAt(1),
   },
   {
     num: "03",
     label: "AZELIS A&ES",
     sub: "Seamless merger of two ecommerce websites into one adds ease and efficiency.",
     href: "/portfolio/azelis-aes",
-    img: "https://images.unsplash.com/photo-1581091215367-59ab6dcef2f8?w=1400&q=85&fit=crop",
+    img: eyrionPicAt(2),
   },
   {
     num: "04",
     label: "ACERTUS",
     sub: "WordPress website migrated, optimized for long term expansion via Eyrion retained services.",
     href: "/portfolio/acertus",
-    img: "https://images.unsplash.com/photo-1518773553398-650c184e0bb3?w=1400&q=85&fit=crop",
+    img: eyrionPicAt(3),
   },
   {
     num: "05",
     label: "Seeding Action",
     sub: null,
-    img: "https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=1400&q=85&fit=crop",
+    img: eyrionPicAt(4),
   },
   {
     num: "06",
     label: "Grasshopper Gardens",
     sub: null,
-    img: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1400&q=85&fit=crop",
+    img: eyrionPicAt(5),
   },
   {
     num: "07",
     label: "Paint Supply",
     sub: null,
-    img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1400&q=85&fit=crop",
+    img: eyrionPicAt(6),
   },
 ];
 

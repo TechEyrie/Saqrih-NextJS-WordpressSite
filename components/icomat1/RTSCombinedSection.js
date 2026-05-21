@@ -3,6 +3,10 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  SECTION_BACKGROUND_VIDEO,
+  usefulVideoAt,
+} from "../../lib/siteVideos";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -84,7 +88,7 @@ const GRID_DOTS = [
 
 const CARD_ITEMS = [
   {
-    src: "https://www.icomat.co.uk/videos/composites/A01.mp4",
+    src: usefulVideoAt(0),
     badge: "Design + Dev",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
@@ -95,7 +99,7 @@ const CARD_ITEMS = [
     ),
   },
   {
-    src: "https://www.icomat.co.uk/videos/composites/A02.mp4",
+    src: usefulVideoAt(1),
     badge: "Managed Services",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
@@ -106,7 +110,7 @@ const CARD_ITEMS = [
     ),
   },
   {
-    src: "https://www.icomat.co.uk/videos/composites/A01.mp4",
+    src: usefulVideoAt(2),
     badge: "Maintenance",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
@@ -117,7 +121,7 @@ const CARD_ITEMS = [
     ),
   },
   {
-    src: "https://www.icomat.co.uk/videos/composites/A02.mp4",
+    src: usefulVideoAt(0),
     badge: "Hosting",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
@@ -128,7 +132,7 @@ const CARD_ITEMS = [
     ),
   },
   {
-    src: "https://www.icomat.co.uk/videos/composites/A01.mp4",
+    src: usefulVideoAt(1),
     badge: "Support",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
@@ -139,7 +143,7 @@ const CARD_ITEMS = [
     ),
   },
   {
-    src: "https://www.icomat.co.uk/videos/composites/A02.mp4",
+    src: usefulVideoAt(2),
     badge: "SEO",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
@@ -454,7 +458,7 @@ export default function RTSCombinedSection() {
         <div className="panel-b-inner">
           <video
             className="absolute inset-0 w-full h-full object-contain"
-            src="/wp-content/uploads/icomat-cdn/aWZQUwIvOtkhBcXM_ICOMAT-HOMEPAGE_1.mp4"
+            src={SECTION_BACKGROUND_VIDEO}
             autoPlay muted loop playsInline preload="auto"
             style={{ opacity: 0.85 }}
           />

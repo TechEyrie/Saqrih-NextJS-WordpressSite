@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { eyrionPicAt } from "../../lib/siteImages";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
@@ -12,49 +13,49 @@ const CARDS = [
     num: "01",
     label: "Design & Analysis",
     sub: "(Structural & Production Optimisation)",
-    img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1400&q=85&fit=crop",
+    img: eyrionPicAt(0),
     color: "#1a1a2e",
   },
   {
     num: "02",
     label: "Material Slitting & Storage",
     sub: null,
-    img: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1400&q=85&fit=crop",
+    img: eyrionPicAt(1),
     color: "#16213e",
   },
   {
     num: "03",
     label: "Tooling Production",
     sub: "(Metallic, Composite)",
-    img: "https://images.unsplash.com/photo-1581091215367-59ab6dcef2f8?w=1400&q=85&fit=crop",
+    img: eyrionPicAt(2),
     color: "#0f3460",
   },
   {
     num: "04",
     label: "Most Advanced Tape Laying Capability",
     sub: null,
-    img: "https://images.unsplash.com/photo-1518773553398-650c184e0bb3?w=1400&q=85&fit=crop",
+    img: eyrionPicAt(3),
     color: "#1a1a2e",
   },
   {
     num: "05",
     label: "Consolidation & Forming",
     sub: null,
-    img: "https://images.unsplash.com/photo-1581092335397-9583eb92d232?w=1400&q=85&fit=crop",
+    img: eyrionPicAt(4),
     color: "#16213e",
   },
   {
     num: "06",
     label: "Inspection & Quality",
     sub: null,
-    img: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=1400&q=85&fit=crop",
+    img: eyrionPicAt(5),
     color: "#0f3460",
   },
   {
     num: "07",
     label: "Painting & Finishing",
     sub: null,
-    img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1400&q=85&fit=crop",
+    img: eyrionPicAt(6),
     color: "#1a1a2e",
   },
 ];

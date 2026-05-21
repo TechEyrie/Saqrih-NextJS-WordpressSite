@@ -4,32 +4,11 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { HOMEPAGE_ICOMAT_SOLUTION_CARDS } from "../../lib/homepageImages";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const CARDS = [
-  {
-    id: "production",
-    label: "WordPress website design",
-    href: "/wordpress/design",
-    src: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1400&q=80",
-    alt: "Automated composite production machinery",
-  },
-  {
-    id: "design",
-    label: "WordPress development",
-    href: "/wordpress/development",
-    src: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1400&q=80",
-    alt: "Engineers reviewing 3D design on screen",
-  },
-  {
-    id: "tailored",
-    label: "Hosting, support, and SEO",
-    href: "/wordpress/hosting",
-    src: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1400&q=80",
-    alt: "Engineer inspecting manufacturing machine",
-  },
-];
+const CARDS = HOMEPAGE_ICOMAT_SOLUTION_CARDS;
 
 export default function IcomatSolutionSection() {
   const sectionRef = useRef(null);

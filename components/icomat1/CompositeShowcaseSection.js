@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SECTION_BACKGROUND_VIDEO } from "../../lib/siteVideos";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -107,7 +108,7 @@ export default function CompositeShowcaseSection() {
         <video
           ref={videoRef}
           className="absolute inset-0 w-full h-full object-contain"
-          src="/wp-content/uploads/icomat-cdn/aWZQUwIvOtkhBcXM_ICOMAT-HOMEPAGE_1.mp4"
+          src={SECTION_BACKGROUND_VIDEO}
           autoPlay
           muted
           loop

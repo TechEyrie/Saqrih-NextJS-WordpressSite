@@ -1,10 +1,9 @@
 "use client";
 
 import Image from "next/image";
+import { SUPPORT_HIGHLIGHT_IMAGE } from "../../lib/siteImages";
 
-/** Remote image — swap for `/wordpress/support/your-photo.jpg` in /public when ready. */
-const DEFAULT_IMAGE =
-  "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=960&h=1200&q=85&auto=format&fit=crop";
+const DEFAULT_IMAGE = SUPPORT_HIGHLIGHT_IMAGE;
 
 export default function SupportHighlightSection({ imageSrc = DEFAULT_IMAGE }) {
   return (

@@ -5,10 +5,9 @@ import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HeroScrollDownIndicator from "./HeroScrollDownIndicator";
+import { HOMEPAGE_HERO_BACKGROUND_VIDEO } from "../../lib/siteVideos";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
-
-const HERO_BACKGROUND_VIDEO = "/videos/eyrion-hero-background-video.mp4";
 
 export function HeroQuoteButton({ onClick, className }) {
   const wrapRef  = useRef(null);
@@ -244,7 +243,7 @@ export default function HeroSection({ onQuoteClick }) {
           ref={videoRef}
           className="absolute inset-0 h-full w-full object-cover"
           style={{ minWidth: "100%", minHeight: "100%" }}
-          src={HERO_BACKGROUND_VIDEO}
+          src={HOMEPAGE_HERO_BACKGROUND_VIDEO}
           autoPlay
           muted
           loop

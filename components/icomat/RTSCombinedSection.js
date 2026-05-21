@@ -3,6 +3,10 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  SECTION_BACKGROUND_VIDEO,
+  usefulVideoAt,
+} from "../../lib/siteVideos";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -70,7 +74,7 @@ const GRID_DOTS = [
 
 const CARD_ITEMS = [
   {
-    src: "https://www.icomat.co.uk/videos/composites/A01.mp4",
+    src: usefulVideoAt(0),
     badge: "Before RTS",
     footer: (
       <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">
@@ -81,7 +85,7 @@ const CARD_ITEMS = [
     ),
   },
   {
-    src: "https://www.icomat.co.uk/videos/composites/A02.mp4",
+    src: usefulVideoAt(1),
     badge: "RTS Design",
     footer: (
       <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">
@@ -92,7 +96,7 @@ const CARD_ITEMS = [
     ),
   },
   {
-    src: "https://www.icomat.co.uk/videos/composites/A01.mp4",
+    src: usefulVideoAt(2),
     badge: "Optimized Layup",
     footer: (
       <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">
@@ -103,7 +107,7 @@ const CARD_ITEMS = [
     ),
   },
   {
-    src: "https://www.icomat.co.uk/videos/composites/A02.mp4",
+    src: usefulVideoAt(0),
     badge: "Precision Control",
     footer: (
       <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">
@@ -114,7 +118,7 @@ const CARD_ITEMS = [
     ),
   },
   {
-    src: "https://www.icomat.co.uk/videos/composites/A01.mp4",
+    src: usefulVideoAt(1),
     badge: "Material Efficiency",
     footer: (
       <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">
@@ -125,7 +129,7 @@ const CARD_ITEMS = [
     ),
   },
   {
-    src: "https://www.icomat.co.uk/videos/composites/A02.mp4",
+    src: usefulVideoAt(2),
     badge: "Scalable Output",
     footer: (
       <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">
@@ -395,7 +399,7 @@ export default function RTSCombinedSection() {
       >
         <video
           className="absolute inset-0 w-full h-full object-contain"
-          src="/wp-content/uploads/icomat-cdn/aWZQUwIvOtkhBcXM_ICOMAT-HOMEPAGE_1.mp4"
+            src={SECTION_BACKGROUND_VIDEO}
           autoPlay muted loop playsInline preload="auto"
           style={{ opacity: 0.85 }}
         />

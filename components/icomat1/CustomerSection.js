@@ -3,6 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import {
+  SECTION_BACKGROUND_VIDEO,
+  USEFUL_VIDEO_2,
+} from "../../lib/siteVideos";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -163,7 +167,7 @@ export default function CustomersSection() {
   const miniCardRef     = useRef(null);
 
   const [modalOpen, setModalOpen] = useState(false);
-  const MODAL_SRC = "https://www.icomat.co.uk/videos/composites/A02.mp4";
+  const MODAL_SRC = USEFUL_VIDEO_2;
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -543,7 +547,7 @@ export default function CustomersSection() {
             {/* Main background video */}
             <video
               style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
-              src="/wp-content/uploads/icomat-cdn/aWZQUwIvOtkhBcXM_ICOMAT-HOMEPAGE_1.mp4"
+              src={SECTION_BACKGROUND_VIDEO}
               autoPlay muted loop playsInline preload="auto"
             />
 

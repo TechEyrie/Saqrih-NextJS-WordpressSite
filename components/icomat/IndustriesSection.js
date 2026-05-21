@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { eyrionPicAt } from "../../lib/siteImages";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,7 +17,7 @@ const INDUSTRIES = [
     label: "Defense",
     heading: "Supporting leading\nindustries: Defence.",
     subheading: "Lightweight, high-strength composite structures for next-generation defence platforms — from fighter airframes to unmanned systems.",
-    src: "https://images.unsplash.com/photo-1564053489984-317bbd824340?w=1600&q=85&fit=crop",
+    src: eyrionPicAt(0),
     alt: "Fighter jet in flight — defence industry",
   },
   {
@@ -24,7 +25,7 @@ const INDUSTRIES = [
     label: "Aeronautics",
     heading: "Supporting leading\nindustries: Aeronautics.",
     subheading: "Enabling the next generation of commercial and advanced air mobility with optimised composite aerostructures.",
-    src: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1600&q=85&fit=crop",
+    src: eyrionPicAt(1),
     alt: "Commercial aircraft in flight — aeronautics industry",
   },
   {
@@ -32,7 +33,7 @@ const INDUSTRIES = [
     label: "Space",
     heading: "Supporting leading\nindustries: Space.",
     subheading: "Mission-critical composite components built for the extreme demands of launch vehicles, satellites, and re-entry systems.",
-    src: "https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=1600&q=85&fit=crop",
+    src: eyrionPicAt(2),
     alt: "Rocket launch — space industry",
   },
   {
@@ -40,7 +41,7 @@ const INDUSTRIES = [
     label: "Automotive",
     heading: "Supporting leading\nindustries: Automotive.",
     subheading: "High-rate composite production for structural vehicle components — reducing weight without compromising safety or performance.",
-    src: "https://images.unsplash.com/photo-1555353540-64580b51c258?w=1600&q=85&fit=crop",
+    src: eyrionPicAt(3),
     alt: "High-performance automotive manufacturing",
   },
 ];

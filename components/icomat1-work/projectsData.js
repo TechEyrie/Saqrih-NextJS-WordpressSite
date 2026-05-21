@@ -1,10 +1,12 @@
+import { eyrionPicAt } from "../../lib/siteImages.js";
+
 export const PROJECTS = [
   {
     id: "seeding-action",
     title: "Seeding Action",
     description: '"Air We Share" Initiative Landing Page',
     image:
-      "https://images.unsplash.com/photo-1518152006812-edab29b069ac?w=1200&q=80&fit=crop",
+      eyrionPicAt(0),
     accent: "#b7ed2f",
   },
   {
@@ -13,7 +15,7 @@ export const PROJECTS = [
     description:
       "Full Website Redesign and WooCommerce Store Build for Grasshopper Gardens",
     image:
-      "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=1200&q=80&fit=crop",
+      eyrionPicAt(1),
     accent: "#1f6d3f",
   },
   {
@@ -22,7 +24,7 @@ export const PROJECTS = [
     description:
       "Full WooCommerce rebuild and infrastructure modernization for Paint Supply",
     image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80&fit=crop",
+      eyrionPicAt(2),
     accent: "#a37af7",
   },
   {
@@ -31,7 +33,7 @@ export const PROJECTS = [
     description:
       "Intranet redesign and global portal expansion for internal teams",
     image:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?w=1200&q=80&fit=crop",
+      eyrionPicAt(3),
     accent: "#ff7a3c",
   },
   {
@@ -40,7 +42,7 @@ export const PROJECTS = [
     description:
       "Redesign to highlight core offerings with a cleaner conversion path",
     image:
-      "https://images.unsplash.com/photo-1553729459-efe14ef6055d?w=1200&q=80&fit=crop",
+      eyrionPicAt(4),
     accent: "#1f6d3f",
   },
   {
@@ -49,7 +51,7 @@ export const PROJECTS = [
     description:
       "Data-focused redesign that helps communities share resources and collaborate",
     image:
-      "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1200&q=80&fit=crop",
+      eyrionPicAt(5),
     accent: "#a37af7",
   },
   {
@@ -58,7 +60,7 @@ export const PROJECTS = [
     description:
       "Membership-site modernization for a smoother global audience experience",
     image:
-      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1200&q=80&fit=crop",
+      eyrionPicAt(6),
     accent: "#ff7a3c",
   },
   {
@@ -67,7 +69,7 @@ export const PROJECTS = [
     description:
       "Code updates, full-site audit, and ongoing monitoring for long-term reliability",
     image:
-      "https://images.unsplash.com/photo-1483058712412-4245e9b90334?w=1200&q=80&fit=crop",
+      eyrionPicAt(7),
     accent: "#1f6d3f",
   },
   {
@@ -76,7 +78,7 @@ export const PROJECTS = [
     description:
       "Website migration, infrastructure review, and strategic phase-II planning",
     image:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1200&q=80&fit=crop",
+      eyrionPicAt(8),
     accent: "#a37af7",
   },
   {
@@ -84,7 +86,7 @@ export const PROJECTS = [
     title: "Tiger",
     description: "Five sister websites get fresh looks and added features",
     image:
-      "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200&q=80&fit=crop",
+      eyrionPicAt(9),
     accent: "#ff7a3c",
   },
   {
@@ -93,7 +95,7 @@ export const PROJECTS = [
     description:
       "Seamless merger of two ecommerce websites into one adds ease and efficiency",
     image:
-      "https://images.unsplash.com/photo-1581091215367-59ab6dcef2f8?w=1200&q=80&fit=crop",
+      eyrionPicAt(10),
     accent: "#1f6d3f",
   },
   {
@@ -102,7 +104,7 @@ export const PROJECTS = [
     description:
       "Website migrated and optimized for long-term expansion via retained services",
     image:
-      "https://images.unsplash.com/photo-1518773553398-650c184e0bb3?w=1200&q=80&fit=crop",
+      eyrionPicAt(11),
     accent: "#a37af7",
   },
 ];

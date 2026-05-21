@@ -1,5 +1,6 @@
 "use client";
 
+import { UNLOCKING_IMAGE_CARDS } from "../../lib/siteImages";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
@@ -85,22 +86,7 @@ const CARDS = [
 ];
 
 // ── Image link cards data ───────────────────────────────────────
-const IMAGE_CARDS = [
-  {
-    id: "manifesto",
-    label: "MANIFESTO",
-    href: "#manifesto",
-    src: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1400&q=80&fit=crop",
-    alt: "Engineer holding composite material — Manifesto",
-  },
-  {
-    id: "industries",
-    label: "INDUSTRIES",
-    href: "#industries",
-    src: "https://images.unsplash.com/photo-1516849841032-87cbac4d88f7?w=1400&q=80&fit=crop",
-    alt: "Rocket launch — Industries",
-  },
-];
+const IMAGE_CARDS = UNLOCKING_IMAGE_CARDS;
 
 // ── Feature card ────────────────────────────────────────────────
 function FeatureCard({ card, animRef }) {
@@ -270,7 +256,7 @@ function ImageLinkCard({ card, animRef }) {
     if (!el || !img) return;
 
     const onEnter = () => {
-      gsap.to(img,  { scale: 1.05, duration: 0.7, ease: "power2.out" });
+      gsap.to(img,  { scale: 1.04, duration: 0.7, ease: "power2.out" });
       gsap.to(pill, { backgroundColor: "rgba(40,38,36,0.88)", duration: 0.4, ease: "power2.out" });
     };
     const onLeave = () => {
@@ -301,7 +287,8 @@ function ImageLinkCard({ card, animRef }) {
           width: "100%",
           height: "100%",
           objectFit: "cover",
-          transformOrigin: "center",
+          objectPosition: "center top",
+          transformOrigin: "center top",
         }}
       />
 

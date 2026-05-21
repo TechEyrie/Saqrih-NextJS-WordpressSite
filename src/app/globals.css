@@ -939,6 +939,12 @@ body {
   text-decoration: none;
 }
 
+.unlocking-image-card img {
+  object-fit: cover;
+  object-position: center top;
+  transform-origin: center top;
+}
+
 .unlocking-image-pill {
   max-width: min(92%, 100%);
 }

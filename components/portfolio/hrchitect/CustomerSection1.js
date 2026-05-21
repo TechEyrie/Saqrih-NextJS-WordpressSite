@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { USEFUL_VIDEO_2 } from "../../../lib/siteVideos";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -163,7 +164,7 @@ export default function CustomersSection1() {
   const miniCardRef     = useRef(null);
 
   const [modalOpen, setModalOpen] = useState(false);
-  const MODAL_SRC = "https://www.icomat.co.uk/videos/composites/A02.mp4";
+  const MODAL_SRC = USEFUL_VIDEO_2;
 
   useEffect(() => {
     const ctx = gsap.context(() => {

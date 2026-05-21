@@ -1,3 +1,5 @@
+import { DEFAULT_SITE_IMAGE, eyrionPic } from "../lib/siteImages.js";
+
 // WordPress API utility functions — set NEXT_PUBLIC_WORDPRESS_URL to your site origin (no trailing slash)
 function normalizeWordPressSiteUrl() {
   const raw = process.env.NEXT_PUBLIC_WORDPRESS_URL || 'https://app.thetecheyrie.com';
@@ -43,7 +45,7 @@ export function transformWordPressPost(wpPost, featuredMedia = null) {
   const readTime = Math.max(1, Math.ceil(wordCount / 200));
 
   // Get featured image URL
-  let imageUrl = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"; // Default fallback
+  let imageUrl = DEFAULT_SITE_IMAGE;
   if (featuredMedia && featuredMedia.source_url) {
     imageUrl = featuredMedia.source_url;
   } else if (wpPost._embedded && wpPost._embedded['wp:featuredmedia'] && wpPost._embedded['wp:featuredmedia'][0]) {
@@ -136,7 +138,7 @@ async function fetchWordPressPostsGraphQL() {
       readTime: calculateReadTime(post.content || ''),
       date: formatDate(post.date),
       slug: post.slug,
-      image: post.featuredImage?.node?.sourceUrl || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
+      image: post.featuredImage?.node?.sourceUrl || DEFAULT_SITE_IMAGE,
       content: post.content || '',
       excerpt: post.excerpt || '',
       link: `https://app.thetecheyrie.com/${post.slug}/`,
@@ -277,7 +279,7 @@ async function fetchWordPressPostBySlugGraphQL(slug) {
       readTime: calculateReadTime(post.content || ''),
       date: formatDate(post.date),
       slug: post.slug,
-      image: post.featuredImage?.node?.sourceUrl || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
+      image: post.featuredImage?.node?.sourceUrl || DEFAULT_SITE_IMAGE,
       content: post.content || '',
       excerpt: post.excerpt || '',
       link: `https://app.thetecheyrie.com/${post.slug}/`,
@@ -352,7 +354,7 @@ export async function fetchFeaturedMedia(mediaId) {
  */
 export function transformWordPressPage(wpPage, featuredMedia = null) {
   // Get featured image URL
-  let imageUrl = "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"; // Default fallback
+  let imageUrl = DEFAULT_SITE_IMAGE;
   if (featuredMedia && featuredMedia.source_url) {
     imageUrl = featuredMedia.source_url;
   } else if (wpPage._embedded && wpPage._embedded['wp:featuredmedia'] && wpPage._embedded['wp:featuredmedia'][0]) {
@@ -435,7 +437,7 @@ async function fetchWordPressPagesGraphQL() {
       readTime: calculateReadTime(page.content || ''),
       date: formatDate(page.date),
       slug: page.slug,
-      image: page.featuredImage?.node?.sourceUrl || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
+      image: page.featuredImage?.node?.sourceUrl || DEFAULT_SITE_IMAGE,
       content: page.content || '',
       excerpt: '', // Pages don't have excerpt in GraphQL
       link: `https://app.thetecheyrie.com/${page.slug}/`,
@@ -547,7 +549,7 @@ async function fetchWordPressPageBySlugGraphQL(slug) {
       readTime: calculateReadTime(page.content || ''),
       date: formatDate(page.date),
       slug: page.slug,
-      image: page.featuredImage?.node?.sourceUrl || 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
+      image: page.featuredImage?.node?.sourceUrl || DEFAULT_SITE_IMAGE,
       content: page.content || '',
       excerpt: '', // Pages don't have excerpt in GraphQL
       link: `https://app.thetecheyrie.com/${page.slug}/`,
@@ -631,7 +633,7 @@ function extractImageUrl(imageData) {
  */
 export function transformWordPressCaseStudy(wpCaseStudy, featuredMedia = null) {
   // Get featured image URL
-  let imageUrl = "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80"; // Default fallback
+  let imageUrl = eyrionPic(4);
   if (featuredMedia && featuredMedia.source_url) {
     imageUrl = featuredMedia.source_url;
   } else if (wpCaseStudy._embedded && wpCaseStudy._embedded['wp:featuredmedia'] && wpCaseStudy._embedded['wp:featuredmedia'][0]) {
@@ -755,7 +757,7 @@ async function fetchWordPressCaseStudiesGraphQL() {
         slug: cs.slug,
         title: cs.title || '',
         category: 'web-app',
-        image: cs.featuredImage?.node?.sourceUrl || 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80',
+        image: cs.featuredImage?.node?.sourceUrl || eyrionPic(4),
         tags: [],
         badges: [],
         techStack: '',
@@ -876,7 +878,7 @@ async function fetchWordPressCaseStudyBySlugGraphQL(slug) {
       slug: cs.slug,
       title: cs.title || '',
       category: 'web-app',
-      image: cs.featuredImage?.node?.sourceUrl || 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=80',
+      image: cs.featuredImage?.node?.sourceUrl || eyrionPic(4),
       wordpressUrl: wordPressPermalinkFromUri(cs.uri),
       content: cs.content || '',
     };

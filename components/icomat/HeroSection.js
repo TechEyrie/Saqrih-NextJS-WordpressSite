@@ -1,5 +1,7 @@
 "use client";
 
+import { SERVICES_HERO_BACKGROUND_VIDEO } from "../../lib/siteVideos";
+
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
@@ -156,7 +158,7 @@ export default function HeroSection() {
       <video
         ref={videoRef}
         className="absolute inset-0 w-full h-full object-cover"
-        src="/wp-content/uploads/icomat-cdn/aWZQUwIvOtkhBcXM_ICOMAT-HOMEPAGE_1.mp4"
+        src={SERVICES_HERO_BACKGROUND_VIDEO}
         autoPlay
         muted
         loop

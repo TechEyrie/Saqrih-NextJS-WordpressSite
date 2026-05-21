@@ -1,5 +1,7 @@
 "use client";
 
+import { SERVICES_HERO_BACKGROUND_VIDEO } from "../../lib/siteVideos";
+
 import HeroScrollDownIndicator, { defaultHeroScrollDownOnClick } from "../icomat1/HeroScrollDownIndicator";
 
 const STATS = [
@@ -23,7 +25,7 @@ export default function HeroSection() {
       }}
     >
       <video
-        src="/wp-content/uploads/icomat-cdn/aWEfyAIvOtkhBOsl_ICOMAT-TECHHEROVIDEO_1.mp4"
+        src={SERVICES_HERO_BACKGROUND_VIDEO}
         autoPlay
         muted
         loop
