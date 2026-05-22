@@ -150,7 +150,8 @@ export default function LoadingScreen({ onComplete }) {
         minHeight: "100dvh",
         opacity: 1,
         pointerEvents: "all",
-        background: "#162D24",
+        background:
+          "radial-gradient(ellipse at center, #ffffff 32%, #e8ebe9 100%)",
       }}
     >
       <canvas
@@ -188,7 +189,7 @@ export default function LoadingScreen({ onComplete }) {
               height: "auto",
               maxWidth: "100%",
               objectFit: "contain",
-              filter: "brightness(0) invert(1)",
+              filter: "brightness(0) saturate(100%)",
             }}
           />
         </div>

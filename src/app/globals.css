@@ -575,9 +575,9 @@ body {
   width: 100%;
 }
 
-/* Match loader + most pages so nothing light flashes between loader and content */
+/* Match loader backdrop while route transition runs */
 body[data-route-loading="true"] {
-  background-color: #162d24;
+  background-color: #e8ebe9;
 }
 
 /* Hide routed page until the global loader finishes (prevents flash on navigation) */
