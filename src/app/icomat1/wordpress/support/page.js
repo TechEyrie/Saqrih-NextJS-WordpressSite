@@ -88,7 +88,7 @@ export default function IcomatWordpressMaintainancePage() {
         <OurAdvantageSection onQuoteClick={() => setQuoteOpen(true)} />
         <SupportHighlightSection />
         <BenefitsSection />
-        {/* <EndToEndSection />
+        {/* <EndToEndSection pageKey="wp-support" />
         
         <CustomersSection /> */}
         <SEOResultsSection />
@@ -96,14 +96,14 @@ export default function IcomatWordpressMaintainancePage() {
         {/* <WhySEOResultsSection /> */}
         {/* <ConversionCtaSection /> */}
           <FAQSection />
-        {/* <IcomatSolutionSection /> */}
+        {/* <IcomatSolutionSection pageKey="wp-support" /> */}
         {/* <FAQSection /> */}
         <CTASection />
        
       
         <UnlockingSection />
     
-          {/* <IcomatSolutionSection /> */}
+          {/* <IcomatSolutionSection pageKey="wp-support" /> */}
       
         <FooterSection />
       </div>

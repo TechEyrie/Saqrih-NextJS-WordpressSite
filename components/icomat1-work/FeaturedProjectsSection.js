@@ -1,11 +1,14 @@
 "use client";
 
-import { eyrionPicAt } from "../../lib/siteImages";
+import { getPageSectionPics } from "../../lib/pageImages";
+
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const PROJECT_PICS = getPageSectionPics("icomatWork", "projects");
 
 const PROJECTS = [
   // 1. Big card row
@@ -14,7 +17,7 @@ const PROJECTS = [
     category: "SEEDING ACTION",
     title: '"Air We Share" Initiative Landing Page',
     href: "#seeding-action",
-    image: eyrionPicAt(0),
+    image: PROJECT_PICS[0],
     imageAlt: "Seedlings growing in soil",
     layout: "big",
   },
@@ -25,7 +28,7 @@ const PROJECTS = [
     category: "GRASSHOPPER GARDENS",
     title: "Full Website Redesign and WooCommerce Store Build for Grasshopper Gardens",
     href: "#grasshopper",
-    image: eyrionPicAt(1),
+    image: PROJECT_PICS[1],
     imageAlt: "Grasshopper Gardens website",
     layout: "pair",
   },
@@ -34,7 +37,7 @@ const PROJECTS = [
     category: "PAINT SUPPLY",
     title: "Full WooCommerce rebuild and infrastructure modernization for Paint Supply",
     href: "#paint-supply",
-    image: eyrionPicAt(2),
+    image: PROJECT_PICS[2],
     imageAlt: "Paint supply store website",
     layout: "pair",
   },
@@ -45,7 +48,7 @@ const PROJECTS = [
     category: "NORTHERN TRUST",
     title: "Corporate website overhaul with custom WordPress blocks and accessibility audit",
     href: "#northern-trust",
-    image: eyrionPicAt(3),
+    image: PROJECT_PICS[3],
     imageAlt: "Corporate office interior",
     layout: "big",
   },
@@ -56,7 +59,7 @@ const PROJECTS = [
     category: "BLOOM STUDIO",
     title: "Brand-led portfolio website with bespoke animations for Bloom Creative Studio",
     href: "#bloom-studio",
-    image: eyrionPicAt(4),
+    image: PROJECT_PICS[4],
     imageAlt: "Creative studio workspace",
     layout: "pair",
   },
@@ -65,7 +68,7 @@ const PROJECTS = [
     category: "HARVEST CO.",
     title: "E-commerce WordPress build with custom product configurator for Harvest Co.",
     href: "#harvest-co",
-    image: eyrionPicAt(5),
+    image: PROJECT_PICS[5],
     imageAlt: "Harvest co produce",
     layout: "pair",
   },
@@ -76,7 +79,7 @@ const PROJECTS = [
     category: "VELA AGENCY",
     title: "Complete brand refresh and headless WordPress build for Vela Creative Agency",
     href: "#vela-agency",
-    image: eyrionPicAt(6),
+    image: PROJECT_PICS[6],
     imageAlt: "Agency team at work",
     layout: "pair",
   },
@@ -85,7 +88,7 @@ const PROJECTS = [
     category: "MERIDIAN LAW",
     title: "Professional services website rebuild with multilingual support for Meridian Law",
     href: "#meridian-law",
-    image: eyrionPicAt(7),
+    image: PROJECT_PICS[7],
     imageAlt: "Law firm office",
     layout: "pair",
   },
@@ -96,7 +99,7 @@ const PROJECTS = [
     category: "SUMMIT HEALTH",
     title: "Patient-facing portal redesign and WordPress multisite setup for Summit Health",
     href: "#summit-health",
-    image: eyrionPicAt(8),
+    image: PROJECT_PICS[8],
     imageAlt: "Health clinic interior",
     layout: "pair",
   },
@@ -105,7 +108,7 @@ const PROJECTS = [
     category: "FOLIO PRESS",
     title: "Editorial WordPress theme build with custom Gutenberg blocks for Folio Press",
     href: "#folio-press",
-    image: eyrionPicAt(9),
+    image: PROJECT_PICS[9],
     imageAlt: "Magazine editorial spread",
     layout: "pair",
   },
@@ -116,7 +119,7 @@ const PROJECTS = [
     category: "ARC ARCHITECTS",
     title: "Portfolio website with project filtering and 3D model integration for Arc Architects",
     href: "#arc-architects",
-    image: eyrionPicAt(10),
+    image: PROJECT_PICS[10],
     imageAlt: "Architecture building exterior",
     layout: "pair",
   },
@@ -125,7 +128,7 @@ const PROJECTS = [
     category: "KINSHIP COFFEE",
     title: "Brand-new WooCommerce subscription store and loyalty programme for Kinship Coffee",
     href: "#kinship-coffee",
-    image: eyrionPicAt(11),
+    image: PROJECT_PICS[11],
     imageAlt: "Coffee shop interior",
     layout: "pair",
   },

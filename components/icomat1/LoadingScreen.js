@@ -150,6 +150,8 @@ export default function LoadingScreen({ onComplete }) {
         width: "100%",
         height: "100%",
         minHeight: "100dvh",
+        opacity: 1,
+        pointerEvents: "all",
         background:
           "radial-gradient(ellipse at center, #ffffff 32%, #e8ebe9 100%)",
       }}

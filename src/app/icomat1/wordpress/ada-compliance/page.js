@@ -95,7 +95,7 @@ export default function IcomatWordpressMaintainancePage() {
         <MigrationRevampCtaSection />
         {/* <SupportHighlightSection /> */}
        
-        {/* <EndToEndSection />
+        {/* <EndToEndSection pageKey="wp-ada-compliance" />
         
         <CustomersSection /> */}
         {/* <SEOResultsSection /> */}
@@ -106,14 +106,14 @@ export default function IcomatWordpressMaintainancePage() {
         {/* <WhySEOResultsSection /> */}
         {/* <ConversionCtaSection /> */}
           <FAQSection />
-        <IcomatSolutionSection />
+        <IcomatSolutionSection pageKey="wp-ada-compliance" />
         {/* <FAQSection /> */}
         <CTASection />
        
       
         <UnlockingSection />
     
-          {/* <IcomatSolutionSection /> */}
+          {/* <IcomatSolutionSection pageKey="wp-ada-compliance" /> */}
       
         <FooterSection />
       </div>

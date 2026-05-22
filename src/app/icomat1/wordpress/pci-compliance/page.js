@@ -102,7 +102,7 @@ export default function IcomatWordpressMaintainancePage() {
         {/* <MigrationRevampCtaSection /> */}
         {/* <SEOResultSection2 onQuoteClick={() => setQuoteOpen(true)} /> */}
        
-        {/* <EndToEndSection />
+        {/* <EndToEndSection pageKey="wp-pci-compliance" />
         
         <CustomersSection /> */}
       
@@ -113,14 +113,14 @@ export default function IcomatWordpressMaintainancePage() {
         {/* <ConversionCtaSection /> */}
         <FAQSection />
       
-        <IcomatSolutionSection />
+        <IcomatSolutionSection pageKey="wp-pci-compliance" />
         {/* <FAQSection /> */}
         <CTASection />
        
       
         <UnlockingSection />
     
-          {/* <IcomatSolutionSection /> */}
+          {/* <IcomatSolutionSection pageKey="wp-pci-compliance" /> */}
       
         <FooterSection />
       </div>

@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { eyrionPicAt } from "../../lib/siteImages";
+import { eyrionPic } from "../../lib/siteImages";
+import { PAGE_IMAGE_SLOTS } from "../../lib/pageImageAllocations";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,13 +12,15 @@ gsap.registerPlugin(ScrollTrigger);
 const PIC_SCROLLOUT_SCALE_MIN = 0.984;
 const PIC_SCROLLOUT_END_RADIUS_PX = 6;
 
+const industrySlots = PAGE_IMAGE_SLOTS.icomat.industries;
+
 const INDUSTRIES = [
   {
     id: "defense",
     label: "Defense",
     heading: "Supporting leading\nindustries: Defence.",
     subheading: "Lightweight, high-strength composite structures for next-generation defence platforms — from fighter airframes to unmanned systems.",
-    src: eyrionPicAt(0),
+    src: eyrionPic(industrySlots[0]),
     alt: "Fighter jet in flight — defence industry",
   },
   {
@@ -25,7 +28,7 @@ const INDUSTRIES = [
     label: "Aeronautics",
     heading: "Supporting leading\nindustries: Aeronautics.",
     subheading: "Enabling the next generation of commercial and advanced air mobility with optimised composite aerostructures.",
-    src: eyrionPicAt(1),
+    src: eyrionPic(industrySlots[1]),
     alt: "Commercial aircraft in flight — aeronautics industry",
   },
   {
@@ -33,7 +36,7 @@ const INDUSTRIES = [
     label: "Space",
     heading: "Supporting leading\nindustries: Space.",
     subheading: "Mission-critical composite components built for the extreme demands of launch vehicles, satellites, and re-entry systems.",
-    src: eyrionPicAt(2),
+    src: eyrionPic(industrySlots[2]),
     alt: "Rocket launch — space industry",
   },
   {
@@ -41,7 +44,7 @@ const INDUSTRIES = [
     label: "Automotive",
     heading: "Supporting leading\nindustries: Automotive.",
     subheading: "High-rate composite production for structural vehicle components — reducing weight without compromising safety or performance.",
-    src: eyrionPicAt(3),
+    src: eyrionPic(industrySlots[3]),
     alt: "High-performance automotive manufacturing",
   },
 ];

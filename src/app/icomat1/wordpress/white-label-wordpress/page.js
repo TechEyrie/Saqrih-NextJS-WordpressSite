@@ -108,7 +108,7 @@ export default function IcomatWordpressMaintainancePage() {
         {/* <MigrationRevampCtaSection /> */}
         {/* <SEOResultSection2 onQuoteClick={() => setQuoteOpen(true)} /> */}
        
-        {/* <EndToEndSection /> */}
+        {/* <EndToEndSection pageKey="wp-white-label-wordpress" /> */}
         
         <CustomersSection /> 
       
@@ -119,14 +119,14 @@ export default function IcomatWordpressMaintainancePage() {
         {/* <ConversionCtaSection /> */}
        
       
-        <IcomatSolutionSection />
+        <IcomatSolutionSection pageKey="wp-white-label-wordpress" />
         {/* <FAQSection /> */}
         <CTASection />
        
       
         <UnlockingSection />
     
-          {/* <IcomatSolutionSection /> */}
+          {/* <IcomatSolutionSection pageKey="wp-white-label-wordpress" /> */}
       
         <FooterSection />
       </div>

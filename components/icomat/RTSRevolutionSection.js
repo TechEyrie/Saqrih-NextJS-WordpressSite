@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { USEFUL_VIDEO_1, USEFUL_VIDEO_2 } from "../../lib/siteVideos";
+import { pageKeyFromPathname } from "../../lib/pageKeys";
+import { getPageVideo } from "../../lib/pageVideos";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -62,7 +64,11 @@ function CardVideo({ src, badge, footerContent }) {
   );
 }
 
-export default function RTSRevolutionSection() {
+export default function RTSRevolutionSection({ pageKey: pageKeyProp }) {
+  const pathname = usePathname();
+  const pageKey = pageKeyProp ?? pageKeyFromPathname(pathname) ?? "icomat";
+  const leftCardVideo = getPageVideo(pageKey, "rtsRevolution", 0);
+  const rightCardVideo = getPageVideo(pageKey, "rtsRevolution", 1);
   const wrapperRef = useRef(null);   // outer tall div — provides scroll runway
   const sectionRef = useRef(null);   // sticky inner panel
   const headerRef = useRef(null);
@@ -220,7 +226,7 @@ export default function RTSRevolutionSection() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-4">
             <div ref={leftCardRef} className="will-change-transform">
               <CardVideo
-                src={USEFUL_VIDEO_1}
+                src={leftCardVideo}
                 badge="Before RTS"
                 footerContent={
                   <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">
@@ -232,7 +238,7 @@ export default function RTSRevolutionSection() {
             </div>
             <div ref={rightCardRef} className="will-change-transform">
               <CardVideo
-                src={USEFUL_VIDEO_2}
+                src={rightCardVideo}
                 badge="RTS Design"
                 footerContent={
                   <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">

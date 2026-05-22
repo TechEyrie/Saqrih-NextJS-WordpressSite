@@ -77,10 +77,10 @@ export default function IcomatWorkPage() {
       <RTSCombinedSection />
       <HowWeOperateSection />
       <OurAdvantageSection />
-      <EndToEndSection />
+      <EndToEndSection pageKey="icomatWork" />
       <CustomersSection />
       <BusinessModelSection />
-      <IcomatSolutionSection />
+      <IcomatSolutionSection pageKey="icomatWork" />
       <IndustriesSection />
       <BuildWithIcomatSection />
       <UnlockingSection />

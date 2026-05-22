@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SECTION_BACKGROUND_VIDEO } from "../../lib/siteVideos";
+import { pageKeyFromPathname } from "../../lib/pageKeys";
+import { getPageVideo } from "../../lib/pageVideos";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -46,7 +48,10 @@ function Badge({ label, top, left }) {
   );
 }
 
-export default function CompositeShowcaseSection() {
+export default function CompositeShowcaseSection({ pageKey: pageKeyProp }) {
+  const pathname = usePathname();
+  const pageKey = pageKeyProp ?? pageKeyFromPathname(pathname) ?? "homepage";
+  const sectionVideo = getPageVideo(pageKey, "compositeShowcase");
   const wrapperRef = useRef(null);
   const stickyRef = useRef(null);
   const videoRef = useRef(null);
@@ -108,7 +113,7 @@ export default function CompositeShowcaseSection() {
         <video
           ref={videoRef}
           className="absolute inset-0 w-full h-full object-contain"
-          src={SECTION_BACKGROUND_VIDEO}
+          src={sectionVideo}
           autoPlay
           muted
           loop

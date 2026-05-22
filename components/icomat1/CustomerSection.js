@@ -1,12 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import {
-  SECTION_BACKGROUND_VIDEO,
-  USEFUL_VIDEO_2,
-} from "../../lib/siteVideos";
+import { pageKeyFromPathname } from "../../lib/pageKeys";
+import { getCustomerSectionVideos } from "../../lib/pageVideos";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -155,7 +154,11 @@ function VideoModal({ src, onClose }) {
   );
 }
 
-export default function CustomersSection() {
+export default function CustomersSection({ pageKey: pageKeyProp }) {
+  const pathname = usePathname();
+  const pageKey = pageKeyProp ?? pageKeyFromPathname(pathname) ?? "homepage";
+  const { background: sectionBackgroundVideo, modal: modalVideo } =
+    getCustomerSectionVideos(pageKey);
   const outerRef        = useRef(null);
   const bgGradientRef   = useRef(null);
   const wrapperRef      = useRef(null);
@@ -167,7 +170,7 @@ export default function CustomersSection() {
   const miniCardRef     = useRef(null);
 
   const [modalOpen, setModalOpen] = useState(false);
-  const MODAL_SRC = USEFUL_VIDEO_2;
+  const MODAL_SRC = modalVideo;
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -547,7 +550,7 @@ export default function CustomersSection() {
             {/* Main background video */}
             <video
               style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
-              src={SECTION_BACKGROUND_VIDEO}
+              src={sectionBackgroundVideo}
               autoPlay muted loop playsInline preload="auto"
             />
 

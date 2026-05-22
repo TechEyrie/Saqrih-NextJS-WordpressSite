@@ -4,20 +4,11 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { eyrionPic } from "../../lib/siteImages";
+import { getHowWeOperateImages } from "../../lib/pageImages";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
-const OPERATE_IMAGES = [
-  {
-    src: eyrionPic(1),
-    alt: "Eyrion automated manufacturing workflow",
-  },
-  {
-    src: eyrionPic(2),
-    alt: "Eyrion composite inspection and quality control",
-  },
-];
+const OPERATE_IMAGES = getHowWeOperateImages("icomat");
 
 export default function HowWeOperateSection() {
   const sectionRef = useRef(null);

@@ -64,7 +64,7 @@ export default function HrchitectPortfolioPage() {
       <CustomerSection />
       <PortfolioLayeredShowcase />
       <CustomersSection1 />
-      <EndToEndSection />
+      <EndToEndSection pageKey="portfolio-hrchitect" />
       <CTASection />
       <FooterSection />
     </div>

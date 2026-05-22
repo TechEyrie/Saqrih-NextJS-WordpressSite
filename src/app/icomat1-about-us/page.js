@@ -71,7 +71,7 @@ export default function Icomat1AboutUsPage() {
       <FactorySection />
       <ReliableSection />
       <UnlockingSection />
-      <EndToEndSection />
+      <EndToEndSection pageKey="aboutUs" />
       <CTASection />
       <FooterSection />
     </div>

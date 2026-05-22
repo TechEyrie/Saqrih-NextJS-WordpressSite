@@ -64,7 +64,7 @@ export default function AzelisAesPortfolioPage() {
       <CustomerSection />
       <PortfolioLayeredShowcase />
       <CustomersSection1 />
-      <EndToEndSection />
+      <EndToEndSection pageKey="portfolio-azelis-aes" />
       <CTASection />
       <FooterSection />
     </div>

@@ -80,12 +80,12 @@ export default function IcomatWordpressMaintainancePage() {
       <div className="homepage-font-scope icomat-wp-service-page">
         <HeroSection onQuoteClick={() => setQuoteOpen(true)} />
         <OurAdvantageSection onQuoteClick={() => setQuoteOpen(true)} />
-        <EndToEndSection />
+        <EndToEndSection pageKey="wp-maintainance" />
         <BenefitsSection />
         <CustomersSection />
         <UnlockingSection />
         <FAQSection />
-        <IcomatSolutionSection />
+        <IcomatSolutionSection pageKey="wp-maintainance" />
         <CTASection />
         <FooterSection />
       </div>

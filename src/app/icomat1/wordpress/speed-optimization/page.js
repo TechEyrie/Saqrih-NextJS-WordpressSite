@@ -107,7 +107,7 @@ export default function IcomatWordpressMaintainancePage() {
         {/* <MigrationRevampCtaSection /> */}
         {/* <SEOResultSection2 onQuoteClick={() => setQuoteOpen(true)} /> */}
        
-        {/* <EndToEndSection />
+        {/* <EndToEndSection pageKey="wp-speed-optimization" />
         
         <CustomersSection /> */}
       
@@ -118,14 +118,14 @@ export default function IcomatWordpressMaintainancePage() {
         {/* <ConversionCtaSection /> */}
        
       
-        <IcomatSolutionSection />
+        <IcomatSolutionSection pageKey="wp-speed-optimization" />
         {/* <FAQSection /> */}
         <CTASection />
        
       
         <UnlockingSection />
     
-          {/* <IcomatSolutionSection /> */}
+          {/* <IcomatSolutionSection pageKey="wp-speed-optimization" /> */}
       
         <FooterSection />
       </div>

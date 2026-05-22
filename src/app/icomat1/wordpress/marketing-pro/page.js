@@ -95,7 +95,7 @@ export default function IcomatWordpressMaintainancePage() {
         {/* <MigrationRevampCtaSection /> */}
         {/* <SupportHighlightSection /> */}
        
-        {/* <EndToEndSection />
+        {/* <EndToEndSection pageKey="wp-marketing-pro" />
         
         <CustomersSection /> */}
         {/* <SEOResultsSection /> */}
@@ -106,14 +106,14 @@ export default function IcomatWordpressMaintainancePage() {
         {/* <WhySEOResultsSection /> */}
         {/* <ConversionCtaSection /> */}
           <FAQSection />
-        <IcomatSolutionSection />
+        <IcomatSolutionSection pageKey="wp-marketing-pro" />
         {/* <FAQSection /> */}
         <CTASection />
        
       
         <UnlockingSection />
     
-          {/* <IcomatSolutionSection /> */}
+          {/* <IcomatSolutionSection pageKey="wp-marketing-pro" /> */}
       
         <FooterSection />
       </div>

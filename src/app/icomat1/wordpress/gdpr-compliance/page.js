@@ -93,7 +93,7 @@ export default function IcomatWordpressMaintainancePage() {
         {/* <BenefitsSection /> */}
         {/* <SupportHighlightSection /> */}
       
-        {/* <EndToEndSection />
+        {/* <EndToEndSection pageKey="wp-gdpr-compliance" />
         
         <CustomersSection /> */}
         <SEOResultsSection />
@@ -103,14 +103,14 @@ export default function IcomatWordpressMaintainancePage() {
         {/* <WhySEOResultsSection /> */}
         {/* <ConversionCtaSection /> */}
           <FAQSection />
-        <IcomatSolutionSection />
+        <IcomatSolutionSection pageKey="wp-gdpr-compliance" />
         {/* <FAQSection /> */}
         <CTASection />
        
       
         <UnlockingSection />
     
-          {/* <IcomatSolutionSection /> */}
+          {/* <IcomatSolutionSection pageKey="wp-gdpr-compliance" /> */}
       
         <FooterSection />
       </div>

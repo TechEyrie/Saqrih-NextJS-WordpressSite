@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
 import LoadingScreen from "./LoadingScreen";
@@ -8,36 +8,57 @@ import ScrollToTopButton from "./ScrollToTopButton";
 
 export default function GlobalLoadingWrapper({ children }) {
   const pathname = usePathname();
-  const prevPathRef = useRef(pathname);
-  const [showLoader, setShowLoader] = useState(true);
+  /** Last path the loader has finished revealing. */
+  const [settledPath, setSettledPath] = useState(pathname);
+  const [initialDone, setInitialDone] = useState(false);
   const [loaderKey, setLoaderKey] = useState(0);
   const [portalTarget, setPortalTarget] = useState(null);
+  const wasLoadingRef = useRef(false);
+
+  // Derived on every render — no effect needed, so no "page then loader" frame.
+  const showLoader = !initialDone || pathname !== settledPath;
 
   useLayoutEffect(() => {
     setPortalTarget(document.body);
   }, []);
 
-  // useLayoutEffect: show loader before paint so route changes don’t flash underlying page (or black layers)
   useLayoutEffect(() => {
-    if (prevPathRef.current !== pathname) {
-      prevPathRef.current = pathname;
-      setShowLoader(true);
+    if (showLoader && !wasLoadingRef.current) {
       setLoaderKey((v) => v + 1);
     }
+    wasLoadingRef.current = showLoader;
+  }, [showLoader]);
+
+  useLayoutEffect(() => {
+    document.body.style.overflow = showLoader ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [showLoader]);
+
+  const handleLoaderComplete = useCallback(() => {
+    setSettledPath(pathname);
+    setInitialDone(true);
   }, [pathname]);
 
   const loader =
     showLoader && portalTarget ? (
       <LoadingScreen
         key={`${pathname}-${loaderKey}`}
-        onComplete={() => setShowLoader(false)}
+        onComplete={handleLoaderComplete}
       />
     ) : null;
 
   return (
     <>
       {portalTarget && loader ? createPortal(loader, portalTarget) : loader}
-      {children}
+      <div
+        className="global-loading-content"
+        data-loading={showLoader ? "true" : "false"}
+        aria-hidden={showLoader}
+      >
+        {children}
+      </div>
       <ScrollToTopButton />
     </>
   );

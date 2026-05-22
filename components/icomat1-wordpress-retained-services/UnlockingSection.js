@@ -1,3 +1,7 @@
 "use client";
 
-export { default } from "../icomat1-wordpress-design/UnlockingSection";
+import UnlockingSectionBase from "../icomat1-wordpress-design/UnlockingSectionBase";
+
+export default function UnlockingSection() {
+  return <UnlockingSectionBase pageKey="wp-retained-services" />;
+}

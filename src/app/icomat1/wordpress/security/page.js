@@ -84,20 +84,20 @@ export default function IcomatWordpressMaintainancePage() {
         <HeroSection onQuoteClick={() => setQuoteOpen(true)} />
         <OurAdvantageSection onQuoteClick={() => setQuoteOpen(true)} />
         <BenefitsSection />
-        {/* <EndToEndSection />
+        {/* <EndToEndSection pageKey="wp-security" />
         
         <CustomersSection /> */}
         <SEOResultsSection />
         <ConversionCtaSection />
           <FAQSection />
-        <IcomatSolutionSection />
+        <IcomatSolutionSection pageKey="wp-security" />
         {/* <FAQSection /> */}
         <CTASection />
        
       
         <UnlockingSection />
     
-          {/* <IcomatSolutionSection /> */}
+          {/* <IcomatSolutionSection pageKey="wp-security" /> */}
       
         <FooterSection />
       </div>

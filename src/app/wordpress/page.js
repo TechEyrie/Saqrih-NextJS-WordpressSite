@@ -85,7 +85,7 @@ export default function IcomatWordpressPage() {
       
         {/* <ServicesSection /> */}
         <CTASection onQuoteOpen={() => setQuoteOpen(true)} />
-        <EndToEndSection theme="light" />
+        <EndToEndSection pageKey="wordpress" theme="light" />
         <FooterSection />
       
     </div>

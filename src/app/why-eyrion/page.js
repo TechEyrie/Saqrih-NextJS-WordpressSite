@@ -79,7 +79,7 @@ export default function IcomatPage() {
       <WhyHeroSection />
       <WhyValueServiceSection />
       <SEOResultSection />
-      <EndToEndSection />
+      <EndToEndSection pageKey="whyEyrion" />
       <CTASection />
       <FooterSection />
     </div>

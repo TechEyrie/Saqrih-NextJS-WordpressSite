@@ -77,7 +77,7 @@ export default function IcomatWordpressDesignPage() {
       <div className="homepage-font-scope icomat-wp-service-page">
         <HeroSection onQuoteClick={() => setQuoteOpen(true)} />
         <OurAdvantageSection onQuoteClick={() => setQuoteOpen(true)} />
-        <EndToEndSection />
+        <EndToEndSection pageKey="wp-design" />
         <CustomersSection />
         <UnlockingSection />
         <CTASection />

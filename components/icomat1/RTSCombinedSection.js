@@ -1,12 +1,14 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { pageKeyFromPathname } from "../../lib/pageKeys";
 import {
-  SECTION_BACKGROUND_VIDEO,
-  usefulVideoAt,
-} from "../../lib/siteVideos";
+  getRtsCombinedCardVideos,
+  getRtsCombinedPanelVideo,
+} from "../../lib/pageVideos";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -86,9 +88,8 @@ const GRID_DOTS = [
   { top: "88%", left: "75%" }, { top: "88%", left: "91%" },
 ];
 
-const CARD_ITEMS = [
+const CARD_META = [
   {
-    src: usefulVideoAt(0),
     badge: "Design + Dev",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
@@ -99,7 +100,6 @@ const CARD_ITEMS = [
     ),
   },
   {
-    src: usefulVideoAt(1),
     badge: "Managed Services",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
@@ -110,7 +110,6 @@ const CARD_ITEMS = [
     ),
   },
   {
-    src: usefulVideoAt(2),
     badge: "Maintenance",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
@@ -121,7 +120,6 @@ const CARD_ITEMS = [
     ),
   },
   {
-    src: usefulVideoAt(0),
     badge: "Hosting",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
@@ -132,7 +130,6 @@ const CARD_ITEMS = [
     ),
   },
   {
-    src: usefulVideoAt(1),
     badge: "Support",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
@@ -143,7 +140,6 @@ const CARD_ITEMS = [
     ),
   },
   {
-    src: usefulVideoAt(2),
     badge: "SEO",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
@@ -165,7 +161,19 @@ function CrosshairDot({ top, left }) {
   );
 }
 
-export default function RTSCombinedSection() {
+export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
+  const pathname = usePathname();
+  const pageKey = pageKeyProp ?? pageKeyFromPathname(pathname) ?? "homepage";
+  const cardItems = useMemo(
+    () =>
+      CARD_META.map((card, i) => ({
+        ...card,
+        src: getRtsCombinedCardVideos(pageKey)[i],
+      })),
+    [pageKey],
+  );
+  const panelVideo = getRtsCombinedPanelVideo(pageKey);
+
   const wrapperRef = useRef(null);
   const panelARef = useRef(null);
   const headerRef = useRef(null);
@@ -411,7 +419,7 @@ export default function RTSCombinedSection() {
           <div ref={cardsWrapperRef} className="px-4 sm:px-8 md:px-16 lg:px-20 overflow-hidden flex-1">
             {/* Mobile: 1-col scroll; Tablet: 2-col; Desktop: 3-col */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
-              {CARD_ITEMS.map((card, idx) => (
+              {cardItems.map((card, idx) => (
                 <div key={idx} className="rts-card-item will-change-transform">
                   <CardVideo
                     src={card.src}
@@ -458,7 +466,7 @@ export default function RTSCombinedSection() {
         <div className="panel-b-inner">
           <video
             className="absolute inset-0 w-full h-full object-contain"
-            src={SECTION_BACKGROUND_VIDEO}
+            src={panelVideo}
             autoPlay muted loop playsInline preload="auto"
             style={{ opacity: 0.85 }}
           />

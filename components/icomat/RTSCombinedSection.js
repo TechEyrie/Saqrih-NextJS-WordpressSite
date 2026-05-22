@@ -1,12 +1,14 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { pageKeyFromPathname } from "../../lib/pageKeys";
 import {
-  SECTION_BACKGROUND_VIDEO,
-  usefulVideoAt,
-} from "../../lib/siteVideos";
+  getRtsCombinedCardVideos,
+  getRtsCombinedPanelVideo,
+} from "../../lib/pageVideos";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -72,9 +74,8 @@ const GRID_DOTS = [
   { top: "88%", left: "75%" }, { top: "88%", left: "91%" },
 ];
 
-const CARD_ITEMS = [
+const CARD_META = [
   {
-    src: usefulVideoAt(0),
     badge: "Before RTS",
     footer: (
       <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">
@@ -85,7 +86,6 @@ const CARD_ITEMS = [
     ),
   },
   {
-    src: usefulVideoAt(1),
     badge: "RTS Design",
     footer: (
       <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">
@@ -96,7 +96,6 @@ const CARD_ITEMS = [
     ),
   },
   {
-    src: usefulVideoAt(2),
     badge: "Optimized Layup",
     footer: (
       <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">
@@ -107,7 +106,6 @@ const CARD_ITEMS = [
     ),
   },
   {
-    src: usefulVideoAt(0),
     badge: "Precision Control",
     footer: (
       <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">
@@ -118,7 +116,6 @@ const CARD_ITEMS = [
     ),
   },
   {
-    src: usefulVideoAt(1),
     badge: "Material Efficiency",
     footer: (
       <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">
@@ -129,7 +126,6 @@ const CARD_ITEMS = [
     ),
   },
   {
-    src: usefulVideoAt(2),
     badge: "Scalable Output",
     footer: (
       <p className="text-[14px] sm:text-[15px] font-semibold text-[#111] leading-snug">
@@ -151,7 +147,19 @@ function CrosshairDot({ top, left }) {
   );
 }
 
-export default function RTSCombinedSection() {
+export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
+  const pathname = usePathname();
+  const pageKey = pageKeyProp ?? pageKeyFromPathname(pathname) ?? "icomat";
+  const cardItems = useMemo(
+    () =>
+      CARD_META.map((card, i) => ({
+        ...card,
+        src: getRtsCombinedCardVideos(pageKey)[i],
+      })),
+    [pageKey],
+  );
+  const panelVideo = getRtsCombinedPanelVideo(pageKey);
+
   const wrapperRef = useRef(null);
   const panelARef = useRef(null);
   const headerRef = useRef(null);
@@ -369,7 +377,7 @@ export default function RTSCombinedSection() {
 
         <div ref={cardsWrapperRef} className="px-6 sm:px-10 md:px-16 lg:px-20 overflow-hidden">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            {CARD_ITEMS.map((card, idx) => (
+            {cardItems.map((card, idx) => (
               <div key={idx} className="rts-card-item will-change-transform">
                 <CardVideo
                   src={card.src}
@@ -399,7 +407,7 @@ export default function RTSCombinedSection() {
       >
         <video
           className="absolute inset-0 w-full h-full object-contain"
-            src={SECTION_BACKGROUND_VIDEO}
+            src={panelVideo}
           autoPlay muted loop playsInline preload="auto"
           style={{ opacity: 0.85 }}
         />

@@ -64,7 +64,7 @@ export default function TigerPortfolioPage() {
       <CustomerSection />
       <PortfolioLayeredShowcase />
       <CustomersSection1 />
-      <EndToEndSection />
+      <EndToEndSection pageKey="portfolio-tiger" />
       <CTASection />
       <FooterSection />
     </div>

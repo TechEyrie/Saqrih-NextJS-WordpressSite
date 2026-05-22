@@ -575,6 +575,14 @@ body {
   width: 100%;
 }
 
+/* Hide routed page until the global loader finishes (prevents flash on navigation) */
+.global-loading-content[data-loading="true"] {
+  visibility: hidden;
+  pointer-events: none;
+  overflow: hidden;
+  max-height: 100vh;
+}
+
 /* Loading screen — true viewport center on mobile (iOS address bar / dvh) */
 .loading-screen-overlay {
   min-height: 100dvh;

@@ -64,7 +64,7 @@ export default function AcertusPortfolioPage() {
       <CustomerSection />
       <PortfolioLayeredShowcase />
       <CustomersSection1 />
-      <EndToEndSection />
+      <EndToEndSection pageKey="portfolio-acertus" />
       <CTASection />
       <FooterSection />
     </div>

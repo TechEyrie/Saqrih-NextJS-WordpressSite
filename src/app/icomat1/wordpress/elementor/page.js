@@ -97,7 +97,7 @@ export default function IcomatWordpressMaintainancePage() {
         {/* <MigrationRevampCtaSection /> */}
        
        
-        {/* <EndToEndSection />
+        {/* <EndToEndSection pageKey="wp-elementor" />
         
         <CustomersSection /> */}
         {/* <SEOResultsSection /> */}
@@ -109,14 +109,14 @@ export default function IcomatWordpressMaintainancePage() {
         {/* <ConversionCtaSection /> */}
         <FAQSection />
         <ElementorPowerCtaSection onQuoteClick={() => setQuoteOpen(true)} />
-        <IcomatSolutionSection />
+        <IcomatSolutionSection pageKey="wp-elementor" />
         {/* <FAQSection /> */}
         <CTASection />
        
       
         <UnlockingSection />
     
-          {/* <IcomatSolutionSection /> */}
+          {/* <IcomatSolutionSection pageKey="wp-elementor" /> */}
       
         <FooterSection />
       </div>

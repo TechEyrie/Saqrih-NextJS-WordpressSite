@@ -1,64 +1,66 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { eyrionPicAt } from "../../lib/siteImages";
+import { getPageSectionPics } from "../../lib/pageImages";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
-const CARDS = [
+const CARD_META = [
   {
     num: "01",
     label: "HRCHITECT",
     sub: "Website migration, infrastructure review, and a comprehensive audit result in strategic planning for phase II redesign project.",
     href: "/portfolio/hrchitect",
-    img: eyrionPicAt(0),
   },
   {
     num: "02",
     label: "TIGER",
     sub: "Five sister websites get fresh looks and added features",
     href: "/portfolio/tiger",
-    img: eyrionPicAt(1),
   },
   {
     num: "03",
     label: "AZELIS A&ES",
     sub: "Seamless merger of two ecommerce websites into one adds ease and efficiency.",
     href: "/portfolio/azelis-aes",
-    img: eyrionPicAt(2),
   },
   {
     num: "04",
     label: "ACERTUS",
     sub: "WordPress website migrated, optimized for long term expansion via Eyrion retained services.",
     href: "/portfolio/acertus",
-    img: eyrionPicAt(3),
   },
   {
     num: "05",
     label: "Seeding Action",
     sub: null,
-    img: eyrionPicAt(4),
   },
   {
     num: "06",
     label: "Grasshopper Gardens",
     sub: null,
-    img: eyrionPicAt(5),
   },
   {
     num: "07",
     label: "Paint Supply",
     sub: null,
-    img: eyrionPicAt(6),
   },
 ];
 
-export default function EndToEndSection({ theme = "dark" }) {
+function buildCards(pageKey) {
+  const pics = getPageSectionPics(pageKey, "endToEnd");
+  return CARD_META.map((card, i) => ({
+    ...card,
+    img: pics[i] ?? pics[0],
+  }));
+}
+
+export default function EndToEndSection({ theme = "dark", pageKey = "homepage" }) {
+  const cards = useMemo(() => buildCards(pageKey), [pageKey]);
   const wrapperRef = useRef(null);
   const headingRef = useRef(null);
   const trackOuterRef = useRef(null);
@@ -198,7 +200,7 @@ export default function EndToEndSection({ theme = "dark" }) {
           ref={trackRef}
           className="flex flex-col gap-10 md:flex-row md:gap-6 will-change-transform"
         >
-          {CARDS.map((card, i) => {
+          {cards.map((card, i) => {
             const actionPillClass =
               "inline-flex items-center justify-center rounded-full px-4 py-2 text-[11px] tracking-[0.12em] uppercase";
 

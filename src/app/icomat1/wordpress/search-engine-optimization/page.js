@@ -82,7 +82,7 @@ export default function IcomatWordpressSearchEngineOptimizationPage() {
         <HeroSection onQuoteClick={() => setQuoteOpen(true)} />
         <OurAdvantageSection onQuoteClick={() => setQuoteOpen(true)} />
         <BenefitsSection />
-        <EndToEndSection />
+        <EndToEndSection pageKey="wp-search-engine-optimization" />
         <SEOResultsSection />
         <CustomersSection />
         <SEOAddonsSection />

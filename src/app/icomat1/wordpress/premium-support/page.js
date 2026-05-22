@@ -78,7 +78,7 @@ export default function IcomatWordpressPremiumSupportPage() {
       <div className="homepage-font-scope icomat-wp-service-page">
         <HeroSection onQuoteClick={() => setQuoteOpen(true)} />
         <OurAdvantageSection onQuoteClick={() => setQuoteOpen(true)} />
-        {/* <EndToEndSection />
+        {/* <EndToEndSection pageKey="wp-premium-support" />
         <CustomersSection />
         <UnlockingSection /> */}
         <FAQSection />

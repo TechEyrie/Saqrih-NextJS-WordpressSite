@@ -2,7 +2,9 @@
 
 import { useMemo, useState } from "react";
 import { ChevronLeft, ChevronRight, Clock } from "lucide-react";
-import { eyrionPicAt } from "../../lib/siteImages";
+import { getPageSectionPics } from "../../lib/pageImages";
+
+const BLOG_LISTING_PICS = getPageSectionPics("blog", "listing");
 
 /** Primary brand green */
 const GREEN = "#162D24";
@@ -19,7 +21,7 @@ const SEED_POSTS = [
     title: "WordPress performance basics every site owner should know",
     excerpt:
       "Learn how caching, image delivery, and lean themes work together to keep your WordPress site fast for visitors and search engines alike.",
-    image: eyrionPicAt(0),
+    image: BLOG_LISTING_PICS[0],
   },
   {
     slug: "design-systems-for-wordpress",
@@ -27,7 +29,7 @@ const SEED_POSTS = [
     title: "Building a simple design system inside WordPress",
     excerpt:
       "A practical look at typography scales, spacing tokens, and reusable blocks so your marketing team can publish confidently without breaking the layout.",
-    image: eyrionPicAt(1),
+    image: BLOG_LISTING_PICS[1],
   },
   {
     slug: "seo-and-core-web-vitals",
@@ -35,7 +37,7 @@ const SEED_POSTS = [
     title: "SEO and Core Web Vitals: what actually moves the needle",
     excerpt:
       "We separate myth from measurement—LCP, INP, and CLS—and show how technical choices in WordPress hosting and front-end code affect rankings.",
-    image: eyrionPicAt(2),
+    image: BLOG_LISTING_PICS[2],
   },
 ];
 
@@ -50,7 +52,7 @@ function buildAllPosts() {
       date: t.date,
       title: i < SEED_POSTS.length ? t.title : `${t.title} (${n})`,
       excerpt: t.excerpt,
-      image: eyrionPicAt(i),
+      image: BLOG_LISTING_PICS[i % BLOG_LISTING_PICS.length],
     });
   }
   return out;

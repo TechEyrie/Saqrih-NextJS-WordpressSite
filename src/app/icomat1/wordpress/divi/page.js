@@ -91,7 +91,7 @@ export default function IcomatWordpressMaintainancePage() {
         <OurAdvantageSection onQuoteClick={() => setQuoteOpen(true)} />
         {/* <SupportHighlightSection />
         <BenefitsSection /> */}
-        {/* <EndToEndSection />
+        {/* <EndToEndSection pageKey="wp-divi" />
         
         <CustomersSection /> */}
         <SEOResultsSection />
@@ -99,14 +99,14 @@ export default function IcomatWordpressMaintainancePage() {
         <DiviPowerCtaSection onQuoteClick={() => setQuoteOpen(true)} />
         <DiviTransformBannerSection />
         <FAQSection />
-        <IcomatSolutionSection />
+        <IcomatSolutionSection pageKey="wp-divi" />
         {/* <FAQSection /> */}
         <CTASection />
        
       
         <UnlockingSection />
     
-          {/* <IcomatSolutionSection /> */}
+          {/* <IcomatSolutionSection pageKey="wp-divi" /> */}
       
         <FooterSection />
       </div>

@@ -1,16 +1,15 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { HOMEPAGE_ICOMAT_SOLUTION_CARDS } from "../../lib/homepageImages";
+import { getIcomatSolutionCards } from "../../lib/pageImages";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const CARDS = HOMEPAGE_ICOMAT_SOLUTION_CARDS;
-
-export default function IcomatSolutionSection() {
+export default function IcomatSolutionSection({ pageKey = "homepage" }) {
+  const cards = useMemo(() => getIcomatSolutionCards(pageKey), [pageKey]);
   const sectionRef = useRef(null);
   const headingRef = useRef(null);
   const gridRef    = useRef(null);
@@ -106,7 +105,7 @@ export default function IcomatSolutionSection() {
         ref={gridRef}
         className="grid grid-cols-1 sm:grid-cols-3 gap-3"
       >
-        {CARDS.map((card, i) => (
+        {cards.map((card, i) => (
           <Link
             key={card.id}
             href={card.href}

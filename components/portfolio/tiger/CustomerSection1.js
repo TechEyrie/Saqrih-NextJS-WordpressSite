@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { USEFUL_VIDEO_2 } from "../../../lib/siteVideos";
+import { pageKeyFromPathname } from "../../../lib/pageKeys";
+import { getPageVideo } from "../../../lib/pageVideos";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -153,6 +155,10 @@ function VideoModal({ src, onClose }) {
 }
 
 export default function CustomersSection1() {
+  const pathname = usePathname();
+  const pageKey = pageKeyFromPathname(pathname) ?? "portfolio-tiger";
+  const modalVideo = getPageVideo(pageKey, "customerModal");
+
   const outerRef        = useRef(null);
   const bgGradientRef   = useRef(null);
   const wrapperRef      = useRef(null);
@@ -164,7 +170,7 @@ export default function CustomersSection1() {
   const miniCardRef     = useRef(null);
 
   const [modalOpen, setModalOpen] = useState(false);
-  const MODAL_SRC = USEFUL_VIDEO_2;
+  const MODAL_SRC = modalVideo;
 
   useEffect(() => {
     const ctx = gsap.context(() => {

@@ -1,32 +1,34 @@
 "use client";
 
-import { eyrionPicAt } from "../../lib/siteImages";
+import { getIcomatSolutionCards } from "../../lib/pageImages";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const CARDS = [
+const ICOMAT_CARD_COPY = [
   {
     id: "production",
     label: "Automated high-speed production",
-    src: eyrionPicAt(0),
     alt: "Automated composite production machinery",
   },
   {
     id: "design",
     label: "From design to parts",
-    src: eyrionPicAt(1),
     alt: "Engineers reviewing 3D design on screen",
   },
   {
     id: "tailored",
     label: "Tailored to your needs",
-    src: eyrionPicAt(2),
     alt: "Engineer inspecting manufacturing machine",
   },
 ];
+
+const CARDS = getIcomatSolutionCards("icomat").map((card, i) => ({
+  ...card,
+  ...ICOMAT_CARD_COPY[i],
+}));
 
 export default function IcomatSolutionSection() {
   const sectionRef = useRef(null);

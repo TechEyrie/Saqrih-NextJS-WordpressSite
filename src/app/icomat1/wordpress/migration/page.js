@@ -91,7 +91,7 @@ export default function IcomatWordpressMaintainancePage() {
         <BenefitsSection />
         {/* <SupportHighlightSection /> */}
       
-        {/* <EndToEndSection />
+        {/* <EndToEndSection pageKey="wp-migration" />
         
         <CustomersSection /> */}
         <SEOResultsSection />
@@ -101,14 +101,14 @@ export default function IcomatWordpressMaintainancePage() {
         {/* <WhySEOResultsSection /> */}
         {/* <ConversionCtaSection /> */}
           {/* <FAQSection /> */}
-        <IcomatSolutionSection />
+        <IcomatSolutionSection pageKey="wp-migration" />
         {/* <FAQSection /> */}
         <CTASection />
        
       
         <UnlockingSection />
     
-          {/* <IcomatSolutionSection /> */}
+          {/* <IcomatSolutionSection pageKey="wp-migration" /> */}
       
         <FooterSection />
       </div>

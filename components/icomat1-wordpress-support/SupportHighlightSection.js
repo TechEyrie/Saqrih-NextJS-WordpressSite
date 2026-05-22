@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { SUPPORT_HIGHLIGHT_IMAGE } from "../../lib/siteImages";
+import { getPagePic } from "../../lib/pageImages";
 
-const DEFAULT_IMAGE = SUPPORT_HIGHLIGHT_IMAGE;
+const DEFAULT_IMAGE = getPagePic("wp-support", "supportHighlight");
 
 export default function SupportHighlightSection({ imageSrc = DEFAULT_IMAGE }) {
   return (

@@ -1,69 +1,71 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { eyrionPicAt } from "../../lib/siteImages";
+import { getPageSectionPics } from "../../lib/pageImages";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
-const CARDS = [
+const CARD_META = [
   {
     num: "01",
     label: "Design & Analysis",
     sub: "(Structural & Production Optimisation)",
-    img: eyrionPicAt(0),
     color: "#1a1a2e",
   },
   {
     num: "02",
     label: "Material Slitting & Storage",
     sub: null,
-    img: eyrionPicAt(1),
     color: "#16213e",
   },
   {
     num: "03",
     label: "Tooling Production",
     sub: "(Metallic, Composite)",
-    img: eyrionPicAt(2),
     color: "#0f3460",
   },
   {
     num: "04",
     label: "Most Advanced Tape Laying Capability",
     sub: null,
-    img: eyrionPicAt(3),
     color: "#1a1a2e",
   },
   {
     num: "05",
     label: "Consolidation & Forming",
     sub: null,
-    img: eyrionPicAt(4),
     color: "#16213e",
   },
   {
     num: "06",
     label: "Inspection & Quality",
     sub: null,
-    img: eyrionPicAt(5),
     color: "#0f3460",
   },
   {
     num: "07",
     label: "Painting & Finishing",
     sub: null,
-    img: eyrionPicAt(6),
     color: "#1a1a2e",
   },
 ];
 
+function buildCards(pageKey) {
+  const pics = getPageSectionPics(pageKey, "endToEnd");
+  return CARD_META.map((card, i) => ({
+    ...card,
+    img: pics[i] ?? pics[0],
+  }));
+}
+
 const CARD_W = 620;
 const CARD_GAP = 24;
 
-export default function EndToEndSection() {
+export default function EndToEndSection({ pageKey = "icomat" }) {
+  const cards = useMemo(() => buildCards(pageKey), [pageKey]);
   const wrapperRef = useRef(null);
   const headingRef = useRef(null);
   const trackRef   = useRef(null);
@@ -94,7 +96,7 @@ export default function EndToEndSection() {
       }
 
       // ── Horizontal scroll ──────────────────────────────────────────
-      const trackWidth   = CARDS.length * (CARD_W + CARD_GAP) - CARD_GAP;
+      const trackWidth   = cards.length * (CARD_W + CARD_GAP) - CARD_GAP;
       const viewportW    = window.innerWidth;
       const paddingX     = 80;
       const maxTranslate = -(trackWidth - viewportW + paddingX * 2);
@@ -145,7 +147,7 @@ export default function EndToEndSection() {
           className="flex will-change-transform"
           style={{ gap: `${CARD_GAP}px` }}
         >
-          {CARDS.map((card, i) => (
+          {cards.map((card, i) => (
             <div
               key={i}
               className="flex-shrink-0 flex flex-col"

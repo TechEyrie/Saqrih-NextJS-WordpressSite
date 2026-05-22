@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HeroScrollDownIndicator, { defaultHeroScrollDownOnClick } from "../icomat1/HeroScrollDownIndicator";
+import { getPagePic } from "../../lib/pageImages";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
@@ -227,7 +228,7 @@ export default function HeroSection({ onQuoteClick }) {
       <img
         ref={imageRef}
         className="absolute inset-0 w-full h-full object-cover"
-        src="/pics/solutions-main-pic.avif"
+        src={getPagePic("aboutUs", "hero")}
         alt="About us hero"
       />
 

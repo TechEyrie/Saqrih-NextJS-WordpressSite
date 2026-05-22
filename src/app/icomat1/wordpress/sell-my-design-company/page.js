@@ -94,7 +94,7 @@ export default function IcomatWordpressMaintainancePage() {
         {/* <BenefitsSection /> */}
         {/* <SupportHighlightSection /> */}
       
-        {/* <EndToEndSection />
+        {/* <EndToEndSection pageKey="wp-sell-my-design-company" />
         
         <CustomersSection /> */}
         <SEOResultsSection />
@@ -105,14 +105,14 @@ export default function IcomatWordpressMaintainancePage() {
         {/* <WhySEOResultsSection /> */}
         {/* <ConversionCtaSection /> */}
           {/* <FAQSection /> */}
-        <IcomatSolutionSection />
+        <IcomatSolutionSection pageKey="wp-sell-my-design-company" />
         {/* <FAQSection /> */}
         <CTASection />
        
       
         <UnlockingSection />
     
-          {/* <IcomatSolutionSection /> */}
+          {/* <IcomatSolutionSection pageKey="wp-sell-my-design-company" /> */}
       
         <FooterSection />
       </div>
