@@ -11,16 +11,18 @@ const montserrat = Montserrat({
   subsets: ["latin"],
 });
 
+const SITE_TITLE = "Eyrion - Qatar - Doha Based WordPress Development Agency";
+
 export const metadata = {
   title: {
-    default: "Eyrion",
+    default: SITE_TITLE,
     template: "%s | Eyrion",
   },
   description:
     "Eyrion is a premier WordPress agency delivering design, development, hosting, maintenance, and ongoing support.",
   applicationName: "Eyrion",
   openGraph: {
-    title: "Eyrion",
+    title: SITE_TITLE,
     description:
       "Eyrion is a premier WordPress agency delivering design, development, hosting, maintenance, and ongoing support.",
     siteName: "Eyrion",
@@ -36,15 +38,15 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Eyrion",
+    title: SITE_TITLE,
     description:
       "Eyrion is a premier WordPress agency delivering design, development, hosting, maintenance, and ongoing support.",
     images: ["/logo/Eyrion_real_logo.png"],
   },
   icons: {
-    icon: [{ url: "/logo/Eyrion_real_logo.png?v=3", type: "image/png", sizes: "32x32" }],
-    shortcut: "/logo/Eyrion_real_logo.png?v=3",
-    apple: "/logo/Eyrion_real_logo.png?v=3",
+    icon: [{ url: "/favicon.png?v=1", type: "image/png", sizes: "32x32" }],
+    shortcut: "/favicon.png?v=1",
+    apple: "/favicon.png?v=1",
   },
   generator: "WordPress 6.7.2",
 };
@@ -53,9 +55,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/logo/Eyrion_real_logo.png?v=3" type="image/png" sizes="32x32" />
-        <link rel="shortcut icon" href="/logo/Eyrion_real_logo.png?v=3" type="image/png" />
-        <link rel="apple-touch-icon" href="/logo/Eyrion_real_logo.png?v=3" />
+        <link rel="icon" href="/favicon.png?v=1" type="image/png" sizes="32x32" />
+        <link rel="shortcut icon" href="/favicon.png?v=1" type="image/png" />
+        <link rel="apple-touch-icon" href="/favicon.png?v=1" />
         <link rel="https://api.w.org/" href="/wp-json/" />
         <link
           rel="stylesheet"

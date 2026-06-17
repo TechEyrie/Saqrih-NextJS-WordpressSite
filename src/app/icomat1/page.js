@@ -118,7 +118,7 @@ export default function IcomatPage() {
         <HowWeOperateSection />
         <OurAdvantageSection />
         <EndToEndSection pageKey="homepage" />
-        <CustomersSection />
+        <CustomersSection pageKey="homepage" />
         {/* <BusinessModelSection /> */}
         <IcomatSolutionSection pageKey="homepage" />
         <IndustriesSection />

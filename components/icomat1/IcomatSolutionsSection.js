@@ -5,11 +5,16 @@ import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { getIcomatSolutionCards } from "../../lib/pageImages";
+import { getIcomatSolutionCardVideos } from "../../lib/pageVideos";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function IcomatSolutionSection({ pageKey = "homepage" }) {
   const cards = useMemo(() => getIcomatSolutionCards(pageKey), [pageKey]);
+  const cardVideos = useMemo(
+    () => getIcomatSolutionCardVideos(pageKey),
+    [pageKey],
+  );
   const sectionRef = useRef(null);
   const headingRef = useRef(null);
   const gridRef    = useRef(null);
@@ -19,7 +24,6 @@ export default function IcomatSolutionSection({ pageKey = "homepage" }) {
   useEffect(() => {
     const ctx = gsap.context(() => {
 
-      // ── Heading ──────────────────────────────────────────────
       gsap.fromTo(headingRef.current,
         { opacity: 0, y: 30 },
         {
@@ -32,7 +36,6 @@ export default function IcomatSolutionSection({ pageKey = "homepage" }) {
         }
       );
 
-      // ── Cards stagger ────────────────────────────────────────
       gsap.fromTo(cardRefs.current.filter(Boolean),
         { opacity: 0, y: 40, scale: 0.97 },
         {
@@ -46,7 +49,6 @@ export default function IcomatSolutionSection({ pageKey = "homepage" }) {
         }
       );
 
-      // ── Labels stagger ───────────────────────────────────────
       gsap.fromTo(labelRefs.current.filter(Boolean),
         { opacity: 0, y: 10 },
         {
@@ -60,13 +62,12 @@ export default function IcomatSolutionSection({ pageKey = "homepage" }) {
         }
       );
 
-      // ── Hover zoom on images ─────────────────────────────────
       cardRefs.current.filter(Boolean).forEach((card) => {
-        const img = card.querySelector("img");
-        if (!img) return;
+        const media = card.querySelector("video, img");
+        if (!media) return;
 
-        const onEnter = () => gsap.to(img, { scale: 1.06, duration: 0.6, ease: "power2.out" });
-        const onLeave = () => gsap.to(img, { scale: 1,    duration: 0.7, ease: "power2.inOut" });
+        const onEnter = () => gsap.to(media, { scale: 1.06, duration: 0.6, ease: "power2.out" });
+        const onLeave = () => gsap.to(media, { scale: 1,    duration: 0.7, ease: "power2.inOut" });
 
         card.addEventListener("mouseenter", onEnter);
         card.addEventListener("mouseleave", onLeave);
@@ -84,13 +85,14 @@ export default function IcomatSolutionSection({ pageKey = "homepage" }) {
     };
   }, []);
 
+  // Disabled on main homepage — section removed from src/app/icomat1/page.js
+  if (pageKey === "homepage") return null;
+
   return (
     <section
       ref={sectionRef}
       className="w-full bg-[#162D24] px-6 sm:px-10 md:px-16 lg:px-20 py-20 md:py-28"
     >
-
-      {/* ── Heading ───────────────────────────────────────────── */}
       <div ref={headingRef} className="mb-10 md:mb-12">
         <h2
           className="text-white font-semibold leading-[1.05] tracking-tight"
@@ -100,7 +102,6 @@ export default function IcomatSolutionSection({ pageKey = "homepage" }) {
         </h2>
       </div>
 
-      {/* ── 3-col image grid ──────────────────────────────────── */}
       <div
         ref={gridRef}
         className="grid grid-cols-1 sm:grid-cols-3 gap-3"
@@ -115,7 +116,6 @@ export default function IcomatSolutionSection({ pageKey = "homepage" }) {
             aria-label={`${card.label} — view service`}
             className="flex flex-col gap-4 text-left no-underline text-inherit cursor-pointer outline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white/45 rounded-2xl"
           >
-            {/* Image card */}
             <div
               className="relative overflow-hidden"
               style={{
@@ -124,22 +124,41 @@ export default function IcomatSolutionSection({ pageKey = "homepage" }) {
                 background: "#111",
               }}
             >
-              <img
-                src={card.src}
-                alt=""
-                loading="lazy"
-                decoding="async"
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  transformOrigin: "center center",
-                }}
-              />
+              {cardVideos?.[i] ? (
+                <video
+                  src={cardVideos[i]}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  aria-hidden="true"
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    transformOrigin: "center center",
+                  }}
+                />
+              ) : (
+                <img
+                  src={card.src}
+                  alt={card.alt ?? ""}
+                  loading="lazy"
+                  decoding="async"
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    transformOrigin: "center center",
+                  }}
+                />
+              )}
 
-              {/* Bottom vignette */}
               <div
                 style={{
                   position: "absolute",
@@ -151,14 +170,13 @@ export default function IcomatSolutionSection({ pageKey = "homepage" }) {
               />
             </div>
 
-            {/* Label — increased size */}
             <p
               ref={(el) => {
                 labelRefs.current[i] = el;
               }}
               className="font-medium"
               style={{
-                fontSize: "clamp(0.92rem, 1.1vw, 1.05rem)", /* ← was 0.78rem → 0.88rem */
+                fontSize: "clamp(0.92rem, 1.1vw, 1.05rem)",
                 color: "rgba(255,255,255,0.6)",
                 paddingLeft: "2px",
               }}
@@ -168,7 +186,6 @@ export default function IcomatSolutionSection({ pageKey = "homepage" }) {
           </Link>
         ))}
       </div>
-
     </section>
   );
 }

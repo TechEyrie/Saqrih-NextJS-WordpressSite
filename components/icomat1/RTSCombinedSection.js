@@ -402,17 +402,11 @@ export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
               </p>
             </div>
             <div className="max-w-lg">
-              <p className="text-[14px] sm:text-[16px] md:text-[18px] font-medium text-[#111] leading-snug mb-3">
+              <p className="text-[14px] sm:text-[16px] md:text-[18px] font-medium text-[#111] leading-snug">
                 WordPress website design, WordPress development, WordPress managed
                 hosting, WordPress maintenance, WordPress support, and search
                 engine optimization.
               </p>
-              <a
-                href="#"
-                className="text-[13px] sm:text-[15px] font-semibold text-[#111] underline underline-offset-4 hover:opacity-50 transition-opacity duration-200 inline-flex items-center gap-1"
-              >
-                Meet the WP team →
-              </a>
             </div>
           </div>
 
