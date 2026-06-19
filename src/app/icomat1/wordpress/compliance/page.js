@@ -20,7 +20,7 @@ import CTASection from "../../../../../components/icomat1/CTASection";
 import BenefitsSection from "../../../../../components/icomat1-wordpress-compliance/BenefitsSection";
 import BenefitsSection2 from "../../../../../components/icomat1-wordpress-compliance/BenefitsSection2";
 import FAQSection from "../../../../../components/icomat1-wordpress-compliance/FAQSection";
-import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
+// import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
 import SEOResultsSection from "../../../../../components/icomat1-wordpress-compliance/SEOResultSection";
 import ConversionCtaSection from "../../../../../components/icomat1-wordpress-compliance/ConversionCtaSection";
 import WhySEOResultsSection from "../../../../../components/icomat1-wordpress-compliance/WhySEOResults";
@@ -94,19 +94,15 @@ export default function IcomatWordpressMaintainancePage() {
         <BenefitsSection /> */}
         <EndToEndSection pageKey="wp-compliance" />
         
-       {/*  <CustomersSection /> */}
+       <CustomersSection />
+       <FAQSection />
         {/* <SEOResultsSection />
         <BenefitsSection2 /> */}
         {/* <WhySEOResultsSection /> */}
         {/* <ConversionCtaSection /> */}
-          {/* <FAQSection /> */}
         {/* <IcomatSolutionSection pageKey="wp-compliance" /> */}
-        {/* <FAQSection /> */}
-        <CTASection />
-       
-      
         <UnlockingSection />
-    
+        <CTASection />
           {/* <IcomatSolutionSection pageKey="wp-compliance" /> */}
       
         <FooterSection />

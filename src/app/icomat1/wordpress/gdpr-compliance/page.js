@@ -18,7 +18,7 @@ import CTASection from "../../../../../components/icomat1/CTASection";
 import BenefitsSection from "../../../../../components/icomat1-wordpress-gdpr-compliance/BenefitsSection";
 import BenefitsSection2 from "../../../../../components/icomat1-wordpress-gdpr-compliance/BenefitsSection2";
 import FAQSection from "../../../../../components/icomat1-wordpress-gdpr-compliance/FAQSection";
-import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
+// import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
 import SEOResultsSection from "../../../../../components/icomat1-wordpress-gdpr-compliance/SEOResultSection";
 import SEOResultSection2 from "../../../../../components/icomat1-wordpress-gdpr-compliance/SEOResultSection2";
 import MigrationRevampCtaSection from "../../../../../components/icomat1-wordpress-gdpr-compliance/MigrationRevampCtaSection";
@@ -93,23 +93,18 @@ export default function IcomatWordpressMaintainancePage() {
         {/* <BenefitsSection /> */}
         {/* <SupportHighlightSection /> */}
       
-        {/* <EndToEndSection pageKey="wp-gdpr-compliance" />
-        
-        <CustomersSection /> */}
+        <EndToEndSection pageKey="wp-gdpr-compliance" />
+        <CustomersSection />
+        <FAQSection />
         <SEOResultsSection />
         <SEOResultSection2 />
         <MigrationRevampCtaSection onQuoteClick={() => setQuoteOpen(true)} />
       
         {/* <WhySEOResultsSection /> */}
         {/* <ConversionCtaSection /> */}
-          <FAQSection />
-        <IcomatSolutionSection pageKey="wp-gdpr-compliance" />
-        {/* <FAQSection /> */}
-        <CTASection />
-       
-      
+        {/* <IcomatSolutionSection pageKey="wp-gdpr-compliance" /> */}
         <UnlockingSection />
-    
+        <CTASection />
           {/* <IcomatSolutionSection pageKey="wp-gdpr-compliance" /> */}
       
         <FooterSection />

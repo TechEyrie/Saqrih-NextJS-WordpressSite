@@ -11,6 +11,7 @@ import FooterSection from "../../../../../components/icomat1/FooterSection";
 import HeroSection from "../../../../../components/icomat1-wordpress-hosting/HeroSection";
 import OurAdvantageSection from "../../../../../components/icomat1-wordpress-hosting/OurAdvantageSection";
 import FAQSection from "../../../../../components/icomat1-wordpress-hosting/FAQSection";
+import UnlockingSection from "../../../../../components/icomat1-wordpress-hosting/UnlockingSection";
 import CustomersSection from "../../../../../components/icomat1-wordpress-design/CustomerSection";
 import CTASection from "../../../../../components/icomat1/CTASection";
 
@@ -78,6 +79,7 @@ export default function IcomatWordpressHostingPage() {
         <OurAdvantageSection />
         <CustomersSection />
         <FAQSection />
+        <UnlockingSection />
         <CTASection onQuoteOpen={() => setQuoteOpen(true)} />
         <FooterSection />
       </div>

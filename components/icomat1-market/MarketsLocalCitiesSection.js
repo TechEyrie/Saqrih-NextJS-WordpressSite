@@ -22,8 +22,9 @@ export default function MarketsLocalCitiesSection() {
       >
         <h2 style={headingStyle}>Local cities and areas we cover</h2>
         <p style={introStyle}>
-          From districts in Doha and Lusail to major hubs across the Gulf and Turkey — we deliver
-          WordPress design, development, and support where your business operates.
+          From districts in Doha and Lusail to major hubs across the Gulf, Turkey, Pakistan, Spain, and
+          the United States — we deliver WordPress design, development, and support where your business
+          operates.
         </p>
       </div>
 

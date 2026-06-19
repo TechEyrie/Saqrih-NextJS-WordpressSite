@@ -11,6 +11,7 @@ import Header from '../../../components/icomat1/Header'
 import MarketHeroSection from '../../../components/icomat1-market/MarketHeroSection'
 import MarketsServingSection from '../../../components/icomat1-market/MarketsServingSection'
 import MarketsLocalCitiesSection from '../../../components/icomat1-market/MarketsLocalCitiesSection'
+import MarketsUnitedStatesSection from '../../../components/icomat1-market/MarketsUnitedStatesSection'
 import CTASection from '../../../components/icomat1/CTASection'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -76,6 +77,7 @@ export default function IcomatPage() {
       <MarketHeroSection />
       <MarketsServingSection />
       <MarketsLocalCitiesSection />
+      <MarketsUnitedStatesSection />
       <CTASection />
       <FooterSection />
     </div>

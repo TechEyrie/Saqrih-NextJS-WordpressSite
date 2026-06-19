@@ -154,10 +154,15 @@ function VideoModal({ src, onClose }) {
   );
 }
 
-export default function CustomersSection({ pageKey: pageKeyProp }) {
+export default function CustomersSection({
+  pageKey: pageKeyProp,
+  showVideoSection: showVideoSectionProp,
+}) {
   const pathname = usePathname();
   const pageKey = pageKeyProp ?? pageKeyFromPathname(pathname) ?? "homepage";
-  const showVideoSection = pageKey !== "homepage";
+  const showVideoSection =
+    showVideoSectionProp ??
+    (pageKey !== "homepage" && !String(pageKey).startsWith("wp-"));
   const { background: sectionBackgroundVideo, modal: modalVideo } =
     getCustomerSectionVideos(pageKey);
   const outerRef        = useRef(null);

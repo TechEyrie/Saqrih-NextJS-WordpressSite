@@ -5,6 +5,7 @@ import {
   stateSlug,
   US_STATE_SLUGS,
 } from "../../../../components/icomat1-market/marketStates";
+import { getUSCitiesForState } from "../../../../components/icomat1-market/usMarketCities";
 
 const GREEN = "#162D24";
 const BODY = "rgba(22, 45, 36, 0.82)";
@@ -16,6 +17,8 @@ export default async function MarketStatePage({ params }) {
   const title =
     US_STATES.find((n) => stateSlug(n) === slug) ??
     slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+
+  const cities = getUSCitiesForState(title);
 
   return (
     <div
@@ -58,9 +61,33 @@ export default async function MarketStatePage({ params }) {
           color: BODY,
         }}
       >
-        Local market content for this state can be added here. Browse all states from the markets
-        directory.
+        Eyrion offers WordPress design, development, hosting, and ongoing support across {title}.
+        Browse local cities below or return to the full markets directory.
       </p>
+
+      {cities.length > 0 && (
+        <div
+          style={{
+            marginTop: "clamp(28px, 4vw, 40px)",
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fill, minmax(min(220px, 100%), 1fr))",
+            gap: "clamp(10px, 1.5vw, 16px) clamp(20px, 3vw, 32px)",
+          }}
+        >
+          {cities.map((city) => (
+            <span
+              key={city}
+              style={{
+                fontSize: "clamp(1rem, 1.1vw, 1.12rem)",
+                fontWeight: 500,
+                color: "rgba(22, 45, 36, 0.9)",
+              }}
+            >
+              {city}
+            </span>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

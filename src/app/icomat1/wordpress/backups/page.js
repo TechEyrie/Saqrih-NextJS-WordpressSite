@@ -16,7 +16,7 @@ import UnlockingSection from "../../../../../components/icomat1-wordpress-backup
 import CTASection from "../../../../../components/icomat1/CTASection";
 import BenefitsSection from "../../../../../components/icomat1-wordpress-backups/BenefitsSection";
 import FAQSection from "../../../../../components/icomat1-wordpress-backups/FAQSection";
-import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
+// import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
 import SEOResultsSection from "../../../../../components/icomat1-wordpress-backups/SEOResultSection";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -82,17 +82,13 @@ export default function IcomatWordpressMaintainancePage() {
         <HeroSection onQuoteClick={() => setQuoteOpen(true)} />
         <OurAdvantageSection onQuoteClick={() => setQuoteOpen(true)} />
         <BenefitsSection />
-        {/* <EndToEndSection pageKey="wp-backups" />
-        
-        <CustomersSection /> */}
-        <SEOResultsSection />
+        <EndToEndSection pageKey="wp-backups" />
+        <CustomersSection />
         <FAQSection />
-        <IcomatSolutionSection pageKey="wp-backups" />
-        <CTASection />
-       
-      
+        <SEOResultsSection />
+        {/* <IcomatSolutionSection pageKey="wp-backups" /> */}
         <UnlockingSection />
-    
+        <CTASection />
           {/* <IcomatSolutionSection pageKey="wp-backups" /> */}
       
         <FooterSection />

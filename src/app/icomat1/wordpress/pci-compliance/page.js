@@ -19,7 +19,7 @@ import BenefitsSection from "../../../../../components/icomat1-wordpress-pci-com
 import BenefitsSection2 from "../../../../../components/icomat1-wordpress-pci-compliance/BenefitsSection2";
 import FAQSection from "../../../../../components/icomat1-wordpress-pci-compliance/FAQSection";
 import ElementorPowerCtaSection from "../../../../../components/icomat1-wordpress-pci-compliance/ElementorPowerCtaSection";
-import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
+// import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
 import SEOResultsSection from "../../../../../components/icomat1-wordpress-pci-compliance/SEOResultSection";
 import SEOResultSection2 from "../../../../../components/icomat1-wordpress-pci-compliance/SEOResultSection2";
 import MigrationRevampCtaSection from "../../../../../components/icomat1-wordpress-pci-compliance/MigrationRevampCtaSection";
@@ -102,24 +102,18 @@ export default function IcomatWordpressMaintainancePage() {
         {/* <MigrationRevampCtaSection /> */}
         {/* <SEOResultSection2 onQuoteClick={() => setQuoteOpen(true)} /> */}
        
-        {/* <EndToEndSection pageKey="wp-pci-compliance" />
-        
-        <CustomersSection /> */}
+        <EndToEndSection pageKey="wp-pci-compliance" />
+        <CustomersSection />
+        <FAQSection />
       
         {/* <BenefitsSectionCopy /> */}
        
       
        
         {/* <ConversionCtaSection /> */}
-        <FAQSection />
-      
-        <IcomatSolutionSection pageKey="wp-pci-compliance" />
-        {/* <FAQSection /> */}
-        <CTASection />
-       
-      
+        {/* <IcomatSolutionSection pageKey="wp-pci-compliance" /> */}
         <UnlockingSection />
-    
+        <CTASection />
           {/* <IcomatSolutionSection pageKey="wp-pci-compliance" /> */}
       
         <FooterSection />

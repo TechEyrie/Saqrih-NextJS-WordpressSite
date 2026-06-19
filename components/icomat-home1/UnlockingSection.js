@@ -464,6 +464,7 @@ export default function UnlockingSection() {
       });
 
       // ── Image cards: fade-up ─────────────────────────────────
+      /*
       const imgCards = imgCardRefs.current.filter(Boolean);
       gsap.set(imgCards, { opacity: 0, y: 40 });
       ScrollTrigger.create({
@@ -480,6 +481,7 @@ export default function UnlockingSection() {
           });
         },
       });
+      */
 
     }, sectionRef);
 
@@ -493,16 +495,10 @@ export default function UnlockingSection() {
       <div className="unlocking-heading-wrap">
         <h2
           ref={headingRef}
-          className="unlocking-heading"
+          className="unlocking-heading unlocking-heading--compact"
           style={{
             fontWeight: 600,
-            fontSize: "clamp(2.4rem, 4.5vw, 4.5rem)",
-            lineHeight: 1.06,
-            letterSpacing: "-0.03em",
-            maxWidth: "820px",
-            margin: "0 auto",
             color: "rgba(0,0,0,0.1)",
-            padding: "0 clamp(4px, 2vw, 12px)",
           }}
         >
           Premier WordPress design and development services in the Middle East.
@@ -520,7 +516,7 @@ export default function UnlockingSection() {
         ))}
       </div>
 
-      {/* ── Image link row ────────────────────────────────────── */}
+      {/* Featured projects + Our team image cards — hidden for now
       <div ref={imageRowRef} className="unlocking-image-row">
         {IMAGE_CARDS.map((card, i) => (
           <ImageLinkCard
@@ -530,6 +526,7 @@ export default function UnlockingSection() {
           />
         ))}
       </div>
+      */}
 
     </section>
   );

@@ -74,11 +74,6 @@ const NAV_WORK_LINKS = [
 const NAV_ABOUT_LINKS = [
   { label: "Why Eyrion", href: "/why-eyrion" },
   { label: "Read the blog", href: "/blog" },
-  { label: "How to sell your agency guide", href: "/sell-my-agency" },
-  { label: "WordPress resource guides", href: "/resources" },
-  { label: "WordPress security bulletins", href: "/security-bulletins" },
-  { label: "Compare WordPress agencies", href: "/reviews" },
-  { label: "Privacy policy", href: "/privacy-policy" },
   { label: "AI disclosure (llms.txt)", href: "/llms.txt" },
 ];
 
@@ -98,11 +93,6 @@ const NAV_MAIN = [
     href: "/about-us",
     sub: NAV_ABOUT_LINKS,
   },
-];
-
-const NAV_LEGAL = [
-  { label: "LEGAL", href: "/about-us", bold: true },
-  { label: "PRIVACY POLICY", href: "/privacy-policy", bold: false },
 ];
 
 const SOCIALS = [
@@ -487,33 +477,6 @@ export default function FooterSection() {
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "6px", alignSelf: "flex-start" }}>
-            {NAV_LEGAL.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="footer-hover-line"
-                style={{
-                  color: item.bold ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.32)",
-                  fontSize: "clamp(0.58rem, 0.65vw, 0.65rem)",
-                  fontWeight: item.bold ? 700 : 500,
-                  letterSpacing: "0.1em",
-                  textDecoration: "none",
-                  transition: "color 0.2s",
-                  whiteSpace: "nowrap",
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.color = "rgba(255,255,255,0.75)"}
-                onMouseLeave={(e) => e.currentTarget.style.color = item.bold ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.32)"}
-              >
-                {item.label}
-              </a>
-            ))}
-
-            <div style={{
-              width: "100%", height: "1px",
-              background: "rgba(255,255,255,0.07)",
-              margin: "8px 0",
-            }} />
-
             <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
               {SOCIALS.map((s) => (
                 <a

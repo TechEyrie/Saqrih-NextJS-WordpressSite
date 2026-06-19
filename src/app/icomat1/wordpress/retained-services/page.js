@@ -16,7 +16,7 @@ import UnlockingSection from "../../../../../components/icomat1-wordpress-retain
 import CTASection from "../../../../../components/icomat1/CTASection";
 import BenefitsSection from "../../../../../components/icomat1-wordpress-retained-services/BenefitsSection";
 import FAQSection from "../../../../../components/icomat1-wordpress-retained-services/FAQSection";
-import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
+// import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
 
 gsap.registerPlugin(ScrollTrigger);
 const montserrat = Montserrat({
@@ -81,13 +81,12 @@ export default function IcomatWordpressMaintainancePage() {
         <HeroSection onQuoteClick={() => setQuoteOpen(true)} />
         <OurAdvantageSection onQuoteClick={() => setQuoteOpen(true)} />
         <BenefitsSection />
-        {/* <EndToEndSection pageKey="wp-retained-services" />
-      
-        <CustomersSection /> */}
-        <CTASection />
+        <EndToEndSection pageKey="wp-retained-services" />
+        <CustomersSection />
+        <FAQSection />
         <UnlockingSection />
-        {/* <FAQSection />
-        <IcomatSolutionSection pageKey="wp-retained-services" /> */}
+        <CTASection />
+        {/* <IcomatSolutionSection pageKey="wp-retained-services" /> */}
       
         <FooterSection />
       </div>

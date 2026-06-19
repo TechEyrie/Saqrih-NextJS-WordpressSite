@@ -114,15 +114,15 @@ export default function IcomatPage() {
         <RTSSection />
         {/* <RTSRevolutionSection />
         <CompositeShowcaseSection /> */}
-        <RTSCombinedSection />
+        <RTSCombinedSection pageKey="homepage" />
         <HowWeOperateSection />
         <OurAdvantageSection />
         <EndToEndSection pageKey="homepage" />
         <CustomersSection pageKey="homepage" />
         {/* <BusinessModelSection /> */}
-        <IcomatSolutionSection pageKey="homepage" />
-        <IndustriesSection />
-        <BuildWithIcomatSection />
+        {/* <IcomatSolutionSection pageKey="homepage" /> */}
+        {/* <IndustriesSection /> */}
+        {/* <BuildWithIcomatSection /> */}
         <UnlockingSection />
         {/* <CTASection /> */}
         <FooterSection />

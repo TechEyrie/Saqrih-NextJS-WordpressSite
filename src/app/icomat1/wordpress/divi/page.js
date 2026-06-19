@@ -20,7 +20,7 @@ import BenefitsSection from "../../../../../components/icomat1-wordpress-divi/Be
 import BenefitsSection2 from "../../../../../components/icomat1-wordpress-divi/BenefitsSection2";
 import FAQSection from "../../../../../components/icomat1-wordpress-divi/FAQSection";
 import DiviPowerCtaSection from "../../../../../components/icomat1-wordpress-divi/DiviPowerCtaSection";
-import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
+// import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
 import SEOResultsSection from "../../../../../components/icomat1-wordpress-divi/SEOResultSection";
 import ConversionCtaSection from "../../../../../components/icomat1-wordpress-divi/ConversionCtaSection";
 import WhySEOResultsSection from "../../../../../components/icomat1-wordpress-divi/WhySEOResults";
@@ -91,21 +91,16 @@ export default function IcomatWordpressMaintainancePage() {
         <OurAdvantageSection onQuoteClick={() => setQuoteOpen(true)} />
         {/* <SupportHighlightSection />
         <BenefitsSection /> */}
-        {/* <EndToEndSection pageKey="wp-divi" />
-        
-        <CustomersSection /> */}
+        <EndToEndSection pageKey="wp-divi" />
+        <CustomersSection />
+        <FAQSection />
         <SEOResultsSection />
         {/* <BenefitsSection2 /> */}
         <DiviPowerCtaSection onQuoteClick={() => setQuoteOpen(true)} />
         <DiviTransformBannerSection />
-        <FAQSection />
-        <IcomatSolutionSection pageKey="wp-divi" />
-        {/* <FAQSection /> */}
-        <CTASection />
-       
-      
+        {/* <IcomatSolutionSection pageKey="wp-divi" /> */}
         <UnlockingSection />
-    
+        <CTASection />
           {/* <IcomatSolutionSection pageKey="wp-divi" /> */}
       
         <FooterSection />

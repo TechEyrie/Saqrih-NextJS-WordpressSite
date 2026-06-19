@@ -16,7 +16,7 @@ import UnlockingSection from "../../../../../components/icomat1-wordpress-woocom
 import CTASection from "../../../../../components/icomat1/CTASection";
 import BenefitsSection from "../../../../../components/icomat1-wordpress-woocommerce/BenefitsSection";
 import FAQSection from "../../../../../components/icomat1-wordpress-woocommerce/FAQSection";
-import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
+// import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
 import SEOResultsSection from "../../../../../components/icomat1-wordpress-woocommerce/SEOResultSection";
 import ConversionCtaSection from "../../../../../components/icomat1-wordpress-woocommerce/ConversionCtaSection";
 import WhySEOResultsSection from "../../../../../components/icomat1-wordpress-woocommerce/WhySEOResults";
@@ -85,20 +85,15 @@ export default function IcomatWordpressMaintainancePage() {
         <HeroSection onQuoteClick={() => setQuoteOpen(true)} />
         <OurAdvantageSection onQuoteClick={() => setQuoteOpen(true)} />
         {/* <BenefitsSection /> */}
-        {/* <EndToEndSection pageKey="wp-woocommerce" />
-        
-        <CustomersSection /> */}
+        <EndToEndSection pageKey="wp-woocommerce" />
+        <CustomersSection />
+        <FAQSection />
         <SEOResultsSection />
         <WhySEOResultsSection />
         {/* <ConversionCtaSection /> */}
-          <FAQSection />
-        <IcomatSolutionSection pageKey="wp-woocommerce" />
-        {/* <FAQSection /> */}
-        <CTASection />
-       
-      
+        {/* <IcomatSolutionSection pageKey="wp-woocommerce" /> */}
         <UnlockingSection />
-    
+        <CTASection />
           {/* <IcomatSolutionSection pageKey="wp-woocommerce" /> */}
       
         <FooterSection />

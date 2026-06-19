@@ -11,7 +11,7 @@ import ServicesSection from "../../../components/wordpress/ServicesSection";
 import CTASection from "../../../components/icomat1/CTASection";
 import FooterSection from "../../../components/icomat1/FooterSection";
 import HeroSection from "../../../components/wordpress/HeroSection";
-import IcomatSolutionSection from "../../../components/icomat1/IcomatSolutionsSection";
+// import IcomatSolutionSection from "../../../components/icomat1/IcomatSolutionsSection";
 import UnlockingSection from "../../../components/wordpress/UnlockingSection";
 import EndToEndSection from "../../../components/icomat1/EndToEndSection";
 

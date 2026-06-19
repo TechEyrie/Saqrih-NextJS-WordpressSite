@@ -18,7 +18,7 @@ import CTASection from "../../../../../components/icomat1/CTASection";
 import BenefitsSection from "../../../../../components/icomat1-wordpress-ada-compliance/BenefitsSection";
 import BenefitsSection2 from "../../../../../components/icomat1-wordpress-ada-compliance/BenefitsSection2";
 import FAQSection from "../../../../../components/icomat1-wordpress-ada-compliance/FAQSection";
-import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
+// import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
 import SEOResultsSection from "../../../../../components/icomat1-wordpress-ada-compliance/SEOResultSection";
 import SEOResultSection2 from "../../../../../components/icomat1-wordpress-ada-compliance/SEOResultSection2";
 import MigrationRevampCtaSection from "../../../../../components/icomat1-wordpress-ada-compliance/MigrationRevampCtaSection";
@@ -95,9 +95,9 @@ export default function IcomatWordpressMaintainancePage() {
         <MigrationRevampCtaSection />
         {/* <SupportHighlightSection /> */}
        
-        {/* <EndToEndSection pageKey="wp-ada-compliance" />
-        
-        <CustomersSection /> */}
+        <EndToEndSection pageKey="wp-ada-compliance" />
+        <CustomersSection />
+        <FAQSection />
         {/* <SEOResultsSection /> */}
         <SEOResultSection2 />
         <BenefitsSectionCopy />
@@ -105,14 +105,9 @@ export default function IcomatWordpressMaintainancePage() {
       
         {/* <WhySEOResultsSection /> */}
         {/* <ConversionCtaSection /> */}
-          <FAQSection />
-        <IcomatSolutionSection pageKey="wp-ada-compliance" />
-        {/* <FAQSection /> */}
-        <CTASection />
-       
-      
+        {/* <IcomatSolutionSection pageKey="wp-ada-compliance" /> */}
         <UnlockingSection />
-    
+        <CTASection />
           {/* <IcomatSolutionSection pageKey="wp-ada-compliance" /> */}
       
         <FooterSection />

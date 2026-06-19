@@ -157,6 +157,9 @@ const HEADER_CONTROLS = {
   burgerColor: "rgba(255,255,255,0.82)",
 };
 
+/** Fixed header bar height — keep mega menu + theme sampling in sync */
+const HEADER_BAR_HEIGHT = 80;
+
 function BrandLogo({ height = "30px", logoFilter = "none", logoOpacity = 1, logoBlendMode = "normal" }) {
   return (
     <img
@@ -659,7 +662,7 @@ function MegaDropdown({ visible, onMouseEnter, onMouseLeave, onQuoteClick }) {
   return (
     <div ref={panelRef} onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}
       style={{
-        position: "fixed", top: "56px", left: 0, right: 0, zIndex: 140,
+        position: "fixed", top: `${HEADER_BAR_HEIGHT}px`, left: 0, right: 0, zIndex: 140,
         background: "#0a0a09", borderBottom: "1px solid rgba(255,255,255,0.07)",
         boxShadow: "0 32px 80px rgba(0,0,0,0.6)", opacity: 0, pointerEvents: "none",
         padding: "clamp(18px, 2.2vw, 28px) clamp(32px, 5vw, 80px)",
@@ -954,6 +957,7 @@ export default function Header({ quoteOpen, setQuoteOpen }) {
   const [megaOpen,            setMegaOpen]            = useState(false);
   const [internalQuoteOpen,   setInternalQuoteOpen]   = useState(false);
   const [headerHidden,        setHeaderHidden]        = useState(false);
+  const [headerScrolled,      setHeaderScrolled]      = useState(false);
 
   // ── NEW: tracks which section the header is currently over ──
   const [headerTheme, setHeaderTheme] = useState("dark"); // "dark" | "light" | "media"
@@ -982,6 +986,7 @@ export default function Header({ quoteOpen, setQuoteOpen }) {
       const prev = lastScrollYRef.current;
       const delta = y - prev;
       lastScrollYRef.current = y;
+      setHeaderScrolled(y > 48);
       if (y < 36) {
         setHeaderHidden(false);
         return;
@@ -992,6 +997,7 @@ export default function Header({ quoteOpen, setQuoteOpen }) {
       else if (delta < -2) setHeaderHidden(false);
     };
     lastScrollYRef.current = window.scrollY || 0;
+    setHeaderScrolled(lastScrollYRef.current > 48);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, [megaOpen, menuOpen, resolvedQuoteOpen]);
@@ -1070,7 +1076,7 @@ export default function Header({ quoteOpen, setQuoteOpen }) {
     };
 
     const updateTheme = () => {
-      const headerH = 56;
+      const headerH = HEADER_BAR_HEIGHT;
       // Sample around the actual logo + wordmark region so theme follows what brand sits over.
       const brandLeft = 28;
       const brandRight = Math.min(360, window.innerWidth - 20);
@@ -1157,7 +1163,10 @@ export default function Header({ quoteOpen, setQuoteOpen }) {
   const closeMega = () => { closeTimerRef.current = setTimeout(() => setMegaOpen(false), 140); };
 
   // Derive current theme values — force dark theme when mega is open
-  const logoTheme = megaOpen ? HEADER_THEMES.dark : (HEADER_THEMES[headerTheme] || HEADER_THEMES.dark);
+  const showHeaderBlur = headerScrolled && !headerHidden && !megaOpen;
+  const logoTheme = megaOpen || showHeaderBlur
+    ? HEADER_THEMES.dark
+    : (HEADER_THEMES[headerTheme] || HEADER_THEMES.dark);
 
   return (
     <>
@@ -1172,17 +1181,20 @@ export default function Header({ quoteOpen, setQuoteOpen }) {
           pointerEvents: headerHidden ? "none" : "auto",
         }}
       >
-        <header ref={headerRef} style={{
+        <header ref={headerRef} className={showHeaderBlur ? "site-header site-header--blurred" : "site-header"} style={{
           position: "relative",
           width: "100%",
-          height: "56px",
+          minHeight: `${HEADER_BAR_HEIGHT}px`,
+          height: `${HEADER_BAR_HEIGHT}px`,
           display: "flex", alignItems: "center", justifyContent: "space-between",
-          padding: "4px clamp(14px, 2.5vw, 28px) 0",
-          background: "transparent",
-          backdropFilter: "none",
-          WebkitBackdropFilter: "none",
-          borderBottom: "none",
-          transition: "none",
+          padding: "0 clamp(16px, 2.8vw, 32px)",
+          background: showHeaderBlur ? "rgba(10, 10, 9, 0.72)" : "transparent",
+          backdropFilter: showHeaderBlur ? "blur(20px) saturate(1.2)" : "none",
+          WebkitBackdropFilter: showHeaderBlur ? "blur(20px) saturate(1.2)" : "none",
+          borderBottom: showHeaderBlur ? "1px solid rgba(255, 255, 255, 0.08)" : "none",
+          boxShadow: showHeaderBlur ? "0 8px 32px rgba(0, 0, 0, 0.28)" : "none",
+          transition:
+            "background 0.45s ease, backdrop-filter 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease",
         }}>
 
           {/* ── Logo + Wordmark — colors shift with theme ── */}
@@ -1206,11 +1218,10 @@ export default function Header({ quoteOpen, setQuoteOpen }) {
             <nav aria-label="Primary navigation" className="header-desktop-nav" style={{
               display: "flex", alignItems: "center",
               gap: "clamp(6px, 1.4vw, 22px)",
-              marginTop: "16px",
               background: "rgba(0,0,0,0.72)",
               backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)",
               border: "1px solid rgba(255,255,255,0.08)",
-              borderRadius: "10px", padding: "6px 10px",
+              borderRadius: "10px", padding: "8px 12px",
             }}>
               {NAV_ITEMS.map((item) => (
                 <div key={item.label}
@@ -1281,6 +1292,13 @@ export default function Header({ quoteOpen, setQuoteOpen }) {
       <style>{`
         @media (max-width: 768px) { .header-desktop-nav { display: none !important; } }
         @media (min-width: 769px) { .header-burger      { display: none !important; } }
+
+        .site-header--blurred .header-desktop-nav {
+          background: rgba(0, 0, 0, 0.42) !important;
+          border-color: rgba(255, 255, 255, 0.1) !important;
+          backdrop-filter: blur(16px) saturate(1.15) !important;
+          -webkit-backdrop-filter: blur(16px) saturate(1.15) !important;
+        }
 
         .quote-scroll-inner                     { scrollbar-width: none; }
         .quote-scroll-inner::-webkit-scrollbar  { display: none; }

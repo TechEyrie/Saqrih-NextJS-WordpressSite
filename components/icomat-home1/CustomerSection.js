@@ -157,6 +157,7 @@ function ImageModal({ src, alt, onClose }) {
 export default function CustomersSection({ pageKey: pageKeyProp }) {
   const pathname = usePathname();
   const pageKey = pageKeyProp ?? pageKeyFromPathname(pathname) ?? "home1";
+  const showVideoSection = !String(pageKey).startsWith("wp-");
   const { background: sectionBackgroundImage, modal: modalImage } =
     getCustomerSectionImages(pageKey);
   const outerRef        = useRef(null);
@@ -198,7 +199,7 @@ export default function CustomersSection({ pageKey: pageKeyProp }) {
 
         const videoWrap = videoWrapRef.current;
         const miniCard = miniCardRef.current;
-        if (videoWrap) {
+        if (showVideoSection && videoWrap) {
           gsap.set(videoWrap, {
             clearProps: "all",
             position: "relative",
@@ -213,7 +214,7 @@ export default function CustomersSection({ pageKey: pageKeyProp }) {
             borderRadius: "12px",
           });
         }
-        if (miniCard) {
+        if (showVideoSection && miniCard) {
           gsap.set(miniCard, { clearProps: "all", opacity: 1, y: 0, scale: 1 });
         }
         if (headingRef.current) {
@@ -358,7 +359,7 @@ export default function CustomersSection({ pageKey: pageKeyProp }) {
       const miniCard = miniCardRef.current;
       const videoSection = videoSectionRef.current;
 
-      if (videoWrap && miniCard && videoSection) {
+      if (showVideoSection && videoWrap && miniCard && videoSection) {
         gsap.set(videoWrap, { width: "32vw", height: "20vw", borderRadius: "20px" });
         gsap.set(miniCard, { opacity: 0, y: 24, scale: 0.88 });
 
@@ -400,12 +401,12 @@ export default function CustomersSection({ pageKey: pageKeyProp }) {
     }, outerRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [showVideoSection]);
 
   return (
     <>
       {/* ── Video modal — rendered in portal-like position ── */}
-      {modalOpen && (
+      {showVideoSection && modalOpen && (
         <ImageModal
           src={MODAL_SRC}
           alt="Eyrion client testimonial"
@@ -527,6 +528,8 @@ export default function CustomersSection({ pageKey: pageKeyProp }) {
           </div>
         </section>
 
+        {showVideoSection && (
+        <>
         {/* ══════════════════════════════════════
             PART 2 — Image expand
         ══════════════════════════════════════ */}
@@ -628,6 +631,8 @@ export default function CustomersSection({ pageKey: pageKeyProp }) {
 
           </div>
         </section>
+        </>
+        )}
 
       </div>
 

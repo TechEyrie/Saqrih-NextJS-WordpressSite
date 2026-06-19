@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef } from "react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -21,16 +22,6 @@ function CardVideo({ src, badge, footerContent }) {
       videoRef.current.currentTime = 0;
     }
   };
-  // On touch devices, tap to toggle play
-  const handleTap = () => {
-    if (!videoRef.current) return;
-    if (videoRef.current.paused) {
-      videoRef.current.play();
-    } else {
-      videoRef.current.pause();
-      videoRef.current.currentTime = 0;
-    }
-  };
 
   return (
     <div className="flex flex-col overflow-hidden" style={{ borderRadius: "10px" }}>
@@ -39,7 +30,6 @@ function CardVideo({ src, badge, footerContent }) {
         style={{ aspectRatio: "16/9" }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        onClick={handleTap}
       >
         <video
           ref={videoRef}
@@ -63,7 +53,7 @@ function CardVideo({ src, badge, footerContent }) {
               <path d="M8 5v14l11-7z" />
             </svg>
             <span className="text-white text-[9px] font-medium tracking-wide hidden sm:inline">Hover to play</span>
-            <span className="text-white text-[9px] font-medium tracking-wide sm:hidden">Tap</span>
+            <span className="text-white text-[9px] font-medium tracking-wide sm:hidden">View</span>
           </div>
         </div>
       </div>
@@ -91,6 +81,7 @@ const GRID_DOTS = [
 const CARD_META = [
   {
     badge: "Design + Dev",
+    href: "/wordpress/design",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
         WordPress website design
@@ -101,6 +92,7 @@ const CARD_META = [
   },
   {
     badge: "Managed Services",
+    href: "/wordpress/development",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
         WordPress development
@@ -111,6 +103,7 @@ const CARD_META = [
   },
   {
     badge: "Maintenance",
+    href: "/wordpress/maintenance",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
         WordPress maintenance
@@ -121,6 +114,7 @@ const CARD_META = [
   },
   {
     badge: "Hosting",
+    href: "/wordpress/hosting",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
         WordPress managed hosting
@@ -131,6 +125,7 @@ const CARD_META = [
   },
   {
     badge: "Support",
+    href: "/wordpress/premium-support",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
         Premium support
@@ -141,6 +136,7 @@ const CARD_META = [
   },
   {
     badge: "SEO",
+    href: "/wordpress/search-engine-optimization",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
         Search engine optimization
@@ -164,6 +160,7 @@ function CrosshairDot({ top, left }) {
 export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
   const pathname = usePathname();
   const pageKey = pageKeyProp ?? pageKeyFromPathname(pathname) ?? "homepage";
+  const showVideoPanel = pageKey !== "homepage";
   const cardItems = useMemo(
     () =>
       CARD_META.map((card, i) => ({
@@ -177,7 +174,6 @@ export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
   const wrapperRef = useRef(null);
   const panelARef = useRef(null);
   const headerRef = useRef(null);
-  const midColRef = useRef(null);
   const cardsWrapperRef = useRef(null);
   const panelBRef = useRef(null);
   const badgesRef = useRef(null);
@@ -210,6 +206,7 @@ export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
           );
         }
 
+        /*
         gsap.fromTo(midColRef.current,
           { opacity: 0, y: 16 },
           {
@@ -217,16 +214,19 @@ export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
             scrollTrigger: { trigger: midColRef.current, start: "top 92%", toggleActions: "play none none reverse" },
           }
         );
+        */
 
         // Panel B: simple fade in on mobile (no pin, no slide-up)
-        gsap.set(panelBRef.current, { y: 0 }); // reset to natural flow
-        gsap.fromTo([badgesRef.current, gridRef.current],
-          { opacity: 0, y: 16 },
-          {
-            opacity: 1, y: 0, stagger: 0.12, duration: 0.7, ease: "power2.out",
-            scrollTrigger: { trigger: panelBRef.current, start: "top 80%", toggleActions: "play none none reverse" },
-          }
-        );
+        if (showVideoPanel) {
+          gsap.set(panelBRef.current, { y: 0 });
+          gsap.fromTo([badgesRef.current, gridRef.current],
+            { opacity: 0, y: 16 },
+            {
+              opacity: 1, y: 0, stagger: 0.12, duration: 0.7, ease: "power2.out",
+              scrollTrigger: { trigger: panelBRef.current, start: "top 80%", toggleActions: "play none none reverse" },
+            }
+          );
+        }
         return;
       }
 
@@ -244,6 +244,7 @@ export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
         }
       );
 
+      /*
       gsap.fromTo(midColRef.current,
         { opacity: 0, y: 20 },
         {
@@ -255,6 +256,7 @@ export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
           },
         }
       );
+      */
 
       let cardsTrigger = null;
       const setupCards = () => {
@@ -312,37 +314,39 @@ export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
 
       setupCards();
 
-      gsap.set(panelBRef.current, { y: "100vh" });
-      gsap.set([badgesRef.current, gridRef.current], { opacity: 0, y: 12 });
+      if (showVideoPanel) {
+        gsap.set(panelBRef.current, { y: "100vh" });
+        gsap.set([badgesRef.current, gridRef.current], { opacity: 0, y: 12 });
 
-      ScrollTrigger.create({
-        trigger: wrapperRef.current,
-        start: "top top",
-        end: "+=200%",
-        pin: true,
-        pinSpacing: true,
-        anticipatePin: 1,
-      });
-
-      const masterTl = gsap.timeline({
-        scrollTrigger: {
+        ScrollTrigger.create({
           trigger: wrapperRef.current,
           start: "top top",
           end: "+=200%",
-          scrub: 1.2,
-        },
-      });
+          pin: true,
+          pinSpacing: true,
+          anticipatePin: 1,
+        });
 
-      masterTl.to(panelBRef.current,
-        { y: "0vh", ease: "power2.inOut", duration: 2 }, 0
-      );
-      masterTl.to(panelARef.current,
-        { scale: 0.88, borderRadius: "20px", opacity: 0.8, ease: "power2.inOut", duration: 2 }, 0
-      );
-      masterTl.to([badgesRef.current, gridRef.current],
-        { opacity: 1, y: 0, stagger: 0.1, duration: 1, ease: "power2.out" }
-      );
-      masterTl.to({}, { duration: 1 });
+        const masterTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: wrapperRef.current,
+            start: "top top",
+            end: "+=200%",
+            scrub: 1.2,
+          },
+        });
+
+        masterTl.to(panelBRef.current,
+          { y: "0vh", ease: "power2.inOut", duration: 2 }, 0
+        );
+        masterTl.to(panelARef.current,
+          { scale: 0.88, borderRadius: "20px", opacity: 0.8, ease: "power2.inOut", duration: 2 }, 0
+        );
+        masterTl.to([badgesRef.current, gridRef.current],
+          { opacity: 1, y: 0, stagger: 0.1, duration: 1, ease: "power2.out" }
+        );
+        masterTl.to({}, { duration: 1 });
+      }
 
       const onResize = () => {
         setupCards();
@@ -357,7 +361,7 @@ export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
     }, wrapperRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [showVideoPanel]);
 
   return (
     /*
@@ -367,16 +371,20 @@ export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
     <div
       ref={wrapperRef}
       className="relative w-full"
-      style={{ minHeight: "100vh", overflowX: "clip", maxWidth: "100%" }}
+      style={{
+        minHeight: showVideoPanel ? "100vh" : "auto",
+        overflowX: "clip",
+        maxWidth: "100%",
+      }}
     >
 
       {/* ── PANEL A ──────────────────────────────────────────────── */}
       <div
         ref={panelARef}
-        className="
+        className={`
           w-full bg-[#f5f5f5] pt-6 pb-0 will-change-transform
-          md:absolute md:inset-0
-        "
+          ${showVideoPanel ? "md:absolute md:inset-0" : ""}
+        `}
         style={{
           /* On mobile: natural height, no absolute positioning */
           height: "auto",
@@ -388,7 +396,7 @@ export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
         {/* On desktop we need the panel to fill 100vh */}
         <style>{`
           @media (min-width: 768px) {
-            .panel-a-inner { height: 100vh; }
+            .panel-a-inner { height: ${showVideoPanel ? "100vh" : "auto"}; }
           }
         `}</style>
         <div className="panel-a-inner flex flex-col">
@@ -414,17 +422,22 @@ export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
             {/* Mobile: 1-col scroll; Tablet: 2-col; Desktop: 3-col */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3">
               {cardItems.map((card, idx) => (
-                <div key={idx} className="rts-card-item will-change-transform">
+                <Link
+                  key={idx}
+                  href={card.href}
+                  className="rts-card-item will-change-transform block no-underline text-inherit hover:opacity-95 transition-opacity"
+                >
                   <CardVideo
                     src={card.src}
                     badge={card.badge}
                     footerContent={card.footer}
                   />
-                </div>
+                </Link>
               ))}
             </div>
           </div>
 
+          {/*
           <div
             ref={midColRef}
             className="mt-2 mx-4 sm:mx-8 md:mx-16 lg:mx-20 border border-[#ddd] py-1.5 px-4 mb-3"
@@ -433,10 +446,12 @@ export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
               Eyrion / WordPress Service Platform
             </p>
           </div>
+          */}
         </div>
       </div>
 
-      {/* ── PANEL B ──────────────────────────────────────────────── */}
+      {/* ── PANEL B — full-section video (hidden on homepage) ───── */}
+      {showVideoPanel && (
       <div
         ref={panelBRef}
         className="
@@ -444,13 +459,11 @@ export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
           md:absolute md:inset-0
         "
         style={{
-          /* Mobile: natural height 100vw aspect, no absolute */
           height: "auto",
-          minHeight: "min(100vw, 100%)", /* square-ish on mobile, capped to viewport */
+          minHeight: "min(100vw, 100%)",
           zIndex: 2,
         }}
       >
-        {/* Desktop: force 100vh */}
         <style>{`
           @media (min-width: 768px) {
             .panel-b-inner { height: 100vh; }
@@ -469,7 +482,6 @@ export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
             style={{ background: "radial-gradient(ellipse at center, transparent 30%, rgba(0,0,0,0.75) 100%)" }}
           />
 
-          {/* Grid dots — hidden on very small screens */}
           <div ref={gridRef} className="absolute inset-0 hidden sm:block">
             {GRID_DOTS.map((d, i) => <CrosshairDot key={i} top={d.top} left={d.left} />)}
             <div className="absolute inset-0 pointer-events-none">
@@ -482,13 +494,7 @@ export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
             </div>
           </div>
 
-          {/*
-            Badges:
-            - Desktop: absolute-positioned as before
-            - Mobile: flex row wrapping centered at bottom of panel
-          */}
           <div ref={badgesRef} className="absolute inset-0">
-            {/* Desktop badges */}
             <div className="hidden md:block">
               {BADGES.map((b, i) => (
                 <div key={i} className="absolute pointer-events-none" style={{ top: b.top, left: b.left }}>
@@ -500,7 +506,6 @@ export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
               ))}
             </div>
 
-            {/* Mobile / tablet badges — bottom row */}
             <div className="md:hidden absolute bottom-5 left-0 right-0 flex flex-wrap justify-center gap-2 px-4">
               {BADGES.map((b, i) => (
                 <div key={i} className="bg-[#1c1c1c]/90 backdrop-blur-sm border border-white/10 rounded-full px-3 py-1.5 flex items-center gap-1.5">
@@ -512,6 +517,7 @@ export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
           </div>
         </div>
       </div>
+      )}
 
     </div>
   );

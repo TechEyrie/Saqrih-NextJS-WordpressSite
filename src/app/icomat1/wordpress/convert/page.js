@@ -16,7 +16,7 @@ import UnlockingSection from "../../../../../components/icomat1-wordpress-conver
 import CTASection from "../../../../../components/icomat1/CTASection";
 import BenefitsSection from "../../../../../components/icomat1-wordpress-convert/BenefitsSection";
 import FAQSection from "../../../../../components/icomat1-wordpress-convert/FAQSection";
-import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
+// import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
 import SEOResultsSection from "../../../../../components/icomat1-wordpress-convert/SEOResultSection";
 import ConversionCtaSection from "../../../../../components/icomat1-wordpress-convert/ConversionCtaSection";
 
@@ -83,19 +83,15 @@ export default function IcomatWordpressMaintainancePage() {
         <HeroSection onQuoteClick={() => setQuoteOpen(true)} />
         <OurAdvantageSection onQuoteClick={() => setQuoteOpen(true)} />
         <BenefitsSection />
-        {/* <EndToEndSection pageKey="wp-convert" />
-        
-        <CustomersSection /> */}
+        <EndToEndSection pageKey="wp-convert" />
+        <CustomersSection />
+        <FAQSection />
         <SEOResultsSection />
         <ConversionCtaSection />
     
-        <IcomatSolutionSection pageKey="wp-convert" />
-        {/* <FAQSection /> */}
-        <CTASection />
-       
-      
+        {/* <IcomatSolutionSection pageKey="wp-convert" /> */}
         <UnlockingSection />
-    
+        <CTASection />
           {/* <IcomatSolutionSection pageKey="wp-convert" /> */}
       
         <FooterSection />

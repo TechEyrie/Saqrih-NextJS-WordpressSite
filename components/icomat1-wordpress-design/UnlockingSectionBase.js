@@ -471,7 +471,11 @@ function ImageLinkCard({ card, animRef }) {
 }
 
 // ── Section ─────────────────────────────────────────────────────
-export default function UnlockingSectionBase({ pageKey = "wp-design" }) {
+export default function UnlockingSectionBase({
+  pageKey = "wp-design",
+  compactHeading = true,
+  hideImageCards = true,
+}) {
   const imageCards = useMemo(
     () => getUnlockingImageCards(pageKey),
     [pageKey],
@@ -524,27 +528,29 @@ export default function UnlockingSectionBase({ pageKey = "wp-design" }) {
       });
 
       // ── Image cards: fade-up ─────────────────────────────────
-      const imgCards = imgCardRefs.current.filter(Boolean);
-      gsap.set(imgCards, { opacity: 0, y: 40 });
-      ScrollTrigger.create({
-        trigger: imageRowRef.current,
-        start: "top 90%",
-        once: true,
-        onEnter: () => {
-          gsap.to(imgCards, {
-            opacity: 1,
-            y: 0,
-            duration: 0.9,
-            ease: "power3.out",
-            stagger: 0.15,
-          });
-        },
-      });
+      if (!hideImageCards) {
+        const imgCards = imgCardRefs.current.filter(Boolean);
+        gsap.set(imgCards, { opacity: 0, y: 40 });
+        ScrollTrigger.create({
+          trigger: imageRowRef.current,
+          start: "top 90%",
+          once: true,
+          onEnter: () => {
+            gsap.to(imgCards, {
+              opacity: 1,
+              y: 0,
+              duration: 0.9,
+              ease: "power3.out",
+              stagger: 0.15,
+            });
+          },
+        });
+      }
 
     }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [hideImageCards]);
 
   return (
     <section ref={sectionRef} className="unlocking-section">
@@ -553,7 +559,7 @@ export default function UnlockingSectionBase({ pageKey = "wp-design" }) {
       <div className="unlocking-heading-wrap">
         <h2
           ref={headingRef}
-          className="unlocking-heading"
+          className={`unlocking-heading${compactHeading ? " unlocking-heading--compact" : ""}`}
           style={{
             fontWeight: 600,
             color: "rgba(0,0,0,0.1)",
@@ -577,18 +583,18 @@ export default function UnlockingSectionBase({ pageKey = "wp-design" }) {
         ))}
       </div>
 
-     
-    
-
-      <div ref={imageRowRef} className="unlocking-image-row">
-        {imageCards.map((card, i) => (
-          <ImageLinkCard
-            key={card.id}
-            card={card}
-            animRef={(el) => (imgCardRefs.current[i] = el)}
-          />
-        ))}
-      </div>
+      {/* Featured projects + Our team image cards — hidden when hideImageCards */}
+      {!hideImageCards && (
+        <div ref={imageRowRef} className="unlocking-image-row">
+          {imageCards.map((card, i) => (
+            <ImageLinkCard
+              key={card.id}
+              card={card}
+              animRef={(el) => (imgCardRefs.current[i] = el)}
+            />
+          ))}
+        </div>
+      )}
 
     </section>
   );

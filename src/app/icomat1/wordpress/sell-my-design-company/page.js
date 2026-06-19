@@ -18,7 +18,7 @@ import CTASection from "../../../../../components/icomat1/CTASection";
 import BenefitsSection from "../../../../../components/icomat1-wordpress-sell-my-design-company/BenefitsSection";
 import BenefitsSection2 from "../../../../../components/icomat1-wordpress-sell-my-design-company/BenefitsSection2";
 import FAQSection from "../../../../../components/icomat1-wordpress-sell-my-design-company/FAQSection";
-import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
+// import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
 import SEOResultsSection from "../../../../../components/icomat1-wordpress-sell-my-design-company/SEOResultSection";
 import SEOResultSection2 from "../../../../../components/icomat1-wordpress-sell-my-design-company/SEOResultSection2";
 import MigrationRevampCtaSection from "../../../../../components/icomat1-wordpress-sell-my-design-company/MigrationRevampCtaSection";
@@ -94,9 +94,9 @@ export default function IcomatWordpressMaintainancePage() {
         {/* <BenefitsSection /> */}
         {/* <SupportHighlightSection /> */}
       
-        {/* <EndToEndSection pageKey="wp-sell-my-design-company" />
-        
-        <CustomersSection /> */}
+        <EndToEndSection pageKey="wp-sell-my-design-company" />
+        <CustomersSection />
+        <FAQSection />
         <SEOResultsSection />
         {/* <SEOResultSection2 /> */}
         <MigrationRevampCtaSection onQuoteClick={() => setQuoteOpen(true)} />
@@ -104,14 +104,9 @@ export default function IcomatWordpressMaintainancePage() {
       
         {/* <WhySEOResultsSection /> */}
         {/* <ConversionCtaSection /> */}
-          {/* <FAQSection /> */}
-        <IcomatSolutionSection pageKey="wp-sell-my-design-company" />
-        {/* <FAQSection /> */}
-        <CTASection />
-       
-      
+        {/* <IcomatSolutionSection pageKey="wp-sell-my-design-company" /> */}
         <UnlockingSection />
-    
+        <CTASection />
           {/* <IcomatSolutionSection pageKey="wp-sell-my-design-company" /> */}
       
         <FooterSection />

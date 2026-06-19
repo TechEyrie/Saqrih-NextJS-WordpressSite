@@ -84,9 +84,9 @@ export default function IcomatWordpressSearchEngineOptimizationPage() {
         <BenefitsSection />
         <EndToEndSection pageKey="wp-search-engine-optimization" />
         <SEOResultsSection />
-        <CustomersSection />
-        <SEOAddonsSection />
+        <CustomersSection showVideoSection />
         <FAQSection />
+        <SEOAddonsSection />
         <UnlockingSection />
         <CTASection />
         <FooterSection />

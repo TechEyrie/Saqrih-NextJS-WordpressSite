@@ -18,7 +18,7 @@ import CTASection from "../../../../../components/icomat1/CTASection";
 import BenefitsSection from "../../../../../components/icomat1-wordpress-migration/BenefitsSection";
 import BenefitsSection2 from "../../../../../components/icomat1-wordpress-migration/BenefitsSection2";
 import FAQSection from "../../../../../components/icomat1-wordpress-migration/FAQSection";
-import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
+// import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
 import SEOResultsSection from "../../../../../components/icomat1-wordpress-migration/SEOResultSection";
 import SEOResultSection2 from "../../../../../components/icomat1-wordpress-migration/SEOResultSection2";
 import MigrationRevampCtaSection from "../../../../../components/icomat1-wordpress-migration/MigrationRevampCtaSection";
@@ -91,23 +91,18 @@ export default function IcomatWordpressMaintainancePage() {
         <BenefitsSection />
         {/* <SupportHighlightSection /> */}
       
-        {/* <EndToEndSection pageKey="wp-migration" />
-        
-        <CustomersSection /> */}
+        <EndToEndSection pageKey="wp-migration" />
+        <CustomersSection />
+        <FAQSection />
         <SEOResultsSection />
         <SEOResultSection2 />
         <MigrationRevampCtaSection onQuoteClick={() => setQuoteOpen(true)} />
         <BenefitsSection2 onQuoteClick={() => setQuoteOpen(true)} />
         {/* <WhySEOResultsSection /> */}
         {/* <ConversionCtaSection /> */}
-          {/* <FAQSection /> */}
-        <IcomatSolutionSection pageKey="wp-migration" />
-        {/* <FAQSection /> */}
-        <CTASection />
-       
-      
+        {/* <IcomatSolutionSection pageKey="wp-migration" /> */}
         <UnlockingSection />
-    
+        <CTASection />
           {/* <IcomatSolutionSection pageKey="wp-migration" /> */}
       
         <FooterSection />

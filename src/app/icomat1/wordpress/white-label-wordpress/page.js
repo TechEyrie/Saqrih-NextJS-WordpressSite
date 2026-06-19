@@ -20,7 +20,7 @@ import BenefitsSection2 from "../../../../../components/icomat1-wordpress-white-
 import FAQSection from "../../../../../components/icomat1-wordpress-white-label-wordpress/FAQSection";
 import FAQSection2 from "../../../../../components/icomat1-wordpress-white-label-wordpress/FAQSection2";
 import ElementorPowerCtaSection from "../../../../../components/icomat1-wordpress-white-label-wordpress/ElementorPowerCtaSection";
-import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
+// import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
 import SEOResultsSection from "../../../../../components/icomat1-wordpress-white-label-wordpress/SEOResultSection";
 import SEOResultSection2 from "../../../../../components/icomat1-wordpress-white-label-wordpress/SEOResultSection2";
 import MigrationRevampCtaSection from "../../../../../components/icomat1-wordpress-white-label-wordpress/MigrationRevampCtaSection";
@@ -92,12 +92,6 @@ export default function IcomatWordpressMaintainancePage() {
         <HeroSection />
         <BenefitsSection />
         <SEOResultsSection />
-        {/* <FAQSection />
-        <FAQSection2 /> */}
-       
-      
-       
-        {/* <OurAdvantageSection onQuoteClick={() => setQuoteOpen(true)} /> */}
         {/* <SupportHighlightSection /> */}
         {/* <WhySEOResultsSection /> */}
         {/* <ConversionCtaSection />
@@ -111,6 +105,8 @@ export default function IcomatWordpressMaintainancePage() {
         {/* <EndToEndSection pageKey="wp-white-label-wordpress" /> */}
         
         <CustomersSection /> 
+        <FAQSection />
+        <FAQSection2 />
       
         {/* <BenefitsSectionCopy /> */}
        
@@ -119,15 +115,9 @@ export default function IcomatWordpressMaintainancePage() {
         {/* <ConversionCtaSection /> */}
        
       
-        <IcomatSolutionSection pageKey="wp-white-label-wordpress" />
-        {/* <FAQSection /> */}
-        <CTASection />
-       
-      
+        {/* <IcomatSolutionSection pageKey="wp-white-label-wordpress" /> */}
         <UnlockingSection />
-    
-          {/* <IcomatSolutionSection pageKey="wp-white-label-wordpress" /> */}
-      
+        <CTASection />
         <FooterSection />
       </div>
     </div>

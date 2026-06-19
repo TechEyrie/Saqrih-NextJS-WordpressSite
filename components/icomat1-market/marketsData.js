@@ -3,6 +3,8 @@
  * Section 1: primary + extended markets. Section 2: local areas grouped by market.
  */
 
+import { US_CITY_LINES } from "./usMarketCities";
+
 /** Home base — featured first on /markets */
 export const PRIMARY_MARKETS = ["Doha", "Lusail", "Qatar"];
 
@@ -15,6 +17,9 @@ export const EXTENDED_MARKETS = [
   "Riyadh",
   "Jeddah",
   "Turkey",
+  "Pakistan",
+  "Spain",
+  "United States",
 ];
 
 /** All top-level markets (primary first) */
@@ -129,11 +134,59 @@ export const LOCAL_AREAS_BY_MARKET = [
       "Ataşehir",
     ],
   },
+  {
+    market: "Pakistan",
+    cities: [
+      "Karachi",
+      "Lahore",
+      "Islamabad",
+      "Rawalpindi",
+      "Faisalabad",
+      "Multan",
+      "Peshawar",
+      "Quetta",
+      "Gujranwala",
+      "Hyderabad",
+      "Sialkot",
+      "Abbottabad",
+      "Sargodha",
+      "Bahawalpur",
+      "Sukkur",
+      "Murree",
+      "Gwadar",
+    ],
+  },
+  {
+    market: "Spain",
+    cities: [
+      "Madrid",
+      "Barcelona",
+      "Valencia",
+      "Seville",
+      "Zaragoza",
+      "Málaga",
+      "Murcia",
+      "Palma",
+      "Bilbao",
+      "Alicante",
+      "Córdoba",
+      "Granada",
+      "Valladolid",
+      "Vigo",
+      "Gijón",
+      "San Sebastián",
+      "Santa Cruz de Tenerife",
+      "Pamplona",
+      "Oviedo",
+      "Santander",
+    ],
+  },
 ];
 
-/** Flat list for optional local slug routes: "Area, Market" */
+/** Flat list for optional local slug routes: "Area, Market" or "City, ST" */
 export function getLocalCityLines() {
-  return LOCAL_AREAS_BY_MARKET.flatMap(({ market, cities }) =>
-    cities.map((city) => `${city}, ${market}`)
+  const regional = LOCAL_AREAS_BY_MARKET.flatMap(({ market, cities }) =>
+    cities.map((city) => `${city}, ${market}`),
   );
+  return [...regional, ...US_CITY_LINES];
 }

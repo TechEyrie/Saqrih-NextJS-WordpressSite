@@ -894,6 +894,13 @@ body[data-route-loading="true"] {
   padding: 0 clamp(4px, 2vw, 12px);
 }
 
+.unlocking-heading--compact {
+  font-size: clamp(1.5rem, 5.5vw, 2.15rem);
+  line-height: 1.22;
+  max-width: min(96vw, 1080px);
+  letter-spacing: -0.025em;
+}
+
 .unlocking-subheading {
   margin: 16px auto 0;
   max-width: 600px;
@@ -984,6 +991,12 @@ body[data-route-loading="true"] {
   .unlocking-heading {
     font-size: clamp(2.4rem, 4.5vw, 4.5rem);
     line-height: 1.06;
+  }
+
+  .unlocking-heading--compact {
+    font-size: clamp(1.75rem, 2.35vw, 2.35rem);
+    line-height: 1.2;
+    max-width: min(92vw, 1140px);
   }
 
   .unlocking-subheading {
@@ -1250,9 +1263,37 @@ body[data-route-loading="true"] {
   }
 }
 
+/* ── WordPress service video heroes — layout + type (match homepage) ─ */
+.icomat-wp-service-hero .wp-service-hero-title {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.96);
+  font-size: clamp(1.85rem, 3.6vw, 3.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+  font-family: Inter, Arial, sans-serif;
+}
+
+.icomat-wp-service-hero .wp-service-hero-lead {
+  margin: 12px 0 0;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: clamp(0.95rem, 1.1vw, 1.125rem);
+  line-height: 1.65;
+}
+
 /* ── WordPress service video heroes — tighter type on mobile ─── */
 @media (max-width: 768px) {
-  .icomat-wp-service-hero h1 {
+  .icomat-wp-service-hero .wp-service-hero-title {
+    font-size: clamp(1.42rem, 6vw, 2rem) !important;
+    line-height: 1.07 !important;
+  }
+
+  .icomat-wp-service-hero .wp-service-hero-lead {
+    font-size: clamp(0.78rem, 3.25vw, 0.92rem) !important;
+    line-height: 1.52 !important;
+  }
+
+  .icomat-wp-service-hero h1:not(.wp-service-hero-title) {
     font-size: clamp(1.42rem, 6vw, 2rem) !important;
     line-height: 1.07 !important;
   }

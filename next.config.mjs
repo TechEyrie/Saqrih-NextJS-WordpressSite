@@ -16,6 +16,10 @@ const nextConfig = {
   async rewrites() {
     return [
       {
+        source: "/favicon.ico",
+        destination: "/favicon.png",
+      },
+      {
         source: "/wp-json/",
         destination: "/wp-json",
       },

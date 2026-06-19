@@ -101,7 +101,7 @@ export default function MarketsServingSection() {
           }}
         >
           Need coverage beyond Qatar? We also work with teams in the UAE, Oman, Bahrain, Saudi Arabia,
-          and Turkey.
+          Turkey, Pakistan, Spain, and the United States.
         </p>
         <div className="markets-serving-grid markets-serving-grid--extended">
           {EXTENDED_MARKETS.map((name) => (

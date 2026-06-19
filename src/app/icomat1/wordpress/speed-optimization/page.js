@@ -20,7 +20,7 @@ import BenefitsSection2 from "../../../../../components/icomat1-wordpress-speed-
 import FAQSection from "../../../../../components/icomat1-wordpress-speed-optimization/FAQSection";
 import FAQSection2 from "../../../../../components/icomat1-wordpress-speed-optimization/FAQSection2";
 import ElementorPowerCtaSection from "../../../../../components/icomat1-wordpress-speed-optimization/ElementorPowerCtaSection";
-import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
+// import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
 import SEOResultsSection from "../../../../../components/icomat1-wordpress-speed-optimization/SEOResultSection";
 import SEOResultSection2 from "../../../../../components/icomat1-wordpress-speed-optimization/SEOResultSection2";
 import MigrationRevampCtaSection from "../../../../../components/icomat1-wordpress-speed-optimization/MigrationRevampCtaSection";
@@ -91,9 +91,6 @@ export default function IcomatWordpressMaintainancePage() {
       <div className="homepage-font-scope icomat-wp-service-page">
         <HeroSection />
         <SEOResultsSection />
-        <FAQSection />
-        <FAQSection2 />
-       
         <BenefitsSection />
        
         {/* <OurAdvantageSection onQuoteClick={() => setQuoteOpen(true)} /> */}
@@ -107,9 +104,10 @@ export default function IcomatWordpressMaintainancePage() {
         {/* <MigrationRevampCtaSection /> */}
         {/* <SEOResultSection2 onQuoteClick={() => setQuoteOpen(true)} /> */}
        
-        {/* <EndToEndSection pageKey="wp-speed-optimization" />
-        
-        <CustomersSection /> */}
+        <EndToEndSection pageKey="wp-speed-optimization" />
+        <CustomersSection />
+        <FAQSection />
+        <FAQSection2 />
       
         {/* <BenefitsSectionCopy /> */}
        
@@ -118,13 +116,9 @@ export default function IcomatWordpressMaintainancePage() {
         {/* <ConversionCtaSection /> */}
        
       
-        <IcomatSolutionSection pageKey="wp-speed-optimization" />
-        {/* <FAQSection /> */}
-        <CTASection />
-       
-      
+        {/* <IcomatSolutionSection pageKey="wp-speed-optimization" /> */}
         <UnlockingSection />
-    
+        <CTASection />
           {/* <IcomatSolutionSection pageKey="wp-speed-optimization" /> */}
       
         <FooterSection />

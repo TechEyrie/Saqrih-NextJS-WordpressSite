@@ -16,7 +16,7 @@ import UnlockingSection from "../../../../../components/icomat1-wordpress-mainta
 import CTASection from "../../../../../components/icomat1/CTASection";
 import BenefitsSection from "../../../../../components/icomat1-wordpress-maintainance/BenefitsSection";
 import FAQSection from "../../../../../components/icomat1-wordpress-maintainance/FAQSection";
-import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
+// import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
 
 gsap.registerPlugin(ScrollTrigger);
 const montserrat = Montserrat({
@@ -83,9 +83,9 @@ export default function IcomatWordpressMaintainancePage() {
         <EndToEndSection pageKey="wp-maintainance" />
         <BenefitsSection />
         <CustomersSection />
-        <UnlockingSection />
         <FAQSection />
-        <IcomatSolutionSection pageKey="wp-maintainance" />
+        {/* <IcomatSolutionSection pageKey="wp-maintainance" /> */}
+        <UnlockingSection />
         <CTASection />
         <FooterSection />
       </div>

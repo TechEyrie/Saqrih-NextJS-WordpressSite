@@ -19,7 +19,7 @@ import CTASection from "../../../../../components/icomat1/CTASection";
 import BenefitsSection from "../../../../../components/icomat1-wordpress-theme/BenefitsSection";
 import BenefitsSection2 from "../../../../../components/icomat1-wordpress-theme/BenefitsSection2";
 import FAQSection from "../../../../../components/icomat1-wordpress-theme/FAQSection";
-import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
+// import IcomatSolutionSection from "../../../../../components/icomat1/IcomatSolutionsSection";
 import SEOResultsSection from "../../../../../components/icomat1-wordpress-theme/SEOResultSection";
 import ConversionCtaSection from "../../../../../components/icomat1-wordpress-theme/ConversionCtaSection";
 import WhySEOResultsSection from "../../../../../components/icomat1-wordpress-theme/WhySEOResults";
@@ -90,21 +90,16 @@ export default function IcomatWordpressMaintainancePage() {
         {/* <OurAdvantageSection onQuoteClick={() => setQuoteOpen(true)} />
         <SupportHighlightSection />
         <BenefitsSection /> */}
-        {/* <EndToEndSection pageKey="wp-theme" />
-        
-        <CustomersSection /> */}
+        <EndToEndSection pageKey="wp-theme" />
+        <CustomersSection />
+        <FAQSection />
         {/* <SEOResultsSection />
         <BenefitsSection2 /> */}
         {/* <WhySEOResultsSection /> */}
         {/* <ConversionCtaSection /> */}
-          {/* <FAQSection /> */}
         {/* <IcomatSolutionSection pageKey="wp-theme" /> */}
-        {/* <FAQSection /> */}
-        <CTASection />
-       
-      
         <UnlockingSection />
-    
+        <CTASection />
           {/* <IcomatSolutionSection pageKey="wp-theme" /> */}
       
         <FooterSection />

@@ -16,11 +16,11 @@ const TOTAL_PAGES = 30;
 
 const SEED_POSTS = [
   {
-    slug: "wordpress-performance-basics",
-    date: "March 16, 2026",
-    title: "WordPress performance basics every site owner should know",
+    slug: "mls-integration-for-wordpress",
+    date: "June 10, 2026",
+    title: "MLS Integration for WordPress: How to Connect Real Estate Listings to Your Site",
     excerpt:
-      "Learn how caching, image delivery, and lean themes work together to keep your WordPress site fast for visitors and search engines alike.",
+      "Learn how MLS integration works on WordPress, what compliance to watch for, and how to connect live property listings without slowing your site down.",
     image: BLOG_LISTING_PICS[0],
   },
   {
