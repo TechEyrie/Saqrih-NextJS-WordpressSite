@@ -246,16 +246,13 @@ export default function FactorySection({
           }}>
             <h2
               ref={headingRef}
+              className="font-semibold leading-[1.05] tracking-tight"
               style={{
-                fontFamily: "inherit",
-                fontSize: "clamp(1.9rem, 2.8vw, 3.2rem)",
-                fontWeight: 900,
-                lineHeight: 1.07,
-                letterSpacing: "-0.025em",
+                fontSize: "clamp(2rem, 3.4vw, 3.8rem)",
                 color: "#0a0a09",
                 margin: 0,
                 opacity: 0,
-                textAlign: "left",   /* explicit left-align */
+                textAlign: "left",
               }}
             >
               {heading}

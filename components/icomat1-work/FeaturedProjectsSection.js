@@ -1,14 +1,10 @@
 "use client";
 
-import { getPageSectionPics } from "../../lib/pageImages";
-
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const PROJECT_PICS = getPageSectionPics("icomatWork", "projects");
 
 const PROJECTS = [
   {
@@ -82,127 +78,6 @@ const PROJECTS = [
     image: "/case-studies/ufomammoot/all-devices-white.png",
     imageAlt: "UFOMAMMOOT responsive website mockups",
     layout: "big",
-  },
-  // 1. Big card row
-  {
-    id: "seeding-action",
-    category: "SEEDING ACTION",
-    title: '"Air We Share" Initiative Landing Page',
-    href: "#seeding-action",
-    image: PROJECT_PICS[0],
-    imageAlt: "Seedlings growing in soil",
-    layout: "big",
-  },
-
-  // 2. Two-card row
-  {
-    id: "grasshopper",
-    category: "GRASSHOPPER GARDENS",
-    title: "Full Website Redesign and WooCommerce Store Build for Grasshopper Gardens",
-    href: "#grasshopper",
-    image: PROJECT_PICS[1],
-    imageAlt: "Grasshopper Gardens website",
-    layout: "pair",
-  },
-  {
-    id: "paint-supply",
-    category: "PAINT SUPPLY",
-    title: "Full WooCommerce rebuild and infrastructure modernization for Paint Supply",
-    href: "#paint-supply",
-    image: PROJECT_PICS[2],
-    imageAlt: "Paint supply store website",
-    layout: "pair",
-  },
-
-  // 3. Big card row
-  {
-    id: "northern-trust",
-    category: "NORTHERN TRUST",
-    title: "Corporate website overhaul with custom WordPress blocks and accessibility audit",
-    href: "#northern-trust",
-    image: PROJECT_PICS[3],
-    imageAlt: "Corporate office interior",
-    layout: "big",
-  },
-
-  // 4. Two-card row
-  {
-    id: "bloom-studio",
-    category: "BLOOM STUDIO",
-    title: "Brand-led portfolio website with bespoke animations for Bloom Creative Studio",
-    href: "#bloom-studio",
-    image: PROJECT_PICS[4],
-    imageAlt: "Creative studio workspace",
-    layout: "pair",
-  },
-  {
-    id: "harvest-co",
-    category: "HARVEST CO.",
-    title: "E-commerce WordPress build with custom product configurator for Harvest Co.",
-    href: "#harvest-co",
-    image: PROJECT_PICS[5],
-    imageAlt: "Harvest co produce",
-    layout: "pair",
-  },
-
-  // 5. Two-card row
-  {
-    id: "vela-agency",
-    category: "VELA AGENCY",
-    title: "Complete brand refresh and headless WordPress build for Vela Creative Agency",
-    href: "#vela-agency",
-    image: PROJECT_PICS[6],
-    imageAlt: "Agency team at work",
-    layout: "pair",
-  },
-  {
-    id: "meridian-law",
-    category: "MERIDIAN LAW",
-    title: "Professional services website rebuild with multilingual support for Meridian Law",
-    href: "#meridian-law",
-    image: PROJECT_PICS[7],
-    imageAlt: "Law firm office",
-    layout: "pair",
-  },
-
-  // 6. Two-card row
-  {
-    id: "summit-health",
-    category: "SUMMIT HEALTH",
-    title: "Patient-facing portal redesign and WordPress multisite setup for Summit Health",
-    href: "#summit-health",
-    image: PROJECT_PICS[8],
-    imageAlt: "Health clinic interior",
-    layout: "pair",
-  },
-  {
-    id: "folio-press",
-    category: "FOLIO PRESS",
-    title: "Editorial WordPress theme build with custom Gutenberg blocks for Folio Press",
-    href: "#folio-press",
-    image: PROJECT_PICS[9],
-    imageAlt: "Magazine editorial spread",
-    layout: "pair",
-  },
-
-  // 7. Two-card row
-  {
-    id: "arc-architects",
-    category: "ARC ARCHITECTS",
-    title: "Portfolio website with project filtering and 3D model integration for Arc Architects",
-    href: "#arc-architects",
-    image: PROJECT_PICS[10],
-    imageAlt: "Architecture building exterior",
-    layout: "pair",
-  },
-  {
-    id: "kinship-coffee",
-    category: "KINSHIP COFFEE",
-    title: "Brand-new WooCommerce subscription store and loyalty programme for Kinship Coffee",
-    href: "#kinship-coffee",
-    image: PROJECT_PICS[11],
-    imageAlt: "Coffee shop interior",
-    layout: "pair",
   },
 ];
 

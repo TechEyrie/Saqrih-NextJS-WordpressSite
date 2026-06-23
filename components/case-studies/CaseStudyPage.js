@@ -63,7 +63,7 @@ export default function CaseStudyPage({ caseStudy, pageKey }) {
       <CaseStudyStorySection caseStudy={caseStudy} />
       <CaseStudyShowcaseSection caseStudy={caseStudy} />
       <CaseStudyDeviceGallerySection caseStudy={caseStudy} />
-      <CustomersSection pageKey={pageKey} />
+      <CustomersSection pageKey={pageKey} showVideoSection={false} />
       <EndToEndSection pageKey={pageKey} />
       <CTASection />
       <FooterSection />

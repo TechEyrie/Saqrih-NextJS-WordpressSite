@@ -2,27 +2,15 @@
 
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-
-const GREEN = "#162D24";
-const SECTION_BG = "#F5F0E6";
-const HOVER_LIME = "#C5E838";
-const BTN_LIME = "#C5E838";
-const FONT_HEADING = "var(--font-inter), Inter, Arial, sans-serif";
-const FONT_BODY = "var(--font-montserrat), Montserrat, Arial, sans-serif";
-
-function OrangeSlice({ style }) {
-  return (
-    <svg
-      viewBox="0 0 200 200"
-      fill="none"
-      aria-hidden
-      style={{ position: "absolute", pointerEvents: "none", opacity: 0.14, ...style }}
-    >
-      <circle cx="100" cy="100" r="90" fill="#F4A024" />
-      <path d="M100 10v180M100 10c35 0 70 35 70 90M100 10C65 10 30 45 30 100" stroke="#fff" strokeWidth="3" opacity="0.5" />
-    </svg>
-  );
-}
+import {
+  BTN_LIME,
+  FONT_HEADING,
+  GREEN,
+  GREEN_ACCENT,
+  LIME_HOVER,
+  SECTION_BG_ALT,
+  TEXT,
+} from "./blogTheme";
 
 /**
  * @param {{ articles: { slug: string; title: string; image: string }[] }} props
@@ -34,26 +22,22 @@ export default function BlogPostRelated({ articles }) {
     <section
       className="blog-related-section"
       style={{
-        position: "relative",
         width: "100%",
-        backgroundColor: SECTION_BG,
-        overflow: "hidden",
+        backgroundColor: SECTION_BG_ALT,
         padding: "clamp(64px, 8vw, 100px) clamp(24px, 5vw, 80px)",
         boxSizing: "border-box",
+        borderTop: "1px solid rgba(0,0,0,0.06)",
       }}
     >
-      <OrangeSlice style={{ width: "clamp(140px, 18vw, 220px)", top: "-20px", right: "4%" }} />
-      <OrangeSlice style={{ width: "clamp(120px, 14vw, 180px)", bottom: "-30px", left: "2%" }} />
-
-      <div style={{ maxWidth: "min(1280px, 100%)", margin: "0 auto", position: "relative", zIndex: 1 }}>
+      <div style={{ maxWidth: "min(1280px, 100%)", margin: "0 auto" }}>
         <h2
           style={{
             margin: "0 0 clamp(36px, 4.5vw, 52px)",
             textAlign: "center",
-            color: GREEN,
+            color: TEXT,
             fontFamily: FONT_HEADING,
             fontSize: "clamp(1.55rem, 2.4vw, 2rem)",
-            fontWeight: 700,
+            fontWeight: 600,
             letterSpacing: "-0.02em",
           }}
         >
@@ -74,14 +58,14 @@ export default function BlogPostRelated({ articles }) {
               key={article.slug}
               href={`/blog/${article.slug}`}
               className="blog-related-card"
-              style={{ textDecoration: "none", color: GREEN }}
+              style={{ textDecoration: "none", color: TEXT }}
             >
               <div
                 style={{
                   borderRadius: "clamp(14px, 1.6vw, 18px)",
                   overflow: "hidden",
                   aspectRatio: "16 / 10",
-                  backgroundColor: "#e8e8e8",
+                  backgroundColor: "#e8e6e2",
                 }}
               >
                 <img
@@ -97,7 +81,7 @@ export default function BlogPostRelated({ articles }) {
                   margin: "clamp(14px, 1.6vw, 18px) 0 0",
                   fontFamily: FONT_HEADING,
                   fontSize: "clamp(1rem, 1.12vw, 1.1rem)",
-                  fontWeight: 700,
+                  fontWeight: 600,
                   lineHeight: 1.35,
                 }}
               >
@@ -137,7 +121,7 @@ export default function BlogPostRelated({ articles }) {
                 display: "inline-flex",
                 alignItems: "center",
                 justifyContent: "center",
-                color: GREEN,
+                color: GREEN_ACCENT,
               }}
             >
               <ArrowRight size={18} strokeWidth={2.25} aria-hidden />
@@ -159,7 +143,7 @@ export default function BlogPostRelated({ articles }) {
         }
 
         .blog-related-card:hover {
-          background-color: ${HOVER_LIME};
+          background-color: ${LIME_HOVER};
           padding: clamp(20px, 2.4vw, 28px);
         }
 

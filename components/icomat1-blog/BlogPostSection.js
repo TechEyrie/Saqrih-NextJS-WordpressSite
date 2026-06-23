@@ -7,29 +7,33 @@ import BlogPostContent from "./BlogPostContent";
 import BlogPostFaq from "./BlogPostFaq";
 import BlogPostFooter from "./BlogPostFooter";
 import BlogPostRelated from "./BlogPostRelated";
-
-const GREEN = "#162D24";
-const CREAM = "#FDFCF6";
-const CARD_BG = "#E9F9A4";
-const BTN_BG = "#C5E838";
-const FONT_HEADING = "var(--font-inter), Inter, Arial, sans-serif";
-const FONT_BODY = "var(--font-montserrat), Montserrat, Arial, sans-serif";
+import {
+  BTN_LIME,
+  FONT_BODY,
+  FONT_HEADING,
+  GREEN_ACCENT,
+  LIME_HOVER,
+  SECTION_BG,
+  SIDEBAR_CARD_BG,
+  TEXT,
+  TEXT_BODY,
+} from "./blogTheme";
 
 function DesignWorkIcon() {
   return (
     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden>
-      <rect x="8" y="6" width="22" height="28" rx="3" stroke={GREEN} strokeWidth="2" />
-      <path d="M13 14h14M13 19h10M13 24h12" stroke={GREEN} strokeWidth="2" strokeLinecap="round" />
+      <rect x="8" y="6" width="22" height="28" rx="3" stroke={GREEN_ACCENT} strokeWidth="2" />
+      <path d="M13 14h14M13 19h10M13 24h12" stroke={GREEN_ACCENT} strokeWidth="2" strokeLinecap="round" />
       <path
         d="M28 8l2 2-4 4-2-2 4-4zM30 6l2 2"
-        stroke={GREEN}
+        stroke={GREEN_ACCENT}
         strokeWidth="1.75"
         strokeLinecap="round"
         strokeLinejoin="round"
       />
       <path
         d="M31 5l1 1M33 7l1 1M29 7l1-1"
-        stroke={GREEN}
+        stroke={GREEN_ACCENT}
         strokeWidth="1.5"
         strokeLinecap="round"
       />
@@ -42,14 +46,14 @@ function ShieldSupportIcon() {
     <svg width="40" height="40" viewBox="0 0 40 40" fill="none" aria-hidden>
       <path
         d="M20 6L10 10v10c0 6.5 4.3 12.6 10 14 5.7-1.4 10-7.5 10-14V10L20 6z"
-        stroke={GREEN}
+        stroke={GREEN_ACCENT}
         strokeWidth="2"
         strokeLinejoin="round"
       />
-      <path d="M20 14v8M16 18h8" stroke={GREEN} strokeWidth="2" strokeLinecap="round" />
+      <path d="M20 14v8M16 18h8" stroke={GREEN_ACCENT} strokeWidth="2" strokeLinecap="round" />
       <path
         d="M30 8l1.5 1.5M32 10l1 1"
-        stroke={GREEN}
+        stroke={GREEN_ACCENT}
         strokeWidth="1.5"
         strokeLinecap="round"
       />
@@ -69,12 +73,13 @@ function SidebarCard({ card }) {
     <article
       className="blog-post-sidebar-card"
       style={{
-        backgroundColor: CARD_BG,
+        backgroundColor: SIDEBAR_CARD_BG,
         borderRadius: "clamp(18px, 2vw, 22px)",
         padding: "clamp(24px, 2.8vw, 32px)",
         display: "flex",
         flexDirection: "column",
         gap: "clamp(14px, 1.6vw, 18px)",
+        border: "1px solid rgba(0,0,0,0.04)",
       }}
     >
       <Icon />
@@ -82,10 +87,10 @@ function SidebarCard({ card }) {
       <h2
         style={{
           margin: 0,
-          color: GREEN,
+          color: TEXT,
           fontFamily: FONT_HEADING,
           fontSize: "clamp(1.15rem, 1.5vw, 1.35rem)",
-          fontWeight: 700,
+          fontWeight: 600,
           lineHeight: 1.25,
           letterSpacing: "-0.02em",
         }}
@@ -96,11 +101,10 @@ function SidebarCard({ card }) {
       <p
         style={{
           margin: 0,
-          color: GREEN,
+          color: TEXT_BODY,
           fontFamily: FONT_BODY,
           fontSize: "clamp(0.95rem, 1.05vw, 1.02rem)",
           lineHeight: 1.6,
-          opacity: 0.92,
         }}
       >
         {card.description}
@@ -115,8 +119,8 @@ function SidebarCard({ card }) {
             justifyContent: "center",
             padding: "12px 22px",
             borderRadius: "999px",
-            backgroundColor: BTN_BG,
-            color: GREEN,
+            backgroundColor: BTN_LIME,
+            color: GREEN_ACCENT,
             fontFamily: FONT_HEADING,
             fontSize: "0.92rem",
             fontWeight: 600,
@@ -140,7 +144,7 @@ export default function BlogPostSection({ post }) {
     <section
       style={{
         width: "100%",
-        backgroundColor: CREAM,
+        backgroundColor: SECTION_BG,
         boxSizing: "border-box",
         padding:
           "clamp(112px, 11vw, 148px) clamp(24px, 5vw, 80px) clamp(80px, 10vw, 120px)",
@@ -161,10 +165,10 @@ export default function BlogPostSection({ post }) {
           <h1
             style={{
               margin: 0,
-              color: GREEN,
+              color: TEXT,
               fontFamily: FONT_HEADING,
               fontSize: "clamp(2rem, 3.6vw, 3rem)",
-              fontWeight: 700,
+              fontWeight: 600,
               lineHeight: 1.12,
               letterSpacing: "-0.03em",
             }}
@@ -188,7 +192,7 @@ export default function BlogPostSection({ post }) {
                 alignItems: "center",
                 padding: "6px 14px",
                 borderRadius: "999px",
-                backgroundColor: GREEN,
+                backgroundColor: GREEN_ACCENT,
                 color: "#ffffff",
                 fontFamily: FONT_HEADING,
                 fontSize: "0.78rem",
@@ -205,7 +209,7 @@ export default function BlogPostSection({ post }) {
                 display: "inline-flex",
                 alignItems: "center",
                 gap: 8,
-                color: GREEN,
+                color: TEXT_BODY,
                 fontFamily: FONT_BODY,
                 fontSize: "0.92rem",
                 fontWeight: 500,
@@ -220,7 +224,7 @@ export default function BlogPostSection({ post }) {
                 display: "inline-flex",
                 alignItems: "center",
                 gap: 8,
-                color: GREEN,
+                color: TEXT_BODY,
                 fontFamily: FONT_BODY,
                 fontSize: "0.92rem",
                 fontWeight: 500,
@@ -261,7 +265,7 @@ export default function BlogPostSection({ post }) {
         }
 
         .blog-post-sidebar-card:hover {
-          background-color: #b8d92e !important;
+          background-color: ${LIME_HOVER} !important;
           padding-top: clamp(30px, 3.2vw, 38px) !important;
           padding-bottom: clamp(30px, 3.2vw, 38px) !important;
         }

@@ -1,15 +1,19 @@
 "use client";
 
 import Link from "next/link";
-
-const GREEN = "#162D24";
-const PALE_PANEL = "#F4F9E2";
-const FONT_HEADING = "var(--font-inter), Inter, Arial, sans-serif";
-const FONT_BODY = "var(--font-montserrat), Montserrat, Arial, sans-serif";
+import {
+  FONT_BODY,
+  FONT_HEADING,
+  GREEN_ACCENT,
+  LIME_HOVER,
+  PANEL_BG,
+  TEXT,
+  TEXT_BODY,
+} from "./blogTheme";
 
 const bodyStyle = {
   margin: 0,
-  color: "#2a2a2a",
+  color: TEXT_BODY,
   fontFamily: FONT_BODY,
   fontSize: "clamp(1rem, 1.08vw, 1.08rem)",
   lineHeight: 1.75,
@@ -18,21 +22,20 @@ const bodyStyle = {
 
 const headingStyle = {
   margin: "clamp(36px, 4vw, 52px) 0 clamp(16px, 2vw, 22px)",
-  color: GREEN,
+  color: TEXT,
   fontFamily: FONT_HEADING,
   fontSize: "clamp(1.45rem, 2.2vw, 1.85rem)",
-  fontWeight: 700,
+  fontWeight: 600,
   lineHeight: 1.2,
   letterSpacing: "-0.02em",
 };
 
-const HOVER_LIME = "#C5E838";
-
 const sharedPanelStyles = `
   .blog-panel-list {
-    background-color: ${PALE_PANEL};
+    background-color: ${PANEL_BG};
     border-radius: clamp(14px, 1.6vw, 18px);
     overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.04);
   }
 
   .blog-panel-list--features {
@@ -59,7 +62,7 @@ const sharedPanelStyles = `
   }
 
   .blog-panel-item:hover {
-    background-color: ${HOVER_LIME};
+    background-color: ${LIME_HOVER};
     padding-top: clamp(30px, 3.4vw, 40px);
     padding-bottom: clamp(30px, 3.4vw, 40px);
   }
@@ -81,7 +84,7 @@ const sharedPanelStyles = `
   }
 
   .blog-comparison-table tbody tr:hover {
-    background-color: ${HOVER_LIME};
+    background-color: ${LIME_HOVER};
   }
 
   .blog-comparison-table tbody tr:hover td {
@@ -93,7 +96,7 @@ const sharedPanelStyles = `
 function LimeIcon() {
   return (
     <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden style={{ flexShrink: 0 }}>
-      <circle cx="14" cy="14" r="13" fill={GREEN} />
+      <circle cx="14" cy="14" r="13" fill={GREEN_ACCENT} />
       <path
         d="M14 18V10M14 10l-4 4M14 10l4 4"
         stroke="#ffffff"
@@ -129,11 +132,11 @@ function FeatureListBlock({ items }) {
           key={i}
           className="blog-panel-item"
           style={{
-            borderBottom: i < items.length - 1 ? "1px solid rgba(22, 45, 36, 0.12)" : "none",
+            borderBottom: i < items.length - 1 ? "1px solid rgba(0,0,0,0.08)" : "none",
           }}
         >
           <LimeIcon />
-          <p style={{ ...bodyStyle, maxWidth: "none", color: GREEN, margin: 0 }}>
+          <p style={{ ...bodyStyle, maxWidth: "none", color: TEXT, margin: 0 }}>
             <strong style={{ fontWeight: 700 }}>{item.title}</strong>
             {" – "}
             {item.text}
@@ -156,7 +159,7 @@ function TableBlock({ headers, rows }) {
           fontFamily: FONT_BODY,
           fontSize: "clamp(0.92rem, 1vw, 1rem)",
           lineHeight: 1.55,
-          color: "#2a2a2a",
+          color: TEXT_BODY,
         }}
       >
         <thead>
@@ -167,11 +170,11 @@ function TableBlock({ headers, rows }) {
                 style={{
                   textAlign: "left",
                   padding: "14px 16px",
-                  border: "1px solid rgba(22, 45, 36, 0.22)",
-                  backgroundColor: "rgba(244, 249, 226, 0.65)",
+                  border: "1px solid rgba(0,0,0,0.08)",
+                  backgroundColor: PANEL_BG,
                   fontFamily: FONT_HEADING,
-                  fontWeight: 700,
-                  color: GREEN,
+                  fontWeight: 600,
+                  color: TEXT,
                 }}
               >
                 {h}
@@ -188,9 +191,9 @@ function TableBlock({ headers, rows }) {
                   style={{
                     verticalAlign: "top",
                     padding: "14px 16px",
-                    border: "1px solid rgba(22, 45, 36, 0.22)",
-                    fontWeight: j === 0 ? 700 : 400,
-                    color: j === 0 ? GREEN : "#2a2a2a",
+                    border: "1px solid rgba(0,0,0,0.08)",
+                    fontWeight: j === 0 ? 600 : 400,
+                    color: j === 0 ? TEXT : TEXT_BODY,
                   }}
                 >
                   {cell}
@@ -207,8 +210,8 @@ function TableBlock({ headers, rows }) {
 function CtaLineBlock({ prefix, link }) {
   return (
     <p style={{ ...bodyStyle, marginTop: "clamp(36px, 4vw, 52px)" }}>
-      <strong style={{ color: GREEN, fontWeight: 700 }}>{prefix}</strong>{" "}
-      <Link href={link.href} style={{ color: GREEN, fontWeight: 600, textDecoration: "underline" }}>
+      <strong style={{ color: TEXT, fontWeight: 600 }}>{prefix}</strong>{" "}
+      <Link href={link.href} style={{ color: GREEN_ACCENT, fontWeight: 600, textDecoration: "underline" }}>
         {link.label}
       </Link>
       {link.suffix ? `, ${link.suffix}` : ""}
@@ -224,7 +227,7 @@ function NumberedStepsBlock({ items }) {
           key={i}
           className="blog-panel-item"
           style={{
-            borderBottom: i < items.length - 1 ? "1px solid rgba(22, 45, 36, 0.12)" : "none",
+            borderBottom: i < items.length - 1 ? "1px solid rgba(0,0,0,0.08)" : "none",
           }}
         >
           <span
@@ -233,7 +236,7 @@ function NumberedStepsBlock({ items }) {
               width: 32,
               height: 32,
               borderRadius: "50%",
-              backgroundColor: GREEN,
+              backgroundColor: GREEN_ACCENT,
               color: "#ffffff",
               display: "inline-flex",
               alignItems: "center",
@@ -245,7 +248,7 @@ function NumberedStepsBlock({ items }) {
           >
             {i + 1}
           </span>
-          <p style={{ ...bodyStyle, maxWidth: "none", margin: 0, color: GREEN }}>
+          <p style={{ ...bodyStyle, maxWidth: "none", margin: 0, color: TEXT }}>
             <strong style={{ fontWeight: 700 }}>{item.title}</strong>
             {" – "}
             {item.text}

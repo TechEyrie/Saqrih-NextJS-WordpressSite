@@ -74,30 +74,6 @@ const CARD_META = [
     img: "/case-studies/ufomammoot/all-devices-white.png",
     imgFit: "contain",
   },
-  {
-    num: "09",
-    label: "HRCHITECT",
-    sub: "Website migration, infrastructure review, and a comprehensive audit result in strategic planning for phase II redesign project.",
-    href: "/portfolio/hrchitect",
-  },
-  {
-    num: "10",
-    label: "TIGER",
-    sub: "Five sister websites get fresh looks and added features",
-    href: "/portfolio/tiger",
-  },
-  {
-    num: "11",
-    label: "AZELIS A&ES",
-    sub: "Seamless merger of two ecommerce websites into one adds ease and efficiency.",
-    href: "/portfolio/azelis-aes",
-  },
-  {
-    num: "12",
-    label: "ACERTUS",
-    sub: "WordPress website migrated, optimized for long term expansion via Eyrion retained services.",
-    href: "/portfolio/acertus",
-  },
 ];
 
 function buildCards(pageKey) {

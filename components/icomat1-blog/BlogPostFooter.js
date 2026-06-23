@@ -3,11 +3,15 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ChevronLeft, Mail } from "lucide-react";
-
-const GREEN = "#162D24";
-const BIO_BG = "#F3E8DC";
-const FONT_HEADING = "var(--font-inter), Inter, Arial, sans-serif";
-const FONT_BODY = "var(--font-montserrat), Montserrat, Arial, sans-serif";
+import {
+  BIO_BG,
+  FONT_BODY,
+  FONT_HEADING,
+  GREEN_ACCENT,
+  TEXT,
+  TEXT_BODY,
+  TEXT_MUTED,
+} from "./blogTheme";
 
 function ShareIcon({ label, children, href }) {
   return (
@@ -21,11 +25,11 @@ function ShareIcon({ label, children, href }) {
         width: 36,
         height: 36,
         borderRadius: "50%",
-        border: "1px solid rgba(22, 45, 36, 0.2)",
+        border: "1px solid rgba(0,0,0,0.12)",
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
-        color: GREEN,
+        color: TEXT,
         textDecoration: "none",
         transition: "background-color 0.2s ease, border-color 0.2s ease",
       }}
@@ -60,7 +64,7 @@ export default function BlogPostFooter({ author, previousPost }) {
       >
         <span
           style={{
-            color: GREEN,
+            color: TEXT,
             fontFamily: FONT_BODY,
             fontSize: "0.92rem",
             fontWeight: 600,
@@ -105,6 +109,7 @@ export default function BlogPostFooter({ author, previousPost }) {
           padding: "clamp(24px, 3vw, 32px)",
           borderRadius: "clamp(16px, 2vw, 20px)",
           backgroundColor: BIO_BG,
+          border: "1px solid rgba(0,0,0,0.04)",
           display: "flex",
           gap: "clamp(18px, 2.4vw, 28px)",
           alignItems: "flex-start",
@@ -127,10 +132,10 @@ export default function BlogPostFooter({ author, previousPost }) {
           <p
             style={{
               margin: 0,
-              color: GREEN,
+              color: TEXT,
               fontFamily: FONT_HEADING,
               fontSize: "clamp(1.05rem, 1.2vw, 1.15rem)",
-              fontWeight: 700,
+              fontWeight: 600,
             }}
           >
             {author.name}
@@ -143,10 +148,9 @@ export default function BlogPostFooter({ author, previousPost }) {
               style={{
                 display: "inline-block",
                 marginTop: 4,
-                color: GREEN,
+                color: GREEN_ACCENT,
                 fontFamily: FONT_BODY,
                 fontSize: "0.88rem",
-                opacity: 0.75,
                 textDecoration: "underline",
               }}
             >
@@ -156,7 +160,7 @@ export default function BlogPostFooter({ author, previousPost }) {
           <p
             style={{
               margin: "clamp(12px, 1.4vw, 16px) 0 0",
-              color: "#2a2a2a",
+              color: TEXT_BODY,
               fontFamily: FONT_BODY,
               fontSize: "clamp(0.95rem, 1.02vw, 1rem)",
               lineHeight: 1.7,
@@ -177,7 +181,7 @@ export default function BlogPostFooter({ author, previousPost }) {
             gap: 6,
             marginTop: "clamp(32px, 3.6vw, 44px)",
             textDecoration: "none",
-            color: GREEN,
+            color: TEXT,
             maxWidth: "min(520px, 100%)",
           }}
         >
@@ -191,7 +195,7 @@ export default function BlogPostFooter({ author, previousPost }) {
               fontWeight: 600,
               letterSpacing: "0.06em",
               textTransform: "uppercase",
-              opacity: 0.7,
+              color: TEXT_MUTED,
             }}
           >
             <ChevronLeft size={16} strokeWidth={2} aria-hidden />
@@ -201,7 +205,7 @@ export default function BlogPostFooter({ author, previousPost }) {
             style={{
               fontFamily: FONT_HEADING,
               fontSize: "clamp(1rem, 1.15vw, 1.12rem)",
-              fontWeight: 700,
+              fontWeight: 600,
               lineHeight: 1.35,
               textDecoration: "underline",
               textUnderlineOffset: 3,
@@ -214,8 +218,8 @@ export default function BlogPostFooter({ author, previousPost }) {
 
       <style>{`
         .blog-share-icon:hover {
-          background-color: rgba(22, 45, 36, 0.08);
-          border-color: rgba(22, 45, 36, 0.35);
+          background-color: rgba(0,0,0,0.05);
+          border-color: rgba(0,0,0,0.2);
         }
         .blog-prev-post:hover span:last-child {
           opacity: 0.85;
