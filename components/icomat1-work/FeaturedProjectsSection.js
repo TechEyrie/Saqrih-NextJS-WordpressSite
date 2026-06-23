@@ -8,15 +8,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 const PROJECTS = [
   {
-    id: "syntax-studios",
-    category: "SYNTAX STUDIOS",
-    title: "Marketing site for a US software agency building blockchain, AI, and product engineering solutions",
-    href: "/case-studies/syntaxstudios",
-    image: "/case-studies/syntaxstudios/all-devices-white.png",
-    imageAlt: "Syntax Studios responsive website mockups",
-    layout: "big",
-  },
-  {
     id: "fueled",
     category: "FUELED",
     title: "Marketing site for a digital product agency—AI, mobile apps, enterprise web, and WordPress VIP delivery",

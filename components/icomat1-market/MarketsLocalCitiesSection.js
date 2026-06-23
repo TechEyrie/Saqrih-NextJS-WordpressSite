@@ -1,8 +1,17 @@
 "use client";
 
+import Link from "next/link";
 import { MapPin } from "lucide-react";
 import { LOCAL_AREAS_BY_MARKET } from "./marketsData";
 import { BODY, GREEN, cellStyle, headingStyle, introStyle, sectionPadding } from "./marketTheme";
+
+function cityName(city) {
+  return typeof city === "string" ? city : city.name;
+}
+
+function cityHref(city) {
+  return typeof city === "string" ? null : city.href ?? null;
+}
 
 export default function MarketsLocalCitiesSection() {
   return (
@@ -57,15 +66,41 @@ export default function MarketsLocalCitiesSection() {
               {market}
             </h3>
             <div className="markets-local-cities-grid">
-              {cities.map((city) => (
-                <div
-                  key={`${market}-${city}`}
-                  className="markets-local-cities-cell markets-local-cities-cell--plain"
-                  style={cellStyle}
-                >
-                  <span className="markets-local-cities-label">{city}</span>
-                </div>
-              ))}
+              {cities.map((city) => {
+                const name = cityName(city);
+                const href = cityHref(city);
+                const key = `${market}-${name}`;
+
+                if (href) {
+                  return (
+                    <Link
+                      key={key}
+                      href={href}
+                      className="markets-local-cities-cell markets-local-cities-cell--link"
+                      style={cellStyle}
+                    >
+                      <MapPin
+                        size={14}
+                        strokeWidth={1.5}
+                        color={GREEN}
+                        aria-hidden
+                        style={{ flexShrink: 0 }}
+                      />
+                      <span className="markets-local-cities-label">{name}</span>
+                    </Link>
+                  );
+                }
+
+                return (
+                  <div
+                    key={key}
+                    className="markets-local-cities-cell markets-local-cities-cell--plain"
+                    style={cellStyle}
+                  >
+                    <span className="markets-local-cities-label">{name}</span>
+                  </div>
+                );
+              })}
             </div>
           </article>
         ))}
@@ -74,6 +109,15 @@ export default function MarketsLocalCitiesSection() {
       <style>{`
         .markets-local-cities-cell--plain {
           padding-left: 0 !important;
+        }
+        .markets-local-cities-cell--link {
+          text-decoration: none;
+          color: ${BODY};
+          transition: color 0.2s ease, opacity 0.2s ease;
+        }
+        .markets-local-cities-cell--link:hover {
+          color: ${GREEN};
+          opacity: 0.88;
         }
         .markets-local-cities-grid {
           display: grid;

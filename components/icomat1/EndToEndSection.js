@@ -12,14 +12,6 @@ gsap.registerPlugin(SplitText, ScrollTrigger);
 const CARD_META = [
   {
     num: "01",
-    label: "SYNTAX STUDIOS",
-    sub: "Custom WordPress marketing site for a US software agency — responsive across desktop, tablet, and mobile with ongoing partnership.",
-    href: "/case-studies/syntaxstudios",
-    img: "/case-studies/syntaxstudios/all-devices-white.png",
-    imgFit: "contain",
-  },
-  {
-    num: "02",
     label: "FUELED",
     sub: "Enterprise marketing site for a digital product agency—AI, mobile, web, and WordPress VIP expertise showcased across every device.",
     href: "/case-studies/fueled",
@@ -27,7 +19,7 @@ const CARD_META = [
     imgFit: "contain",
   },
   {
-    num: "03",
+    num: "02",
     label: "NECTAFY",
     sub: "WordPress marketing site for a human content agency—Content Credibility and HumanContent offerings, built for authenticity across every device.",
     href: "/case-studies/nectafy",
@@ -35,7 +27,7 @@ const CARD_META = [
     imgFit: "contain",
   },
   {
-    num: "04",
+    num: "03",
     label: "FADNA",
     sub: "E-commerce site for a Sri Lankan wellness brand—functional herbal teas and life-science products, responsive across every device.",
     href: "/case-studies/fadna",
@@ -43,7 +35,7 @@ const CARD_META = [
     imgFit: "contain",
   },
   {
-    num: "05",
+    num: "04",
     label: "ECHT SOCIAL",
     sub: "Marketing site for a boutique Sri Lankan digital agency—social, design, SEO, and content services, responsive across every device.",
     href: "/case-studies/echtsocial",
@@ -51,7 +43,7 @@ const CARD_META = [
     imgFit: "contain",
   },
   {
-    num: "06",
+    num: "05",
     label: "CLE INDY",
     sub: "Marketing site for a leadership and career consultancy—coaching, outplacement, and culture programs, responsive across every device.",
     href: "/case-studies/cleindy",
@@ -59,7 +51,7 @@ const CARD_META = [
     imgFit: "contain",
   },
   {
-    num: "07",
+    num: "06",
     label: "BRINC",
     sub: "Marketing site for a public safety drone company—hardware, software, and agency programs, responsive across every device.",
     href: "/case-studies/brincdrones",
@@ -67,7 +59,7 @@ const CARD_META = [
     imgFit: "contain",
   },
   {
-    num: "08",
+    num: "07",
     label: "UFOMAMMOOT",
     sub: "Marketing site for a Berlin digital agency—interactive portfolio, AR/VR work, and creative technology, responsive across every device.",
     href: "/case-studies/ufomammoot",

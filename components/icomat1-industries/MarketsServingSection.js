@@ -1,53 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { MapPin } from "lucide-react";
-
-/** Industries shown on /industries and /wordpress/industries (order preserved). */
-export const INDUSTRIES = [
-  "Agriculture & Farming",
-  "Architecture",
-  "Attorney",
-  "B2B",
-  "Café",
-  "Catholic Parish",
-  "Charity",
-  "Church",
-  "City",
-  "College",
-  "Construction",
-  "Consulting",
-  "Contractor",
-  "Corporate",
-  "Dental",
-  "Education",
-  "Environment",
-  "Fashion",
-  "Finance",
-  "Gym & Fitness",
-  "Hair Extensions",
-  "Handyman",
-  "Health & Wellness",
-  "Healthcare",
-  "Hospitality",
-  "Hotel",
-  "IT Services",
-  "Landscaping",
-  "Law Firm",
-  "Medical",
-  "Non-Profit",
-  "Orthodontist",
-  "Real Estate",
-  "Restaurant",
-  "SaaS",
-  "School",
-  "Small Business",
-  "Startup",
-  "Tech",
-  "Tourism",
-  "Travel",
-  "University",
-  "Wedding Venue",
-];
+import { INDUSTRY_MARKET_LINKS } from "../../lib/industries/industryContent";
 
 /** Same green + body tones as icomat1 WordPress light sections (e.g. SEOResultSection). */
 const GREEN = "#162D24";
@@ -107,40 +62,39 @@ export default function MarketsServingSection() {
         }}
       >
         <div className="industries-serving-grid">
-          {INDUSTRIES.map((name) => {
-            // Phase 2 (industry pages): const href = `/wordpress/industries/${industrySlug(name)}`;
-            // Phase 2: replace <div> below with <a key={name} href={href} className="industries-serving-cell" …>
-            return (
-              <div
-                key={name}
-                className="industries-serving-cell"
-                style={{
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "flex-start",
-                  gap: "clamp(10px, 1.2vw, 14px)",
-                  minHeight: "52px",
-                  padding: "clamp(10px, 1.2vw, 14px) 0",
-                  color: "rgba(22, 45, 36, 0.9)",
-                  fontSize: "clamp(1rem, 1.15vw, 1.18rem)",
-                  fontWeight: 500,
-                  letterSpacing: "-0.01em",
-                  lineHeight: 1.35,
-                  borderRadius: "6px",
-                }}
-              >
-                <MapPin
-                  size={20}
-                  strokeWidth={1.65}
-                  color={MUTED}
-                  aria-hidden
-                  style={{ flexShrink: 0 }}
-                />
-                <span className="industries-serving-label">{name}</span>
-              </div>
-            );
-          })}
+          {INDUSTRY_MARKET_LINKS.map(({ name, href }) => (
+            <Link
+              key={name}
+              href={href}
+              className="industries-serving-cell industries-serving-cell--link"
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "flex-start",
+                gap: "clamp(10px, 1.2vw, 14px)",
+                minHeight: "52px",
+                padding: "clamp(10px, 1.2vw, 14px) 0",
+                color: "rgba(22, 45, 36, 0.9)",
+                fontSize: "clamp(1rem, 1.15vw, 1.18rem)",
+                fontWeight: 500,
+                letterSpacing: "-0.01em",
+                lineHeight: 1.35,
+                borderRadius: "6px",
+                textDecoration: "none",
+                transition: "color 0.2s ease, opacity 0.2s ease",
+              }}
+            >
+              <MapPin
+                size={20}
+                strokeWidth={1.65}
+                color={MUTED}
+                aria-hidden
+                style={{ flexShrink: 0 }}
+              />
+              <span className="industries-serving-label">{name}</span>
+            </Link>
+          ))}
         </div>
       </div>
 
@@ -153,7 +107,10 @@ export default function MarketsServingSection() {
           row-gap: clamp(16px, 2.4vw, 32px);
           align-items: start;
         }
-        /* Phase 2 (links): restore hover/focus styles for <a class="industries-serving-cell"> */
+        .industries-serving-cell--link:hover {
+          color: ${GREEN};
+          opacity: 0.88;
+        }
         @media (max-width: 1100px) {
           .industries-serving-grid {
             grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
