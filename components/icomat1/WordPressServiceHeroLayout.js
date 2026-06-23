@@ -1,6 +1,6 @@
 "use client";
 
-import { SERVICES_HERO_BACKGROUND_VIDEO } from "../../lib/siteVideos";
+import { WORDPRESS_HERO_BACKGROUND_VIDEO } from "../../lib/siteVideos";
 import HeroScrollDownIndicator, { defaultHeroScrollDownOnClick } from "./HeroScrollDownIndicator";
 
 export const DEFAULT_WP_HERO_STATS = [
@@ -69,7 +69,11 @@ export function WordPressServiceHeroStats({ stats = DEFAULT_WP_HERO_STATS }) {
   );
 }
 
-export default function WordPressServiceHeroLayout({ children, backgroundImage }) {
+export default function WordPressServiceHeroLayout({
+  children,
+  backgroundImage,
+  heroVideo = WORDPRESS_HERO_BACKGROUND_VIDEO,
+}) {
   return (
     <section className="icomat-wp-service-hero relative w-full h-screen min-h-[600px] overflow-hidden">
       {backgroundImage ? (
@@ -83,7 +87,7 @@ export default function WordPressServiceHeroLayout({ children, backgroundImage }
         />
       ) : (
         <video
-          src={SERVICES_HERO_BACKGROUND_VIDEO}
+          src={heroVideo}
           autoPlay
           muted
           loop

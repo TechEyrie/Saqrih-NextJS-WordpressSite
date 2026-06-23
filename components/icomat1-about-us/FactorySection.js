@@ -168,8 +168,16 @@ function StatCell({ label, sublabel, value, isLeftCol }) {
         {label}{sublabel ? `\n${sublabel}` : ""}
       </p>
 
-      {/* Dot-matrix */}
-      {visible && <DotMatrix value={value} dotSize={6} gap={3} charGap={8} />}
+      {/* Dot-matrix — reserve height so layout does not shift when visible */}
+      <div style={{ minHeight: "40px" }}>
+        {visible ? (
+          <DotMatrix value={value} dotSize={6} gap={3} charGap={8} />
+        ) : (
+          <span style={{ visibility: "hidden" }} aria-hidden>
+            <DotMatrix value={value} dotSize={6} gap={3} charGap={8} />
+          </span>
+        )}
+      </div>
     </div>
   );
 }

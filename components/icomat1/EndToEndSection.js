@@ -84,7 +84,15 @@ function buildCards(pageKey) {
   }));
 }
 
-export default function EndToEndSection({ theme = "dark", pageKey = "homepage" }) {
+export default function EndToEndSection({
+  theme = "dark",
+  pageKey = "homepage",
+  pinAnticipate = 1,
+  pinType = "fixed",
+  alignHeadingScrubWithPin = false,
+  pinScope = "section",
+  pinStart = "top top",
+}) {
   const cards = useMemo(() => buildCards(pageKey), [pageKey]);
   const wrapperRef = useRef(null);
   const headingRef = useRef(null);
@@ -125,12 +133,19 @@ export default function EndToEndSection({ theme = "dark", pageKey = "homepage" }
           color: colors.headingEnd,
           ease: "none",
           stagger: 0.03,
-          scrollTrigger: {
-            trigger: headingRef.current,
-            start: "top 82%",
-            end: "top 30%",
-            scrub: 1,
-          },
+          scrollTrigger: alignHeadingScrubWithPin
+            ? {
+                trigger: pinScope === "track" ? trackOuterRef.current : wrapperRef.current,
+                start: "top bottom",
+                end: pinStart,
+                scrub: 1,
+              }
+            : {
+                trigger: headingRef.current,
+                start: "top 82%",
+                end: "top 30%",
+                scrub: 1,
+              },
         });
       }
 
@@ -170,20 +185,34 @@ export default function EndToEndSection({ theme = "dark", pageKey = "homepage" }
           return Math.max(0, trackWidth - outerWidth);
         };
 
-        gsap.set(track, { x: 0 });
+        const refreshPin = () => ScrollTrigger.refresh();
+
+        gsap.set(track, { x: 0, force3D: true });
+
+        const imgs = track.querySelectorAll("img");
+        imgs.forEach((img) => {
+          if (img.complete) return;
+          img.addEventListener("load", refreshPin, { once: true });
+          img.addEventListener("error", refreshPin, { once: true });
+        });
+
+        const pinEl = pinScope === "track" ? outer : wrapper;
+        const triggerEl = pinScope === "track" ? outer : wrapper;
 
         gsap.to(track, {
           x: () => -getMaxTranslate(),
           ease: "none",
           scrollTrigger: {
-            trigger: wrapper,
-            start: "top top",
+            trigger: triggerEl,
+            start: pinStart,
             end: () => `+=${getMaxTranslate()}`,
-            pin: true,
+            pin: pinEl,
             pinSpacing: true,
+            pinType,
             scrub: 1,
-            anticipatePin: 1,
+            anticipatePin: pinAnticipate,
             invalidateOnRefresh: true,
+            fastScrollEnd: true,
           },
         });
       });
@@ -196,7 +225,7 @@ export default function EndToEndSection({ theme = "dark", pageKey = "homepage" }
       splitRef.current = null;
       ctx.revert();
     };
-  }, [colors.headingEnd, colors.headingStart]);
+  }, [alignHeadingScrubWithPin, colors.headingEnd, colors.headingStart, pinAnticipate, pinScope, pinStart, pinType]);
 
   return (
     <section
@@ -219,7 +248,7 @@ export default function EndToEndSection({ theme = "dark", pageKey = "homepage" }
 
       <div
         ref={trackOuterRef}
-        className="relative w-full overflow-visible px-4 sm:px-6 md:px-10 lg:px-20"
+        className={`relative w-full overflow-visible px-4 sm:px-6 md:px-10 lg:px-20${pinScope === "track" ? " pb-16 sm:pb-20" : ""}`}
       >
         <div
           ref={trackRef}

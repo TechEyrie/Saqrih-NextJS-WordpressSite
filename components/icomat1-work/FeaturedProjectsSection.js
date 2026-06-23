@@ -148,7 +148,7 @@ function BigCard({ project }) {
       }
     );
 
-    const onEnter = () => gsap.to(img, { scale: 1.04, duration: 0.7, ease: "power2.out" });
+    const onEnter = () => gsap.to(img, { scale: 1.02, duration: 0.7, ease: "power2.out" });
     const onLeave = () => gsap.to(img, { scale: 1.0,  duration: 0.7, ease: "power2.inOut" });
     card.addEventListener("mouseenter", onEnter);
     card.addEventListener("mouseleave", onLeave);
@@ -171,7 +171,16 @@ function BigCard({ project }) {
         minHeight: "500px",
       }}
     >
-      <div style={{ overflow: "hidden", position: "relative" }}>
+      <div
+        style={{
+          overflow: "hidden",
+          position: "relative",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: "#f0eeea",
+        }}
+      >
         <img
           ref={imgRef}
           src={project.image}
@@ -179,8 +188,12 @@ function BigCard({ project }) {
           loading="lazy"
           decoding="async"
           style={{
-            width: "100%", height: "100%",
-            objectFit: "cover", display: "block",
+            width: "100%",
+            height: "100%",
+            objectFit: "contain",
+            objectPosition: "center",
+            padding: "clamp(20px, 3vw, 40px)",
+            display: "block",
             transformOrigin: "center",
           }}
         />
@@ -239,7 +252,7 @@ function SmallCard({ project }) {
     );
 
     const onEnter = () => {
-      gsap.to(img, { scale: 1.05, duration: 0.65, ease: "power2.out" });
+      gsap.to(img, { scale: 1.02, duration: 0.65, ease: "power2.out" });
       gsap.to(bg,  { opacity: 0.18, duration: 0.4, ease: "power2.out" });
     };
     const onLeave = () => {
@@ -278,8 +291,12 @@ function SmallCard({ project }) {
           loading="lazy"
           decoding="async"
           style={{
-            width: "100%", height: "100%",
-            objectFit: "cover", display: "block",
+            width: "100%",
+            height: "100%",
+            objectFit: "contain",
+            objectPosition: "center",
+            padding: "clamp(16px, 2.5vw, 28px)",
+            display: "block",
             transformOrigin: "center",
           }}
         />

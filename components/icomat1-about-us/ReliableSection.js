@@ -146,6 +146,7 @@ export default function ReliableSection({
           background: "#f5f4f0",
           padding: "clamp(64px, 8vw, 110px) clamp(32px, 5vw, 80px)",
           boxSizing: "border-box",
+          overflowX: "clip",
         }}
       >
         <div

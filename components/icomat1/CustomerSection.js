@@ -136,6 +136,8 @@ function VideoModal({ src, onClose }) {
 export default function CustomersSection({
   pageKey: pageKeyProp,
   showVideoSection: showVideoSectionProp,
+  pinAnticipate = 1,
+  pinType = "fixed",
 }) {
   const pathname = usePathname();
   const pageKey = pageKeyProp ?? pageKeyFromPathname(pathname) ?? "homepage";
@@ -280,7 +282,8 @@ export default function CustomersSection({
         end: `+=${TOTAL_PIN_SCROLL}`,
         pin: true,
         pinSpacing: true,
-        anticipatePin: 1,
+        pinType,
+        anticipatePin: pinAnticipate,
       });
 
       ScrollTrigger.create({
@@ -385,7 +388,7 @@ export default function CustomersSection({
     }, outerRef);
 
     return () => ctx.revert();
-  }, [showVideoSection]);
+  }, [pinAnticipate, pinType, showVideoSection]);
 
   return (
     <>
