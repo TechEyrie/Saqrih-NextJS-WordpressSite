@@ -76,7 +76,6 @@ export default function CaseStudyHeroSection({ caseStudy }) {
       }}
     >
       <section
-        className="icomat-content-hero"
         style={{
           width: "100%",
           backgroundColor: "#162D24",
