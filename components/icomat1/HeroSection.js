@@ -176,18 +176,6 @@ export default function HeroSection({ onQuoteClick }) {
         },
       });
 
-      // ── Video parallax ──
-      gsap.to(videoRef.current, {
-        yPercent: -12,
-        ease: "none",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: true,
-        },
-      });
-
     }, containerRef);
 
     return () => ctx.revert();

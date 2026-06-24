@@ -262,9 +262,8 @@ function WaveLines() {
   );
 }
 
-/** Matches `.unlocking-section` / CTA light surface in `globals.css` */
+/** Matches UnlockingSection page end so the veil reads as the prior section sliding away. */
 const PRE_FOOTER_SURFACE = "#f7f7f5";
-const FOOTER_PANEL_BG = "#162D24";
 
 // ── Footer ─────────────────────────────────────────────────────
 export default function FooterSection() {
@@ -309,30 +308,18 @@ export default function FooterSection() {
   return (
     <footer
       ref={footerRef}
-      className="icomat-footer-reveal"
       style={{
         position: "relative",
         width: "100%",
-        background: PRE_FOOTER_SURFACE,
+        minHeight: "720px",
+        background: "#162D24",
         overflow: "hidden",
+        padding: "clamp(16px, 2.5vw, 28px) clamp(16px, 5vw, 72px) 36px",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
       }}
     >
-      {/* Dark panel — outer shell stays light so veil motion never exposes a gray/green seam */}
-      <div
-        className="icomat-footer-panel"
-        style={{
-          position: "relative",
-          zIndex: 1,
-          width: "100%",
-          minHeight: "720px",
-          background: FOOTER_PANEL_BG,
-          padding: "clamp(16px, 2.5vw, 28px) clamp(16px, 5vw, 72px) 36px",
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          overflow: "hidden",
-        }}
-      >
 
       {/* All footer chrome + copy: fixed in layout; revealed by veil sliding up (inverse of RTS panel sliding over). */}
       <div
@@ -527,19 +514,13 @@ export default function FooterSection() {
 
       </div>
 
-      </div>
-
       {/* Continuation of Unlocking surface — slides up (opposite of RTS panel B rising over content). */}
       <div
         ref={veilRef}
         aria-hidden="true"
-        className="icomat-footer-veil"
         style={{
           position: "absolute",
-          top: 0,
-          left: 0,
-          right: 0,
-          height: "calc(100% + 1px)",
+          inset: 0,
           zIndex: 4,
           background: PRE_FOOTER_SURFACE,
           pointerEvents: "none",
@@ -548,13 +529,6 @@ export default function FooterSection() {
       />
 
       <style>{`
-        .icomat-footer-reveal {
-          isolation: isolate;
-        }
-        .icomat-footer-veil {
-          transform: translate3d(0, 0, 0);
-          backface-visibility: hidden;
-        }
         .footer-hover-line {
           position: relative;
           display: inline-block;
