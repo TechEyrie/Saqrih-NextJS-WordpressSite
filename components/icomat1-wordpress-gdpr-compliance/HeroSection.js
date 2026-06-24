@@ -16,7 +16,7 @@ export default function HeroSection() {
           <p className="wp-service-hero-lead" style={{ maxWidth: "68ch" }}
           >
             Understand GDPR requirements for your WordPress website with guidance from
-            Eyrion&apos;s compliance experts. We help businesses improve data privacy,
+            Saqrih&apos;s compliance experts. We help businesses improve data privacy,
             strengthen compliance, and better protect user information across WordPress
             websites.
           </p>

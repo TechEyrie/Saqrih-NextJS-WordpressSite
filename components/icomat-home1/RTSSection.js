@@ -130,7 +130,7 @@ export default function RTSSection() {
             color: "#c0c0c0", // initial gray — GSAP overrides per char
           }}
         >
-          Eyrion builds WordPress solutions.
+          Saqrih builds WordPress solutions.
           <br />
           Design, development, and ongoing support.
         </p>

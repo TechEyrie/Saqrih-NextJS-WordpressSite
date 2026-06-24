@@ -166,7 +166,7 @@ const STATS = [
 // ── Main Section ──────────────────────────────────────────────
 export default function FactorySection({
   heading      = "We're driven by delivering real value through service",
-  description1 = "At Eyrion, we view ourselves as your digital architects and strategic guides. Our focus is centered on solving complex challenges to streamline your operations and amplify your professional impact. Every workflow we refine, every system we deploy, and every specialist we onboard is dedicated to a single mission: making your success inevitable.",
+  description1 = "At Saqrih, we view ourselves as your digital architects and strategic guides. Our focus is centered on solving complex challenges to streamline your operations and amplify your professional impact. Every workflow we refine, every system we deploy, and every specialist we onboard is dedicated to a single mission: making your success inevitable.",
   description2 = "",
   stats        = STATS,
 }) {

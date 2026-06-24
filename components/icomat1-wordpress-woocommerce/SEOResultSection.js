@@ -16,7 +16,7 @@ const ITEMS = [
   {
     number: "2",
     title: "Planning & Design",
-    body: "Once the brief is finalized, Eyrion creates a structured implementation plan. This includes task sequencing, priorities, testing approach, and any staging or rollback strategies. You get full visibility into the plan before any changes are made to your live WordPress site.",
+    body: "Once the brief is finalized, Saqrih creates a structured implementation plan. This includes task sequencing, priorities, testing approach, and any staging or rollback strategies. You get full visibility into the plan before any changes are made to your live WordPress site.",
   },
   {
     number: "3",
@@ -26,7 +26,7 @@ const ITEMS = [
   {
     number: "4",
     title: "Launch & Monitoring",
-    body: "Once updates are complete, we deploy changes to your live site, verify everything is working correctly, and monitor for any issues or regressions. After launch, Eyrion continues to provide support, refinements, and ongoing care to ensure your WordPress website keeps improving over time.",
+    body: "Once updates are complete, we deploy changes to your live site, verify everything is working correctly, and monitor for any issues or regressions. After launch, Saqrih continues to provide support, refinements, and ongoing care to ensure your WordPress website keeps improving over time.",
   },
 ];
 
@@ -190,7 +190,7 @@ export default function SEOResultsSection() {
             lineHeight: 1.75,
           }}
         >
-          When you choose Eyrion as your WordPress support partner, you get a skilled team
+          When you choose Saqrih as your WordPress support partner, you get a skilled team
           experienced in handling thousands of real-world WordPress issues, updates, and
           complex edge cases. Our process is designed to make support predictable, structured,
           and stress-free—not chaotic.
@@ -240,7 +240,7 @@ export default function SEOResultsSection() {
           }}
         >
           Every WordPress website is different, which is why we don&apos;t rely on
-          guesswork. Eyrion combines a structured process with experienced WordPress engineers
+          guesswork. Saqrih combines a structured process with experienced WordPress engineers
           to ensure safe execution and clear communication at every stage.
         </p>
         <p
@@ -252,7 +252,7 @@ export default function SEOResultsSection() {
           }}
         >
           Our WordPress support specialists work closely with developers and designers when
-          needed, so you&apos;re never stuck coordinating multiple vendors. With Eyrion, you
+          needed, so you&apos;re never stuck coordinating multiple vendors. With Saqrih, you
           get a long-term support team that stays with your website—ready for updates,
           improvements, and ongoing growth.
         </p>

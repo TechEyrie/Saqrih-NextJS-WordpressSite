@@ -213,7 +213,7 @@ export default function SEOResultSection2() {
               color: HEADING,
             }}
           >
-            WordPress Migration Made Easy with Eyrion
+            WordPress Migration Made Easy with Saqrih
           </h2>
           <p
             style={{
@@ -237,7 +237,7 @@ export default function SEOResultSection2() {
               lineHeight: 1.75,
             }}
           >
-            That&apos;s why Eyrion handles the entire WordPress migration process for you—so you
+            That&apos;s why Saqrih handles the entire WordPress migration process for you—so you
             don&apos;t have to deal with the technical workload or potential errors.
           </p>
         </div>
@@ -342,7 +342,7 @@ export default function SEOResultSection2() {
                 lineHeight: 1.78,
               }}
             >
-              Your search engine rankings are protected during migration. Eyrion ensures SEO
+              Your search engine rankings are protected during migration. Saqrih ensures SEO
               elements such as metadata, URL structures, and permalinks are properly preserved and
               optimized during the move.
             </p>

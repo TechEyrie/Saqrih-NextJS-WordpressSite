@@ -104,7 +104,7 @@ function LogoCard({ logo, index }) {
 
 export default function ReliableSection({
   heading = "Reliable by design.",
-  primaryText = "Clients choose Eyrion because we turn complex challenges into dependable, real-world solutions. What once seemed difficult or out of reach is delivered with precision, consistency, and efficiency.",
+  primaryText = "Clients choose Saqrih because we turn complex challenges into dependable, real-world solutions. What once seemed difficult or out of reach is delivered with precision, consistency, and efficiency.",
   secondaryText = "We work with businesses that demand high performance, reliability, and scalability - where results matter and there's no room for compromise.",
   logos = COMPANY_LOGOS,
 }) {

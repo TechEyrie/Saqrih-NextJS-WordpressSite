@@ -191,7 +191,7 @@ export default function SEOResultsSection() {
             margin: 0,
           }}
         >
-          Benefits of Eyrion WordPress Support Services
+          Benefits of Saqrih WordPress Support Services
         </h2>
         <p
           style={{
@@ -203,7 +203,7 @@ export default function SEOResultsSection() {
           }}
         >
           There are many advantages to having reliable USA-based WordPress and WooCommerce
-          support. As a trusted partner for businesses, Eyrion delivers complete website care
+          support. As a trusted partner for businesses, Saqrih delivers complete website care
           designed to keep your WordPress site secure, fast, and consistently online.
         </p>
       </div>
@@ -240,7 +240,7 @@ export default function SEOResultsSection() {
             textAlign: "center",
           }}
         >
-          From updates and backups to performance tuning and continuous monitoring, Eyrion
+          From updates and backups to performance tuning and continuous monitoring, Saqrih
           combines everything into one reliable WordPress support service—keeping your
           website fast, secure, and ready for growth.
         </p>

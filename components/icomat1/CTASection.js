@@ -4,6 +4,8 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import { PRE_FOOTER_SURFACE } from "../../lib/preFooterSurface";
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function CTASection({ onQuoteOpen }) {
@@ -270,7 +272,7 @@ export default function CTASection({ onQuoteOpen }) {
         position:        "relative",
         width:           "100%",
         height:          "300vh",
-        backgroundColor: "#000000",
+        backgroundColor: PRE_FOOTER_SURFACE,
       }}
     >
       {/* Sticky inner — stays in view as you scroll through the 300vh */}
@@ -286,6 +288,18 @@ export default function CTASection({ onQuoteOpen }) {
           overflow:       "hidden",
         }}
       >
+        {/* Black base for stage-1 animation (section shell stays light for footer blend) */}
+        <div
+          aria-hidden
+          style={{
+            position:        "absolute",
+            inset:           0,
+            zIndex:          0,
+            backgroundColor: "#000000",
+            pointerEvents:   "none",
+          }}
+        />
+
         {/* ── Solid #3A502A base ── */}
         <div
           ref={greenBaseRef}
@@ -336,7 +350,7 @@ export default function CTASection({ onQuoteOpen }) {
             position:        "absolute",
             inset:           0,
             zIndex:          4,
-            backgroundColor: "#f7f6f2",
+            backgroundColor: PRE_FOOTER_SURFACE,
             pointerEvents:   "none",
           }}
         />

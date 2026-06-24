@@ -1,5 +1,5 @@
 /**
- * One-off: replace stock image URLs with eyrionPicAt(n) in data files.
+ * One-off: replace stock image URLs with saqrihPicAt(n) in data files.
  */
 import fs from "fs";
 import path from "path";
@@ -21,19 +21,19 @@ for (const rel of targets) {
   let s = fs.readFileSync(file, "utf8");
   if (!s.includes("unsplash.com")) continue;
 
-  if (!s.includes("eyrionPicAt") && !s.includes("eyrionPic")) {
+  if (!s.includes("saqrihPicAt") && !s.includes("saqrihPic")) {
     const depth = rel.split("/").length - 2;
     const importPath = `${"../".repeat(depth)}lib/siteImages`;
     const useAt = rel.includes("Featured") || rel.includes("projectsData") || rel.includes("EndToEnd");
     const imp = useAt
-      ? `import { eyrionPicAt } from "${importPath}";\n`
-      : `import { eyrionPic, UNLOCKING_IMAGE_CARDS } from "${importPath}";\n`;
+      ? `import { saqrihPicAt } from "${importPath}";\n`
+      : `import { saqrihPic, UNLOCKING_IMAGE_CARDS } from "${importPath}";\n`;
     s = s.replace(/^(["']use client["'];\n\n)/, `$1${imp}`);
   }
 
   let i = 0;
   s = s.replace(/https:\/\/images\.unsplash\.com\/[^"'\s]+/g, () => {
-    const repl = `eyrionPicAt(${i})`;
+    const repl = `saqrihPicAt(${i})`;
     i += 1;
     return repl;
   });

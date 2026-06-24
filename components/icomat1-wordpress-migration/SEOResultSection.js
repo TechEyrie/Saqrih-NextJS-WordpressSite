@@ -226,7 +226,7 @@ export default function SEOResultsSection() {
             lineHeight: 1.75,
           }}
         >
-          At Eyrion, we manage the entire WordPress migration process for you from start to
+          At Saqrih, we manage the entire WordPress migration process for you from start to
           finish.
         </p>
       </div>
@@ -315,7 +315,7 @@ export default function SEOResultsSection() {
               fontWeight: 400,
             }}
           >
-            The good news is that you don&apos;t have to manage it yourself. At Eyrion, our
+            The good news is that you don&apos;t have to manage it yourself. At Saqrih, our
             WordPress migration specialists handle everything for you—ensuring a smooth, secure,
             and stress-free transition with minimal disruption to your website and business.
           </p>

@@ -163,8 +163,8 @@ const HEADER_BAR_HEIGHT = 80;
 function BrandLogo({ height = "30px", logoFilter = "none", logoOpacity = 1, logoBlendMode = "normal" }) {
   return (
     <img
-      src="/logo/Eyrion_real_logo.png"
-      alt="Eyrion"
+      src="/logo/Saqrih_real_logo.png"
+      alt="Saqrih"
       style={{
         height,
         width: "auto",
@@ -195,7 +195,7 @@ function BrandWordmark({ color = "#f8f8f8", gradient = "", opacity = 1, blendMod
       userSelect: "none",
       transition: "color 1.2s cubic-bezier(0.22, 1, 0.36, 1), opacity 1.1s cubic-bezier(0.22, 1, 0.36, 1), background-image 1.2s cubic-bezier(0.22, 1, 0.36, 1)",
     }}>
-      Eyrion
+      Saqrih
     </span>
   );
 }
@@ -1198,7 +1198,7 @@ export default function Header({ quoteOpen, setQuoteOpen }) {
         }}>
 
           {/* ── Logo + Wordmark — colors shift with theme ── */}
-          <Link href="/" aria-label="Eyrion — Back home"
+          <Link href="/" aria-label="Saqrih — Back home"
             style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none" }}>
             <BrandLogo
               height="48px"

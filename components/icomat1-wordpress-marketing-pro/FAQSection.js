@@ -35,7 +35,7 @@ const FAQS = [
     id: 5,
     question: "Can you help me test my WordPress ADA compliance?",
     answer:
-      "Yes, Eyrion can perform accessibility testing and audits to identify issues and recommend improvements for better WordPress ADA compliance.",
+      "Yes, Saqrih can perform accessibility testing and audits to identify issues and recommend improvements for better WordPress ADA compliance.",
   },
   {
     id: 6,

@@ -107,7 +107,7 @@ export default function OurAdvantageSection() {
             className="text-[13px] sm:text-[14px] font-medium tracking-wide"
             style={{ color: "rgba(255,255,255,0.45)" }}
           >
-            Why choose Eyrion as your trusted WordPress agency?
+            Why choose Saqrih as your trusted WordPress agency?
           </p>
 
           <h2
@@ -142,7 +142,7 @@ export default function OurAdvantageSection() {
                 className="text-[13px] sm:text-[18px] font-normal leading-relaxed"
                 style={{ color: "rgba(255,255,255,0.92)" }}
               >
-                Eyrion is a premier WordPress specialist agency, leading the
+                Saqrih is a premier WordPress specialist agency, leading the
                 industry in custom design, development, hosting, and
                 high-performance maintenance. We provide end-to-end management
                 of your digital ecosystem to ensure your brand benefits from

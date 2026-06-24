@@ -17,7 +17,7 @@ export default function CardImage({
       >
         <img
           src={src}
-          alt={alt ?? badge ?? "Eyrion WordPress services"}
+          alt={alt ?? badge ?? "Saqrih WordPress services"}
           loading="lazy"
           decoding="async"
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"

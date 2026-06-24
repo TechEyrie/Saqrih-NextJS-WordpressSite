@@ -390,7 +390,7 @@ export default function ReviewsServingSection() {
           }}
         >
           Explore detailed comparisons of leading WordPress design and development agencies, including
-          strengths, weaknesses, client feedback, pricing insights, alternative options, and Eyrion
+          strengths, weaknesses, client feedback, pricing insights, alternative options, and Saqrih
           versus-agency scorecards.
         </p>
         <p

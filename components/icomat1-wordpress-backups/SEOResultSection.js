@@ -179,7 +179,7 @@ export default function SEOResultsSection() {
           }}
         >
           Why should I back up my website with a WordPress backup service from
-          Eyrion?
+          Saqrih?
         </h2>
         <p
           style={{
@@ -227,7 +227,7 @@ export default function SEOResultsSection() {
             lineHeight: 1.78,
           }}
         >
-          Contact Eyrion today, and you'll never have to start completely from
+          Contact Saqrih today, and you'll never have to start completely from
           scratch. Just let us know how often we should back up your site, and
           we'll sit in the background, silently creating WordPress backups to
           suit your schedule. With our WordPress backup solutions, we'll

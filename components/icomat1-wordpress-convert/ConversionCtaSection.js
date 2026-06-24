@@ -81,7 +81,7 @@ export default function ConversionCtaSection() {
               move.
               <br />
               <br />
-              At Eyrion, we completely re-create sites built on other CMS
+              At Saqrih, we completely re-create sites built on other CMS
               platforms or HTML sites and convert to WordPress.
               <br />
               <br />

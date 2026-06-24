@@ -9,10 +9,10 @@ export default function HeroSection() {
     <WordPressServiceHeroLayout>
       <div className="wp-service-hero-copy" style={{ maxWidth: "900px" }}>
         <h1 className="wp-service-hero-title" style={{ maxWidth: "16ch" }}>
-          Eyrion+ Premium Support
+          Saqrih+ Premium Support
         </h1>
         <p className="wp-service-hero-lead" style={{ maxWidth: "56ch" }}>
-          Get a dedicated point of contact and priority support with Eyrion+
+          Get a dedicated point of contact and priority support with Saqrih+
         </p>
       </div>
       <WordPressServiceHeroStats />

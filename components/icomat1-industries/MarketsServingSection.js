@@ -49,7 +49,7 @@ export default function MarketsServingSection() {
             color: BODY,
           }}
         >
-          Eyrion delivers WordPress website design and development tailored to how your industry
+          Saqrih delivers WordPress website design and development tailored to how your industry
           operates—whether you need lead generation, bookings, compliance-minded content, or a brand
           presence that earns trust.
         </p>

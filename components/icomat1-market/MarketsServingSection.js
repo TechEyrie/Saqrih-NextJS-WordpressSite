@@ -40,7 +40,7 @@ export default function MarketsServingSection() {
         </p>
         <h2 style={headingStyle}>Markets we serve</h2>
         <p style={introStyle}>
-          Eyrion is headquartered in Qatar. We partner with businesses across Doha, Lusail, and
+          Saqrih is headquartered in Qatar. We partner with businesses across Doha, Lusail, and
           nationwide — and support clients throughout the Gulf and wider region with WordPress design,
           development, hosting, and ongoing care.
         </p>

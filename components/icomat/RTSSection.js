@@ -130,7 +130,7 @@ export default function RTSSection() {
             color: "#c0c0c0", // initial gray — GSAP overrides per char
           }}
         >
-          Eyrion invented RTS.
+          Saqrih invented RTS.
           <br />
           Rapid Tow Shearing.
         </p>

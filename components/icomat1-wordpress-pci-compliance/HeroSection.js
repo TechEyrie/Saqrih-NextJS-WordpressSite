@@ -21,7 +21,7 @@ export default function HeroSection() {
 
           <p className="wp-service-hero-lead" style={{ maxWidth: "68ch" }}
           >
-            If you&apos;re managing online payments or handling customer card data, Eyrion helps simplify the PCI
+            If you&apos;re managing online payments or handling customer card data, Saqrih helps simplify the PCI
             compliance process for WordPress websites by improving security, reducing risk, and supporting safer online
             transactions.
           </p>

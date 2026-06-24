@@ -18,7 +18,7 @@ export default function MarketsUnitedStatesSection() {
       <div className="markets-section-inner" style={{ textAlign: "center" }}>
         <h2 style={headingStyle}>United States</h2>
         <p style={introStyle}>
-          Eyrion also offers WordPress design, development, hosting, and ongoing support to your
+          Saqrih also offers WordPress design, development, hosting, and ongoing support to your
           local city across the United States.
         </p>
         <p

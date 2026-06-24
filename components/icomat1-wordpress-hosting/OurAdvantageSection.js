@@ -124,7 +124,7 @@ const FEATURES = [
   },
   {
     title: "Expert-backed infrastructure",
-    desc: "Hosting with Eyrion means having an elite team of technical architects standing behind your platform. Our specialists are available to preemptively resolve complexities and ensure seamless continuity.",
+    desc: "Hosting with Saqrih means having an elite team of technical architects standing behind your platform. Our specialists are available to preemptively resolve complexities and ensure seamless continuity.",
   },
   {
     title: "Redundant, fail-safe backups",
@@ -253,7 +253,7 @@ export default function OurAdvantageSection({
             className="text-[13px] sm:text-[14px] font-medium tracking-wide"
             style={{ color: "rgba(255,255,255,0.45)" }}
           >
-            Fully managed WordPress hosting by Eyrion
+            Fully managed WordPress hosting by Saqrih
           </p>
 
           <h2

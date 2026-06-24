@@ -1,7 +1,7 @@
 import { FUELED_CASE_STUDY } from "../../../../lib/caseStudies/fueledData";
 
 export const metadata = {
-  title: `${FUELED_CASE_STUDY.name} Case Study | Eyrion`,
+  title: `${FUELED_CASE_STUDY.name} Case Study | Saqrih`,
   description: FUELED_CASE_STUDY.heroIntro,
 };
 

@@ -10,7 +10,7 @@ gsap.registerPlugin(SplitText, ScrollTrigger);
 const FEATURES = [
   {
     title: "Five-star WordPress support company",
-    desc: "If you need dependable WordPress help, Eyrion delivers consistent, high-quality support backed by strong client satisfaction and years of experience. Our approach focuses on clear communication and practical results, giving you stability and confidence from real WordPress experts.",
+    desc: "If you need dependable WordPress help, Saqrih delivers consistent, high-quality support backed by strong client satisfaction and years of experience. Our approach focuses on clear communication and practical results, giving you stability and confidence from real WordPress experts.",
   },
   {
     title: "Fast and efficient WordPress support",
@@ -30,7 +30,7 @@ const FEATURES = [
   },
   {
     title: "Seamless WordPress migration",
-    desc: "If you're moving from another platform, Eyrion handles full WordPress migrations with minimal disruption. We safely transfer content, structure, and functionality while ensuring everything works correctly post-migration.",
+    desc: "If you're moving from another platform, Saqrih handles full WordPress migrations with minimal disruption. We safely transfer content, structure, and functionality while ensuring everything works correctly post-migration.",
   },
   {
     title: "Experienced WordPress developers",
@@ -128,7 +128,7 @@ export default function OurAdvantageSection() {
           </h2>
 
           <p className="text-[13px] sm:text-[18px] font-normal leading-relaxed max-w-[700px]" style={{ color: "rgba(255,255,255,0.92)" }}>
-            Eyrion is a professional WordPress support company focused on keeping your website
+            Saqrih is a professional WordPress support company focused on keeping your website
             stable, secure, and continuously improving. From troubleshooting and updates to
             long-term maintenance, we ensure your WordPress site remains reliable and easy to
             manage—so it works for your business, not against it.

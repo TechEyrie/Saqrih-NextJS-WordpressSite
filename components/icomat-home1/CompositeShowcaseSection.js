@@ -112,7 +112,7 @@ export default function CompositeShowcaseSection({ pageKey: pageKeyProp }) {
         <img
           className="absolute inset-0 w-full h-full object-cover"
           src={sectionImage}
-          alt="Eyrion composite materials showcase"
+          alt="Saqrih composite materials showcase"
           loading="lazy"
           decoding="async"
           style={{ opacity: 0.9 }}

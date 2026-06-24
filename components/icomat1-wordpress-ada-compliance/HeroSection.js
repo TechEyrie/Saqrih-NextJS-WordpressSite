@@ -20,7 +20,7 @@ export default function HeroSection() {
 
           <p className="wp-service-hero-lead" style={{ maxWidth: "68ch" }}
           >
-            Eyrion runs accessibility audits and implements trusted solutions to help improve WordPress
+            Saqrih runs accessibility audits and implements trusted solutions to help improve WordPress
             ADA compliance.
           </p>
       </div>

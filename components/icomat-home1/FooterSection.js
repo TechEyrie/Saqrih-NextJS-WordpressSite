@@ -6,9 +6,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// ── SVG: Eyrion stacked-waves logo ────────────────────────────
+// ── SVG: Saqrih stacked-waves logo ────────────────────────────
 const WavesLogo = () => (
-  <svg width="88" height="72" viewBox="0 0 88 72" fill="none" aria-label="Eyrion waves mark">
+  <svg width="88" height="72" viewBox="0 0 88 72" fill="none" aria-label="Saqrih waves mark">
     <path d="M4  14 Q22  2 44 14 Q66  2 84 14" stroke="white" strokeWidth="2.2" strokeLinecap="round" fill="none" opacity="0.55"/>
     <path d="M4  26 Q22 14 44 26 Q66 14 84 26" stroke="white" strokeWidth="2.2" strokeLinecap="round" fill="none" opacity="0.68"/>
     <path d="M4  38 Q22 26 44 38 Q66 26 84 38" stroke="white" strokeWidth="2.2" strokeLinecap="round" fill="none" opacity="0.82"/>
@@ -72,7 +72,7 @@ const NAV_WORK_LINKS = [
 ];
 
 const NAV_ABOUT_LINKS = [
-  { label: "Why Eyrion", href: "/why-eyrion" },
+  { label: "Why Saqrih", href: "/why-saqrih" },
   { label: "Read the blog", href: "/blog" },
   { label: "AI disclosure (llms.txt)", href: "/llms.txt" },
 ];
@@ -363,8 +363,8 @@ export default function FooterSection() {
         >
           <div style={{ marginTop: 0, paddingTop: 0 }}>
             <img
-              src="/logo/Eyrion_real_logo.png"
-              alt="Eyrion"
+              src="/logo/Saqrih_real_logo.png"
+              alt="Saqrih"
               style={{
                 height: "clamp(56px, 5vw, 76px)",
                 width: "auto",
@@ -383,7 +383,7 @@ export default function FooterSection() {
               lineHeight: 1,
               userSelect: "none",
             }}>
-              EYRION
+              SAQRIH
             </span>
           </div>
         </div>
@@ -472,7 +472,7 @@ export default function FooterSection() {
               fontSize: "clamp(0.58rem, 0.65vw, 0.65rem)",
               fontWeight: 500, letterSpacing: "0.04em", margin: 0,
             }}>
-              ©2026 Eyrion. All rights reserved.
+              ©2026 Saqrih. All rights reserved.
             </p>
           </div>
 

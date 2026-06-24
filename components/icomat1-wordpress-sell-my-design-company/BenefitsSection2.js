@@ -176,7 +176,7 @@ export default function BenefitsSection2({ onQuoteClick }) {
           }}
         >
           Selling a web design business is a major decision, and timing matters. Whether
-          you&apos;re ready to move on or exploring new opportunities, Eyrion makes the process
+          you&apos;re ready to move on or exploring new opportunities, Saqrih makes the process
           simple, structured, and low-stress.
         </p>
 

@@ -187,7 +187,7 @@ export default function BenefitsSection2({ onQuoteClick }) {
         >
           Moving to a more capable WordPress hosting environment unlocks better speed, improved
           reliability, and the flexibility to scale your website as your business grows. Whether
-          you&apos;re leaving shared hosting or consolidating multiple systems, Eyrion plans your
+          you&apos;re leaving shared hosting or consolidating multiple systems, Saqrih plans your
           migration around your traffic patterns, plugins, and operational needs—so your new setup
           actually fits how your business runs.
         </p>
@@ -216,7 +216,7 @@ export default function BenefitsSection2({ onQuoteClick }) {
             lineHeight: 1.78,
           }}
         >
-          With Eyrion handling your WordPress migration, you can stay focused on your business
+          With Saqrih handling your WordPress migration, you can stay focused on your business
           while we make sure your website moves safely, securely, and without disruption.
         </p>
 

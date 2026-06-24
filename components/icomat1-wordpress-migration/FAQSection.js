@@ -11,19 +11,19 @@ const FAQS = [
     id: 1,
     question: "What is WordPress support?",
     answer:
-      "WordPress support refers to ongoing technical assistance for your website, including updates, security monitoring, backups, performance optimization, troubleshooting, and general maintenance. At Eyrion, it ensures your WordPress website stays secure, fast, and fully functional at all times.",
+      "WordPress support refers to ongoing technical assistance for your website, including updates, security monitoring, backups, performance optimization, troubleshooting, and general maintenance. At Saqrih, it ensures your WordPress website stays secure, fast, and fully functional at all times.",
   },
   {
     id: 2,
     question: "Is there a charge for WordPress support service?",
     answer:
-      "Yes, WordPress support is typically offered through monthly or custom service plans. The cost depends on your website size, complexity, and required level of support. Eyrion provides flexible WordPress support packages to match different business needs and budgets.",
+      "Yes, WordPress support is typically offered through monthly or custom service plans. The cost depends on your website size, complexity, and required level of support. Saqrih provides flexible WordPress support packages to match different business needs and budgets.",
   },
   {
     id: 3,
-    question: "What distinguishes Eyrion's WordPress support services in the USA?",
+    question: "What distinguishes Saqrih's WordPress support services in the USA?",
     answer:
-      "Eyrion stands out by offering experienced, USA-based WordPress support with fast response times, proactive monitoring, and a hands-on engineering approach. Instead of reactive fixes only, we focus on preventing issues before they impact your website, ensuring long-term stability and performance.",
+      "Saqrih stands out by offering experienced, USA-based WordPress support with fast response times, proactive monitoring, and a hands-on engineering approach. Instead of reactive fixes only, we focus on preventing issues before they impact your website, ensuring long-term stability and performance.",
   },
   {
     id: 4,
@@ -35,19 +35,19 @@ const FAQS = [
     id: 5,
     question: "Do you offer WordPress repair services for compromised sites?",
     answer:
-      "Yes. If your WordPress website is hacked or compromised, Eyrion provides full repair and recovery services. This includes malware removal, restoring site functionality, closing security gaps, and strengthening protection to prevent future attacks.",
+      "Yes. If your WordPress website is hacked or compromised, Saqrih provides full repair and recovery services. This includes malware removal, restoring site functionality, closing security gaps, and strengthening protection to prevent future attacks.",
   },
   {
     id: 6,
     question: "How long does WordPress support take?",
     answer:
-      "Most support requests are handled quickly, depending on complexity and severity. Small fixes can often be resolved the same day, while larger issues like recovery or development tasks may take longer. Eyrion prioritizes fast response times and efficient resolution to minimize downtime.",
+      "Most support requests are handled quickly, depending on complexity and severity. Small fixes can often be resolved the same day, while larger issues like recovery or development tasks may take longer. Saqrih prioritizes fast response times and efficient resolution to minimize downtime.",
   },
   {
     id: 7,
     question: "Do you provide WP support services for e-commerce and WooCommerce websites too?",
     answer:
-      "Yes. Eyrion fully supports WooCommerce and other WordPress-based e-commerce websites. This includes checkout issues, performance optimization, security hardening, plugin compatibility, and ongoing maintenance to ensure your online store runs smoothly and securely.",
+      "Yes. Saqrih fully supports WooCommerce and other WordPress-based e-commerce websites. This includes checkout issues, performance optimization, security hardening, plugin compatibility, and ongoing maintenance to ensure your online store runs smoothly and securely.",
   },
 ];
 
@@ -286,7 +286,7 @@ export default function FAQSection() {
           >
             Clear answers about pricing, support timelines, hacked site recovery, USA-based
             support, and WooCommerce coverage—so you know exactly what to expect before
-            working with Eyrion.
+            working with Saqrih.
           </p>
         </div>
 

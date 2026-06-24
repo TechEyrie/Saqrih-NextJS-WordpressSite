@@ -104,7 +104,7 @@ export default function OurAdvantageSection() {
           style={{ flex: "0 0 45%" }}
         >
           <p ref={labelRef} className="text-[13px] sm:text-[14px] font-medium tracking-wide" style={{ color: "rgba(255,255,255,0.45)" }}>
-            Eyrion Divi experts
+            Saqrih Divi experts
           </p>
 
           <h2 ref={headingRef} className="text-white font-bold leading-[1.0] tracking-tight" style={{ fontSize: "54px", maxWidth: "min(36ch, 100%)" }}>
@@ -112,7 +112,7 @@ export default function OurAdvantageSection() {
           </h2>
 
           <p className="text-[13px] sm:text-[18px] font-normal leading-relaxed max-w-[700px]" style={{ color: "rgba(255,255,255,0.92)" }}>
-            As a trusted Divi development agency, Eyrion specializes in delivering professional Divi
+            As a trusted Divi development agency, Saqrih specializes in delivering professional Divi
             website design and WordPress development services tailored to your business goals. If
             you&apos;re familiar with the WordPress ecosystem, you&apos;ve likely come across the Divi
             theme—one of the most widely used and flexible WordPress themes available today, powering
@@ -144,7 +144,7 @@ export default function OurAdvantageSection() {
 
             <p className="text-[13px] sm:text-[18px] font-normal leading-relaxed" style={{ color: "rgba(255,255,255,0.72)" }}>
               Whether you&apos;re redesigning an existing WordPress website or building a completely
-              new one, Eyrion helps you unlock the full potential of the Divi theme with expert
+              new one, Saqrih helps you unlock the full potential of the Divi theme with expert
               guidance, custom development, and long-term support tailored to your business needs.
             </p>
           </div>

@@ -10,7 +10,7 @@ gsap.registerPlugin(SplitText, ScrollTrigger);
 const FEATURES = [
   {
     title: "WordPress Support Agency",
-    desc: "At Eyrion, we take customer service seriously and focus on delivering a smooth, stress-free WordPress support experience. Our team of skilled WordPress designers and developers is always ready to resolve technical issues quickly and effectively. As a professional WordPress support company, we provide structured technical support packages designed to keep your website running reliably, securely, and without interruptions.",
+    desc: "At Saqrih, we take customer service seriously and focus on delivering a smooth, stress-free WordPress support experience. Our team of skilled WordPress designers and developers is always ready to resolve technical issues quickly and effectively. As a professional WordPress support company, we provide structured technical support packages designed to keep your website running reliably, securely, and without interruptions.",
   },
   {
     title: "Expert WordPress Support Team",
@@ -18,11 +18,11 @@ const FEATURES = [
   },
   {
     title: "Ongoing WordPress Support Packages",
-    desc: "We offer flexible, ongoing WordPress support plans tailored to your website's specific needs. Our maintenance and support services remove technical burden so you can focus on growing your business. With Eyrion's managed WordPress support solutions, your website stays updated, secure, and consistently operational.",
+    desc: "We offer flexible, ongoing WordPress support plans tailored to your website's specific needs. Our maintenance and support services remove technical burden so you can focus on growing your business. With Saqrih's managed WordPress support solutions, your website stays updated, secure, and consistently operational.",
   },
   {
     title: "Dedicated Support Retainers",
-    desc: "For businesses needing continuous, hands-on assistance, we provide dedicated WordPress support retainers. We integrate directly into your workflow and project management systems to create a seamless long-term support partnership. Eyrion's WordPress support services are built to deliver consistent, scalable, and proactive assistance that evolves with your business.",
+    desc: "For businesses needing continuous, hands-on assistance, we provide dedicated WordPress support retainers. We integrate directly into your workflow and project management systems to create a seamless long-term support partnership. Saqrih's WordPress support services are built to deliver consistent, scalable, and proactive assistance that evolves with your business.",
   },
 ];
 
@@ -100,7 +100,7 @@ export default function OurAdvantageSection() {
           style={{ flex: "0 0 45%" }}
         >
           <p ref={labelRef} className="text-[13px] sm:text-[14px] font-medium tracking-wide" style={{ color: "rgba(255,255,255,0.45)" }}>
-            Eyrion WordPress Support
+            Saqrih WordPress Support
           </p>
 
           <h2 ref={headingRef} className="text-white font-bold leading-[1.0] tracking-tight" style={{ fontSize: "54px", maxWidth: "22ch" }}>
@@ -116,7 +116,7 @@ export default function OurAdvantageSection() {
           </p>
 
           <p className="text-[13px] sm:text-[18px] font-normal leading-relaxed max-w-[700px]" style={{ color: "rgba(255,255,255,0.92)" }}>
-            From the first support request to long-term partnership retainers, Eyrion
+            From the first support request to long-term partnership retainers, Saqrih
             delivers reliable WordPress and WooCommerce support built to keep your website
             stable, secure, and performing at its peak.
           </p>
@@ -126,7 +126,7 @@ export default function OurAdvantageSection() {
           <div className="w-full max-w-[560px] flex flex-col gap-10">
             <div ref={rightColRef} className="flex flex-col gap-5">
               <p className="text-[13px] sm:text-[18px] font-semibold leading-relaxed" style={{ color: "rgba(255,255,255,0.92)" }}>
-                From help desk through retainers, here is how Eyrion delivers WordPress and
+                From help desk through retainers, here is how Saqrih delivers WordPress and
                 WooCommerce support you can count on.
               </p>
             </div>

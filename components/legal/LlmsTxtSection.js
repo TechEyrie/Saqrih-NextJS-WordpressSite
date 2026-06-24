@@ -1,6 +1,6 @@
 "use client";
 
-import { LLMS_TXT } from "../../content/eyrion-llms.txt";
+import { LLMS_TXT } from "../../content/saqrih-llms.txt";
 
 export default function LlmsTxtSection() {
   return (

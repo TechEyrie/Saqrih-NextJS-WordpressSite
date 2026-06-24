@@ -1,4 +1,4 @@
-import { DEFAULT_SITE_IMAGE, eyrionPic } from "../lib/siteImages.js";
+import { DEFAULT_SITE_IMAGE, saqrihPic } from "../lib/siteImages.js";
 
 // WordPress API utility functions — set NEXT_PUBLIC_WORDPRESS_URL to your site origin (no trailing slash)
 function normalizeWordPressSiteUrl() {
@@ -633,7 +633,7 @@ function extractImageUrl(imageData) {
  */
 export function transformWordPressCaseStudy(wpCaseStudy, featuredMedia = null) {
   // Get featured image URL
-  let imageUrl = eyrionPic(4);
+  let imageUrl = saqrihPic(4);
   if (featuredMedia && featuredMedia.source_url) {
     imageUrl = featuredMedia.source_url;
   } else if (wpCaseStudy._embedded && wpCaseStudy._embedded['wp:featuredmedia'] && wpCaseStudy._embedded['wp:featuredmedia'][0]) {
@@ -757,7 +757,7 @@ async function fetchWordPressCaseStudiesGraphQL() {
         slug: cs.slug,
         title: cs.title || '',
         category: 'web-app',
-        image: cs.featuredImage?.node?.sourceUrl || eyrionPic(4),
+        image: cs.featuredImage?.node?.sourceUrl || saqrihPic(4),
         tags: [],
         badges: [],
         techStack: '',
@@ -878,7 +878,7 @@ async function fetchWordPressCaseStudyBySlugGraphQL(slug) {
       slug: cs.slug,
       title: cs.title || '',
       category: 'web-app',
-      image: cs.featuredImage?.node?.sourceUrl || eyrionPic(4),
+      image: cs.featuredImage?.node?.sourceUrl || saqrihPic(4),
       wordpressUrl: wordPressPermalinkFromUri(cs.uri),
       content: cs.content || '',
     };

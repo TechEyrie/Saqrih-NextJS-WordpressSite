@@ -11,7 +11,7 @@ const ITEMS = [
   {
     number: "1",
     title: "Accessible and easy to use",
-    body: "WordPress is designed for simplicity in day-to-day management, with an intuitive dashboard, familiar editing tools, and a massive ecosystem of plugins and integrations. With Eyrion handling the technical side, your team can confidently manage content while we take care of the complex backend work, updates, and infrastructure.",
+    body: "WordPress is designed for simplicity in day-to-day management, with an intuitive dashboard, familiar editing tools, and a massive ecosystem of plugins and integrations. With Saqrih handling the technical side, your team can confidently manage content while we take care of the complex backend work, updates, and infrastructure.",
   },
   {
     number: "2",
@@ -21,7 +21,7 @@ const ITEMS = [
   {
     number: "3",
     title: "Secure and reliable for peace of mind",
-    body: "Website security requires continuous attention, not one-time fixes. WordPress performs best when updates, configurations, and access controls are properly managed. Eyrion helps reduce risk through regular patching, security monitoring, and safe system configurations, allowing you to focus on your business while your website stays protected.",
+    body: "Website security requires continuous attention, not one-time fixes. WordPress performs best when updates, configurations, and access controls are properly managed. Saqrih helps reduce risk through regular patching, security monitoring, and safe system configurations, allowing you to focus on your business while your website stays protected.",
   },
   {
     number: "4",
@@ -239,7 +239,7 @@ export default function WhySEOResultsSection() {
           }}
         >
           These are just a few reasons why businesses choose WordPress—and why professional
-          support makes such a difference. At Eyrion, we treat your website like a long-term
+          support makes such a difference. At Saqrih, we treat your website like a long-term
           product, not a one-time project. That means structured updates, clear priorities, and
           continuous improvement instead of reactive fixes.
         </p>

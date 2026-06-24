@@ -236,7 +236,7 @@ export default function OurAdvantageSection({
             className="text-[13px] sm:text-[18px] font-normal leading-relaxed max-w-[520px]"
             style={{ color: "rgba(255,255,255,0.92)" }}
           >
-            Choose Eyrion's professional WordPress Retained Services plans to enhance performance, strengthen security, and maintain long-term reliability for your website.
+            Choose Saqrih's professional WordPress Retained Services plans to enhance performance, strengthen security, and maintain long-term reliability for your website.
           </p>
 
           <button

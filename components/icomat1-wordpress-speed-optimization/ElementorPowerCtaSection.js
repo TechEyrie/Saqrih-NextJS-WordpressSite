@@ -15,7 +15,7 @@ const FONT_BODY = "clamp(1.05rem, 1.25vw, 1.2rem)";
 
 const BODY_PARAS = [
   "With WordPress speed optimization, a faster website becomes a powerful advantage that improves user experience, increases engagement, and supports stronger search engine rankings.",
-  "Better performance helps your visitors navigate your site more smoothly while also improving visibility in search results. At Eyrion, we provide tailored WordPress optimization strategies designed to enhance your site's speed and overall efficiency.",
+  "Better performance helps your visitors navigate your site more smoothly while also improving visibility in search results. At Saqrih, we provide tailored WordPress optimization strategies designed to enhance your site's speed and overall efficiency.",
   "Throughout our process, we take a complete approach to performance improvement—from detailed initial testing to fully customized optimization recommendations. Our goal is to ensure your WordPress website achieves consistently fast, reliable, and scalable performance.",
 ];
 

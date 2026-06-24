@@ -107,7 +107,7 @@ const FEATURES = [
   },
   {
     title: "Reduced hourly rate",
-    desc: "As part of the Eyrion+ program, all projects and tasks are billed at a preferred, discounted hourly rate—giving you more value as you scale.",
+    desc: "As part of the Saqrih+ program, all projects and tasks are billed at a preferred, discounted hourly rate—giving you more value as you scale.",
   },
 ];
 
@@ -195,7 +195,7 @@ export default function OurAdvantageSection({
           </h2>
 
           <p className="text-[13px] sm:text-[18px] font-normal leading-relaxed max-w-[520px]" style={{ color: "rgba(255,255,255,0.92)" }}>
-            With Eyrion+, you get direct access to our team, a dedicated point of contact, guaranteed 24-hour response times, and priority WordPress support when you need it most.
+            With Saqrih+, you get direct access to our team, a dedicated point of contact, guaranteed 24-hour response times, and priority WordPress support when you need it most.
           </p>
 
           <GlassQuoteButton onClick={onQuoteClick} label="Book a Free Consultation" />

@@ -216,7 +216,7 @@ export default function BenefitsSection() {
               maxWidth: "52ch",
             }}
           >
-            At Eyrion, we take WordPress support and security seriously. With our
+            At Saqrih, we take WordPress support and security seriously. With our
             dedicated team managing your website, we help ensure your business stays
             protected against common threats and vulnerabilities.
           </p>

@@ -15,7 +15,7 @@ export default function HeroSection() {
 
           <p className="wp-service-hero-lead" style={{ maxWidth: "68ch" }}
           >
-            Build compliant WordPress websites with confidence. Eyrion helps businesses meet
+            Build compliant WordPress websites with confidence. Saqrih helps businesses meet
             ADA, GDPR, and PCI compliance standards with expert guidance, secure development
             practices, and experienced WordPress specialists you can trust.
           </p>

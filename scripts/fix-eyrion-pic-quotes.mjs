@@ -16,11 +16,11 @@ const files = [
 for (const rel of files) {
   const file = path.join(root, rel);
   let s = fs.readFileSync(file, "utf8");
-  s = s.replace(/"(eyrionPicAt\(\d+\))"/g, "$1");
+  s = s.replace(/"(saqrihPicAt\(\d+\))"/g, "$1");
   s = s.replace(/from "\.\.\/lib\/siteImages"/g, 'from "../../lib/siteImages"');
   if (rel.includes("projectsData")) {
-    if (!s.includes("import { eyrionPicAt }")) {
-      s = `import { eyrionPicAt } from "../../lib/siteImages.js";\n\n${s}`;
+    if (!s.includes("import { saqrihPicAt }")) {
+      s = `import { saqrihPicAt } from "../../lib/siteImages.js";\n\n${s}`;
     }
   }
   if (rel.includes("UnlockingSection")) {
@@ -29,7 +29,7 @@ for (const rel of files) {
       "const IMAGE_CARDS = UNLOCKING_IMAGE_CARDS;"
     );
     s = s.replace(
-      /import \{ eyrionPic, UNLOCKING_IMAGE_CARDS \}/,
+      /import \{ saqrihPic, UNLOCKING_IMAGE_CARDS \}/,
       "import { UNLOCKING_IMAGE_CARDS }"
     );
   }

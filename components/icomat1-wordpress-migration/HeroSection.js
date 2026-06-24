@@ -16,7 +16,7 @@ export default function HeroSection() {
           <p className="wp-service-hero-lead" style={{ maxWidth: "68ch" }}
           >
             Moving your website doesn&apos;t have to be complicated. Whether you&apos;re
-            upgrading hosting or outgrowing your current setup, Eyrion provides smooth and
+            upgrading hosting or outgrowing your current setup, Saqrih provides smooth and
             secure WordPress migration services.
           </p>
 

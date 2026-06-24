@@ -1,5 +1,5 @@
 /**
- * Eyrion markets — Qatar-based, Gulf & regional coverage.
+ * Saqrih markets — Qatar-based, Gulf & regional coverage.
  * Local area links are generated from lib/locations/locationRegistry.js
  */
 

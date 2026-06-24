@@ -169,9 +169,9 @@ function LeftColumn() {
         buyer and seller.
       </p>
 
-      <h2 style={h2}>Eyrion&apos;s perspective on agency acquisitions</h2>
+      <h2 style={h2}>Saqrih&apos;s perspective on agency acquisitions</h2>
       <p style={p}>
-        Eyrion approaches acquisitions as experienced operators who understand
+        Saqrih approaches acquisitions as experienced operators who understand
         the realities of running and scaling digital agencies day to day.
       </p>
       <p style={p}>
@@ -227,7 +227,7 @@ function LeftColumn() {
 const GUIDE_OTHER_ROWS = [
   "Types of agency buyers",
   "Timeline of an agency sale",
-  "The Eyrion acquisition model",
+  "The Saqrih acquisition model",
   "FAQ",
 ];
 

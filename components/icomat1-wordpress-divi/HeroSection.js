@@ -16,7 +16,7 @@ export default function HeroSection() {
           <p className="wp-service-hero-lead" style={{ maxWidth: "68ch" }}
           >
             Our expert Divi WordPress developers help businesses build fast, flexible, and
-            visually stunning websites using the Divi theme. With deep Divi experience, Eyrion
+            visually stunning websites using the Divi theme. With deep Divi experience, Saqrih
             helps you get the most out of your WordPress website.
           </p>
       </div>

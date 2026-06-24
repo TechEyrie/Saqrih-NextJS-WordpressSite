@@ -179,8 +179,8 @@ export default function LoadingScreen({ onComplete }) {
           }}
         >
           <img
-            src="/logo/Eyrion_real_logo.png"
-            alt="Eyrion"
+            src="/logo/Saqrih_real_logo.png"
+            alt="Saqrih"
             width={83}
             height={83}
             style={{

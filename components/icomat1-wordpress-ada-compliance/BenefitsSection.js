@@ -203,7 +203,7 @@ export default function BenefitsSection() {
               maxWidth: "52ch",
             }}
           >
-            Becoming ADA compliant on a WordPress website can be a detailed process. At Eyrion, we start with
+            Becoming ADA compliant on a WordPress website can be a detailed process. At Saqrih, we start with
             the fundamentals and go beyond basic requirements to improve overall accessibility.
           </p>
         </div>

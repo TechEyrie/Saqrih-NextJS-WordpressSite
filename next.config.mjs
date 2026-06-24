@@ -7,6 +7,11 @@ const nextConfig = {
         destination: "/case-studies/syntaxstudios",
         permanent: true,
       },
+      {
+        source: "/why-eyrion",
+        destination: "/why-saqrih",
+        permanent: true,
+      },
     ];
   },
   async headers() {

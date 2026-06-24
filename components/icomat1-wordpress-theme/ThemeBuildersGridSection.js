@@ -301,7 +301,7 @@ export default function ThemeBuildersGridSection() {
               lineHeight: 1.75,
             }}
           >
-            Eyrion offers website design services utilizing your favorite WordPress themes and page
+            Saqrih offers website design services utilizing your favorite WordPress themes and page
             builders. Our team is distributed and spread throughout the United States, and team
             member experiences are broad, yet deep.
           </p>

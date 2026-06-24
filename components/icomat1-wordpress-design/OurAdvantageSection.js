@@ -110,7 +110,7 @@ function GlassQuoteButton({ onClick }) {
 const FEATURES = [
   {
     title: "Your comprehensive digital ecosystem",
-    desc: "Eyrion provides an end-to-end partnership, expertly engineering, hosting, and maintaining your custom-built or redesigned WordPress platform to ensure peak performance.",
+    desc: "Saqrih provides an end-to-end partnership, expertly engineering, hosting, and maintaining your custom-built or redesigned WordPress platform to ensure peak performance.",
   },
   {
     title: "Experienced WordPress team",
@@ -213,7 +213,7 @@ export default function OurAdvantageSection({
             className="text-[13px] sm:text-[14px] font-medium tracking-wide"
             style={{ color: "rgba(255,255,255,0.45)" }}
           >
-            Why Eyrion as your WordPress partner?
+            Why Saqrih as your WordPress partner?
           </p>
 
           <h2

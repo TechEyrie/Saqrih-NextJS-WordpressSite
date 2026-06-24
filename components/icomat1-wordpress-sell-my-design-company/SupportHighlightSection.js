@@ -72,7 +72,7 @@ export default function SupportHighlightSection({ imageSrc = DEFAULT_IMAGE }) {
           >
             We deliver high-quality WordPress support services with fast, reliable
             response times, no matter the size or complexity of your website. Whether you
-            run a small business site or a large-scale platform, Eyrion provides dependable
+            run a small business site or a large-scale platform, Saqrih provides dependable
             website support tailored to your needs.
           </p>
           <p

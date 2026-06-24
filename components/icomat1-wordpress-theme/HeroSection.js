@@ -15,7 +15,7 @@ export default function HeroSection() {
 
           <p className="wp-service-hero-lead" style={{ maxWidth: "68ch" }}
           >
-            Eyrion works with leading WordPress themes and page builders to deliver custom
+            Saqrih works with leading WordPress themes and page builders to deliver custom
             website design and development services tailored to your needs.
           </p>
       </div>

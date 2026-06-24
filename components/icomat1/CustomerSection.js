@@ -489,7 +489,7 @@ export default function CustomersSection({
               {/* RIGHT */}
               <div className="flex flex-col">
                 <p className="text-[12px] font-medium mb-4 hidden md:block" style={{ color: "rgba(255,255,255,0.45)" }}>
-                  Eyrion testimonial highlights ↓
+                  Saqrih testimonial highlights ↓
                 </p>
                 <div className="flex flex-col gap-3 md:gap-2">
                   {CLIENTS.map((client, i) => (

@@ -13,7 +13,7 @@ const PARAGRAPHS = [
   "Elementor also provides extensive design flexibility, allowing full control over typography, spacing, borders, shadows, and animations. This makes it easy to create visually consistent and engaging WordPress websites tailored to any brand.",
   "While Elementor does not include built-in SEO tools, it integrates seamlessly with leading SEO plugins like Yoast SEO and Rank Math, helping you optimize meta data, schema, and overall search visibility.",
   "The Elementor development team regularly releases updates focused on performance, security, accessibility, and new features, ensuring the platform stays modern and reliable.",
-  "At Eyrion, we use Elementor to build high-quality WordPress websites that are fast, scalable, and fully customized to business needs—whether you're starting from scratch or upgrading an existing site.",
+  "At Saqrih, we use Elementor to build high-quality WordPress websites that are fast, scalable, and fully customized to business needs—whether you're starting from scratch or upgrading an existing site.",
 ];
 
 const ICON_STROKE = "#DFFB85";

@@ -225,7 +225,7 @@ export default function SEOResultsSection() {
             textAlign: "center",
           }}
         >
-          At Eyrion, we build and manage Divi websites with long-term usability in mind. Our Divi
+          At Saqrih, we build and manage Divi websites with long-term usability in mind. Our Divi
           developers avoid unnecessary complexity and ensure your website remains easy to edit,
           maintain, and scale over time. Every project is optimized to take full advantage of the
           Divi website builder while maintaining strong performance, responsiveness, and user

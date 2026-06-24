@@ -100,7 +100,7 @@ export default function WhyValueServiceSection() {
                 maxWidth: "min(68ch, 100%)",
               }}
             >
-              At Eyrion, we believe we&apos;re a team of guides. We are focused on solving problems in
+              At Saqrih, we believe we&apos;re a team of guides. We are focused on solving problems in
               order to make our clients&apos; lives easier and their work more effective. Every process
               we build, every system we implement, every team member we add, aims to further that
               mission.

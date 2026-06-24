@@ -103,7 +103,7 @@ function ImageModal({ src, alt, onClose }) {
         <img
           style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
           src={src}
-          alt={alt ?? "Eyrion client story"}
+          alt={alt ?? "Saqrih client story"}
           loading="eager"
           decoding="async"
         />
@@ -388,7 +388,7 @@ export default function CustomersSection({ pageKey: pageKeyProp }) {
       {showVideoSection && modalOpen && (
         <ImageModal
           src={MODAL_SRC}
-          alt="Eyrion client testimonial"
+          alt="Saqrih client testimonial"
           onClose={() => setModalOpen(false)}
         />
       )}
@@ -483,7 +483,7 @@ export default function CustomersSection({ pageKey: pageKeyProp }) {
               {/* RIGHT */}
               <div className="flex flex-col">
                 <p className="text-[12px] font-medium mb-4 hidden md:block" style={{ color: "rgba(255,255,255,0.45)" }}>
-                  Eyrion testimonial highlights ↓
+                  Saqrih testimonial highlights ↓
                 </p>
                 <div className="flex flex-col gap-3 md:gap-2">
                   {CLIENTS.map((client, i) => (
@@ -544,7 +544,7 @@ export default function CustomersSection({ pageKey: pageKeyProp }) {
             <img
               style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
               src={sectionBackgroundImage}
-              alt="Eyrion clients and WordPress success stories"
+              alt="Saqrih clients and WordPress success stories"
               loading="lazy"
               decoding="async"
             />

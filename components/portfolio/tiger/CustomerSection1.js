@@ -409,7 +409,7 @@ export default function CustomersSection1() {
               {/* RIGHT */}
               <div className="flex flex-col">
                 <p className="text-[12px] font-medium mb-4" style={{ color: "rgba(255,255,255,0.45)" }}>
-                  Eyrion testimonial highlights ↓
+                  Saqrih testimonial highlights ↓
                 </p>
                 <div className="flex flex-col gap-2">
                   {CLIENTS.map((client, i) => (

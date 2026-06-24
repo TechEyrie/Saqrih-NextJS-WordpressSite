@@ -262,7 +262,7 @@ export default function HeroSection({ onQuoteClick }) {
               fontFamily: "Inter, Arial, sans-serif",
             }}
           >
-            Why Eyrion
+            Why Saqrih
           </h1>
 
           <div ref={badgeRef} className="mt-4 max-w-[760px]">

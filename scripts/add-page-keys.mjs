@@ -21,7 +21,7 @@ function pageKeyFromPath(filePath) {
   if (rel === "icomat-work/page.js" || rel === "icomat1-work/page.js") return "icomatWork";
   if (rel === "blog/page.js") return "blog";
   if (rel === "wordpress/page.js") return "wordpress";
-  if (rel === "why-eyrion/page.js") return "whyEyrion";
+  if (rel === "why-saqrih/page.js") return "whySaqrih";
   if (rel.startsWith("portfolio/")) {
     const slug = rel.split("/")[1];
     return `portfolio-${slug}`;

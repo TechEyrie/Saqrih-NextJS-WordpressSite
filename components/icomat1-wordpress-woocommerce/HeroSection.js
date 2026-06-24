@@ -16,7 +16,7 @@ export default function HeroSection() {
           <p className="wp-service-hero-lead" style={{ maxWidth: "56ch" }}
           >
             Looking for a professional WooCommerce website design and development company?
-            Eyrion&apos;s WordPress ecommerce experts build high-performing online stores that
+            Saqrih&apos;s WordPress ecommerce experts build high-performing online stores that
             are fast, secure, and built to convert.
           </p>
       </div>

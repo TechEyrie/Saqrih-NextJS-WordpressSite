@@ -215,7 +215,7 @@ export default function HeroSection() {
               fontWeight: 400,
             }}
           >
-            Looking to sell your business? Eyrion works with established WordPress agencies and
+            Looking to sell your business? Saqrih works with established WordPress agencies and
             service providers through structured acquisitions designed to be smooth, efficient, and
             low-disruption for both you and your clients.
           </p>

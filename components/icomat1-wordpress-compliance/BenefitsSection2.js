@@ -11,7 +11,7 @@ const ITEMS = [
     number: "1",
     title: "Small business WordPress support plans",
     paragraphs: [
-      "We understand that small businesses often don't have the time or resources to consistently manage their website updates, security, and performance. That's why Eyrion offers affordable WordPress support packages designed specifically for small businesses that want to maintain a strong and reliable online presence.",
+      "We understand that small businesses often don't have the time or resources to consistently manage their website updates, security, and performance. That's why Saqrih offers affordable WordPress support packages designed specifically for small businesses that want to maintain a strong and reliable online presence.",
       "Our small business plans include secure hosting, regular backups, security audits, and routine updates to keep your WordPress website running smoothly and safely. We handle the technical side so you can focus on growing your business.",
     ],
   },
@@ -19,7 +19,7 @@ const ITEMS = [
     number: "2",
     title: "Enterprise WordPress support plans",
     paragraphs: [
-      "For high-traffic websites and growing businesses, Eyrion provides fully managed enterprise WordPress support solutions. These plans go beyond standard maintenance and include hosting, backups, continuous security monitoring, malware removal, and advanced performance optimization.",
+      "For high-traffic websites and growing businesses, Saqrih provides fully managed enterprise WordPress support solutions. These plans go beyond standard maintenance and include hosting, backups, continuous security monitoring, malware removal, and advanced performance optimization.",
       "Enterprise support is built for scale, ensuring your WordPress or WooCommerce website stays fast, secure, and stable—even under heavy traffic. With proactive monitoring and dedicated support time, we help your business operate without disruption.",
     ],
   },
@@ -27,8 +27,8 @@ const ITEMS = [
     number: "3",
     title: "Custom WordPress support plans",
     paragraphs: [
-      "Every WordPress website has different requirements, which is why Eyrion offers fully customizable support packages tailored to your exact needs. These plans combine essential services like backups, security, updates, and bandwidth management with flexible expert support time.",
-      "Without proper maintenance, WordPress websites can become slow, unstable, or vulnerable to security threats. Eyrion ensures your site is continuously maintained, protected, and optimized so it performs reliably in every situation.",
+      "Every WordPress website has different requirements, which is why Saqrih offers fully customizable support packages tailored to your exact needs. These plans combine essential services like backups, security, updates, and bandwidth management with flexible expert support time.",
+      "Without proper maintenance, WordPress websites can become slow, unstable, or vulnerable to security threats. Saqrih ensures your site is continuously maintained, protected, and optimized so it performs reliably in every situation.",
     ],
   },
 ];
@@ -210,7 +210,7 @@ export default function BenefitsSection2() {
             }}
           >
             From streamlined plans for small teams to enterprise-level coverage and fully
-            customized retainers, Eyrion aligns hosting, backups, security, and expert
+            customized retainers, Saqrih aligns hosting, backups, security, and expert
             support time with the real-world needs of your WordPress or WooCommerce website.
           </p>
           <p

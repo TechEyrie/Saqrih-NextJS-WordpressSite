@@ -109,7 +109,7 @@ export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
       CARD_META.map((card, i) => ({
         ...card,
         src: cardPics[i] ?? cardPics[0],
-        alt: `${card.badge} — Eyrion WordPress services`,
+        alt: `${card.badge} — Saqrih WordPress services`,
       })),
     [pageKey, cardPics],
   );
@@ -378,7 +378,7 @@ export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
             className="mt-2 mx-4 sm:mx-8 md:mx-16 lg:mx-20 border border-[#ddd] py-1.5 px-4 mb-3"
           >
             <p className="text-[10px] sm:text-[11px] font-medium text-[#aaa] tracking-[0.16em] uppercase">
-              Eyrion / WordPress Service Platform
+              Saqrih / WordPress Service Platform
             </p>
           </div>
         </div>
@@ -409,7 +409,7 @@ export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
           <img
             className="absolute inset-0 w-full h-full object-cover"
             src={panelImage}
-            alt="Eyrion WordPress platform showcase"
+            alt="Saqrih WordPress platform showcase"
             loading="lazy"
             decoding="async"
             style={{ opacity: 0.9 }}

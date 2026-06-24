@@ -207,7 +207,7 @@ export default function HeroSection({ onQuoteClick }) {
         perspective: "1200px",
       }}
     >
-      {/* Background image — /home1 uses eyrion pics, not hero video */}
+      {/* Background image — /home1 uses saqrih pics, not hero video */}
       <div
         className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
         aria-hidden="true"

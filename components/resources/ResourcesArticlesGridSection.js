@@ -41,7 +41,7 @@ const RESOURCE_CARDS = [
     slug: "database-connection-errors",
     title: "WordPress database connection errors explained",
     date: "April 11, 2026",
-    author: "Team Eyrion",
+    author: "Team Saqrih",
     excerpt:
       "When WordPress cannot reach MySQL, visitors see an error instead of your content. This guide covers wp-config credentials, host endpoints, corrupted tables, and when to involve your host.",
     href: "#",
@@ -59,7 +59,7 @@ const RESOURCE_CARDS = [
     slug: "slow-wordpress-admin",
     title: "Troubleshooting a slow WordPress admin dashboard",
     date: "April 6, 2026",
-    author: "Team Eyrion",
+    author: "Team Saqrih",
     excerpt:
       "A sluggish wp-admin is often heartbeat calls, admin-ajax spikes, or remote block editor requests. We show how to profile with Query Monitor, tame cron noise, and rule out hosting contention.",
     href: "#",
@@ -77,7 +77,7 @@ const RESOURCE_CARDS = [
     slug: "404-permalinks-wordpress",
     title: "404 errors and permalink structure in WordPress",
     date: "March 28, 2026",
-    author: "Team Eyrion",
+    author: "Team Saqrih",
     excerpt:
       "Pretty permalinks rely on rewrite rules. If posts suddenly 404, .htaccess may be missing rules, or Nginx try_files need a tweak. We cover flushing permalinks and server configs that commonly fix it.",
     href: "#",
@@ -95,7 +95,7 @@ const RESOURCE_CARDS = [
     slug: "plugin-conflicts-debugging",
     title: "Debugging plugin conflicts without downtime",
     date: "March 19, 2026",
-    author: "Team Eyrion",
+    author: "Team Saqrih",
     excerpt:
       "Disable-all binary search is the classic approach, but you can work faster with staging, health check mode, and error logs. This resource outlines a repeatable process teams can follow under pressure.",
     href: "#",
@@ -113,7 +113,7 @@ const RESOURCE_CARDS = [
     slug: "wordpress-cron-scheduled-tasks",
     title: "WordPress cron, Action Scheduler, and stuck background jobs",
     date: "March 8, 2026",
-    author: "Team Eyrion",
+    author: "Team Saqrih",
     excerpt:
       "Missed webhooks, stuck queues, and duplicate scheduled events can quietly break memberships, email, and sync jobs. Learn how WP-Cron differs from real server cron, how to inspect hooks, and when to move triggers off-request.",
     href: "#",

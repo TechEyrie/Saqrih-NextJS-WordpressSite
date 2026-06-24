@@ -11,28 +11,28 @@ const montserrat = Montserrat({
   subsets: ["latin"],
 });
 
-const SITE_TITLE = "Eyrion - Qatar - Doha Based WordPress Development Agency";
+const SITE_TITLE = "Saqrih - Qatar - Doha Based WordPress Development Agency";
 
 export const metadata = {
   title: {
     default: SITE_TITLE,
-    template: "%s | Eyrion",
+    template: "%s | Saqrih",
   },
   description:
-    "Eyrion is a premier WordPress agency delivering design, development, hosting, maintenance, and ongoing support.",
-  applicationName: "Eyrion",
+    "Saqrih is a premier WordPress agency delivering design, development, hosting, maintenance, and ongoing support.",
+  applicationName: "Saqrih",
   openGraph: {
     title: SITE_TITLE,
     description:
-      "Eyrion is a premier WordPress agency delivering design, development, hosting, maintenance, and ongoing support.",
-    siteName: "Eyrion",
+      "Saqrih is a premier WordPress agency delivering design, development, hosting, maintenance, and ongoing support.",
+    siteName: "Saqrih",
     type: "website",
     images: [
       {
-        url: "/logo/Eyrion_real_logo.png",
+        url: "/logo/Saqrih_real_logo.png",
         width: 1200,
         height: 630,
-        alt: "Eyrion",
+        alt: "Saqrih",
       },
     ],
   },
@@ -40,8 +40,8 @@ export const metadata = {
     card: "summary_large_image",
     title: SITE_TITLE,
     description:
-      "Eyrion is a premier WordPress agency delivering design, development, hosting, maintenance, and ongoing support.",
-    images: ["/logo/Eyrion_real_logo.png"],
+      "Saqrih is a premier WordPress agency delivering design, development, hosting, maintenance, and ongoing support.",
+    images: ["/logo/Saqrih_real_logo.png"],
   },
   icons: {
     icon: "/favicon.png",
@@ -62,7 +62,7 @@ export default function RootLayout({ children }) {
           href="/wp-includes/css/dist/block-library/style.min.css"
           media="all"
         />
-        <link rel="alternate" type="application/rss+xml" title="Eyrion" href="/feed/" />
+        <link rel="alternate" type="application/rss+xml" title="Saqrih" href="/feed/" />
       </head>
       <body className={`${inter.variable} ${montserrat.variable}`}>
         <Script

@@ -146,7 +146,7 @@ export default function BuildWithIcomatSection() {
               margin: 0,
             }}
           >
-            Eyrion is a premier WordPress development agency, delivering
+            Saqrih is a premier WordPress development agency, delivering
             high-end website design, custom engineering, and dedicated retainer
             services. We specialize in scaling the WordPress CMS for clients
             who demand technical precision and seamless performance.

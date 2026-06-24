@@ -61,7 +61,7 @@ export default async function MarketStatePage({ params }) {
           color: BODY,
         }}
       >
-        Eyrion offers WordPress design, development, hosting, and ongoing support across {title}.
+        Saqrih offers WordPress design, development, hosting, and ongoing support across {title}.
         Browse local cities below or return to the full markets directory.
       </p>
 

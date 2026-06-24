@@ -96,7 +96,7 @@ export default function PrivacyPolicySection() {
 
         <h2 style={{ ...h2, marginTop: 0 }}>Introduction</h2>
         <p style={p}>
-          Welcome to Eyrion. We respect your privacy and are committed to protecting your personal
+          Welcome to Saqrih. We respect your privacy and are committed to protecting your personal
           information. This privacy policy explains how we collect, use, disclose, and safeguard your
           information when you visit our website.
         </p>
@@ -247,7 +247,7 @@ export default function PrivacyPolicySection() {
               Email
             </p>
             <a
-              href="mailto:privacy@eyrion.com"
+              href="mailto:privacy@saqrih.com"
               style={{
                 fontFamily: FONT_P,
                 fontSize: "clamp(1rem, 1.1vw, 1.08rem)",
@@ -257,7 +257,7 @@ export default function PrivacyPolicySection() {
                 textUnderlineOffset: "3px",
               }}
             >
-              privacy@eyrion.com
+              privacy@saqrih.com
             </a>
           </div>
 

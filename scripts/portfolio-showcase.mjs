@@ -12,7 +12,7 @@ for (const slug of portfolios) {
     `components/portfolio/${slug}/PortfolioShowcaseSection.js`,
   );
   let c = fs.readFileSync(file, "utf8");
-  if (!c.includes("eyrion-") && !c.includes("getPagePic")) continue;
+  if (!c.includes("saqrih-") && !c.includes("getPagePic")) continue;
 
   if (!c.includes("getPagePic")) {
     c = c.replace(
@@ -21,7 +21,7 @@ for (const slug of portfolios) {
     );
   }
 
-  c = c.replace(/url\('\/pics\/eyrion-\d+\.png'\)/g, (match, offset) => {
+  c = c.replace(/url\('\/pics\/saqrih-\d+\.png'\)/g, (match, offset) => {
     const before = c.slice(0, offset);
     const count = (before.match(/SHOWCASE_IMG/g) || []).length;
     return count === 0 ? "url('" + `\${SHOWCASE_IMG_1}` + "')" : "url('" + `\${SHOWCASE_IMG_2}` + "')";
@@ -29,11 +29,11 @@ for (const slug of portfolios) {
 
   // Fix template - use direct variable in style strings
   c = c.replace(
-    /url\('\/pics\/eyrion-6\.png'\)/g,
+    /url\('\/pics\/saqrih-6\.png'\)/g,
     "url('\" + SHOWCASE_IMG_1 + \"')",
   );
   c = c.replace(
-    /url\('\/pics\/eyrion-8\.png'\)/g,
+    /url\('\/pics\/saqrih-8\.png'\)/g,
     "url('\" + SHOWCASE_IMG_2 + \"')",
   );
 

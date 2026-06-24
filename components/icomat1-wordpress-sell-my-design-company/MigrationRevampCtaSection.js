@@ -322,7 +322,7 @@ export default function MigrationRevampCtaSection({ onQuoteClick }) {
           >
             Deciding to sell your web design company is never easy. You&apos;ve put significant time
             and effort into building your business, and your client relationships are a major part of
-            that success. When the time comes to transition, Eyrion ensures your clients continue
+            that success. When the time comes to transition, Saqrih ensures your clients continue
             receiving the same high level of care and support they&apos;re used to.
           </p>
         </header>

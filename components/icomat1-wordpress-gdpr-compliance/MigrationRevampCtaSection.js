@@ -75,7 +75,7 @@ export default function MigrationRevampCtaSection({ onQuoteClick }) {
             lineHeight: 1.78,
           }}
         >
-          Eyrion can combine design and UX improvements directly into your migration project, so
+          Saqrih can combine design and UX improvements directly into your migration project, so
           you launch not only on stronger infrastructure but also with a cleaner, more modern, and
           better-performing website.
         </p>
@@ -144,7 +144,7 @@ export default function MigrationRevampCtaSection({ onQuoteClick }) {
                 lineHeight: 1.78,
               }}
             >
-              From typography and spacing to page templates and WooCommerce user flows, Eyrion can
+              From typography and spacing to page templates and WooCommerce user flows, Saqrih can
               enhance key parts of your website during the migration process. This helps you avoid
               duplicate work and ensures your launch delivers a complete, cohesive upgrade in one
               go.

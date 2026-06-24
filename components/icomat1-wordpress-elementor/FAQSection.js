@@ -34,7 +34,7 @@ const FAQS = [
 ];
 
 const INTRO_PARAS = [
-  "If you prefer a more hands-off approach, Eyrion can manage all the updates, adjustments, and improvements your Elementor website needs. Our experience with both Elementor and WordPress allows us to make changes quickly and efficiently with minimal disruption.",
+  "If you prefer a more hands-off approach, Saqrih can manage all the updates, adjustments, and improvements your Elementor website needs. Our experience with both Elementor and WordPress allows us to make changes quickly and efficiently with minimal disruption.",
   "Whether you want full control or complete technical management, we tailor our support to your workflow. From small edits to large-scale improvements, we help keep your Elementor website optimized, modern, and easy to maintain.",
 ];
 

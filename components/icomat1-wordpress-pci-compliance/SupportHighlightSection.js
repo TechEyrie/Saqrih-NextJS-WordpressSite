@@ -107,7 +107,7 @@ export default function SupportHighlightSection({ imageSrc = DEFAULT_IMAGE }) {
               maxWidth: "52ch",
             }}
           >
-            At Eyrion, we specialize in Elementor-based WordPress development. Our team uses
+            At Saqrih, we specialize in Elementor-based WordPress development. Our team uses
             Elementor to design, optimize, and enhance websites that are not only visually appealing
             but also fast, scalable, and aligned with your business goals.
           </p>

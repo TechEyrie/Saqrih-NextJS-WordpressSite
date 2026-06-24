@@ -444,7 +444,7 @@ export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
             className="mt-2 mx-4 sm:mx-8 md:mx-16 lg:mx-20 border border-[#ddd] py-1.5 px-4 mb-3"
           >
             <p className="text-[10px] sm:text-[11px] font-medium text-[#aaa] tracking-[0.16em] uppercase">
-              Eyrion / WordPress Service Platform
+              Saqrih / WordPress Service Platform
             </p>
           </div>
           */}

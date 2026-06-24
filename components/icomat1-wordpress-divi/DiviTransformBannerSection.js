@@ -52,7 +52,7 @@ export default function DiviTransformBannerSection() {
             lineHeight: 1.78,
           }}
         >
-          At Eyrion, we&apos;ve mastered the art of Divi theme development, handling everything from
+          At Saqrih, we&apos;ve mastered the art of Divi theme development, handling everything from
           custom coding and third-party integrations to troubleshooting Divi-specific quirks. Our
           team of Divi experts transforms your vision into a professionally crafted website, complete
           with tailored hosting, SEO, and maintenance services. So, why wrestle with Divi alone

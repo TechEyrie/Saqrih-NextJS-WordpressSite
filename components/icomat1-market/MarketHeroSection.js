@@ -14,7 +14,7 @@ export default function MarketHeroSection() {
         </h1>
 
         <p className="wp-service-hero-lead" style={{ maxWidth: "68ch" }}>
-          Eyrion is headquartered in Qatar. We partner with businesses in Doha, Lusail, and across
+          Saqrih is headquartered in Qatar. We partner with businesses in Doha, Lusail, and across
           the country — and support clients in Dubai, Abu Dhabi, Oman, Bahrain, Saudi Arabia, Turkey,
           Pakistan, Spain, the United States, and beyond.
         </p>

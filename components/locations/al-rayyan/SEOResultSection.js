@@ -196,7 +196,7 @@ export default function SEOResultsSection({ onQuoteClick }) {
             lineHeight: 1.75,
           }}
         >
-          From first conversation to launch and beyond, Eyrion pairs each WordPress web
+          From first conversation to launch and beyond, Saqrih pairs each WordPress web
           design project in Al Rayyan with an experienced project manager and senior
           website designer—so your site stays on strategy, on schedule, and built to
           perform.

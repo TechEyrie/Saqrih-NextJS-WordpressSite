@@ -11,9 +11,9 @@ import Header from '../../../components/icomat1/Header'
 
 
 import CTASection from '../../../components/icomat1/CTASection'
-import WhyHeroSection from '../../../components/icomat1-why-eyrion/WhyHeroSection'
-import WhyValueServiceSection from '../../../components/icomat1-why-eyrion/WhyValueServiceSection'
-import SEOResultSection from '../../../components/icomat1-why-eyrion/SEOResultSection'
+import WhyHeroSection from '../../../components/icomat1-why-saqrih/WhyHeroSection'
+import WhyValueServiceSection from '../../../components/icomat1-why-saqrih/WhyValueServiceSection'
+import SEOResultSection from '../../../components/icomat1-why-saqrih/SEOResultSection'
 import EndToEndSection from '../../../components/icomat1/EndToEndSection'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -79,7 +79,7 @@ export default function IcomatPage() {
       <WhyHeroSection />
       <WhyValueServiceSection />
       <SEOResultSection />
-      <EndToEndSection pageKey="whyEyrion" />
+      <EndToEndSection pageKey="whySaqrih" />
       <CTASection />
       <FooterSection />
     </div>

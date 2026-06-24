@@ -8,7 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
 const BODY_PARAS = [
-  "Eyrion is a premier WordPress specialist agency, leading the industry in custom design, development, hosting, and high-performance maintenance.",
+  "Saqrih is a premier WordPress specialist agency, leading the industry in custom design, development, hosting, and high-performance maintenance.",
   "We deliver high-quality WordPress web design and development tailored to your business needs.",
   "We provide end-to-end management of your digital ecosystem to ensure your brand benefits from unrivaled technical mastery.",
   "We have supported over 2,400 amazing clients since our launch in 2011.",
@@ -266,7 +266,7 @@ export default function BusinessModelSection() {
           </div>
         </div>
 
-        {/* ── RIGHT COL: benefits + Eyrion Way comparison ──────── */}
+        {/* ── RIGHT COL: benefits + Saqrih Way comparison ──────── */}
         <div ref={benefitsRef} className="flex flex-col pl-0 md:pl-12">
 
           {/* Benefits label */}
@@ -307,10 +307,10 @@ export default function BusinessModelSection() {
             ))}
           </div>
 
-          {/* Eyrion Way comparison — directly under benefits */}
+          {/* Saqrih Way comparison — directly under benefits */}
           <div className="mt-60">
 
-            {/* THE Eyrion WAY header */}
+            {/* THE Saqrih WAY header */}
             <div
               ref={(el) => (colHeaderRefs.current[1] = el)}
               className="py-2.5 px-4 rounded-xl mb-2"
@@ -323,11 +323,11 @@ export default function BusinessModelSection() {
                   color: "rgba(0,0,0,0.75)",
                 }}
               >
-                The Eyrion Way
+                The Saqrih Way
               </p>
             </div>
 
-            {/* Eyrion rows */}
+            {/* Saqrih rows */}
             <div className="flex flex-col">
               {COMPARISON_ROWS.map((row, i) => (
                 <div key={i}>

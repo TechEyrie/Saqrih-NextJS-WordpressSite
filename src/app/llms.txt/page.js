@@ -1,10 +1,10 @@
 import LlmsTxtSection from "../../../components/legal/LlmsTxtSection";
-import { LLMS_TXT } from "../../../content/eyrion-llms.txt";
+import { LLMS_TXT } from "../../../content/saqrih-llms.txt";
 
 export const metadata = {
   title: "llms.txt",
   description:
-    "Structured context for AI systems interpreting Eyrion WordPress agency content.",
+    "Structured context for AI systems interpreting Saqrih WordPress agency content.",
   robots: { index: true, follow: true },
 };
 

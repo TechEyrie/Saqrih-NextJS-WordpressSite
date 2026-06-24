@@ -1,7 +1,7 @@
 import { UFOMAMMOOT_CASE_STUDY } from "../../../../lib/caseStudies/ufomammootData";
 
 export const metadata = {
-  title: `${UFOMAMMOOT_CASE_STUDY.name} Case Study | Eyrion`,
+  title: `${UFOMAMMOOT_CASE_STUDY.name} Case Study | Saqrih`,
   description: UFOMAMMOOT_CASE_STUDY.heroIntro,
 };
 

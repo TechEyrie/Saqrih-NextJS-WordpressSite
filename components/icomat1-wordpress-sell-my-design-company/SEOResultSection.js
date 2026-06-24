@@ -118,7 +118,7 @@ const ITEMS = [
   {
     id: "us-team",
     title: "Established US-based team",
-    body: "Eyrion is backed by a skilled, US-based team of designers, developers, and support professionals who manage projects with consistency, accountability, and technical expertise.",
+    body: "Saqrih is backed by a skilled, US-based team of designers, developers, and support professionals who manage projects with consistency, accountability, and technical expertise.",
     Icon: IconUsFlag,
   },
 ];
@@ -266,7 +266,7 @@ export default function SEOResultsSection() {
               maxWidth: "min(32ch, 100%)",
             }}
           >
-            Why Sell Your Web Design Company to Eyrion?
+            Why Sell Your Web Design Company to Saqrih?
           </h2>
           <p
             style={{
@@ -277,7 +277,7 @@ export default function SEOResultsSection() {
               lineHeight: 1.78,
             }}
           >
-            At Eyrion, we focus on fair, transparent acquisitions and ensure your clients continue
+            At Saqrih, we focus on fair, transparent acquisitions and ensure your clients continue
             to receive the same level of professionalism and care they&apos;re used to.
           </p>
         </div>

@@ -162,7 +162,7 @@ export default function BuildWithIcomatSection() {
               margin: 0,
             }}
           >
-            Eyrion enables the structural foundation for the
+            Saqrih enables the structural foundation for the
             next era of mobility.
           </p>
 
@@ -207,7 +207,7 @@ export default function BuildWithIcomatSection() {
                   strokeLinejoin="round"
                 />
               </svg>
-              Build with Eyrion
+              Build with Saqrih
             </a>
           </div>
 

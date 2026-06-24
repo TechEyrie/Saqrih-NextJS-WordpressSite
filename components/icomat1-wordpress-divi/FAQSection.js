@@ -276,7 +276,7 @@ export default function FAQSection() {
                 margin: 0,
               }}
             >
-              If you prefer a more hands-off approach, Eyrion can handle all updates, tweaks, and
+              If you prefer a more hands-off approach, Saqrih can handle all updates, tweaks, and
               improvements for your Divi website. Our experience with both WordPress and Divi allows
               us to make changes quickly and with minimal disruption to your site.
             </p>

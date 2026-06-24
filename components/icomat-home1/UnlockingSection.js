@@ -74,7 +74,7 @@ const CARDS = [
   {
     id: "precision",
     title: "Comprehensive managed web services",
-    desc: "Eyrion provides elite managed solutions, ensuring your WordPress ecosystem remains impenetrable, current, and performance-optimized. We oversee every technical detail - from proactive maintenance to speed enhancements - allowing you to focus exclusively on scaling your enterprise.",
+    desc: "Saqrih provides elite managed solutions, ensuring your WordPress ecosystem remains impenetrable, current, and performance-optimized. We oversee every technical detail - from proactive maintenance to speed enhancements - allowing you to focus exclusively on scaling your enterprise.",
     icon: <IconTarget />,
   },
   {

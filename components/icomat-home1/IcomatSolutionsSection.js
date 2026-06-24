@@ -96,7 +96,7 @@ export default function IcomatSolutionSection({ pageKey = "home1" }) {
           className="text-white font-semibold leading-[1.05] tracking-tight"
           style={{ fontSize: "clamp(2rem, 4vw, 4rem)" }}
         >
-          The Eyrion<br />solution
+          The Saqrih<br />solution
         </h2>
       </div>
 

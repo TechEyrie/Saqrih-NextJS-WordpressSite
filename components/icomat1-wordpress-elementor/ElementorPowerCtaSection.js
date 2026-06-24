@@ -83,7 +83,7 @@ export default function ElementorPowerCtaSection({ onQuoteClick }) {
             color: GREEN,
           }}
         >
-          Our team of Elementor experts at Eyrion can help you apply its amazing potential to your site.
+          Our team of Elementor experts at Saqrih can help you apply its amazing potential to your site.
         </p>
 
         <p
@@ -97,9 +97,9 @@ export default function ElementorPowerCtaSection({ onQuoteClick }) {
           }}
         >
           Whether you&apos;re looking to transition your existing website or start a new one, we simply cannot
-          recommend Elementor enough. Eyrion is the development team to build and host your WordPress Elementor
+          recommend Elementor enough. Saqrih is the development team to build and host your WordPress Elementor
           website. We&apos;ve explored some of the page builder&apos;s most appealing features. Between
-          Elementor&apos;s formidable capabilities and Eyrion&apos;s years of experience, we can help you create the
+          Elementor&apos;s formidable capabilities and Saqrih&apos;s years of experience, we can help you create the
           site of your dreams by utilizing the power of the Elementor page builder for WordPress.
         </p>
 

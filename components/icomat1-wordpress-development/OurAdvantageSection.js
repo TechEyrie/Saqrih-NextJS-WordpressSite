@@ -110,7 +110,7 @@ function GlassQuoteButton({ onClick }) {
 const FEATURES = [
   {
     title: "Bespoke WordPress engineering",
-    desc: "Custom architectural design, impenetrable security, and limitless scalability-Eyrion delivers a complete technical foundation. Whether you are migrating a legacy system, launching a new flagship site, or engineering a unique digital product, our studio provides the high-level execution required for success.",
+    desc: "Custom architectural design, impenetrable security, and limitless scalability-Saqrih delivers a complete technical foundation. Whether you are migrating a legacy system, launching a new flagship site, or engineering a unique digital product, our studio provides the high-level execution required for success.",
   },
   {
     title: "Exceptional user experience",
@@ -220,7 +220,7 @@ export default function OurAdvantageSection({
             className="text-[13px] sm:text-[14px] font-medium tracking-wide"
             style={{ color: "rgba(255,255,255,0.45)" }}
           >
-            Why partner with Eyrion?
+            Why partner with Saqrih?
           </p>
 
           <h2

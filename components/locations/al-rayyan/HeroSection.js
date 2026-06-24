@@ -16,7 +16,7 @@ export default function HeroSection() {
         </h1>
 
         <p className="wp-service-hero-lead" style={{ maxWidth: "58ch" }}>
-          Eyrion partners with Al Rayyan businesses to launch and grow high-performing
+          Saqrih partners with Al Rayyan businesses to launch and grow high-performing
           WordPress websites—from custom design and development to managed hosting,
           proactive maintenance, dedicated support, and SEO strategies that drive
           qualified traffic and measurable results.

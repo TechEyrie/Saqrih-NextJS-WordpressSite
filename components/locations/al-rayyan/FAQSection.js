@@ -23,13 +23,13 @@ const FAQS = [
     id: 3,
     question: "Why work with a WordPress company and development agency in Al Rayyan?",
     answer:
-      "Partnering with a local-focused WordPress agency in Al Rayyan means working with experts who understand your market, audience, and business goals. At Eyrion, we deliver customized WordPress web design and development solutions tailored to your needs—from strategy and creative direction to launch and ongoing support. Whether you are refreshing an existing site or building from scratch, a dedicated agency ensures your WordPress foundation is built to perform, not just look good.",
+      "Partnering with a local-focused WordPress agency in Al Rayyan means working with experts who understand your market, audience, and business goals. At Saqrih, we deliver customized WordPress web design and development solutions tailored to your needs—from strategy and creative direction to launch and ongoing support. Whether you are refreshing an existing site or building from scratch, a dedicated agency ensures your WordPress foundation is built to perform, not just look good.",
   },
   {
     id: 4,
     question: "Who are the WordPress developers serving Al Rayyan and Qatar?",
     answer:
-      "Eyrion’s WordPress developers and designers serve businesses throughout Al Rayyan, Doha, and wider Qatar with end-to-end website services—including custom design, development, managed hosting, maintenance, security, and SEO. If you want to take your WordPress website to the next level, our team provides the technical expertise and strategic guidance to help you launch a site that makes a lasting impact on every visitor.",
+      "Saqrih’s WordPress developers and designers serve businesses throughout Al Rayyan, Doha, and wider Qatar with end-to-end website services—including custom design, development, managed hosting, maintenance, security, and SEO. If you want to take your WordPress website to the next level, our team provides the technical expertise and strategic guidance to help you launch a site that makes a lasting impact on every visitor.",
   },
 ];
 

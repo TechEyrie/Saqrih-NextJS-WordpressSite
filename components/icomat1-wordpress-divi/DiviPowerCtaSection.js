@@ -47,7 +47,7 @@ export default function DiviPowerCtaSection({ onQuoteClick }) {
             letterSpacing: "-0.015em",
           }}
         >
-          Our US-based in-house team of Divi theme experts at Eyrion can help you apply its
+          Our US-based in-house team of Divi theme experts at Saqrih can help you apply its
           amazing potential to your WordPress site.
         </h3>
 
@@ -62,11 +62,11 @@ export default function DiviPowerCtaSection({ onQuoteClick }) {
           }}
         >
           Whether you&apos;re looking to transition your existing website or start a new one, we
-          simply cannot recommend Divi enough. Eyrion is the best development team to build and
+          simply cannot recommend Divi enough. Saqrih is the best development team to build and
           host your WordPress Divi website. Our team includes seasoned Divi WordPress developers
           who bring your vision to life with precision and creativity. We&apos;ve explored some of
           the theme&apos;s most appealing features. Between Divi&apos;s formidable capabilities and
-          Eyrion&apos;s years of experience, we can help you create the site of your dreams by
+          Saqrih&apos;s years of experience, we can help you create the site of your dreams by
           utilizing the power of the Divi theme for WordPress.
         </p>
 

@@ -221,7 +221,7 @@ export default function SEOResultsSection() {
             margin: 0,
           }}
         >
-          Eyrion WordPress Site Speed Optimization Features
+          Saqrih WordPress Site Speed Optimization Features
         </h2>
         <p
           style={{

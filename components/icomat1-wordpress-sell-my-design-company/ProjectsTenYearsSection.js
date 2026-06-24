@@ -189,7 +189,7 @@ export default function ProjectsTenYearsSection() {
             opacity: 0,
           }}
         >
-          Since our inception over a decade ago, Eyrion has worked on more than 2,000 WordPress
+          Since our inception over a decade ago, Saqrih has worked on more than 2,000 WordPress
           projects. This experience gives us the ability to step into any web design business and
           confidently manage client demands with consistency and expertise.
         </p>
