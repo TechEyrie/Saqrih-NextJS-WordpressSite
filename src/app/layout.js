@@ -2,6 +2,7 @@ import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
 import Script from 'next/script'
 import GlobalLoadingWrapper from "../../components/icomat1/GlobalLoadingWrapper";
+import DeferredStylesheet from "../../components/DeferredStylesheet";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -57,6 +58,12 @@ export default function RootLayout({ children }) {
       <head>
         <link rel="https://api.w.org/" href="/wp-json/" />
         <link rel="alternate" type="application/rss+xml" title="Saqrih" href="/feed/" />
+        <style dangerouslySetInnerHTML={{ __html: `
+          body{margin:0;background:#e8e8e8}
+          .icomat-hero-with-quote{background:#162d24;min-height:100vh}
+          .skip-to-main{position:absolute;left:-9999px;z-index:100000}
+        `}} />
+        <DeferredStylesheet href="/fonts/deferred-fonts.css" />
       </head>
       <body className={`${inter.variable} ${montserrat.variable}`}>
         <a href="#main-content" className="skip-to-main">

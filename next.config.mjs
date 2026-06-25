@@ -6,6 +6,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const emptyPolyfill = path.join(__dirname, "lib/empty-polyfill.js");
 
 const nextConfig = {
+  experimental: {
+    optimizePackageImports: ["gsap", "lenis"],
+  },
   webpack(config) {
     config.resolve.alias = {
       ...config.resolve.alias,

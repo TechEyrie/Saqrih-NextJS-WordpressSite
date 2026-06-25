@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HeroScrollDownIndicator from "./HeroScrollDownIndicator";
 import { HOMEPAGE_HERO_BACKGROUND_VIDEO } from "../../lib/siteVideos";
+import { useMeasuredHeight } from "../../lib/useMeasuredHeight";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,6 +14,7 @@ export function HeroQuoteButton({ onClick, className }) {
   const textRef  = useRef(null);
   const cloneRef = useRef(null);
   const tlRef    = useRef(null);
+  const heightRef = useMeasuredHeight(wrapRef);
 
   useEffect(() => {
     const wrap  = wrapRef.current;
@@ -20,11 +22,15 @@ export function HeroQuoteButton({ onClick, className }) {
     const clone = cloneRef.current;
     if (!wrap || !text || !clone) return;
 
-    const H = wrap.offsetHeight;
-    gsap.set(clone, { y: H, opacity: 1 });
-    gsap.set(text,  { y: 0, opacity: 1 });
+    const getH = () => heightRef.current || 48;
+    const setup = () => {
+      const H = getH();
+      gsap.set(clone, { y: H, opacity: 1 });
+      gsap.set(text,  { y: 0, opacity: 1 });
+    };
 
     const onEnter = () => {
+      const H = getH();
       tlRef.current?.kill();
       gsap.to(wrap, {
         backgroundColor: "rgba(255,255,255,0.96)",
@@ -39,6 +45,7 @@ export function HeroQuoteButton({ onClick, className }) {
     };
 
     const onLeave = () => {
+      const H = getH();
       tlRef.current?.kill();
       gsap.to(wrap, {
         backgroundColor: "rgba(255,255,255,0.12)",
@@ -55,12 +62,23 @@ export function HeroQuoteButton({ onClick, className }) {
     wrap.addEventListener("mouseenter", onEnter);
     wrap.addEventListener("mouseleave", onLeave);
 
+    if ("requestIdleCallback" in window) {
+      const id = window.requestIdleCallback(setup, { timeout: 1200 });
+      return () => {
+        window.cancelIdleCallback(id);
+        wrap.removeEventListener("mouseenter", onEnter);
+        wrap.removeEventListener("mouseleave", onLeave);
+        tlRef.current?.kill();
+      };
+    }
+
+    setup();
     return () => {
       wrap.removeEventListener("mouseenter", onEnter);
       wrap.removeEventListener("mouseleave", onLeave);
       tlRef.current?.kill();
     };
-  }, []);
+  }, [heightRef]);
 
   return (
     <button

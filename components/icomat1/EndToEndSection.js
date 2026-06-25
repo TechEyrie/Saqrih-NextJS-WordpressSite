@@ -7,6 +7,7 @@ import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { getPageSectionPics } from "../../lib/pageImages";
 import { debounceScrollTriggerRefresh } from "../../lib/deferScrollTriggerRefresh";
+import { useScrollDimensions } from "../../lib/useScrollDimensions";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
@@ -92,6 +93,7 @@ export default function EndToEndSection({
   const trackOuterRef = useRef(null);
   const trackRef = useRef(null);
   const splitRef = useRef(null);
+  const scrollDimsRef = useScrollDimensions(trackRef, trackOuterRef);
 
   const isLight = theme === "light";
 
@@ -116,7 +118,8 @@ export default function EndToEndSection({
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      if (headingRef.current) {
+      const runHeadingSplit = () => {
+        if (!headingRef.current) return;
         splitRef.current?.revert();
         splitRef.current = new SplitText(headingRef.current, { type: "chars,words" });
 
@@ -140,6 +143,12 @@ export default function EndToEndSection({
                 scrub: 1,
               },
         });
+      };
+
+      if ("requestIdleCallback" in window) {
+        window.requestIdleCallback(runHeadingSplit, { timeout: 800 });
+      } else {
+        requestAnimationFrame(runHeadingSplit);
       }
 
       const mm = gsap.matchMedia();
@@ -172,11 +181,7 @@ export default function EndToEndSection({
 
         if (!track || !outer || !wrapper) return;
 
-        const getMaxTranslate = () => {
-          const trackWidth = track.scrollWidth;
-          const outerWidth = outer.clientWidth;
-          return Math.max(0, trackWidth - outerWidth);
-        };
+        const getMaxTranslate = () => scrollDimsRef.current.maxTranslate;
 
         const refreshPin = debounceScrollTriggerRefresh(150);
 
