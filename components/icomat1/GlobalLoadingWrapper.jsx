@@ -62,7 +62,6 @@ export default function GlobalLoadingWrapper({ children }) {
       <div
         className="global-loading-content"
         data-loading={showLoader ? "true" : "false"}
-        aria-hidden={showLoader}
       >
         {children}
       </div>

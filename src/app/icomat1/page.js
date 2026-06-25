@@ -109,7 +109,7 @@ export default function IcomatPage() {
       `}</style>
 
       <Header quoteOpen={quoteOpen} setQuoteOpen={setQuoteOpen} />
-      <div className="homepage-font-scope">
+      <main id="main-content" className="homepage-font-scope">
         <HeroSection onQuoteClick={() => setQuoteOpen(true)} />
         <RTSSection />
         {/* <RTSRevolutionSection />
@@ -126,7 +126,7 @@ export default function IcomatPage() {
         <UnlockingSection />
         {/* <CTASection /> */}
         <FooterSection />
-      </div>
+      </main>
       {/* <Footer theme="dark" /> */}
     </div>
   )

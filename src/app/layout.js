@@ -46,7 +46,7 @@ export const metadata = {
   icons: {
     icon: "/favicon.png",
     shortcut: "/favicon.png",
-    apple: "/favicon.png",
+    apple: "/apple-touch-icon.png",
   },
   generator: "WordPress 6.7.2",
 };
@@ -65,6 +65,9 @@ export default function RootLayout({ children }) {
         <link rel="alternate" type="application/rss+xml" title="Saqrih" href="/feed/" />
       </head>
       <body className={`${inter.variable} ${montserrat.variable}`}>
+        <a href="#main-content" className="skip-to-main">
+          Skip to main content
+        </a>
         <Script
           src="/wp-includes/js/wp-embed.min.js"
           strategy="beforeInteractive"

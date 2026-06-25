@@ -1352,3 +1352,34 @@ body[data-route-loading="true"] {
   }
 }
 
+.skip-to-main {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 10000;
+  padding: 12px 20px;
+  background: #162d24;
+  color: #fff;
+  font-family: Inter, Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;
+}
+
+.skip-to-main:focus {
+  left: 16px;
+  top: 16px;
+  width: auto;
+  height: auto;
+  overflow: visible;
+}
+
+.global-loading-content[data-loading="true"] {
+  pointer-events: none;
+  user-select: none;
+}
+
