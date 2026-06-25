@@ -1,7 +1,7 @@
 import { FADNA_CASE_STUDY } from "../../../../lib/caseStudies/fadnaData";
 
 export const metadata = {
-  title: `${FADNA_CASE_STUDY.name} Case Study | Saqrih`,
+  title: `${FADNA_CASE_STUDY.name} Case Study`,
   description: FADNA_CASE_STUDY.heroIntro,
 };
 

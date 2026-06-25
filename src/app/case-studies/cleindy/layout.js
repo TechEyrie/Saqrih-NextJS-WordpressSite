@@ -1,7 +1,7 @@
 import { CLEINDY_CASE_STUDY } from "../../../../lib/caseStudies/cleindyData";
 
 export const metadata = {
-  title: `${CLEINDY_CASE_STUDY.name} Case Study | Saqrih`,
+  title: `${CLEINDY_CASE_STUDY.name} Case Study`,
   description: CLEINDY_CASE_STUDY.heroIntro,
 };
 

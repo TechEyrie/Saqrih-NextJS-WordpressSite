@@ -87,20 +87,46 @@ export default function LoadingScreen({ onComplete }) {
 
     tl.to(
       logo,
-      { opacity: 1, scale: 1, duration: 0.15, ease: "power3.out" },
-      0,
+      { opacity: 1, scale: 1, duration: 0.22, ease: "power3.out" },
+      0.05,
     )
       .to(
+        logo,
+        {
+          scale: 1.06,
+          duration: 0.12,
+          ease: "power1.inOut",
+          yoyo: true,
+          repeat: 1,
+        },
+        0.3,
+      )
+      .addLabel("waveStart", 0.48)
+      .to(
         paintState,
-        { wave: 0.6, solid: 1, duration: 0.45, ease: "power2.inOut" },
-        0.12,
+        {
+          wave: 1,
+          duration: 1.05,
+          ease: "power3.inOut",
+        },
+        "waveStart",
+      )
+      .to(
+        paintState,
+        {
+          solid: 1,
+          duration: 0.8,
+          ease: "power2.inOut",
+        },
+        "waveStart+=0.4",
       )
       .to(
         logo,
-        { opacity: 0, duration: 0.2, ease: "power2.inOut" },
-        0.2,
+        { opacity: 0, duration: 0.45, ease: "power2.inOut" },
+        "waveStart+=0.45",
       )
-      .add(finish, 0.72);
+      .to({}, { duration: 0.1 }, "waveStart+=1.1")
+      .add(finish, "waveStart+=1.2");
 
     return () => {
       cancelAnimationFrame(rafRef.id);

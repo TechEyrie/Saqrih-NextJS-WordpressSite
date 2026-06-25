@@ -1,7 +1,7 @@
 import { ECHTSOCIAL_CASE_STUDY } from "../../../../lib/caseStudies/echtsocialData";
 
 export const metadata = {
-  title: `${ECHTSOCIAL_CASE_STUDY.name} Case Study | Saqrih`,
+  title: `${ECHTSOCIAL_CASE_STUDY.name} Case Study`,
   description: ECHTSOCIAL_CASE_STUDY.heroIntro,
 };
 

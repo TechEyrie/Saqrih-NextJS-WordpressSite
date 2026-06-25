@@ -1,7 +1,7 @@
 import { BRINCDRONES_CASE_STUDY } from "../../../../lib/caseStudies/brincdronesData";
 
 export const metadata = {
-  title: `${BRINCDRONES_CASE_STUDY.name} Case Study | Saqrih`,
+  title: `${BRINCDRONES_CASE_STUDY.name} Case Study`,
   description: BRINCDRONES_CASE_STUDY.heroIntro,
 };
 
