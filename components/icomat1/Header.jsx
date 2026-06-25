@@ -569,9 +569,9 @@ function QuoteDrawer({ open, onClose }) {
                   lineHeight: 1.7, textAlign: "center", margin: 0,
                 }}>
                   By submitting you agree to our{" "}
-                  <a href="#privacy" style={{ color: "rgba(200,240,74,0.45)", textDecoration: "underline", textUnderlineOffset: "2px" }}>
+                  <Link href="/privacy-policy" style={{ color: "rgba(200,240,74,0.45)", textDecoration: "underline", textUnderlineOffset: "2px" }}>
                     Privacy Policy
-                  </a>
+                  </Link>
                   . We'll never share your data.
                 </p>
               </form>
@@ -739,26 +739,10 @@ function AnimatedNavLink({ label, href, dimmed = false, onHoverStart, onHoverEnd
     return () => { wrap.removeEventListener("mouseenter", onEnter); wrap.removeEventListener("mouseleave", onLeave); tlRef.current?.kill(); };
   }, []);
 
-  return (
-    <a ref={wrapRef}
-      href={hasMega ? undefined : href}
-      onClick={hasMega ? (e) => e.preventDefault() : undefined}
-      onMouseEnter={() => onHoverStart?.(label)}
-      onMouseLeave={() => { if (!hasMega) onHoverEnd?.(); }}
-      style={{
-        position: "relative", overflow: "hidden",
-        display: "inline-flex", alignItems: "center", justifyContent: "center",
-        padding: "5px 6px",
-        color: dimmed
-          ? (linkColor ? linkColor.replace("0.82", "0.35") : "rgba(255,255,255,0.35)")
-          : (linkColor || "rgba(255,255,255,0.82)"),
-        fontSize: "10px", lineHeight: 1.6,
-        textDecoration: "none", whiteSpace: "nowrap", cursor: "pointer",
-        transition: "color 0.5s ease",
-        willChange: "transform",
-        ...NAV_MONO_LABEL,
-      }}
-    >
+  const navClass = `header-nav-link${dimmed ? " header-nav-link--dimmed" : ""}`;
+
+  const linkContent = (
+    <>
       <span ref={textRef} style={{ display: "block", lineHeight: 1.6, whiteSpace: "nowrap" }}>
         <span style={NAV_MONO_LABEL}>
           {label}
@@ -779,12 +763,41 @@ function AnimatedNavLink({ label, href, dimmed = false, onHoverStart, onHoverEnd
           </svg>
         )}
       </span>
-    </a>
+    </>
+  );
+
+  if (hasMega) {
+    return (
+      <button
+        type="button"
+        ref={wrapRef}
+        className="header-nav-trigger"
+        aria-expanded={megaOpen}
+        aria-haspopup="true"
+        aria-label={`${label} menu`}
+        onMouseEnter={() => onHoverStart?.(label)}
+        onMouseLeave={() => { if (!hasMega) onHoverEnd?.(); }}
+      >
+        {linkContent}
+      </button>
+    );
+  }
+
+  return (
+    <Link
+      href={href || "/"}
+      ref={wrapRef}
+      className={navClass}
+      onMouseEnter={() => onHoverStart?.(label)}
+      onMouseLeave={() => onHoverEnd?.()}
+    >
+      {linkContent}
+    </Link>
   );
 }
 
 // ── Animated CTA button ───────────────────────────────────────
-function AnimatedCTAButton({ label, href, onClick, ctaBg, ctaColor, ctaBorder }) {
+function AnimatedCTAButton({ label, onClick, ctaBg, ctaColor, ctaBorder }) {
   const wrapRef = useRef(null), textRef = useRef(null), cloneRef = useRef(null), tlRef = useRef(null);
 
   // Keep a ref to always have latest theme values in the event handlers
@@ -820,27 +833,23 @@ function AnimatedCTAButton({ label, href, onClick, ctaBg, ctaColor, ctaBorder })
     return () => { wrap.removeEventListener("mouseenter", onEnter); wrap.removeEventListener("mouseleave", onLeave); tlRef.current?.kill(); };
   }, []);
 
-  return (
-    <a ref={wrapRef}
-      href={onClick ? undefined : href}
-      onClick={onClick ? (e) => { e.preventDefault(); onClick(); } : undefined}
-      style={{
-        position: "relative", overflow: "hidden",
-        display: "inline-flex", alignItems: "center", justifyContent: "center",
-        padding: "6px 12px",
-        background: ctaBg || "#ffffff",
-        border: `1px solid ${ctaBorder || "#ffffff"}`,
-        borderRadius: "7px",
-        color: ctaColor || "#0a0a09",
-        fontSize: "0.72rem", fontWeight: 700,
-        fontFamily: "Inter, Arial, sans-serif", letterSpacing: "0.13em",
-        textDecoration: "none", whiteSpace: "nowrap", cursor: "pointer",
-        transition: "background 0.5s ease, border-color 0.5s ease, color 0.5s ease",
-      }}
-    >
+  const ctaStyle = {
+    "--header-cta-bg": ctaBg || "#ffffff",
+    "--header-cta-border": ctaBorder || "#ffffff",
+    "--header-cta-color": ctaColor || "#0a0a09",
+  };
+
+  const ctaContent = (
+    <>
       <span ref={textRef} style={{ display: "block", lineHeight: 1, color: ctaColor || "#0a0a09", whiteSpace: "nowrap", transition: "color 0.5s ease" }}>{label}</span>
       <span ref={cloneRef} aria-hidden="true" style={{ display: "block", lineHeight: 1, color: ctaBg === "#0a0a09" ? "#ffffff" : "#ffffff", whiteSpace: "nowrap", position: "absolute" }}>{label}</span>
-    </a>
+    </>
+  );
+
+  return (
+    <button type="button" ref={wrapRef} className="header-cta-btn" onClick={onClick} style={ctaStyle}>
+      {ctaContent}
+    </button>
   );
 }
 
@@ -869,7 +878,7 @@ function AnimatedMobileMenuLink({ label, href, onClose }) {
   }, []);
 
   return (
-    <a ref={wrapRef} href={href} onClick={onClose} style={{
+    <Link href={href || "/"} ref={wrapRef} onClick={onClose} style={{
       position: "relative", overflow: "hidden", display: "block",
       padding: "14px 0", borderBottom: "1px solid rgba(255,255,255,0.06)",
       textDecoration: "none", cursor: "pointer",
@@ -888,7 +897,7 @@ function AnimatedMobileMenuLink({ label, href, onClose }) {
         willChange: "transform",
         ...NAV_MONO_LABEL,
       }}>{label}</span>
-    </a>
+    </Link>
   );
 }
 
@@ -916,16 +925,20 @@ function MobileMenu({ open, onClose, onQuoteClick }) {
           <AnimatedMobileMenuLink key={item.label} label={item.label} href={item.href} onClose={onClose} />
         ))}
       </nav>
-      <a href="#contact" onClick={(e) => { e.preventDefault(); onQuoteClick?.(); onClose?.(); }} style={{
-        marginTop: "40px", display: "inline-block",
-        padding: "14px 32px", border: "1px solid rgba(255,255,255,0.5)",
-        borderRadius: "999px", color: "#fff", fontSize: "0.7rem",
-        fontWeight: 700, letterSpacing: "0.14em", textDecoration: "none",
-        textAlign: "center", transition: "background 0.2s, border-color 0.2s",
-      }}
+      <button
+        type="button"
+        onClick={() => { onQuoteClick?.(); onClose?.(); }}
+        style={{
+          marginTop: "40px", display: "inline-block",
+          padding: "14px 32px", border: "1px solid rgba(255,255,255,0.5)",
+          borderRadius: "999px", color: "#fff", fontSize: "0.7rem",
+          fontWeight: 700, letterSpacing: "0.14em", textDecoration: "none",
+          textAlign: "center", transition: "background 0.2s, border-color 0.2s",
+          background: "transparent", cursor: "pointer", font: "inherit",
+        }}
         onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.08)"; e.currentTarget.style.borderColor = "#fff"; }}
         onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.5)"; }}
-      >GET A QUOTE</a>
+      >GET A QUOTE</button>
     </div>
   );
 }
@@ -1222,6 +1235,13 @@ export default function Header({ quoteOpen, setQuoteOpen }) {
               backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)",
               border: "1px solid rgba(255,255,255,0.08)",
               borderRadius: "10px", padding: "8px 12px",
+              "--header-nav-color": HEADER_CONTROLS.navLinkColor || "rgba(255,255,255,0.82)",
+              "--header-nav-color-dimmed": HEADER_CONTROLS.navLinkColor
+                ? HEADER_CONTROLS.navLinkColor.replace("0.82", "0.35")
+                : "rgba(255,255,255,0.35)",
+              "--header-cta-bg": HEADER_CONTROLS.ctaBg,
+              "--header-cta-border": HEADER_CONTROLS.ctaBorder,
+              "--header-cta-color": HEADER_CONTROLS.ctaColor,
             }}>
               {NAV_ITEMS.map((item) => (
                 <div key={item.label}
@@ -1243,7 +1263,6 @@ export default function Header({ quoteOpen, setQuoteOpen }) {
               ))}
               <AnimatedCTAButton
                 label="GET A QUOTE"
-                href="#contact"
                 onClick={() => openQuoteDrawer()}
                 ctaBg={HEADER_CONTROLS.ctaBg}
                 ctaColor={HEADER_CONTROLS.ctaColor}
@@ -1292,6 +1311,59 @@ export default function Header({ quoteOpen, setQuoteOpen }) {
       <style>{`
         @media (max-width: 768px) { .header-desktop-nav { display: none !important; } }
         @media (min-width: 769px) { .header-burger      { display: none !important; } }
+
+        .header-nav-link,
+        .header-nav-trigger {
+          position: relative;
+          overflow: hidden;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 5px 6px;
+          font-size: 10px;
+          line-height: 1.6;
+          text-decoration: none;
+          white-space: nowrap;
+          cursor: pointer;
+          transition: color 0.5s ease;
+          will-change: transform;
+          font-family: Inter, Arial, sans-serif;
+          font-weight: 200;
+          font-style: normal;
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          text-rendering: geometricPrecision;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          color: var(--header-nav-color, rgba(255, 255, 255, 0.82));
+          border: none;
+          background: none;
+        }
+
+        .header-nav-link--dimmed {
+          color: var(--header-nav-color-dimmed, rgba(255, 255, 255, 0.35));
+        }
+
+        .header-cta-btn {
+          position: relative;
+          overflow: hidden;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          padding: 6px 12px;
+          background: var(--header-cta-bg, #ffffff);
+          border: 1px solid var(--header-cta-border, #ffffff);
+          border-radius: 7px;
+          color: var(--header-cta-color, #0a0a09);
+          font-size: 0.72rem;
+          font-weight: 700;
+          font-family: Inter, Arial, sans-serif;
+          letter-spacing: 0.13em;
+          text-decoration: none;
+          white-space: nowrap;
+          cursor: pointer;
+          transition: background 0.5s ease, border-color 0.5s ease, color 0.5s ease;
+        }
 
         .site-header--blurred .header-desktop-nav {
           background: rgba(0, 0, 0, 0.42) !important;
