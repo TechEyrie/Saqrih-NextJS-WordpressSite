@@ -693,6 +693,7 @@ function MegaDropdown({ visible, onMouseEnter, onMouseLeave, onQuoteClick }) {
             }}>Get a quote</p>
             <button
               type="button"
+              aria-label="Get a quote"
               onClick={() => onQuoteClick?.()}
               style={{
                 marginTop: "36px", display: "inline-flex", alignItems: "center", justifyContent: "center",
@@ -702,7 +703,7 @@ function MegaDropdown({ visible, onMouseEnter, onMouseLeave, onQuoteClick }) {
               onMouseEnter={(e) => { e.currentTarget.style.transform = "scale(1.12)"; e.currentTarget.style.background = "#1f4638"; }}
               onMouseLeave={(e) => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.background = "#162D24"; }}
             >
-              <svg width="24" height="24" viewBox="0 0 18 18" fill="none">
+              <svg width="24" height="24" viewBox="0 0 18 18" fill="none" aria-hidden="true">
                 <path d="M3 9h12M11 5l4 4-4 4" stroke="#ffffff" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
