@@ -401,6 +401,7 @@ export default function CustomersSection({
 
       <div
         ref={outerRef}
+        data-header="dark"
         style={{ background: "#162D24", position: "relative", overflowX: "clip", maxWidth: "100%" }}
       >
         {/* Animated gradient */}

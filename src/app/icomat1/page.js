@@ -1,36 +1,25 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 import Lenis from 'lenis'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Montserrat } from 'next/font/google'
-
 
 import HeroSection from '../../../components/icomat1/HeroSection'
-import RTSSection from '../../../components/icomat1/RTSSection'
-import RTSRevolutionSection from '../../../components/icomat1/RTSRevolutionSection'
-import CompositeShowcaseSection from '../../../components/icomat1/CompositeShowcaseSection'
-import RTSCombinedSection from '../../../components/icomat1/RTSCombinedSection'
-import HowWeOperateSection from '../../../components/icomat1/HowWeOperateSection'
-import OurAdvantageSection from '../../../components/icomat1/OurAdvantageSection'
-import EndToEndSection from '../../../components/icomat1/EndToEndSection'
-import CustomersSection from '../../../components/icomat1/CustomerSection'
-import BusinessModelSection from '../../../components/icomat1/BusinessModelSection'
-import IcomatSolutionSection from '../../../components/icomat1/IcomatSolutionsSection'
-import IndustriesSection from '../../../components/icomat1/IndustriesSection'
-import BuildWithIcomatSection from '../../../components/icomat1/BuildWithIcomatSection'
-import UnlockingSection from '../../../components/icomat1/UnlockingSection'
-import FooterSection from '../../../components/icomat1/FooterSection'
 import Header from '../../../components/icomat1/Header'
-import CTASection from '../../../components/icomat1/CTASection'
 import { deferScrollTriggerRefresh } from '../../../lib/deferScrollTriggerRefresh'
 
+const RTSSection = dynamic(() => import('../../../components/icomat1/RTSSection'))
+const RTSCombinedSection = dynamic(() => import('../../../components/icomat1/RTSCombinedSection'))
+const HowWeOperateSection = dynamic(() => import('../../../components/icomat1/HowWeOperateSection'))
+const OurAdvantageSection = dynamic(() => import('../../../components/icomat1/OurAdvantageSection'))
+const EndToEndSection = dynamic(() => import('../../../components/icomat1/EndToEndSection'))
+const CustomersSection = dynamic(() => import('../../../components/icomat1/CustomerSection'))
+const UnlockingSection = dynamic(() => import('../../../components/icomat1/UnlockingSection'))
+const FooterSection = dynamic(() => import('../../../components/icomat1/FooterSection'))
+
 gsap.registerPlugin(ScrollTrigger)
-const montserrat = Montserrat({
-  subsets: ['latin'],
-  variable: '--font-montserrat',
-})
 
 export default function IcomatPage() {
   const [theme] = useState('dark')
@@ -43,44 +32,57 @@ export default function IcomatPage() {
   useEffect(() => {
     if (typeof window === 'undefined') return
 
-    // ── Lenis setup ────────────────────────────────────────────────
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => 1 - Math.pow(1 - t, 3),
-      smoothWheel: true,
-      wheelMultiplier: 1,
-      smoothTouch: false, // keep false — smoothTouch causes mobile sticking
-      touchMultiplier: 1.5,
-      infinite: false,
-    })
+    let lenis = null
+    let tickerFn = null
+    let cancelled = false
 
-    // ── Critical: drive Lenis through gsap.ticker, NOT rAF manually ─
-    // This keeps Lenis and ScrollTrigger on the exact same clock tick
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000)
-    })
+    const init = () => {
+      if (cancelled) return
 
-    // Zero lag smoothing so ticker fires every frame without throttle
-    gsap.ticker.lagSmoothing(0)
+      lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => 1 - Math.pow(1 - t, 3),
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        smoothTouch: false,
+        touchMultiplier: 1.5,
+        infinite: false,
+      })
 
-    // Sync ScrollTrigger scroll position to Lenis
-    lenis.on('scroll', () => ScrollTrigger.update())
+      tickerFn = (time) => {
+        lenis.raf(time * 1000)
+      }
+      gsap.ticker.add(tickerFn)
+      gsap.ticker.lagSmoothing(0)
+      lenis.on('scroll', () => ScrollTrigger.update())
+      deferScrollTriggerRefresh()
+    }
 
-    // Refresh ScrollTrigger after first paint so DOM heights are known (idle-batched).
-    deferScrollTriggerRefresh()
+    if ('requestIdleCallback' in window) {
+      const id = window.requestIdleCallback(init, { timeout: 1500 })
+      return () => {
+        cancelled = true
+        window.cancelIdleCallback(id)
+        if (tickerFn) gsap.ticker.remove(tickerFn)
+        ScrollTrigger.getAll().forEach((t) => t.kill())
+        lenis?.destroy()
+      }
+    }
 
+    const id = window.setTimeout(init, 80)
     return () => {
-      // Full cleanup on unmount
-      gsap.ticker.remove((time) => lenis.raf(time * 1000))
+      cancelled = true
+      window.clearTimeout(id)
+      if (tickerFn) gsap.ticker.remove(tickerFn)
       ScrollTrigger.getAll().forEach((t) => t.kill())
-      lenis.destroy()
+      lenis?.destroy()
     }
   }, [])
 
   return (
     <div
       data-theme="dark"
-      className={`icomat1-laygrotesk homepage-root ${montserrat.variable}`}
+      className="icomat1-laygrotesk homepage-root"
       style={{
         backgroundColor: '#162D24',
         minHeight: '100vh',
@@ -113,22 +115,14 @@ export default function IcomatPage() {
       <main id="main-content" className="homepage-font-scope">
         <HeroSection onQuoteClick={() => setQuoteOpen(true)} />
         <RTSSection />
-        {/* <RTSRevolutionSection />
-        <CompositeShowcaseSection /> */}
         <RTSCombinedSection pageKey="homepage" />
         <HowWeOperateSection />
         <OurAdvantageSection />
         <EndToEndSection pageKey="homepage" />
         <CustomersSection pageKey="homepage" />
-        {/* <BusinessModelSection /> */}
-        {/* <IcomatSolutionSection pageKey="homepage" /> */}
-        {/* <IndustriesSection /> */}
-        {/* <BuildWithIcomatSection /> */}
         <UnlockingSection />
-        {/* <CTASection /> */}
         <FooterSection />
       </main>
-      {/* <Footer theme="dark" /> */}
     </div>
   )
 }

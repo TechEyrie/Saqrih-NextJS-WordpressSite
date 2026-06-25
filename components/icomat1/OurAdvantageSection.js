@@ -91,6 +91,7 @@ export default function OurAdvantageSection() {
     <section
       ref={sectionRef}
       className="w-full bg-[#162D24] py-24 md:py-32 px-6 sm:px-10 md:px-16 lg:px-20"
+      data-header="dark"
     >
       {/*
         Three-column grid:

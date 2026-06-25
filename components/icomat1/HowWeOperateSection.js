@@ -65,6 +65,7 @@ export default function HowWeOperateSection() {
     <section
       ref={sectionRef}
       className="w-full bg-[#162D24] pt-20 pb-24 px-6 sm:px-10 md:px-16 lg:px-20"
+      data-header="dark"
     >
       <div className="mb-10 md:mb-14 max-w-[95%]">
         <p

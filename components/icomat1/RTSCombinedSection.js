@@ -372,6 +372,7 @@ export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
     */
     <div
       ref={wrapperRef}
+      data-header="light"
       className="relative w-full"
       style={{
         minHeight: showVideoPanel ? "100vh" : "auto",

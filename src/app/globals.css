@@ -580,12 +580,11 @@ body[data-route-loading="true"] {
   background-color: #e8ebe9;
 }
 
-/* Hide routed page until the global loader finishes (prevents flash on navigation) */
+/* Keep page painted for LCP while route loader overlay is visible */
 .global-loading-content[data-loading="true"] {
-  visibility: hidden;
   pointer-events: none;
+  user-select: none;
   overflow: hidden;
-  max-height: 100vh;
 }
 
 /* Loading screen — true viewport center on mobile (iOS address bar / dvh) */
@@ -1376,10 +1375,5 @@ body[data-route-loading="true"] {
   width: auto;
   height: auto;
   overflow: visible;
-}
-
-.global-loading-content[data-loading="true"] {
-  pointer-events: none;
-  user-select: none;
 }
 

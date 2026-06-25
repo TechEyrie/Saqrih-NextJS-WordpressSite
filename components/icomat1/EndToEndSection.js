@@ -223,6 +223,7 @@ export default function EndToEndSection({
   return (
     <section
       ref={wrapperRef}
+      data-header="dark"
       className="w-full overflow-hidden pb-16 sm:pb-20 md:pb-24"
       style={{
         minHeight: "100vh",

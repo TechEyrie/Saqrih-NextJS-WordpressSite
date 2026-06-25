@@ -6,11 +6,14 @@ import { usePathname } from "next/navigation";
 import LoadingScreen from "./LoadingScreen";
 import ScrollToTopButton from "./ScrollToTopButton";
 
+const HOMEPAGE_PATHS = new Set(["/", "/icomat1", "/home1"]);
+
 export default function GlobalLoadingWrapper({ children }) {
   const pathname = usePathname();
+  const skipInitialLoader = HOMEPAGE_PATHS.has(pathname);
   /** Last path the loader has finished revealing. */
   const [settledPath, setSettledPath] = useState(pathname);
-  const [initialDone, setInitialDone] = useState(false);
+  const [initialDone, setInitialDone] = useState(skipInitialLoader);
   const [loaderKey, setLoaderKey] = useState(0);
   const [portalTarget, setPortalTarget] = useState(null);
   const wasLoadingRef = useRef(false);

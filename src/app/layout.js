@@ -56,12 +56,6 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <link rel="https://api.w.org/" href="/wp-json/" />
-        <link
-          rel="stylesheet"
-          id="wp-block-library-css"
-          href="/wp-includes/css/dist/block-library/style.min.css"
-          media="all"
-        />
         <link rel="alternate" type="application/rss+xml" title="Saqrih" href="/feed/" />
       </head>
       <body className={`${inter.variable} ${montserrat.variable}`}>
@@ -70,7 +64,7 @@ export default function RootLayout({ children }) {
         </a>
         <Script
           src="/wp-includes/js/wp-embed.min.js"
-          strategy="beforeInteractive"
+          strategy="lazyOnload"
         />
         <Script 
           src="https://cdn.jsdelivr.net/npm/three-bas@2.0.1/dist/bas.min.js"

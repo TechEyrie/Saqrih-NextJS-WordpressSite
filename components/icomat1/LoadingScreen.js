@@ -87,47 +87,20 @@ export default function LoadingScreen({ onComplete }) {
 
     tl.to(
       logo,
-      { opacity: 1, scale: 1, duration: 0.18, ease: "power3.out" },
-      0.05,
+      { opacity: 1, scale: 1, duration: 0.15, ease: "power3.out" },
+      0,
     )
       .to(
-        logo,
-        {
-          scale: 1.06,
-          duration: 0.11,
-          ease: "power1.inOut",
-          yoyo: true,
-          repeat: 1,
-        },
-        0.25,
-      )
-      .addLabel("waveStart", 0.5)
-      .to(
         paintState,
-        {
-          wave: 1,
-          duration: 1.8,
-          ease: "power3.inOut",
-        },
-        "waveStart",
-      )
-      .to(
-        paintState,
-        {
-          solid: 1,
-          duration: 1.2,
-          ease: "power2.inOut",
-        },
-        "waveStart+=0.6",
+        { wave: 0.6, solid: 1, duration: 0.45, ease: "power2.inOut" },
+        0.12,
       )
       .to(
         logo,
-        { opacity: 0, duration: 0.6, ease: "power2.inOut" },
-        "waveStart+=0.7",
+        { opacity: 0, duration: 0.2, ease: "power2.inOut" },
+        0.2,
       )
-      // Hold full dark curtain, then cut to page — no overlay opacity fade (that flashed white).
-      .to({}, { duration: 0.12 }, "waveStart+=2.05")
-      .add(finish, "waveStart+=2.17");
+      .add(finish, 0.72);
 
     return () => {
       cancelAnimationFrame(rafRef.id);

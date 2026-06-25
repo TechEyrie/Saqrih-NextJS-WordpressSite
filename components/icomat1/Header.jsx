@@ -6,6 +6,7 @@ import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useMeasuredHeight } from "../../lib/useMeasuredHeight";
+import { useHeaderThemeObserver } from "../../lib/useHeaderThemeObserver";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -1029,157 +1030,8 @@ export default function Header({ quoteOpen, setQuoteOpen }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, [megaOpen, menuOpen, resolvedQuoteOpen]);
 
-  // ── Section-aware brand theming (logo + wordmark only) ──────
-  useEffect(() => {
-    const normalizeTheme = (theme) => {
-      if (theme === "light" || theme === "dark" || theme === "media" || theme === "adaptive") return theme;
-      if (theme === "deep-dark") return "dark";
-      return "dark";
-    };
-
-    const parseRgb = (bg) => {
-      const m = bg?.match?.(/rgba?\(([^)]+)\)/i);
-      if (!m) return null;
-      const [r, g, b, a = "1"] = m[1].split(",").map((v) => v.trim());
-      return { r: Number(r), g: Number(g), b: Number(b), a: Number(a) };
-    };
-
-    const getLuminance = ({ r, g, b }) => {
-      const toLinear = (c) => {
-        const x = c / 255;
-        return x <= 0.03928 ? x / 12.92 : ((x + 0.055) / 1.055) ** 2.4;
-      };
-      return 0.2126 * toLinear(r) + 0.7152 * toLinear(g) + 0.0722 * toLinear(b);
-    };
-
-    const inferThemeFromElement = (el) => {
-      let node = el;
-      while (node && node !== document.body) {
-        if (node?.dataset?.header) return normalizeTheme(node.dataset.header);
-
-        const tag = node?.tagName?.toLowerCase?.();
-        if (tag === "video" || tag === "canvas" || tag === "img") return "media";
-
-        const cs = window.getComputedStyle(node);
-        const opacity = Number(cs.opacity || "1");
-        if (cs.backgroundImage && cs.backgroundImage !== "none" && opacity > 0.08) return "media";
-        const rgb = parseRgb(cs.backgroundColor);
-        if (rgb && rgb.a * opacity > 0.12) {
-          return getLuminance(rgb) > 0.6 ? "light" : "dark";
-        }
-        node = node.parentElement;
-      }
-      return "dark";
-    };
-
-    const inferThemeFromStack = (stack) => {
-      for (const el of stack) {
-        if (
-          el === document.documentElement ||
-          el === document.body ||
-          headerRef.current?.contains(el) ||
-          megaRef.current?.contains(el)
-        ) {
-          continue;
-        }
-
-        // First try element itself; if it's just text/transparent, fallback to ancestors.
-        const theme = inferThemeFromElement(el);
-        if (theme) return theme;
-      }
-      return "dark";
-    };
-
-    let raf = null;
-    let lastThemeScrollY = -1;
-    const lastAppliedThemeRef = { current: "dark" };
-    const pendingThemeRef = { current: "dark" };
-    const stableCountRef = { current: 0 };
-
-    const commitTheme = (nextTheme) => {
-      if (nextTheme !== lastAppliedThemeRef.current) {
-        lastAppliedThemeRef.current = nextTheme;
-        setHeaderTheme(nextTheme);
-      }
-    };
-
-    const updateTheme = () => {
-      const headerH = HEADER_BAR_HEIGHT;
-      const vw = window.innerWidth;
-      const vh = window.innerHeight;
-      // Fewer sample points — logo/wordmark band only (cuts elementsFromPoint + getComputedStyle work).
-      const sampleXs = [28, 148, Math.min(300, vw - 20)]
-        .map((x) => Math.max(18, Math.min(Math.round(x), vw - 18)));
-      const sampleYs = [headerH + 12, headerH + 28]
-        .map((y) => Math.max(8, Math.min(y, vh - 2)));
-
-      const score = { light: 0, dark: 0, media: 0 };
-      sampleXs.forEach((x) => {
-        sampleYs.forEach((y) => {
-          const stack = document.elementsFromPoint(x, y);
-          const theme = inferThemeFromStack(stack);
-          score[theme] += 1;
-        });
-      });
-
-      // If section is visually mixed (split bg/gradients), use adaptive contrast mode.
-      const lightHits = score.light;
-      const darkHits = score.dark;
-      const mediaHits = score.media;
-      const totalHits = lightHits + darkHits + mediaHits || 1;
-      const mixedLightDark =
-        lightHits / totalHits > 0.25 &&
-        darkHits / totalHits > 0.25 &&
-        Math.abs(lightHits - darkHits) <= Math.max(2, Math.round(totalHits * 0.25));
-
-      let matched = "dark";
-      if (mixedLightDark) {
-        matched = "adaptive";
-      } else {
-        matched = Object.entries(score).sort((a, b) => b[1] - a[1])[0]?.[0] || "dark";
-      }
-
-      const nextTheme = normalizeTheme(matched);
-      if (nextTheme === pendingThemeRef.current) {
-        stableCountRef.current += 1;
-      } else {
-        pendingThemeRef.current = nextTheme;
-        stableCountRef.current = 1;
-      }
-
-      // Require more stable reads for smoother, slower transitions.
-      if (stableCountRef.current >= 3 || nextTheme === lastAppliedThemeRef.current) {
-        commitTheme(nextTheme);
-      }
-    };
-
-    const requestUpdate = (force = false) => {
-      if (!force) {
-        const y = window.scrollY || document.documentElement.scrollTop;
-        if (lastThemeScrollY >= 0 && Math.abs(y - lastThemeScrollY) < 48) return;
-        lastThemeScrollY = y;
-      }
-      if (raf) return;
-      raf = window.requestAnimationFrame(() => {
-        raf = null;
-        updateTheme();
-      });
-    };
-
-    const runInitial = () => requestUpdate(true);
-    if ("requestIdleCallback" in window) {
-      window.requestIdleCallback(runInitial, { timeout: 800 });
-    } else {
-      requestAnimationFrame(() => requestAnimationFrame(runInitial));
-    }
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", () => requestUpdate(true));
-    return () => {
-      if (raf) window.cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", requestUpdate);
-      window.removeEventListener("resize", requestUpdate);
-    };
-  }, []);
+  // ── Section-aware brand theming via data-header + IntersectionObserver ──
+  useHeaderThemeObserver(setHeaderTheme, HEADER_BAR_HEIGHT);
 
   useEffect(() => {
     const onOpenQuoteDrawer = () => openQuoteDrawer();

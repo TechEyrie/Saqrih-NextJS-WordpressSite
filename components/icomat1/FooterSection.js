@@ -309,6 +309,7 @@ export default function FooterSection() {
   return (
     <footer
       ref={footerRef}
+      data-header="dark"
       className="icomat-footer-reveal"
       style={{
         position: "relative",

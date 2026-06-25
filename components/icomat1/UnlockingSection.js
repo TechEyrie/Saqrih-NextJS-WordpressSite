@@ -489,7 +489,7 @@ export default function UnlockingSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="unlocking-section">
+    <section ref={sectionRef} className="unlocking-section" data-header="light">
 
       {/* ── Heading ───────────────────────────────────────────── */}
       <div className="unlocking-heading-wrap">

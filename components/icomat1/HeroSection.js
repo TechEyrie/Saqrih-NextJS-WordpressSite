@@ -2,12 +2,11 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HeroScrollDownIndicator from "./HeroScrollDownIndicator";
 import { HOMEPAGE_HERO_BACKGROUND_VIDEO } from "../../lib/siteVideos";
 
-gsap.registerPlugin(SplitText, ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger);
 
 export function HeroQuoteButton({ onClick, className }) {
   const wrapRef  = useRef(null);
@@ -106,7 +105,6 @@ export default function HeroSection({ onQuoteClick }) {
   const containerRef       = useRef(null);
   const videoRef           = useRef(null);
   const overlayRef         = useRef(null);
-  const headingRef         = useRef(null);
   const badgeRef           = useRef(null);
   const scrollIndicatorRef = useRef(null);
   const contentRef         = useRef(null);
@@ -115,87 +113,72 @@ export default function HeroSection({ onQuoteClick }) {
     const prefersReducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
+    if (prefersReducedMotion) return;
 
-    const ctx = gsap.context(() => {
-
-      // ── Hard initial states ──
-      gsap.set(videoRef.current,           { opacity: 0 });
-      gsap.set(overlayRef.current,         { opacity: 0 });
-      gsap.set(badgeRef.current,           { opacity: 0, y: 20 });
-      gsap.set(scrollIndicatorRef.current, { opacity: 0 });
-
-      // ── Entrance timeline ──
-      const tl = gsap.timeline({ delay: 0.3 });
-
-      tl.to(videoRef.current,
-        { opacity: 1, duration: 1.8, ease: "power2.inOut" }, 0);
-
-      tl.to(overlayRef.current,
-        { opacity: 1, duration: 1.5, ease: "power2.inOut" }, 0.2);
-
-      tl.to(badgeRef.current,
-        { opacity: 1, y: 0, duration: 1, ease: "power3.out" }, 0.6);
-
-      const runHeadingAnim = () => {
-        if (!headingRef.current || prefersReducedMotion) {
-          if (headingRef.current) gsap.set(headingRef.current, { opacity: 1 });
-          return;
-        }
-        const split = new SplitText(headingRef.current, { type: "lines,words" });
+    const run = () => {
+      const ctx = gsap.context(() => {
         gsap.fromTo(
-          split.words,
-          { opacity: 0, y: 60, skewY: 4 },
-          {
-            opacity: 1, y: 0, skewY: 0,
-            duration: 1.1, ease: "power4.out",
-            stagger: 0.08, delay: 0.5,
-          }
+          overlayRef.current,
+          { opacity: 0.4 },
+          { opacity: 1, duration: 1.2, ease: "power2.out" }
         );
+
+        gsap.fromTo(
+          badgeRef.current,
+          { opacity: 0, y: 12 },
+          { opacity: 1, y: 0, duration: 0.8, ease: "power3.out", delay: 0.2 }
+        );
+
+        gsap.fromTo(
+          scrollIndicatorRef.current,
+          { opacity: 0 },
+          { opacity: 1, duration: 0.6, ease: "power2.out", delay: 0.8 }
+        );
+
+        gsap.to(scrollIndicatorRef.current, {
+          y: 8, duration: 1.2, ease: "sine.inOut",
+          repeat: -1, yoyo: true, delay: 1.6,
+        });
+
+        ScrollTrigger.create({
+          trigger: containerRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: 1.4,
+          onUpdate: (self) => {
+            const p = self.progress;
+            gsap.set(contentRef.current, {
+              scale: 1 - 0.18 * p,
+              y: 380 * p,
+              transformOrigin: "50% 60%",
+            });
+          },
+          onLeaveBack: () => {
+            gsap.to(contentRef.current, {
+              scale: 1, y: 0,
+              duration: 0.5, ease: "power2.out",
+              overwrite: true,
+            });
+          },
+        });
+      }, containerRef);
+
+      return () => ctx.revert();
+    };
+
+    let cleanup = () => {};
+    if ("requestIdleCallback" in window) {
+      const id = window.requestIdleCallback(() => { cleanup = run() || (() => {}); }, { timeout: 1200 });
+      return () => {
+        window.cancelIdleCallback(id);
+        cleanup();
       };
-
-      if ("requestIdleCallback" in window) {
-        window.requestIdleCallback(runHeadingAnim, { timeout: 600 });
-      } else {
-        requestAnimationFrame(() => requestAnimationFrame(runHeadingAnim));
-      }
-
-      tl.to(scrollIndicatorRef.current,
-        { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" }, 1.8);
-
-      // Scroll indicator bounce
-      gsap.to(scrollIndicatorRef.current, {
-        y: 8, duration: 1.2, ease: "sine.inOut",
-        repeat: -1, yoyo: true, delay: 2.6,
-      });
-
-      // ── Depth recession on scroll ──
-      // Scales back (recedes), drifts DOWN, no fade
-      ScrollTrigger.create({
-        trigger: containerRef.current,
-        start: "top top",
-        end: "bottom top",
-        scrub: 1.4,
-        onUpdate: (self) => {
-          const p = self.progress;
-
-          gsap.set(contentRef.current, {
-            scale:           1 - (0.18 * p),   // recedes backward
-            y:               380 * p,           // drifts down
-            transformOrigin: "50% 60%",
-          });
-        },
-        onLeaveBack: () => {
-          gsap.to(contentRef.current, {
-            scale: 1, y: 0,
-            duration: 0.5, ease: "power2.out",
-            overwrite: true,
-          });
-        },
-      });
-
-    }, containerRef);
-
-    return () => ctx.revert();
+    }
+    const id = window.setTimeout(() => { cleanup = run() || (() => {}); }, 50);
+    return () => {
+      window.clearTimeout(id);
+      cleanup();
+    };
   }, []);
 
   useEffect(() => {
@@ -230,6 +213,7 @@ export default function HeroSection({ onQuoteClick }) {
   return (
     <section
       ref={containerRef}
+      data-header="media"
       className="icomat-hero-with-quote relative w-full h-screen min-h-[600px] bg-[#162D24]"
       style={{
         overflow: "clip",
@@ -239,7 +223,6 @@ export default function HeroSection({ onQuoteClick }) {
         perspective: "1200px",
       }}
     >
-      {/* Background video — served from public/videos */}
       <div
         className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
         aria-hidden="true"
@@ -253,46 +236,42 @@ export default function HeroSection({ onQuoteClick }) {
           muted
           loop
           playsInline
-          preload="auto"
+          preload="metadata"
           disablePictureInPicture
           disableRemotePlayback
           tabIndex={-1}
         />
       </div>
 
-      {/* Gradient Overlay */}
       <div
         ref={overlayRef}
         className="absolute inset-0 z-[1] pointer-events-none"
         style={{
+          opacity: 1,
           background:
             "linear-gradient(to right, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.25) 55%, rgba(0,0,0,0.1) 100%)",
         }}
       />
 
-      {/* Bottom fade */}
       <div
         className="absolute bottom-0 left-0 right-0 z-[1] h-32 pointer-events-none"
         style={{ background: "linear-gradient(to bottom, transparent, rgba(0,0,0,0.55))" }}
       />
 
-      {/* Main Content */}
       <div className="icomat-hero-with-quote-content relative z-10 h-full flex flex-col px-6 sm:px-10 md:px-16 lg:px-10 pb-6 md:pb-8">
 
         <div className="flex-1" />
 
-        {/* contentRef wraps heading + badge — recedes together as one unit */}
         <div
           ref={contentRef}
           style={{ transformStyle: "preserve-3d", willChange: "transform" }}
         >
           <h1
-            ref={headingRef}
             className="text-white tracking-tight leading-[0.95]"
             style={{
               fontSize: "clamp(2rem, 4.5vw, 4rem)",
               fontWeight: 600,
-              fontFamily: "Inter, Arial, sans-serif",
+              fontFamily: "var(--font-inter), Inter, Arial, sans-serif",
             }}
           >
             The WordPress
