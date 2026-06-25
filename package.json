@@ -39,5 +39,11 @@
     "@tailwindcss/postcss": "^4",
     "@types/leaflet": "^1.9.20",
     "tailwindcss": "^4"
-  }
+  },
+  "browserslist": [
+    "chrome >= 111",
+    "edge >= 111",
+    "firefox >= 111",
+    "safari >= 16.4"
+  ]
 }

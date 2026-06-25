@@ -112,6 +112,10 @@ export default function HeroSection({ onQuoteClick }) {
   const contentRef         = useRef(null);
 
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
     const ctx = gsap.context(() => {
 
       // ── Hard initial states ──
@@ -132,14 +136,27 @@ export default function HeroSection({ onQuoteClick }) {
       tl.to(badgeRef.current,
         { opacity: 1, y: 0, duration: 1, ease: "power3.out" }, 0.6);
 
-      if (headingRef.current) {
+      const runHeadingAnim = () => {
+        if (!headingRef.current || prefersReducedMotion) {
+          if (headingRef.current) gsap.set(headingRef.current, { opacity: 1 });
+          return;
+        }
         const split = new SplitText(headingRef.current, { type: "lines,words" });
-        gsap.set(split.words, { opacity: 0, y: 60, skewY: 4 });
-        tl.to(split.words, {
-          opacity: 1, y: 0, skewY: 0,
-          duration: 1.1, ease: "power4.out",
-          stagger: 0.08,
-        }, 0.8);
+        gsap.fromTo(
+          split.words,
+          { opacity: 0, y: 60, skewY: 4 },
+          {
+            opacity: 1, y: 0, skewY: 0,
+            duration: 1.1, ease: "power4.out",
+            stagger: 0.08, delay: 0.5,
+          }
+        );
+      };
+
+      if ("requestIdleCallback" in window) {
+        window.requestIdleCallback(runHeadingAnim, { timeout: 600 });
+      } else {
+        requestAnimationFrame(() => requestAnimationFrame(runHeadingAnim));
       }
 
       tl.to(scrollIndicatorRef.current,

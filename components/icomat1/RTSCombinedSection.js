@@ -10,6 +10,7 @@ import {
   getRtsCombinedCardVideos,
   getRtsCombinedPanelVideo,
 } from "../../lib/pageVideos";
+import { debounceScrollTriggerRefresh } from "../../lib/deferScrollTriggerRefresh";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -272,7 +273,7 @@ export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
 
         cardsTrigger?.kill();
         gsap.set(cards, { opacity: 0.55, scale: 0.96 });
-        const cardWidth = cards[0].getBoundingClientRect().width;
+        const cardWidth = cards[0].offsetWidth;
         const overlapStep = cardWidth * 0.9;
         cards.forEach((card, i) => {
           const col = i % 3;
@@ -348,14 +349,15 @@ export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
         masterTl.to({}, { duration: 1 });
       }
 
-      const onResize = () => {
+      const onResize = debounceScrollTriggerRefresh(200);
+      const handleResize = () => {
         setupCards();
-        ScrollTrigger.refresh();
+        onResize();
       };
-      window.addEventListener("resize", onResize);
+      window.addEventListener("resize", handleResize);
       return () => {
         cardsTrigger?.kill();
-        window.removeEventListener("resize", onResize);
+        window.removeEventListener("resize", handleResize);
       };
 
     }, wrapperRef);

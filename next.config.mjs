@@ -1,5 +1,25 @@
 /** @type {import('next').NextConfig} */
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const emptyPolyfill = path.join(__dirname, "lib/empty-polyfill.js");
+
 const nextConfig = {
+  webpack(config) {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "next/dist/build/polyfills/polyfill-module": emptyPolyfill,
+      "../build/polyfills/polyfill-module": emptyPolyfill,
+    };
+    return config;
+  },
+  turbopack: {
+    resolveAlias: {
+      "next/dist/build/polyfills/polyfill-module": "./lib/empty-polyfill.js",
+      "../build/polyfills/polyfill-module": "./lib/empty-polyfill.js",
+    },
+  },
   async redirects() {
     return [
       {

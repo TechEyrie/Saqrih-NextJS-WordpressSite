@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useMeasuredHeight } from "../../lib/useMeasuredHeight";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -717,28 +718,32 @@ function MegaDropdown({ visible, onMouseEnter, onMouseLeave, onQuoteClick }) {
 // ── Animated nav link ─────────────────────────────────────────
 function AnimatedNavLink({ label, href, dimmed = false, onHoverStart, onHoverEnd, hasMega, megaOpen, linkColor }) {
   const wrapRef = useRef(null), textRef = useRef(null), cloneRef = useRef(null), tlRef = useRef(null);
+  const heightRef = useMeasuredHeight(wrapRef);
   useEffect(() => {
     const wrap = wrapRef.current, text = textRef.current, clone = cloneRef.current;
     if (!wrap || !text || !clone) return;
-    const H = wrap.offsetHeight;
+    const getH = () => heightRef.current || wrap.offsetHeight;
+    const H = getH();
     gsap.set(clone, { y: H, opacity: 1 });
     gsap.set(text,  { y: 0, opacity: 1 });
     const onEnter = () => {
+      const h = getH();
       tlRef.current?.kill();
       tlRef.current = gsap.timeline({ defaults: { duration: 0.52, ease: "power3.inOut" } });
-      tlRef.current.to(text, { y: -H }, 0).to(clone, { y: 0 }, 0)
+      tlRef.current.to(text, { y: -h }, 0).to(clone, { y: 0 }, 0)
         .to(clone, { scale: 1.08, duration: 0.14, ease: "power1.out" }, 0.50)
         .to(clone, { scale: 1.0,  duration: 0.13, ease: "power1.inOut" }, 0.64);
     };
     const onLeave = () => {
+      const h = getH();
       tlRef.current?.kill();
       tlRef.current = gsap.timeline({ defaults: { duration: 0.48, ease: "power3.inOut" } });
-      tlRef.current.to(clone, { y: H }, 0).to(text, { y: 0 }, 0);
+      tlRef.current.to(clone, { y: h }, 0).to(text, { y: 0 }, 0);
     };
     wrap.addEventListener("mouseenter", onEnter);
     wrap.addEventListener("mouseleave", onLeave);
     return () => { wrap.removeEventListener("mouseenter", onEnter); wrap.removeEventListener("mouseleave", onLeave); tlRef.current?.kill(); };
-  }, []);
+  }, [heightRef]);
 
   const navClass = `header-nav-link${dimmed ? " header-nav-link--dimmed" : ""}`;
 
@@ -800,6 +805,7 @@ function AnimatedNavLink({ label, href, dimmed = false, onHoverStart, onHoverEnd
 // ── Animated CTA button ───────────────────────────────────────
 function AnimatedCTAButton({ label, onClick, ctaBg, ctaColor, ctaBorder }) {
   const wrapRef = useRef(null), textRef = useRef(null), cloneRef = useRef(null), tlRef = useRef(null);
+  const heightRef = useMeasuredHeight(wrapRef);
 
   // Keep a ref to always have latest theme values in the event handlers
   const themeRef = useRef({ ctaBg, ctaColor, ctaBorder });
@@ -808,31 +814,34 @@ function AnimatedCTAButton({ label, onClick, ctaBg, ctaColor, ctaBorder }) {
   useEffect(() => {
     const wrap = wrapRef.current, text = textRef.current, clone = cloneRef.current;
     if (!wrap || !text || !clone) return;
-    const H = wrap.offsetHeight;
+    const getH = () => heightRef.current || wrap.offsetHeight;
+    const H = getH();
     gsap.set(clone, { y: H, opacity: 1 });
     gsap.set(text,  { y: 0, opacity: 1 });
     const onEnter = () => {
+      const h = getH();
       const { ctaBg: bg } = themeRef.current;
       // Invert: hover bg is the text color of current theme
       const hoverBg = bg === "#ffffff" ? "#0a0a09" : "#ffffff";
       tlRef.current?.kill();
       gsap.to(wrap, { backgroundColor: hoverBg, borderColor: hoverBg, duration: 0.35, ease: "power2.out" });
       tlRef.current = gsap.timeline({ defaults: { duration: 0.52, ease: "power3.inOut" } });
-      tlRef.current.to(text, { y: -H }, 0).to(clone, { y: 0 }, 0)
+      tlRef.current.to(text, { y: -h }, 0).to(clone, { y: 0 }, 0)
         .to(clone, { scale: 1.08, duration: 0.14, ease: "power1.out" }, 0.50)
         .to(clone, { scale: 1.0,  duration: 0.13, ease: "power1.inOut" }, 0.64);
     };
     const onLeave = () => {
+      const h = getH();
       const { ctaBg: bg, ctaBorder: border } = themeRef.current;
       tlRef.current?.kill();
       gsap.to(wrap, { backgroundColor: bg, borderColor: border, duration: 0.35, ease: "power2.out" });
       tlRef.current = gsap.timeline({ defaults: { duration: 0.48, ease: "power3.inOut" } });
-      tlRef.current.to(clone, { y: H }, 0).to(text, { y: 0 }, 0);
+      tlRef.current.to(clone, { y: h }, 0).to(text, { y: 0 }, 0);
     };
     wrap.addEventListener("mouseenter", onEnter);
     wrap.addEventListener("mouseleave", onLeave);
     return () => { wrap.removeEventListener("mouseenter", onEnter); wrap.removeEventListener("mouseleave", onLeave); tlRef.current?.kill(); };
-  }, []);
+  }, [heightRef]);
 
   const ctaStyle = {
     "--header-cta-bg": ctaBg || "#ffffff",
@@ -857,26 +866,30 @@ function AnimatedCTAButton({ label, onClick, ctaBg, ctaColor, ctaBorder }) {
 // ── Animated mobile menu link ─────────────────────────────────
 function AnimatedMobileMenuLink({ label, href, onClose }) {
   const wrapRef = useRef(null), textRef = useRef(null), cloneRef = useRef(null), tlRef = useRef(null);
+  const heightRef = useMeasuredHeight(wrapRef);
   useEffect(() => {
     const wrap = wrapRef.current, text = textRef.current, clone = cloneRef.current;
     if (!wrap || !text || !clone) return;
-    const H = wrap.offsetHeight;
+    const getH = () => heightRef.current || wrap.offsetHeight;
+    const H = getH();
     gsap.set(clone, { y: H, opacity: 0 });
     gsap.set(text,  { y: 0, opacity: 1 });
     const onEnter = () => {
+      const h = getH();
       tlRef.current?.kill();
       tlRef.current = gsap.timeline({ defaults: { duration: 0.65, ease: "power4.inOut" } });
-      tlRef.current.to(text, { y: -H, opacity: 0 }, 0).to(clone, { y: 0, opacity: 1 }, 0);
+      tlRef.current.to(text, { y: -h, opacity: 0 }, 0).to(clone, { y: 0, opacity: 1 }, 0);
     };
     const onLeave = () => {
+      const h = getH();
       tlRef.current?.kill();
       tlRef.current = gsap.timeline({ defaults: { duration: 0.55, ease: "power4.inOut" } });
-      tlRef.current.to(clone, { y: H, opacity: 0 }, 0).to(text, { y: 0, opacity: 1 }, 0);
+      tlRef.current.to(clone, { y: h, opacity: 0 }, 0).to(text, { y: 0, opacity: 1 }, 0);
     };
     wrap.addEventListener("mouseenter", onEnter);
     wrap.addEventListener("mouseleave", onLeave);
     return () => { wrap.removeEventListener("mouseenter", onEnter); wrap.removeEventListener("mouseleave", onLeave); tlRef.current?.kill(); };
-  }, []);
+  }, [heightRef]);
 
   return (
     <Link href={href || "/"} ref={wrapRef} onClick={onClose} style={{
@@ -1078,6 +1091,7 @@ export default function Header({ quoteOpen, setQuoteOpen }) {
     };
 
     let raf = null;
+    let lastThemeScrollY = -1;
     const lastAppliedThemeRef = { current: "dark" };
     const pendingThemeRef = { current: "dark" };
     const stableCountRef = { current: 0 };
@@ -1091,13 +1105,13 @@ export default function Header({ quoteOpen, setQuoteOpen }) {
 
     const updateTheme = () => {
       const headerH = HEADER_BAR_HEIGHT;
-      // Sample around the actual logo + wordmark region so theme follows what brand sits over.
-      const brandLeft = 28;
-      const brandRight = Math.min(360, window.innerWidth - 20);
-      const sampleXs = [brandLeft, 88, 148, 220, 300, brandRight]
-        .map((x) => Math.max(18, Math.min(Math.round(x), window.innerWidth - 18)));
-      const sampleYs = [headerH + 6, headerH + 18, headerH + 32]
-        .map((y) => Math.max(8, Math.min(y, window.innerHeight - 2)));
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      // Fewer sample points — logo/wordmark band only (cuts elementsFromPoint + getComputedStyle work).
+      const sampleXs = [28, 148, Math.min(300, vw - 20)]
+        .map((x) => Math.max(18, Math.min(Math.round(x), vw - 18)));
+      const sampleYs = [headerH + 12, headerH + 28]
+        .map((y) => Math.max(8, Math.min(y, vh - 2)));
 
       const score = { light: 0, dark: 0, media: 0 };
       sampleXs.forEach((x) => {
@@ -1139,7 +1153,12 @@ export default function Header({ quoteOpen, setQuoteOpen }) {
       }
     };
 
-    const requestUpdate = () => {
+    const requestUpdate = (force = false) => {
+      if (!force) {
+        const y = window.scrollY || document.documentElement.scrollTop;
+        if (lastThemeScrollY >= 0 && Math.abs(y - lastThemeScrollY) < 48) return;
+        lastThemeScrollY = y;
+      }
       if (raf) return;
       raf = window.requestAnimationFrame(() => {
         raf = null;
@@ -1147,9 +1166,14 @@ export default function Header({ quoteOpen, setQuoteOpen }) {
       });
     };
 
-    updateTheme(); // run once on mount
+    const runInitial = () => requestUpdate(true);
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(runInitial, { timeout: 800 });
+    } else {
+      requestAnimationFrame(() => requestAnimationFrame(runInitial));
+    }
     window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
+    window.addEventListener("resize", () => requestUpdate(true));
     return () => {
       if (raf) window.cancelAnimationFrame(raf);
       window.removeEventListener("scroll", requestUpdate);

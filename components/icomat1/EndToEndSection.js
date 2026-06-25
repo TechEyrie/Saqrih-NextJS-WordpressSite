@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { getPageSectionPics } from "../../lib/pageImages";
+import { debounceScrollTriggerRefresh } from "../../lib/deferScrollTriggerRefresh";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
@@ -177,7 +178,7 @@ export default function EndToEndSection({
           return Math.max(0, trackWidth - outerWidth);
         };
 
-        const refreshPin = () => ScrollTrigger.refresh();
+        const refreshPin = debounceScrollTriggerRefresh(150);
 
         gsap.set(track, { x: 0, force3D: true });
 

@@ -24,6 +24,7 @@ import UnlockingSection from '../../../components/icomat1/UnlockingSection'
 import FooterSection from '../../../components/icomat1/FooterSection'
 import Header from '../../../components/icomat1/Header'
 import CTASection from '../../../components/icomat1/CTASection'
+import { deferScrollTriggerRefresh } from '../../../lib/deferScrollTriggerRefresh'
 
 gsap.registerPlugin(ScrollTrigger)
 const montserrat = Montserrat({
@@ -65,8 +66,8 @@ export default function IcomatPage() {
     // Sync ScrollTrigger scroll position to Lenis
     lenis.on('scroll', () => ScrollTrigger.update())
 
-    // Refresh ScrollTrigger AFTER first paint so all DOM heights are known
-    ScrollTrigger.refresh()
+    // Refresh ScrollTrigger after first paint so DOM heights are known (idle-batched).
+    deferScrollTriggerRefresh()
 
     return () => {
       // Full cleanup on unmount
