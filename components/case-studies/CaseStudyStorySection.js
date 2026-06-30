@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useCaseStudyGsap } from "../../lib/useCaseStudyGsap";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -44,25 +45,22 @@ export default function CaseStudyStorySection({ caseStudy }) {
   const sectionRef = useRef(null);
   const { story } = caseStudy;
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.utils.toArray(".cs-story-block").forEach((el, i) => {
-        gsap.fromTo(
-          el,
-          { opacity: 0, y: 28 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            ease: "power3.out",
-            delay: i * 0.05,
-            scrollTrigger: { trigger: el, start: "top 88%", once: true },
-          },
-        );
-      });
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
+  useCaseStudyGsap(() => {
+    gsap.utils.toArray(".cs-story-block", sectionRef.current).forEach((el, i) => {
+      gsap.fromTo(
+        el,
+        { opacity: 0, y: 28 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power3.out",
+          delay: i * 0.05,
+          scrollTrigger: { trigger: el, start: "top 88%", once: true },
+        },
+      );
+    });
+  }, [caseStudy.slug], sectionRef);
 
   return (
     <section

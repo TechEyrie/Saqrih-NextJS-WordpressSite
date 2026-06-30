@@ -74,6 +74,46 @@ const CARD_META = [
     img: "/case-studies/ufomammoot/all-devices-white.png",
     imgFit: "contain",
   },
+  {
+    num: "09",
+    label: "PATHFINDERS",
+    sub: "WordPress e-commerce site for an Islamic children's publisher—magazines, curriculum, Quran readers, and learning activities, responsive across every device.",
+    href: "/case-studies/pathfinders",
+    img: "/case-studies/pathfinders/all-devices-white.png",
+    imgFit: "contain",
+  },
+  {
+    num: "10",
+    label: "EARTHSCAPE",
+    sub: "WordPress marketing site for a Sri Lankan coir manufacturer—horticultural products, sustainability story, and global export reach, responsive across every device.",
+    href: "/case-studies/earthscape",
+    img: "/case-studies/earthscape/all-devices-white.png",
+    imgFit: "contain",
+  },
+  {
+    num: "11",
+    label: "D&D FINANCIAL",
+    sub: "WordPress site for a financial services organization—mediation, accounts receivable, and consumer documentation divisions, responsive across every device.",
+    href: "/case-studies/d-and-d-financial",
+    img: "/case-studies/d&d-financial/all-devices-white.png",
+    imgFit: "contain",
+  },
+  {
+    num: "12",
+    label: "INFINITY STORE",
+    sub: "WooCommerce electronics store for a Sri Lankan retailer—phones, laptops, accessories, and nationwide delivery, responsive across every device.",
+    href: "/case-studies/infinitystore",
+    img: "/case-studies/infinitystore/all-devices-white.png",
+    imgFit: "contain",
+  },
+  {
+    num: "13",
+    label: "PREMIER ONE SOLUTIONS",
+    sub: "WordPress site for a financial services organization—mediation, accounts receivable, and clerk divisions, responsive across every device.",
+    href: "/case-studies/premieronesolutions",
+    img: "/case-studies/premieronesolutions/all-devices-white.png",
+    imgFit: "contain",
+  },
 ];
 
 function buildCards(pageKey) {

@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { PRE_FOOTER_SURFACE } from "../../lib/preFooterSurface";
+import { useDeferredGsap } from "../../lib/useCaseStudyGsap";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -110,9 +111,7 @@ export default function CTASection({ onQuoteOpen }) {
     };
   }, []);
 
-  // ── Scroll-driven animation (no pin) ─────────────────────────
-  useEffect(() => {
-    const ctx = gsap.context(() => {
+  useDeferredGsap(() => {
 
       // Initial states
       gsap.set(greenBaseRef.current,  { opacity: 0 });
@@ -229,10 +228,7 @@ export default function CTASection({ onQuoteOpen }) {
         },
       });
 
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
+  }, [], sectionRef);
 
   // ── Arc definitions ───────────────────────────────────────────
   const innerArcs = [60, 100, 145, 192, 242, 294, 348, 405, 464, 525];

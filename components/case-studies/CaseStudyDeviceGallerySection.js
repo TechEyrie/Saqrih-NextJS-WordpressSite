@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useCaseStudyGsap } from "../../lib/useCaseStudyGsap";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,26 +12,23 @@ export default function CaseStudyDeviceGallerySection({ caseStudy }) {
   const galleryTitle =
     caseStudy.showcase?.galleryTitle ?? `${caseStudy.name} across devices`;
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.utils.toArray(".cs-gallery-item").forEach((el, i) => {
-        gsap.fromTo(
-          el,
-          { opacity: 0, y: 24, scale: 0.98 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 0.7,
-            ease: "power3.out",
-            delay: (i % 4) * 0.06,
-            scrollTrigger: { trigger: el, start: "top 92%", once: true },
-          },
-        );
-      });
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
+  useCaseStudyGsap(() => {
+    gsap.utils.toArray(".cs-gallery-item", sectionRef.current).forEach((el, i) => {
+      gsap.fromTo(
+        el,
+        { opacity: 0, y: 24, scale: 0.98 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.7,
+          ease: "power3.out",
+          delay: (i % 4) * 0.06,
+          scrollTrigger: { trigger: el, start: "top 92%", once: true },
+        },
+      );
+    });
+  }, [caseStudy.slug], sectionRef);
 
   const featured = caseStudy.gallery.filter((item) => item.featured);
   const rest = caseStudy.gallery.filter((item) => !item.featured);

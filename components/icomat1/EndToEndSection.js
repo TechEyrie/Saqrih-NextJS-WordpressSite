@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useMemo, useRef } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
@@ -8,6 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { getPageSectionPics } from "../../lib/pageImages";
 import { debounceScrollTriggerRefresh } from "../../lib/deferScrollTriggerRefresh";
 import { useScrollDimensions } from "../../lib/useScrollDimensions";
+import { useDeferredGsap } from "../../lib/useCaseStudyGsap";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
@@ -68,6 +69,46 @@ const CARD_META = [
     img: "/case-studies/ufomammoot/all-devices-white.png",
     imgFit: "contain",
   },
+  {
+    num: "08",
+    label: "PATHFINDERS",
+    sub: "WordPress e-commerce site for an Islamic children's publisher—magazines, curriculum, Quran readers, and learning activities, responsive across every device.",
+    href: "/case-studies/pathfinders",
+    img: "/case-studies/pathfinders/all-devices-white.png",
+    imgFit: "contain",
+  },
+  {
+    num: "09",
+    label: "EARTHSCAPE",
+    sub: "WordPress marketing site for a Sri Lankan coir manufacturer—horticultural products, sustainability story, and global export reach, responsive across every device.",
+    href: "/case-studies/earthscape",
+    img: "/case-studies/earthscape/all-devices-white.png",
+    imgFit: "contain",
+  },
+  {
+    num: "10",
+    label: "D&D FINANCIAL",
+    sub: "WordPress site for a financial services organization—mediation, accounts receivable, and consumer documentation divisions, responsive across every device.",
+    href: "/case-studies/d-and-d-financial",
+    img: "/case-studies/d&d-financial/all-devices-white.png",
+    imgFit: "contain",
+  },
+  {
+    num: "11",
+    label: "INFINITY STORE",
+    sub: "WooCommerce electronics store for a Sri Lankan retailer—phones, laptops, accessories, and nationwide delivery, responsive across every device.",
+    href: "/case-studies/infinitystore",
+    img: "/case-studies/infinitystore/all-devices-white.png",
+    imgFit: "contain",
+  },
+  {
+    num: "12",
+    label: "PREMIER ONE SOLUTIONS",
+    sub: "WordPress site for a financial services organization—mediation, accounts receivable, and clerk divisions, responsive across every device.",
+    href: "/case-studies/premieronesolutions",
+    img: "/case-studies/premieronesolutions/all-devices-white.png",
+    imgFit: "contain",
+  },
 ];
 
 function buildCards(pageKey) {
@@ -116,9 +157,8 @@ export default function EndToEndSection({
     soonBg: isLight ? "rgba(0,0,0,0.03)" : "rgba(255,255,255,0.03)",
   };
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const runHeadingSplit = () => {
+  useDeferredGsap(() => {
+    const runHeadingSplit = () => {
         if (!headingRef.current) return;
         splitRef.current?.revert();
         splitRef.current = new SplitText(headingRef.current, { type: "chars,words" });
@@ -216,14 +256,10 @@ export default function EndToEndSection({
       });
 
       return () => mm.revert();
-    }, wrapperRef);
-
-    return () => {
-      splitRef.current?.revert();
-      splitRef.current = null;
-      ctx.revert();
-    };
-  }, [alignHeadingScrubWithPin, colors.headingEnd, colors.headingStart, pinAnticipate, pinScope, pinStart, pinType]);
+  }, [alignHeadingScrubWithPin, colors.headingEnd, colors.headingStart, pinAnticipate, pinScope, pinStart, pinType, cards], wrapperRef, () => {
+    splitRef.current?.revert();
+    splitRef.current = null;
+  });
 
   return (
     <section

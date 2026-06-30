@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HeroScrollDownIndicator, { defaultHeroScrollDownOnClick } from "../icomat1/HeroScrollDownIndicator";
+import { useCaseStudyGsap } from "../../lib/useCaseStudyGsap";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -46,26 +47,24 @@ export default function CaseStudyHeroSection({ caseStudy }) {
   const mockupRef = useRef(null);
   const metaBarRef = useRef(null);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      [headingRef, bodyRef, mockupRef, metaBarRef].forEach((ref, i) => {
-        gsap.fromTo(
-          ref.current,
-          { opacity: 0, y: i === 0 ? 0 : 24, x: i === 0 ? -32 : 0 },
-          {
-            opacity: 1,
-            y: 0,
-            x: 0,
-            duration: 0.85,
-            ease: "power3.out",
-            delay: i * 0.08,
-            scrollTrigger: { trigger: ref.current, start: "top 88%", once: true },
-          },
-        );
-      });
+  useCaseStudyGsap(() => {
+    [headingRef, bodyRef, mockupRef, metaBarRef].forEach((ref, i) => {
+      if (!ref.current) return;
+      gsap.fromTo(
+        ref.current,
+        { opacity: 0, y: i === 0 ? 0 : 24, x: i === 0 ? -32 : 0 },
+        {
+          opacity: 1,
+          y: 0,
+          x: 0,
+          duration: 0.85,
+          ease: "power3.out",
+          delay: i * 0.08,
+          scrollTrigger: { trigger: ref.current, start: "top 88%", once: true },
+        },
+      );
     });
-    return () => ctx.revert();
-  }, []);
+  }, [caseStudy.slug]);
 
   return (
     <div

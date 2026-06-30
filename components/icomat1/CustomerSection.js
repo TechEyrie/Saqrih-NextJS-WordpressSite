@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { pageKeyFromPathname } from "../../lib/pageKeys";
 import { getCustomerSectionVideos } from "../../lib/pageVideos";
+import { useDeferredGsap } from "../../lib/useCaseStudyGsap";
 import {
   CUSTOMER_SECTION_HEADING,
   CUSTOMER_TESTIMONIALS,
@@ -159,9 +160,8 @@ export default function CustomersSection({
   const [modalOpen, setModalOpen] = useState(false);
   const MODAL_SRC = modalVideo;
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      const totalCards = CLIENTS.length;
+  useDeferredGsap(() => {
+    const totalCards = CLIENTS.length;
       const SCROLL_PX_PER_CARD = 1750;
       const TOTAL_PIN_SCROLL = totalCards * SCROLL_PX_PER_CARD;
       const COLLAPSED_H = 52;
@@ -385,10 +385,7 @@ export default function CustomersSection({
 
       }); // end desktop matchMedia
 
-    }, outerRef);
-
-    return () => ctx.revert();
-  }, [pinAnticipate, pinType, showVideoSection]);
+  }, [pinAnticipate, pinType, showVideoSection, pageKey], outerRef);
 
   return (
     <>

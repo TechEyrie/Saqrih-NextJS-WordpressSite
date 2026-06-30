@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useCaseStudyGsap } from "../../lib/useCaseStudyGsap";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -10,26 +11,23 @@ export default function CaseStudyShowcaseSection({ caseStudy }) {
   const cardRefs = useRef([]);
   const showcase = caseStudy.showcase ?? {};
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      cardRefs.current.forEach((card, i) => {
-        if (!card) return;
-        gsap.fromTo(
-          card,
-          { opacity: 0, y: 32 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.75,
-            ease: "power3.out",
-            delay: i * 0.1,
-            scrollTrigger: { trigger: card, start: "top 88%", once: true },
-          },
-        );
-      });
+  useCaseStudyGsap(() => {
+    cardRefs.current.forEach((card, i) => {
+      if (!card) return;
+      gsap.fromTo(
+        card,
+        { opacity: 0, y: 32 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.75,
+          ease: "power3.out",
+          delay: i * 0.1,
+          scrollTrigger: { trigger: card, start: "top 88%", once: true },
+        },
+      );
     });
-    return () => ctx.revert();
-  }, []);
+  }, [caseStudy.slug]);
 
   const cards = [
     {
