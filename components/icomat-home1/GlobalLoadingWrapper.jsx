@@ -1,10 +1,14 @@
 "use client";
 
-import { useCallback, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
 import LoadingScreen from "./LoadingScreen";
 import ScrollToTopButton from "./ScrollToTopButton";
+import {
+  installScrollToTopOnNavigation,
+  scheduleScrollReset,
+} from "../../lib/scrollRestoration";
 
 const HOMEPAGE_PATHS = new Set(["/", "/icomat1", "/home1"]);
 
@@ -17,9 +21,30 @@ export default function GlobalLoadingWrapper({ children }) {
   const [loaderKey, setLoaderKey] = useState(0);
   const [portalTarget, setPortalTarget] = useState(null);
   const wasLoadingRef = useRef(false);
+  const prevPathnameRef = useRef(pathname);
 
   // Derived on every render — no effect needed, so no "page then loader" frame.
   const showLoader = !initialDone || pathname !== settledPath;
+
+  useLayoutEffect(() => {
+    installScrollToTopOnNavigation();
+  }, []);
+
+  useLayoutEffect(() => {
+    if (prevPathnameRef.current === pathname) return;
+    prevPathnameRef.current = pathname;
+    scheduleScrollReset();
+  }, [pathname]);
+
+  useEffect(() => {
+    scheduleScrollReset();
+  }, [pathname]);
+
+  useLayoutEffect(() => {
+    if (!showLoader) {
+      scheduleScrollReset();
+    }
+  }, [showLoader, pathname]);
 
   useLayoutEffect(() => {
     setPortalTarget(document.body);
@@ -36,6 +61,7 @@ export default function GlobalLoadingWrapper({ children }) {
     if (showLoader) {
       document.body.style.overflow = "hidden";
       document.body.dataset.routeLoading = "true";
+      scheduleScrollReset();
     } else {
       document.body.style.overflow = "";
       delete document.body.dataset.routeLoading;
@@ -47,6 +73,7 @@ export default function GlobalLoadingWrapper({ children }) {
   }, [showLoader]);
 
   const handleLoaderComplete = useCallback(() => {
+    scheduleScrollReset();
     setSettledPath(pathname);
     setInitialDone(true);
   }, [pathname]);

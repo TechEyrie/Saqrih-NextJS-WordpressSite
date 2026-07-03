@@ -1,9 +1,10 @@
-import { CLEINDY_CASE_STUDY } from "../../../../lib/caseStudies/cleindyData";
-
-export const metadata = {
-  title: `${CLEINDY_CASE_STUDY.name} Case Study`,
-  description: CLEINDY_CASE_STUDY.heroIntro,
-};
+// ── [HIDDEN CASE STUDY 01–07] Uncomment block below to restore ──
+// import { CLEINDY_CASE_STUDY } from "../../../../lib/caseStudies/cleindyData";
+//
+// export const metadata = {
+//   title: `${CLEINDY_CASE_STUDY.name} Case Study`,
+//   description: CLEINDY_CASE_STUDY.heroIntro,
+// };
 
 export default function CleindyLayout({ children }) {
   return children;

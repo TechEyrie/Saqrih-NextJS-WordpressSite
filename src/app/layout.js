@@ -63,6 +63,11 @@ export default function RootLayout({ children }) {
           .icomat-hero-with-quote{background:#162d24;min-height:100vh}
           .skip-to-main{position:absolute;left:-9999px;z-index:100000}
         `}} />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `if("scrollRestoration"in history){history.scrollRestoration="manual";}`,
+          }}
+        />
         <DeferredStylesheet href="/fonts/deferred-fonts.css" />
       </head>
       <body className={`${inter.variable} ${montserrat.variable}`}>

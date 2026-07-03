@@ -4,7 +4,8 @@ import { useEffect } from "react";
 import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { resetCaseStudyScroll, notifyScrollReady } from "../../lib/useCaseStudyGsap";
+import { scheduleScrollReset } from "../../lib/scrollRestoration";
+import { notifyScrollReady } from "../../lib/useCaseStudyGsap";
 import CTASection from "../icomat1/CTASection";
 import EndToEndSection from "../icomat1/EndToEndSection";
 import FooterSection from "../icomat1/FooterSection";
@@ -21,7 +22,7 @@ export default function CaseStudyPage({ caseStudy, pageKey }) {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    resetCaseStudyScroll();
+    scheduleScrollReset();
 
     let lenis = null;
     let onTick = null;

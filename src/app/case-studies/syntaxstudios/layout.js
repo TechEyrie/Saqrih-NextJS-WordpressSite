@@ -1,9 +1,10 @@
-import { SYNTAXSTUDIOS_CASE_STUDY } from "../../../../lib/caseStudies/syntaxstudiosData";
-
-export const metadata = {
-  title: `${SYNTAXSTUDIOS_CASE_STUDY.name} Case Study`,
-  description: SYNTAXSTUDIOS_CASE_STUDY.heroIntro,
-};
+// ── [HIDDEN CASE STUDY 01–07] Uncomment block below to restore ──
+// import { SYNTAXSTUDIOS_CASE_STUDY } from "../../../../lib/caseStudies/syntaxstudiosData";
+//
+// export const metadata = {
+//   title: `${SYNTAXSTUDIOS_CASE_STUDY.name} Case Study`,
+//   description: SYNTAXSTUDIOS_CASE_STUDY.heroIntro,
+// };
 
 export default function SyntaxStudiosLayout({ children }) {
   return children;
