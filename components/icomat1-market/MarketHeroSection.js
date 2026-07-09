@@ -1,13 +1,12 @@
 "use client";
 
-import { SERVICES_HERO_BACKGROUND_VIDEO } from "../../lib/siteVideos";
 import WordPressServiceHeroLayout, {
   WordPressServiceHeroStats,
 } from "../icomat1/WordPressServiceHeroLayout";
 
 export default function MarketHeroSection() {
   return (
-    <WordPressServiceHeroLayout heroVideo={SERVICES_HERO_BACKGROUND_VIDEO}>
+    <WordPressServiceHeroLayout>
       <div className="wp-service-hero-copy" style={{ maxWidth: "900px" }}>
         <h1 className="wp-service-hero-title" style={{ maxWidth: "min(18ch, 100%)" }}>
           Based in Qatar, serving the Gulf and beyond

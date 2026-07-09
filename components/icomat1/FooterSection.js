@@ -19,23 +19,6 @@ const WavesLogo = () => (
   </svg>
 );
 
-// ── Social icons ───────────────────────────────────────────────
-const LinkedInIcon = () => (
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M20.447 20.452H17.21v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.985V9h3.101v1.561h.046c.433-.818 1.49-1.681 3.065-1.681 3.275 0 3.879 2.156 3.879 4.961v6.611zM5.337 7.433a1.8 1.8 0 1 1 0-3.6 1.8 1.8 0 0 1 0 3.6zM6.927 20.452H3.742V9h3.185v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-  </svg>
-);
-const XIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.734-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z"/>
-  </svg>
-);
-const YouTubeIcon = () => (
-  <svg width="20" height="18" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-  </svg>
-);
-
 // Section titles — lime accent + title case (reference layout)
 const FOOTER_HEADING_COLOR = "#d4ff6a";
 const FOOTER_LINK_COLOR = "rgba(255,255,255,0.92)";
@@ -95,12 +78,6 @@ const NAV_MAIN = [
     href: "/about-us",
     sub: NAV_ABOUT_LINKS,
   },
-];
-
-const SOCIALS = [
-  { icon: <LinkedInIcon />, href: "#linkedin", label: "LinkedIn" },
-  { icon: <XIcon />,        href: "#x",        label: "X (Twitter)" },
-  { icon: <YouTubeIcon />,  href: "#youtube",  label: "YouTube" },
 ];
 
 /** Fill column 1 top→bottom, then column 2… (matches reference mega-menu columns). */
@@ -464,66 +441,28 @@ export default function FooterSection() {
           marginBottom: "28px",
         }} />
 
-        <div
-          className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between"
-        >
-          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-            <div>
-              <p style={{
-                color: "rgba(255,255,255,0.9)",
-                fontSize: "clamp(1rem, 1.6vw, 1.35rem)",
-                fontWeight: 700, lineHeight: 1.25,
-                letterSpacing: "-0.01em", margin: 0,
-              }}>The WordPress</p>
-              <p style={{
-                color: "rgba(255,255,255,0.9)",
-                fontSize: "clamp(1rem, 1.6vw, 1.35rem)",
-                fontWeight: 700, lineHeight: 1.25,
-                letterSpacing: "-0.01em", margin: 0,
-              }}>partner you've been looking for.</p>
-            </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+          <div>
             <p style={{
-              color: "rgba(255,255,255,0.28)",
-              fontSize: "clamp(0.58rem, 0.65vw, 0.65rem)",
-              fontWeight: 500, letterSpacing: "0.04em", margin: 0,
-            }}>
-              ©2026 Saqrih. All rights reserved.
-            </p>
+              color: "rgba(255,255,255,0.9)",
+              fontSize: "clamp(1rem, 1.6vw, 1.35rem)",
+              fontWeight: 700, lineHeight: 1.25,
+              letterSpacing: "-0.01em", margin: 0,
+            }}>The WordPress</p>
+            <p style={{
+              color: "rgba(255,255,255,0.9)",
+              fontSize: "clamp(1rem, 1.6vw, 1.35rem)",
+              fontWeight: 700, lineHeight: 1.25,
+              letterSpacing: "-0.01em", margin: 0,
+            }}>partner you've been looking for.</p>
           </div>
-
-          <div style={{ display: "flex", flexDirection: "column", gap: "6px", alignSelf: "flex-start" }}>
-            <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
-              {SOCIALS.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  aria-label={s.label}
-                  style={{
-                    display: "flex", alignItems: "center", justifyContent: "center",
-                    width: "32px", height: "32px",
-                    borderRadius: "50%",
-                    border: "1px solid rgba(255,255,255,0.14)",
-                    color: "rgba(255,255,255,0.6)",
-                    textDecoration: "none",
-                    transition: "border-color 0.2s, color 0.2s, background 0.2s",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.color = "#fff";
-                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.45)";
-                    e.currentTarget.style.background = "rgba(255,255,255,0.06)";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.color = "rgba(255,255,255,0.6)";
-                    e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)";
-                    e.currentTarget.style.background = "transparent";
-                  }}
-                >
-                  {s.icon}
-                </a>
-              ))}
-            </div>
-          </div>
-
+          <p style={{
+            color: "rgba(255,255,255,0.28)",
+            fontSize: "clamp(0.58rem, 0.65vw, 0.65rem)",
+            fontWeight: 500, letterSpacing: "0.04em", margin: 0,
+          }}>
+            ©2026 Saqrih. All rights reserved.
+          </p>
         </div>
       </div>
 

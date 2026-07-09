@@ -1,6 +1,7 @@
 "use client";
 
-import { SERVICES_HERO_BACKGROUND_VIDEO } from "../../lib/siteVideos";
+import { usePathname } from "next/navigation";
+import { landscapeHeroPicForPath } from "../../lib/landscapeHeroPics";
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
@@ -11,8 +12,10 @@ import HeroScrollDownIndicator, { defaultHeroScrollDownOnClick } from "../icomat
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
 export default function HeroSection() {
+  const pathname = usePathname();
+  const heroBackground = landscapeHeroPicForPath(pathname);
   const containerRef = useRef(null);
-  const videoRef = useRef(null);
+  const imageRef = useRef(null);
   const overlayRef = useRef(null);
   const headingRef = useRef(null);
   const badgeRef = useRef(null);
@@ -22,7 +25,7 @@ export default function HeroSection() {
     const ctx = gsap.context(() => {
 
       // ── Set hard initial states so scroll-out never conflicts ──────
-      gsap.set(videoRef.current, { opacity: 0 });
+      gsap.set(imageRef.current, { opacity: 0 });
       gsap.set(overlayRef.current, { opacity: 0 });
       gsap.set(badgeRef.current, { opacity: 0, y: 20 });
       gsap.set(scrollIndicatorRef.current, { opacity: 0 });
@@ -31,7 +34,7 @@ export default function HeroSection() {
       const tl = gsap.timeline({ delay: 0.3 });
 
       tl.to(
-        videoRef.current,
+        imageRef.current,
         { opacity: 1, duration: 1.8, ease: "power2.inOut" },
         0
       );
@@ -132,7 +135,7 @@ export default function HeroSection() {
       });
 
       // ── Video parallax ─────────────────────────────────────────────
-      gsap.to(videoRef.current, {
+      gsap.to(imageRef.current, {
         yPercent: -12,
         ease: "none",
         scrollTrigger: {
@@ -154,16 +157,14 @@ export default function HeroSection() {
       className="relative w-full h-screen min-h-[600px] bg-black"
       style={{ overflow: "clip" }}
     >
-      {/* Background Video */}
-      <video
-        ref={videoRef}
+      <img
+        ref={imageRef}
         className="absolute inset-0 w-full h-full object-cover"
-        src={SERVICES_HERO_BACKGROUND_VIDEO}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
+        src={heroBackground}
+        alt=""
+        loading="eager"
+        decoding="async"
+        fetchPriority="high"
       />
 
       {/* Gradient Overlay */}

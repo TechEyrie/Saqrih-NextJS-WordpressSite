@@ -1,6 +1,7 @@
 "use client";
 
-import { WORDPRESS_HERO_BACKGROUND_VIDEO } from "../../lib/siteVideos";
+import { usePathname } from "next/navigation";
+import { landscapeHeroPicForPath } from "../../lib/landscapeHeroPics";
 import HeroScrollDownIndicator, { defaultHeroScrollDownOnClick } from "./HeroScrollDownIndicator";
 
 export const DEFAULT_WP_HERO_STATS = [
@@ -72,30 +73,20 @@ export function WordPressServiceHeroStats({ stats = DEFAULT_WP_HERO_STATS }) {
 export default function WordPressServiceHeroLayout({
   children,
   backgroundImage,
-  heroVideo = WORDPRESS_HERO_BACKGROUND_VIDEO,
 }) {
+  const pathname = usePathname();
+  const heroBackground = backgroundImage ?? landscapeHeroPicForPath(pathname);
+
   return (
     <section className="icomat-wp-service-hero relative w-full h-screen min-h-[600px] overflow-hidden">
-      {backgroundImage ? (
-        <img
-          src={backgroundImage}
-          alt=""
-          loading="eager"
-          decoding="async"
-          fetchPriority="high"
-          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover"
-        />
-      ) : (
-        <video
-          src={heroVideo}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover"
-        />
-      )}
+      <img
+        src={heroBackground}
+        alt=""
+        loading="eager"
+        decoding="async"
+        fetchPriority="high"
+        className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover"
+      />
 
       <div
         className="pointer-events-none absolute inset-0 z-[1]"
