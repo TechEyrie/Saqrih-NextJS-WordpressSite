@@ -3,6 +3,7 @@ import "./globals.css";
 import Script from 'next/script'
 import GlobalLoadingWrapper from "../../components/icomat1/GlobalLoadingWrapper";
 import DeferredStylesheet from "../../components/DeferredStylesheet";
+import { SITE_ORIGIN } from "../../lib/siteOrigin";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -15,6 +16,7 @@ const montserrat = Montserrat({
 const SITE_TITLE = "Saqrih - Qatar - Doha Based WordPress Development Agency";
 
 export const metadata = {
+  metadataBase: new URL(SITE_ORIGIN),
   title: {
     default: SITE_TITLE,
     template: "%s | Saqrih",
