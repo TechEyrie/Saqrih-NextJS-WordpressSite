@@ -1,4 +1,4 @@
-import { buildPageMetadata } from "../../lib/siteMetadata";
+import { buildPageMetadata } from "../../../lib/siteMetadata";
 
 export const metadata = buildPageMetadata({
   title: "Saqrih",
