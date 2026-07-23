@@ -37,9 +37,9 @@ const SERVICES = [
         <path d="M18 20l1.5 1.5L22 18" stroke="#0a3a1a" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
-    title: "WordPress website design",
-    desc: "Stunning, high-quality websites crafted by expert WordPress designers",
-    href: "/wordpress/design",
+    title: "Website Development",
+    desc: "Custom websites built for performance, clarity, and conversion",
+    href: "/services/website-development",
   },
   {
     icon: (
@@ -48,8 +48,8 @@ const SERVICES = [
         <path d="M9 12l3 3-3 3M14 18h5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
-    title: "WordPress development",
-    desc: "A dedicated WordPress development team with strong technical expertise",
+    title: "Web Application Development",
+    desc: "Scalable web apps tailored to your workflows and business logic",
     href: "/wordpress/development",
   },
   {
@@ -59,9 +59,9 @@ const SERVICES = [
         <path d="M10 22h8M14 19.5V22" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
       </svg>
     ),
-    title: "WordPress maintenance",
-    desc: "Our sites are always secured, always up and always fully functional",
-    href: "/wordpress/maintenance",
+    title: "SaaS Development",
+    desc: "Product-ready SaaS platforms with secure, multi-tenant architecture",
+    href: "/services/saas-development",
   },
   {
     icon: (
@@ -72,9 +72,20 @@ const SERVICES = [
         <circle cx="14" cy="14" r="2" fill="currentColor"/>
       </svg>
     ),
-    title: "WordPress managed hosting",
-    desc: "Optimized for top-tier security and performance",
-    href: "/wordpress/hosting",
+    title: "E-commerce Development",
+    desc: "Online stores engineered for speed, checkout, and growth",
+    href: "/wordpress/woocommerce",
+  },
+  {
+    icon: (
+      <svg width="44" height="44" viewBox="0 0 28 28" fill="none">
+        <rect x="9" y="3" width="10" height="22" rx="2" stroke="currentColor" strokeWidth="1.3"/>
+        <path d="M12 5.5h4M14 21.5h.01" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+      </svg>
+    ),
+    title: "Mobile App Development",
+    desc: "Native-feeling mobile experiences that extend your digital product",
+    href: "/services/mobile-app-development",
   },
   {
     icon: (
@@ -85,9 +96,9 @@ const SERVICES = [
         <path d="M20 10l.8.8L22.2 9" stroke="#0a3a1a" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
-    title: "Premium support",
-    desc: "A dedicated contact with fast, priority assistance whenever you need it",
-    href: "/wordpress/premium-support",
+    title: "CMS & Headless Development",
+    desc: "Flexible CMS and headless builds for content teams and modern frontends",
+    href: "/services/cms-headless-development",
   },
   {
     icon: (
@@ -97,9 +108,21 @@ const SERVICES = [
         <path d="M7 8.5C9 11 11.5 12 14 12s5-1 7-3.5M7 19.5C9 17 11.5 16 14 16s5 1 7 3.5" stroke="currentColor" strokeWidth="1.1" strokeLinecap="round"/>
       </svg>
     ),
-    title: "Search engine optimization",
-    desc: "Position your website for sustainable, long-term growth",
-    href: "/wordpress/search-engine-optimization",
+    title: "API & Integration Development",
+    desc: "Reliable APIs and third-party integrations that keep systems in sync",
+    href: "/services/api-integration-development",
+  },
+  {
+    icon: (
+      <svg width="44" height="44" viewBox="0 0 28 28" fill="none">
+        <path d="M6 8h16v12H6z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/>
+        <path d="M10 22h8M14 20v2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+        <path d="M10 12h8M10 15h5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+      </svg>
+    ),
+    title: "Website Support & Maintenance",
+    desc: "Ongoing updates, monitoring, and fixes so your site stays healthy",
+    href: "/services/website-support-maintenance",
   },
 ];
 
@@ -680,7 +703,7 @@ function MegaDropdown({ visible, onMouseEnter, onMouseLeave, onQuoteClick }) {
           borderRight: "1px solid rgba(255,255,255,0.07)",
           paddingRight: "clamp(24px, 3vw, 56px)",
         }}>
-          {SERVICES.map((s, i) => <ServiceItem key={i} service={s} bottomBorder={i < 3} />)}
+          {SERVICES.map((s, i) => <ServiceItem key={i} service={s} bottomBorder={i < 6} />)}
         </div>
         <div style={{ display: "flex", alignItems: "center", padding: "36px 0 36px clamp(24px, 2.5vw, 44px)" }}>
           <div style={{

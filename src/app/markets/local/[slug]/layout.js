@@ -17,6 +17,9 @@ export async function generateMetadata({ params }) {
   return buildPageMetadata({
     title: `WordPress Services in ${place}`,
     description: `WordPress web design and development for businesses in ${place} and surrounding areas.`,
+    path: `/markets/local/${slug}`,
+    // Thin stubs — keep out of the index until real local content ships
+    robots: { index: false, follow: false },
   });
 }
 

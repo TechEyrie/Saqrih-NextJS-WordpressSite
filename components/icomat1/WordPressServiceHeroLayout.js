@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { landscapeHeroPicForPath } from "../../lib/landscapeHeroPics";
 import HeroScrollDownIndicator, { defaultHeroScrollDownOnClick } from "./HeroScrollDownIndicator";
@@ -79,13 +80,13 @@ export default function WordPressServiceHeroLayout({
 
   return (
     <section className="icomat-wp-service-hero relative w-full h-screen min-h-[600px] overflow-hidden">
-      <img
+      <Image
         src={heroBackground}
         alt=""
-        loading="eager"
-        decoding="async"
-        fetchPriority="high"
-        className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover"
+        fill
+        priority
+        sizes="100vw"
+        className="pointer-events-none absolute inset-0 z-0 object-cover"
       />
 
       <div

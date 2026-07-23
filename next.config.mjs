@@ -35,6 +35,79 @@ const nextConfig = {
         destination: "/why-saqrih",
         permanent: true,
       },
+      // Typo + odd service slugs → canonical
+      {
+        source: "/wordpress/maintainance",
+        destination: "/wordpress/maintenance",
+        permanent: true,
+      },
+      {
+        source: "/wordpress/premium-support1",
+        destination: "/wordpress/premium-support",
+        permanent: true,
+      },
+      {
+        source: "/icomat1/wordpress/maintainance",
+        destination: "/wordpress/maintenance",
+        permanent: true,
+      },
+      {
+        source: "/icomat1/wordpress/premium-support1",
+        destination: "/wordpress/premium-support",
+        permanent: true,
+      },
+      // Duplicate location / industry mirrors → canonical hubs
+      {
+        source: "/wordpress/locations/:slug",
+        destination: "/locations/:slug",
+        permanent: true,
+      },
+      {
+        source: "/wordpress/industries/:slug",
+        destination: "/industries/:slug",
+        permanent: true,
+      },
+      {
+        source: "/wordpress/industries",
+        destination: "/industries",
+        permanent: true,
+      },
+      // Legacy /dev shells → public URLs
+      {
+        source: "/icomat1/wordpress/:path*",
+        destination: "/wordpress/:path*",
+        permanent: true,
+      },
+      {
+        source: "/icomat1-about-us",
+        destination: "/about-us",
+        permanent: true,
+      },
+      {
+        source: "/icomat1-work",
+        destination: "/work",
+        permanent: true,
+      },
+      {
+        source: "/icomat-work",
+        destination: "/work",
+        permanent: true,
+      },
+      {
+        source: "/icomat1",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/icomat",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/home1",
+        destination: "/",
+        permanent: true,
+      },
     ];
   },
   async headers() {

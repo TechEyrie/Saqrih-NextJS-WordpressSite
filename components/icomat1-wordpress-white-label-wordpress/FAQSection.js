@@ -3,30 +3,16 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { getServiceFaqs } from "../../lib/wordpress/serviceFaqs";
+
+const FAQS = getServiceFaqs("white-label-wordpress").map((faq, index) => ({
+  id: index + 1,
+  ...faq,
+}));
+
 
 gsap.registerPlugin(ScrollTrigger);
 
-const FAQS = [
-  {
-    id: 1,
-    question:
-      "First, we'll run an initial WordPress speed optimization test and review the results",
-    answer:
-      "We analyze your current website speed using industry-standard tools to establish a clear performance baseline.",
-  },
-  {
-    id: 2,
-    question: "Then we'll make suggested adjustments according to multiple site speed tools",
-    answer:
-      "We review insights from different performance testing tools to identify key areas for improvement.",
-  },
-  {
-    id: 3,
-    question: "After that, it's time to perform WordPress speed optimization to improve loading times",
-    answer:
-      "We implement focused optimizations to reduce load times, improve responsiveness, and enhance overall site performance.",
-  },
-];
 
 const INTRO_PARAS = [
   "Most successful optimization projects begin with a clear plan. That's why we start by understanding your website's current performance before making any changes.",

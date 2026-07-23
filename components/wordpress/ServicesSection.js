@@ -7,37 +7,37 @@ const SERVICES = [
     title: "WordPress Development",
     description:
       "Custom, scalable websites and web apps tailored to your business goals.",
-    href: "/icomat1/wordpress/development",
+    href: "/wordpress/development",
   },
   {
     title: "WordPress Design",
     description:
       "Conversion-focused interfaces crafted for performance, clarity, and brand identity.",
-    href: "/icomat1/wordpress/design",
+    href: "/wordpress/design",
   },
   {
     title: "WordPress Hosting",
     description:
       "Fast, secure, and reliable hosting environments with proactive maintenance.",
-    href: "/icomat1/wordpress/hosting",
+    href: "/wordpress/hosting",
   },
   {
     title: "WordPress SEO",
     description:
       "Technical and on-page SEO improvements that increase visibility and quality traffic.",
-    href: "/icomat1/wordpress/search-engine-optimization",
+    href: "/wordpress/search-engine-optimization",
   },
   {
     title: "WordPress Maintenance",
     description:
       "Ongoing updates, monitoring, and fixes to keep your website healthy and secure.",
-    href: "/icomat1/wordpress/maintainance",
+    href: "/wordpress/maintenance",
   },
   {
     title: "Premium Support",
     description:
       "Expert help on demand for urgent issues, feature requests, and growth initiatives.",
-    href: "/icomat1/wordpress/premium-support",
+    href: "/wordpress/premium-support",
   },
 ];
 

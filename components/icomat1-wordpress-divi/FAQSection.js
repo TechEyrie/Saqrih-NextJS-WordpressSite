@@ -3,59 +3,16 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { getServiceFaqs } from "../../lib/wordpress/serviceFaqs";
+
+const ACCORDION_FAQS = getServiceFaqs("divi").map((faq, index) => ({
+  id: index + 1,
+  ...faq,
+}));
+
 
 gsap.registerPlugin(ScrollTrigger);
 
-const ACCORDION_FAQS = [
-  {
-    id: 1,
-    question: "All of the Divi Theme Benefits, None of the Logistics",
-    answer:
-      "Get the power of Divi without dealing with technical complexity. We handle setup, customization, and maintenance so you can focus on your business.",
-  },
-  {
-    id: 2,
-    question: "Tried-and-True Success with the WordPress Divi Theme",
-    answer:
-      "We've built and supported numerous Divi websites, helping businesses get reliable design, performance, and long-term stability.",
-  },
-  {
-    id: 3,
-    question: "The Best Theme Keeps Getting Better",
-    answer:
-      "Divi is regularly updated with new features, performance improvements, and security enhancements, keeping your site future-ready.",
-  },
-  {
-    id: 4,
-    question: "WordPress Hosting for Divi Websites",
-    answer:
-      "We provide optimized hosting environments designed specifically for Divi to ensure speed, stability, and smooth performance.",
-  },
-  {
-    id: 5,
-    question: "What is Divi in WordPress?",
-    answer:
-      "Divi is a premium WordPress theme and visual builder that lets you design websites using drag-and-drop tools without coding.",
-  },
-  {
-    id: 6,
-    question: "What is the Divi Theme Builder?",
-    answer:
-      "It's a feature that allows you to create custom layouts for headers, footers, and entire page structures across your website.",
-  },
-  {
-    id: 7,
-    question: "What are the system requirements for running Divi?",
-    answer:
-      "Divi requires a modern WordPress setup with updated PHP, sufficient server resources, and a stable hosting environment for best performance.",
-  },
-  {
-    id: 8,
-    question: "Where can I find Divi documentation?",
-    answer:
-      "Official documentation is available from Elegant Themes, covering setup guides, features, and troubleshooting resources.",
-  },
-];
 
 function FAQItem({ faq, index, isOpen, onToggle }) {
   const answerRef = useRef(null);

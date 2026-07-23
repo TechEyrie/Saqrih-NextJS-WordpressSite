@@ -1,13 +1,18 @@
-export const metadata = {
+import { buildPageMetadata } from "../../../lib/siteMetadata";
+import JsonLd from "../../../components/seo/JsonLd";
+import { breadcrumbJsonLd } from "../../../lib/jsonLd";
+
+export const metadata = buildPageMetadata({
   title: "Our Work",
   description: "Explore WordPress websites and digital products built by Saqrih.",
-  openGraph: {
-    title: "Our Work",
-    description: "Explore WordPress websites and digital products built by Saqrih.",
-    type: "website",
-  },
-};
+  path: "/work",
+});
 
 export default function Layout({ children }) {
-  return children;
+  return (
+    <>
+      <JsonLd data={breadcrumbJsonLd([{"name":"Home","url":"/"},{"name":"Our Work","url":"/work"}])} />
+      {children}
+    </>
+  );
 }

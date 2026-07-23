@@ -143,18 +143,26 @@ export default function OurAdvantageSection() {
                 className="text-[13px] sm:text-[18px] font-normal leading-relaxed"
                 style={{ color: "rgba(255,255,255,0.92)" }}
               >
-                Saqrih is a premier WordPress specialist agency, leading the
-                industry in custom design, development, hosting, and
-                high-performance maintenance. We provide end-to-end management
-                of your digital ecosystem to ensure your brand benefits from
-                unrivaled technical mastery.
+                Saqrih is a full-service development agency delivering
+                exceptional websites, web applications, SaaS platforms, mobile
+                apps, and e-commerce solutions for ambitious businesses
+                worldwide.
               </p>
               <p
                 className="text-[13px] sm:text-[18px] font-normal leading-relaxed"
                 style={{ color: "rgba(255,255,255,0.92)" }}
               >
-                We guarantee elite WordPress solutions that set the global
-                standard for design and functional excellence.
+                We provide end-to-end strategy, design, development,
+                integration, and ongoing support, ensuring every digital product
+                is built for performance, security, and long-term success.
+              </p>
+              <p
+                className="text-[13px] sm:text-[18px] font-normal leading-relaxed"
+                style={{ color: "rgba(255,255,255,0.92)" }}
+              >
+                Our commitment to technical excellence, innovation, and quality
+                enables businesses to launch faster, scale confidently, and stay
+                ahead in an evolving digital landscape.
               </p>
             </div>
 

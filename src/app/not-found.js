@@ -155,6 +155,7 @@ export default function NotFound() {
       <Header quoteOpen={quoteOpen} setQuoteOpen={setQuoteOpen} />
 
       <main
+        id="main-content"
         ref={containerRef}
         className={`relative min-h-screen flex items-center justify-center overflow-hidden ${
           isDark ? "text-white" : "text-black"

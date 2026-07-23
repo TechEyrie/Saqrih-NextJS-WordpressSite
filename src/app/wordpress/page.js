@@ -79,15 +79,14 @@ export default function IcomatWordpressPage() {
       `}</style>
 
       <Header quoteOpen={quoteOpen} setQuoteOpen={setQuoteOpen} />
-      <HeroSection />
-      <UnlockingSection />
-     
-      
+      <main id="main-content">
+        <HeroSection />
+        <UnlockingSection />
         {/* <ServicesSection /> */}
         <CTASection onQuoteOpen={() => setQuoteOpen(true)} />
         <EndToEndSection pageKey="wordpress" theme="light" />
         <FooterSection />
-      
+      </main>
     </div>
   );
 }

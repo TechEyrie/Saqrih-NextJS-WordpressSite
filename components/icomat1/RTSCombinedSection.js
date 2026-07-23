@@ -81,68 +81,90 @@ const GRID_DOTS = [
 
 const CARD_META = [
   {
-    badge: "Design + Dev",
-    href: "/wordpress/design",
+    badge: "Websites",
+    href: "/services/website-development",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
-        WordPress website design
+        Website Development
         <br />
-        <span className="font-normal text-[#666] block min-h-[2.4em]">Beautiful websites made by top WordPress designers</span>
+        <span className="font-normal text-[#666] block min-h-[2.4em]">Custom websites built for performance, clarity, and conversion</span>
       </p>
     ),
   },
   {
-    badge: "Managed Services",
+    badge: "Web Apps",
     href: "/wordpress/development",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
-        WordPress development
+        Web Application Development
         <br />
-        <span className="font-normal text-[#666] block min-h-[2.4em]">A dedicated WordPress development team with strong technical expertise</span>
+        <span className="font-normal text-[#666] block min-h-[2.4em]">Scalable web apps tailored to your workflows and business logic</span>
       </p>
     ),
   },
   {
-    badge: "Maintenance",
-    href: "/wordpress/maintenance",
+    badge: "SaaS",
+    href: "/services/saas-development",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
-        WordPress maintenance
+        SaaS Development
         <br />
-        <span className="font-normal text-[#666] block min-h-[2.4em]">Always secure, always available, always updated</span>
+        <span className="font-normal text-[#666] block min-h-[2.4em]">Product-ready SaaS platforms with secure, multi-tenant architecture</span>
       </p>
     ),
   },
   {
-    badge: "Hosting",
-    href: "/wordpress/hosting",
+    badge: "E-commerce",
+    href: "/wordpress/woocommerce",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
-        WordPress managed hosting
+        E-commerce Development
         <br />
-        <span className="font-normal text-[#666] block min-h-[2.4em]">Optimized for top-tier security and performance</span>
+        <span className="font-normal text-[#666] block min-h-[2.4em]">Online stores engineered for speed, checkout, and growth</span>
+      </p>
+    ),
+  },
+  {
+    badge: "Mobile",
+    href: "/services/mobile-app-development",
+    footer: (
+      <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
+        Mobile App Development
+        <br />
+        <span className="font-normal text-[#666] block min-h-[2.4em]">Native-feeling mobile experiences that extend your digital product</span>
+      </p>
+    ),
+  },
+  {
+    badge: "CMS",
+    href: "/services/cms-headless-development",
+    footer: (
+      <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
+        CMS & Headless Development
+        <br />
+        <span className="font-normal text-[#666] block min-h-[2.4em]">Flexible CMS and headless builds for content teams and modern frontends</span>
+      </p>
+    ),
+  },
+  {
+    badge: "APIs",
+    href: "/services/api-integration-development",
+    footer: (
+      <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
+        API & Integration Development
+        <br />
+        <span className="font-normal text-[#666] block min-h-[2.4em]">Reliable APIs and third-party integrations that keep systems in sync</span>
       </p>
     ),
   },
   {
     badge: "Support",
-    href: "/wordpress/premium-support",
+    href: "/services/website-support-maintenance",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
-        Premium support
+        Website Support & Maintenance
         <br />
-        <span className="font-normal text-[#666] block min-h-[2.4em]">A dedicated contact with fast, priority assistance whenever you need it</span>
-      </p>
-    ),
-  },
-  {
-    badge: "SEO",
-    href: "/wordpress/search-engine-optimization",
-    footer: (
-      <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
-        Search engine optimization
-        <br />
-        <span className="font-normal text-[#666] block min-h-[2.4em]">Position your website for sustainable, long-term growth</span>
+        <span className="font-normal text-[#666] block min-h-[2.4em]">Ongoing updates, monitoring, and fixes so your site stays healthy</span>
       </p>
     ),
   },
@@ -410,14 +432,13 @@ export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
           >
             <div className="flex items-start">
               <p className="text-[15px] sm:text-[17px] md:text-[20px] font-semibold text-[#111] tracking-tight leading-snug">
-                Core WordPress Services
+                Our Services
               </p>
             </div>
             <div className="max-w-lg">
               <p className="text-[14px] sm:text-[16px] md:text-[18px] font-medium text-[#111] leading-snug">
-                WordPress website design, WordPress development, WordPress managed
-                hosting, WordPress maintenance, WordPress support, and search
-                engine optimization.
+                Website development, web applications, SaaS, e-commerce, mobile apps,
+                CMS & headless, API integrations, and ongoing support & maintenance.
               </p>
             </div>
           </div>

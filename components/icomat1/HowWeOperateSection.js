@@ -19,8 +19,16 @@ export default function HowWeOperateSection() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       if (textRef.current) {
-        const split = new SplitText(textRef.current, { type: "chars,words" });
+        const split = new SplitText(textRef.current, {
+          type: "words,chars",
+          smartWrap: true,
+        });
         const chars = split.chars;
+
+        split.words.forEach((word) => {
+          word.style.display = "inline-block";
+          word.style.whiteSpace = "nowrap";
+        });
 
         gsap.set(chars, { color: "#555555" });
 
@@ -73,11 +81,10 @@ export default function HowWeOperateSection() {
           className="font-medium leading-[1.12] tracking-tight"
           style={{ fontSize: "clamp(1.2rem, 3.2vw, 3.2rem)" }}
         >
-          We deliver high-quality WordPress web design and development tailored
-          to your business needs. From custom WordPress website design and
-          development to managed hosting, maintenance, support, and search
-          engine optimization - we provide everything you need to build, grow,
-          and maintain a powerful online presence.
+          From high-performance websites and e‑commerce platforms to custom web
+          applications, SaaS products and mobile apps, Saqrih provides the
+          strategy, design and development expertise required to bring complex
+          digital ideas to life.
         </p>
       </div>
 

@@ -110,7 +110,7 @@ export default function Icomat1AboutUsPage() {
       `}</style>
 
       <Header quoteOpen={quoteOpen} setQuoteOpen={setQuoteOpen} />
-      <div className="homepage-font-scope">
+      <main id="main-content" className="homepage-font-scope">
         <HeroSection onQuoteClick={() => setQuoteOpen(true)} />
         <FactorySection />
         <ReliableSection />
@@ -120,7 +120,7 @@ export default function Icomat1AboutUsPage() {
         <UnlockingSection />
         <CTASection />
         <FooterSection />
-      </div>
+      </main>
     </div>
   )
 }

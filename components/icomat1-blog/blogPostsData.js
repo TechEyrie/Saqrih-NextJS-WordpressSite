@@ -12,7 +12,7 @@ export const BLOG_SIDEBAR_CARDS = [
     description:
       "Check out some of the beautiful websites we've built for over 2,000 clients.",
     buttonLabel: "View projects",
-    href: "/icomat-work",
+    href: "/work",
   },
   {
     id: "support-maintenance",
@@ -21,7 +21,7 @@ export const BLOG_SIDEBAR_CARDS = [
     description:
       "Shake the stress of ongoing maintenance with plans supported by our team of WordPress experts.",
     buttonLabel: "Learn more",
-    href: "/wordpress/maintainance",
+    href: "/wordpress/maintenance",
   },
 ];
 
@@ -195,15 +195,18 @@ const MLS_POST_BLOCKS = [
   },
 ];
 
-/** Template post — matches reference layout; used as default for unknown slugs during build-out */
-export const BLOG_POST_TEMPLATE = {
+/** Published MLS article */
+export const MLS_BLOG_POST = {
   slug: "mls-integration-for-wordpress",
   title:
     "MLS Integration for WordPress: How to Connect Real Estate Listings to Your Site",
+  lead:
+    "Learn how MLS and IDX integrations bring live property listings to WordPress—without breaking compliance or slowing your site down.",
   category: "Integrations",
   dateLabel: "1 week ago",
   dateTime: "2026-06-10",
   author: "Ben Giordano",
+  image: BLOG_LISTING_PIC,
   blocks: MLS_POST_BLOCKS,
   faq: [
     {
@@ -251,12 +254,119 @@ export const BLOG_POST_TEMPLATE = {
   ],
 };
 
-const POSTS_BY_SLUG = {
-  [BLOG_POST_TEMPLATE.slug]: BLOG_POST_TEMPLATE,
+/** Published IDX article */
+export const IDX_BLOG_POST = {
+  slug: "idx-integration-for-wordpress",
+  title:
+    "IDX Integration for WordPress: How to Connect MLS Listings to Your Site",
+  lead:
+    "IDX lets your WordPress real estate site show live MLS listings on your own domain—branded search, lead capture, and board-compliant display rules included.",
+  category: "Integrations",
+  dateLabel: "2 weeks ago",
+  dateTime: "2026-06-03",
+  author: "Ben Giordano",
+  image: BLOG_LISTING_PIC,
+  blocks: [
+    {
+      type: "paragraphs",
+      items: [
+        "IDX (Internet Data Exchange) is the framework that lets real estate professionals display MLS listings on their own websites. On WordPress, a well-built IDX integration keeps buyers on your domain, captures leads when interest peaks, and stays compliant with your local board’s display rules.",
+        "Unlike a raw MLS data dump, IDX solutions usually ship with search widgets, map views, listing detail templates, and registration gates. The goal is a branded listing experience that feels native to your site—not an iframe that leaks traffic to a third-party portal.",
+      ],
+    },
+    {
+      type: "heading",
+      text: "What you need before you start",
+    },
+    {
+      type: "paragraphs",
+      items: [
+        "Most IDX providers require an active MLS membership and broker approval before they activate your feed. Confirm which vendors your board allows, and whether you need a specific disclaimer, listing courtesy line, or delayed sold data rules.",
+        "You’ll also want a clear lead strategy: open search vs. registration walls, saved searches, and how inquiries route to your CRM. IDX without a nurture path leaves conversions on the table.",
+      ],
+    },
+    {
+      type: "heading",
+      text: "IDX vs MLS import for SEO",
+    },
+    {
+      type: "paragraphs",
+      items: [
+        "Classic IDX keeps listing URLs and search results inside the provider’s system (often wrapped in your theme). That can limit on-page SEO control. MLS import plugins pull listings into WordPress as posts or custom post types, which usually gives stronger URL, template, and internal-linking control.",
+        "Choose IDX when you need polished search UX fast. Choose import-based setups when organic listing pages and neighborhood landers are a core growth channel. Many brokerages run a hybrid: IDX for search, plus curated city pages you control.",
+      ],
+    },
+    {
+      type: "featureList",
+      items: [
+        {
+          title: "Board-compliant display",
+          text: "IDX platforms are built around MLS rules—disclaimers, courtesy branding, and data refresh windows—so you stay in compliance while still owning the visitor experience.",
+        },
+        {
+          title: "Lead capture at peak intent",
+          text: "Pair listing views with registration, property alerts, and inquiry forms so agents follow up while motivation is highest.",
+        },
+        {
+          title: "Brand-first experience",
+          text: "Visitors stay on your WordPress site instead of bouncing to national portals, keeping analytics, remarketing, and nurture sequences under your control.",
+        },
+      ],
+    },
+  ],
+  faq: [
+    {
+      question: "Is IDX the same as MLS?",
+      answer:
+        "No. The MLS is the listing database. IDX is the set of rules and technologies that allow approved members to display that data on their own websites.",
+    },
+    {
+      question: "Do I need broker approval for IDX on WordPress?",
+      answer:
+        "Almost always. Your MLS board and broker must approve the IDX vendor and your site before the feed goes live.",
+    },
+    {
+      question: "Will IDX help my SEO?",
+      answer:
+        "It can drive engagement and branded traffic, but import-based listing pages often give stronger organic control. Many teams combine both approaches.",
+    },
+  ],
+  authorBio: {
+    name: "Ben Giordano",
+    url: "https://www.linkedin.com/in/bengiordano",
+    avatar: BLOG_LISTING_PIC,
+    bio: "Ben Giordano is a WordPress developer and agency leader with more than a decade of experience building high-performance real estate websites. He helps brokerages and agents connect MLS data, capture leads, and launch listing experiences that rank and convert.",
+  },
+  previousPost: null,
+  relatedArticles: [
+    {
+      slug: "mls-integration-for-wordpress",
+      title: "MLS Integration for WordPress: How to Connect Real Estate Listings to Your Site",
+      image: BLOG_LISTING_PIC,
+    },
+  ],
 };
 
+/** @deprecated Prefer MLS_BLOG_POST — kept for older imports */
+export const BLOG_POST_TEMPLATE = MLS_BLOG_POST;
+
+const ALL_POSTS = [MLS_BLOG_POST, IDX_BLOG_POST];
+
+const POSTS_BY_SLUG = Object.fromEntries(
+  ALL_POSTS.map((post) => [post.slug, post]),
+);
+
+/** @returns {typeof ALL_POSTS} */
+export function getAllBlogPosts() {
+  return ALL_POSTS;
+}
+
 /** @param {string} slug */
+export function blogPostExists(slug) {
+  return Boolean(POSTS_BY_SLUG[slug]);
+}
+
+/** @param {string} slug @returns {typeof MLS_BLOG_POST | null} */
 export function getBlogPostBySlug(slug) {
-  if (POSTS_BY_SLUG[slug]) return POSTS_BY_SLUG[slug];
-  return { ...BLOG_POST_TEMPLATE, slug };
+  return POSTS_BY_SLUG[slug] ?? null;
 }

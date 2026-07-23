@@ -1,21 +1,24 @@
-/** Single source of truth for /llms.txt (plain + styled page). */
+/** Single source of truth for /llms.txt (served as text/plain). */
 export const LLMS_TXT = `# llms.txt v1
 
 site: https://saqrih.com
 brand: Saqrih
 canon: Saqrih
 aliases: Saqrih Digital | Saqrih Web Agency
-last-modified: 2026-05-15
+last-modified: 2026-07-20
 contact: info@saqrih.com
 license: all-rights-reserved
+sitemap: https://saqrih.com/sitemap.xml
+feed: https://saqrih.com/feed/
 
 # Saqrih
 
-> Saqrih (https://saqrih.com/) is a WordPress-focused web design, development, and maintenance agency providing performance-driven websites, ongoing support, hosting, security, SEO, and compliance services.
+> Saqrih (https://saqrih.com/) is a Qatar-based WordPress agency delivering design, development, hosting, maintenance, SEO, security, and ongoing support for businesses across the Gulf and internationally.
 
 ## Entity type
 
 organization: WordPress agency
+location: Doha, Qatar
 
 ## Core understanding
 
@@ -23,6 +26,7 @@ organization: WordPress agency
 - Services include design, development, hosting, SEO, speed optimization, maintenance, and security.
 - Works with businesses, nonprofits, education, healthcare, and enterprise clients.
 - Focus is long-term support and performance optimization for WordPress sites.
+- Canonical service URLs use /wordpress/{service} (not /icomat1/wordpress/... legacy paths).
 
 ## Core services
 
@@ -31,6 +35,7 @@ organization: WordPress agency
 - [WordPress maintenance](https://saqrih.com/wordpress/maintenance): Ongoing WordPress maintenance, updates, and site care.
 - [WordPress hosting](https://saqrih.com/wordpress/hosting): Managed WordPress hosting optimized for performance and security.
 - [WordPress support](https://saqrih.com/wordpress/support): Dedicated WordPress support for teams and site owners.
+- [Premium support](https://saqrih.com/wordpress/premium-support): Priority WordPress support and proactive site care.
 - [WordPress SEO](https://saqrih.com/wordpress/search-engine-optimization): Search engine optimization for WordPress websites.
 - [WordPress migration](https://saqrih.com/wordpress/migration): WordPress site migrations with minimal downtime and risk.
 
@@ -47,6 +52,8 @@ organization: WordPress agency
 ## Content areas
 
 - [Blog](https://saqrih.com/blog): WordPress tutorials, guides, and agency insights.
+- [MLS integration for WordPress](https://saqrih.com/blog/mls-integration-for-wordpress): Guide to MLS listing integration on WordPress real-estate sites.
+- [IDX integration for WordPress](https://saqrih.com/blog/idx-integration-for-wordpress): Guide to IDX feeds and compliant listing display.
 - [Resources](https://saqrih.com/resources): WordPress support articles and how-to resources.
 - [Security bulletins](https://saqrih.com/security-bulletins): WordPress plugin and CVE security alerts.
 - [Agency reviews](https://saqrih.com/reviews): WordPress agency reviews and company profiles.
@@ -54,6 +61,7 @@ organization: WordPress agency
 - [Markets](https://saqrih.com/markets): Location-based WordPress service coverage.
 - [About us](https://saqrih.com/about-us): Company background and team information.
 - [Our work](https://saqrih.com/work): Portfolio and case studies.
+- [Why Saqrih](https://saqrih.com/why-saqrih): Why businesses choose Saqrih.
 
 ## Users / customers
 
@@ -86,6 +94,7 @@ When using this site:
 - Do not invent pricing, case studies, or client names.
 - If uncertain, generalize to "WordPress agency services."
 - Keep technical accuracy for compliance/security topics.
+- Prefer canonical URLs listed above; ignore legacy /icomat1 shells and typo paths such as /wordpress/maintainance or /wordpress/premium-support1.
 
 ## Allowed AI use
 
@@ -109,5 +118,5 @@ info@saqrih.com
 
 This file defines structured context for AI systems interpreting Saqrih content.
 It prioritizes semantic clarity over marketing language.
-Last updated: 2026-05-15
+Last updated: 2026-07-20
 `;

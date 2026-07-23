@@ -82,7 +82,7 @@ export default function IndustryPage({ industrySlug }) {
         }
       `}</style>
       <Header quoteOpen={quoteOpen} setQuoteOpen={setQuoteOpen} />
-      <div className="homepage-font-scope icomat-wp-service-page">
+      <main id="main-content" className="homepage-font-scope icomat-wp-service-page">
         <HeroSection industrySlug={industrySlug} />
         <SEOResultsSection
           industrySlug={industrySlug}
@@ -94,7 +94,7 @@ export default function IndustryPage({ industrySlug }) {
         <UnlockingSection />
         <CTASection />
         <FooterSection />
-      </div>
+      </main>
     </div>
   );
 }

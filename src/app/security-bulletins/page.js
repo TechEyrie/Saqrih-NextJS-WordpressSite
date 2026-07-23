@@ -64,10 +64,12 @@ export default function SecurityPage() {
       `}</style>
 
       <Header />
-      <SecurityHeroSection />
-      <SecurityArticlesGridSection />
-      <CTASection />
-      <FooterSection />
+      <main id="main-content">
+        <SecurityHeroSection />
+        <SecurityArticlesGridSection />
+        <CTASection />
+        <FooterSection />
+      </main>
     </div>
   )
 }

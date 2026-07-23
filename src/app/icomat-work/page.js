@@ -72,19 +72,21 @@ export default function IcomatWorkPage() {
       `}</style>
 
       <Header />
-      <HeroSection />
-      <RTSSection />
-      <RTSCombinedSection />
-      <HowWeOperateSection />
-      <OurAdvantageSection />
-      <EndToEndSection pageKey="icomatWork" />
-      <CustomersSection />
-      <BusinessModelSection />
-      <IcomatSolutionSection pageKey="icomatWork" />
-      <IndustriesSection />
-      <BuildWithIcomatSection />
-      <UnlockingSection />
-      <FooterSection />
+      <main id="main-content">
+        <HeroSection />
+        <RTSSection />
+        <RTSCombinedSection />
+        <HowWeOperateSection />
+        <OurAdvantageSection />
+        <EndToEndSection pageKey="icomatWork" />
+        <CustomersSection />
+        <BusinessModelSection />
+        <IcomatSolutionSection pageKey="icomatWork" />
+        <IndustriesSection />
+        <BuildWithIcomatSection />
+        <UnlockingSection />
+        <FooterSection />
+      </main>
     </div>
   )
 }

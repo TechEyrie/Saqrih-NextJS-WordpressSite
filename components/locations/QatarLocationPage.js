@@ -82,7 +82,7 @@ export default function QatarLocationPage({ locationSlug }) {
         }
       `}</style>
       <Header quoteOpen={quoteOpen} setQuoteOpen={setQuoteOpen} />
-      <div className="homepage-font-scope icomat-wp-service-page">
+      <main id="main-content" className="homepage-font-scope icomat-wp-service-page">
         <HeroSection locationSlug={locationSlug} />
         <SEOResultsSection
           locationSlug={locationSlug}
@@ -94,7 +94,7 @@ export default function QatarLocationPage({ locationSlug }) {
         <UnlockingSection />
         <CTASection />
         <FooterSection />
-      </div>
+      </main>
     </div>
   );
 }

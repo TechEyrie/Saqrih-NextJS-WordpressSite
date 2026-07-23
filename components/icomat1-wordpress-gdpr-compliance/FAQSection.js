@@ -3,38 +3,16 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { getServiceFaqs } from "../../lib/wordpress/serviceFaqs";
+
+const FAQS = getServiceFaqs("gdpr-compliance").map((faq, index) => ({
+  id: index + 1,
+  ...faq,
+}));
+
 
 gsap.registerPlugin(ScrollTrigger);
 
-const FAQS = [
-  {
-    id: 1,
-    question: "Why Do I Need Help Ensuring WordPress GDPR Compliance?",
-    answer: [
-      "GDPR is a complex piece of legislation that can be difficult to fully understand and implement correctly within a WordPress website.",
-      "As covered in the compliance requirements, meeting GDPR standards involves multiple layers of data protection, consent management, security controls, and documentation. For most businesses, managing this properly can quickly become a full-time responsibility.",
-      "In some cases, especially for companies outside the EU, a legal representative may also be required to handle communication with data protection authorities. Depending on your business type and how you collect data, Saqrih can help you determine the right approach to reduce compliance risks and avoid violations. With the right guidance and setup, achieving WordPress GDPR compliance becomes far more manageable.",
-    ],
-  },
-  {
-    id: 2,
-    question: "Since Saqrih uses WordPress, are client websites GDPR compliant?",
-    answer:
-      "WordPress itself provides tools and features that can support GDPR compliance, but compliance depends on how a website is configured and managed. Saqrih builds and maintains websites using privacy-conscious practices, but final compliance depends on how data is collected, stored, and used by each business.",
-  },
-  {
-    id: 3,
-    question: "Can Saqrih help our WordPress website become GDPR compliant?",
-    answer:
-      "Yes. Saqrih can help configure your WordPress website with GDPR-friendly practices, including privacy settings, consent tools, and data handling improvements to support compliance requirements. However, legal compliance ultimately depends on your business policies and how data is processed.",
-  },
-  {
-    id: 4,
-    question: "A quick legal note about our GDPR compliance service",
-    answer:
-      "Saqrih provides technical support and implementation guidance to help improve GDPR readiness on WordPress websites. However, we do not provide legal advice, and businesses should consult a qualified legal professional to ensure full compliance with applicable data protection laws.",
-  },
-];
 
 // ── Single FAQ accordion item ─────────────────────────────────
 function FAQItem({ faq, index, isOpen, onToggle }) {

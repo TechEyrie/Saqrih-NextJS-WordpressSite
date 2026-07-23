@@ -7,7 +7,7 @@ export default function robots() {
         userAgent: "*",
         allow: "/",
         disallow: [
-          // Dev / legacy duplicate shells — not for search indexing
+          // Dev / legacy duplicate shells
           "/icomat",
           "/icomat1",
           "/home1",
@@ -15,6 +15,8 @@ export default function robots() {
           "/icomat-work",
           "/icomat1-about-us",
           "/icomat1/wordpress/",
+          // Thin placeholder city pages (also noindex in layout)
+          "/markets/local/",
         ],
       },
     ],

@@ -1,12 +1,11 @@
-export const metadata = {
-  title: "Portfolio & Case Studies",
-  description: "Selected WordPress projects and client work from Saqrih.",
-  openGraph: {
-    title: "Portfolio & Case Studies",
-    description: "Selected WordPress projects and client work from Saqrih.",
-    type: "website",
-  },
-};
+import { buildPageMetadata } from "../../lib/siteMetadata";
+
+export const metadata = buildPageMetadata({
+  title: "Our Work",
+  description: "Saqrih portfolio.",
+  path: "/work",
+  robots: { index: false, follow: false },
+});
 
 export default function Layout({ children }) {
   return children;

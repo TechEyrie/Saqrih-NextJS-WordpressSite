@@ -73,10 +73,12 @@ export default function IcomatPage() {
       `}</style>
 
       <Header />
-      <MarketHeroSection />
-      <MarketsServingSection />
-      <CTASection />
-      <FooterSection />
+      <main id="main-content">
+        <MarketHeroSection />
+        <MarketsServingSection />
+        <CTASection />
+        <FooterSection />
+      </main>
     </div>
   )
 }

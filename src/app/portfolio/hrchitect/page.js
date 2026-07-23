@@ -59,7 +59,8 @@ export default function HrchitectPortfolioPage() {
         }
       `}</style>
       <Header />
-      <PortfolioHeroSection />
+      <main id="main-content">
+<PortfolioHeroSection />
       <PortfolioShowcaseSection />
       <CustomerSection />
       <PortfolioLayeredShowcase />
@@ -67,6 +68,7 @@ export default function HrchitectPortfolioPage() {
       <EndToEndSection pageKey="portfolio-hrchitect" />
       <CTASection />
       <FooterSection />
+      </main>
     </div>
   );
 }

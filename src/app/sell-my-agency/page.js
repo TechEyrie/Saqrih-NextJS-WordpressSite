@@ -76,11 +76,13 @@ export default function IcomatPage() {
       `}</style>
 
       <Header />
-      <SellHeroSection />
-      <SellResourceHubSection />
-      <SellGetStartedCardsSection />
-      <CTASection />
-      <FooterSection />
+      <main id="main-content">
+        <SellHeroSection />
+        <SellResourceHubSection />
+        <SellGetStartedCardsSection />
+        <CTASection />
+        <FooterSection />
+      </main>
     </div>
   )
 }

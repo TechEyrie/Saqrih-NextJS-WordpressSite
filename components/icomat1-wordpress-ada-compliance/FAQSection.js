@@ -3,53 +3,16 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { getServiceFaqs } from "../../lib/wordpress/serviceFaqs";
+
+const FAQS = getServiceFaqs("ada-compliance").map((faq, index) => ({
+  id: index + 1,
+  ...faq,
+}));
+
 
 gsap.registerPlugin(ScrollTrigger);
 
-const FAQS = [
-  {
-    id: 1,
-    question: "What is web accessibility?",
-    answer:
-      "Web accessibility ensures that websites are designed and developed so that all users, including people with disabilities, can navigate, understand, and interact with content effectively using assistive technologies.",
-  },
-  {
-    id: 2,
-    question: "What is WordPress ADA compliance?",
-    answer:
-      "WordPress ADA compliance refers to adapting a WordPress website to meet accessibility standards such as ADA guidelines and WCAG requirements, ensuring equal access for all users.",
-  },
-  {
-    id: 3,
-    question: "Do I really need my WordPress website to be ADA compliant?",
-    answer:
-      "If your website serves the public or customers, accessibility is strongly recommended and often legally required, especially if you want to reduce risk and improve usability for all visitors.",
-  },
-  {
-    id: 4,
-    question: "Can I use a WordPress ADA plugin?",
-    answer:
-      "Yes, accessibility plugins can help improve compliance, but they are not a complete solution. Full compliance usually requires a combination of audits, fixes, and ongoing maintenance.",
-  },
-  {
-    id: 5,
-    question: "Can you help me test my WordPress ADA compliance?",
-    answer:
-      "Yes, Saqrih can perform accessibility testing and audits to identify issues and recommend improvements for better WordPress ADA compliance.",
-  },
-  {
-    id: 6,
-    question: "Will my WordPress website be certified as compliant?",
-    answer:
-      "There is no official universal \"ADA certification.\" Compliance is based on meeting accessibility standards such as WCAG, supported by audits and best practices.",
-  },
-  {
-    id: 7,
-    question: "What's the difference between Conformance Level A and AA?",
-    answer:
-      "Level A covers the most basic accessibility requirements, while Level AA includes a broader and more widely accepted standard that addresses the majority of real-world accessibility barriers.",
-  },
-];
 
 // ── Single FAQ accordion item ─────────────────────────────────
 function FAQItem({ faq, index, isOpen, onToggle }) {

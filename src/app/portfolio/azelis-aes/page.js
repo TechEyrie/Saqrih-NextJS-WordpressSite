@@ -59,7 +59,8 @@ export default function AzelisAesPortfolioPage() {
         }
       `}</style>
       <Header />
-      <PortfolioHeroSection />
+      <main id="main-content">
+<PortfolioHeroSection />
       <PortfolioShowcaseSection />
       <CustomerSection />
       <PortfolioLayeredShowcase />
@@ -67,6 +68,7 @@ export default function AzelisAesPortfolioPage() {
       <EndToEndSection pageKey="portfolio-azelis-aes" />
       <CTASection />
       <FooterSection />
+      </main>
     </div>
   );
 }

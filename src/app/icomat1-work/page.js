@@ -58,9 +58,11 @@ export default function Icomat1WorkPage() {
         }
       `}</style>
       <Header />
-      <WorkSection />
-      <CTASection />
-      <FooterSection />
+      <main id="main-content">
+        <WorkSection />
+        <CTASection />
+        <FooterSection />
+      </main>
     </div>
   );
 }

@@ -59,7 +59,8 @@ export default function AcertusPortfolioPage() {
         }
       `}</style>
       <Header />
-      <PortfolioHeroSection />
+      <main id="main-content">
+<PortfolioHeroSection />
       <PortfolioShowcaseSection />
       <CustomerSection />
       <PortfolioLayeredShowcase />
@@ -67,6 +68,7 @@ export default function AcertusPortfolioPage() {
       <EndToEndSection pageKey="portfolio-acertus" />
       <CTASection />
       <FooterSection />
+      </main>
     </div>
   );
 }

@@ -71,13 +71,21 @@ export default function RTSSection() {
 
       // ── Text: character-by-character color on scroll ───────────────
       if (textRef.current) {
-        const split = new SplitText(textRef.current, { type: "chars" });
+        // smartWrap keeps each word on one line when chars are split
+        const split = new SplitText(textRef.current, {
+          type: "words,chars",
+          wordsClass: "rts-word",
+          smartWrap: true,
+        });
         const chars = split.chars;
 
-        // All chars start as light gray
+        split.words.forEach((word) => {
+          word.style.display = "inline-block";
+          word.style.whiteSpace = "nowrap";
+        });
+
         gsap.set(chars, { color: "#c0c0c0" });
 
-        // Use one scrubbed tween instead of per-char ScrollTriggers to avoid boundary jank.
         gsap.to(chars, {
           color: "#111111",
           ease: "none",
@@ -122,18 +130,19 @@ export default function RTSSection() {
       ))}
 
       {/* Center Text */}
-      <div className="relative z-10 text-center px-6">
+      <div className="relative z-10 w-full max-w-[1600px] mx-auto px-6 sm:px-10 md:px-16 lg:px-20 text-center">
         <p
           ref={textRef}
-          className="font-bold leading-tight tracking-tight"
+          className="font-bold leading-[1.1] tracking-tight"
           style={{
-            fontSize: "clamp(1.6rem, 4vw, 4.6rem)",
-            color: "#c0c0c0", // initial gray — GSAP overrides per char
+            fontSize: "clamp(1.8rem, 4.5vw, 4.6rem)",
+            color: "#c0c0c0",
+            wordBreak: "keep-all",
+            overflowWrap: "normal",
+            hyphens: "none",
           }}
         >
-          Saqrih builds WordPress solutions.
-          <br />
-          Design, development, and ongoing support.
+          We Build Digital Solutions That Move Businesses Forward
         </p>
       </div>
     </section>

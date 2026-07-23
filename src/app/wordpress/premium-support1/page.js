@@ -1,1 +1,6 @@
-export { default } from "../../icomat1/wordpress/premium-support1/page";
+import { redirect } from "next/navigation";
+
+/** Legacy odd slug — permanent redirect to canonical premium support. */
+export default function PremiumSupport1RedirectPage() {
+  redirect("/wordpress/premium-support");
+}

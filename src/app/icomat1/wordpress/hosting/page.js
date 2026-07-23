@@ -74,7 +74,7 @@ export default function IcomatWordpressHostingPage() {
         }
       `}</style>
       <Header quoteOpen={quoteOpen} setQuoteOpen={setQuoteOpen} />
-      <div className="homepage-font-scope icomat-wp-service-page">
+      <main id="main-content" className="homepage-font-scope icomat-wp-service-page">
         <HeroSection onQuoteClick={() => setQuoteOpen(true)} />
         <OurAdvantageSection />
         <CustomersSection />
@@ -82,7 +82,7 @@ export default function IcomatWordpressHostingPage() {
         <UnlockingSection />
         <CTASection onQuoteOpen={() => setQuoteOpen(true)} />
         <FooterSection />
-      </div>
+      </main>
     </div>
   );
 }

@@ -102,14 +102,16 @@ export default function CaseStudyPage({ caseStudy, pageKey }) {
         }
       `}</style>
       <Header />
-      <CaseStudyHeroSection caseStudy={caseStudy} />
-      <CaseStudyStorySection caseStudy={caseStudy} />
-      <CaseStudyShowcaseSection caseStudy={caseStudy} />
-      {/* <CaseStudyDeviceGallerySection caseStudy={caseStudy} /> */}
-      <CustomersSection pageKey={pageKey} showVideoSection={false} />
-      <EndToEndSection pageKey={pageKey} />
-      <CTASection />
-      <FooterSection />
+      <main id="main-content">
+        <CaseStudyHeroSection caseStudy={caseStudy} />
+        <CaseStudyStorySection caseStudy={caseStudy} />
+        <CaseStudyShowcaseSection caseStudy={caseStudy} />
+        {/* <CaseStudyDeviceGallerySection caseStudy={caseStudy} /> */}
+        <CustomersSection pageKey={pageKey} showVideoSection={false} />
+        <EndToEndSection pageKey={pageKey} />
+        <CTASection />
+        <FooterSection />
+      </main>
     </div>
   );
 }

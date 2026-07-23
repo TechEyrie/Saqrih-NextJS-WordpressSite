@@ -3,83 +3,16 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { getServiceFaqs } from "../../lib/wordpress/serviceFaqs";
+
+const FAQS = getServiceFaqs("pci-compliance").map((faq, index) => ({
+  id: index + 1,
+  ...faq,
+}));
+
 
 gsap.registerPlugin(ScrollTrigger);
 
-const FAQS = [
-  {
-    id: 1,
-    question: "What is PCI DSS and why does it matter for my WordPress site?",
-    answer:
-      "PCI DSS is a global security standard designed to protect cardholder data during online transactions. If your WordPress website processes payments, PCI compliance helps reduce security risks and protects customer information.",
-  },
-  {
-    id: 2,
-    question: "Do all WordPress websites need to be PCI compliant?",
-    answer:
-      "Only websites that process, transmit, or store payment card information are required to follow PCI DSS standards. Informational websites without payment functionality typically do not require PCI compliance.",
-  },
-  {
-    id: 3,
-    question: "Can I achieve PCI compliance using WordPress alone?",
-    answer:
-      "No. WordPress provides the website platform, but PCI compliance also depends on hosting, payment gateways, security practices, server configurations, and ongoing monitoring.",
-  },
-  {
-    id: 4,
-    question: "What's the easiest way to make my WordPress store PCI compliant?",
-    answer:
-      "The simplest approach is to use trusted payment providers like Stripe or PayPal, secure hosting, SSL certificates, regular updates, and strong website security practices.",
-  },
-  {
-    id: 5,
-    question: "What are some common mistakes that cause PCI non-compliance on WordPress?",
-    answer:
-      "Common issues include outdated plugins, insecure hosting, weak passwords, storing cardholder data locally, missing SSL certificates, and poor access control practices.",
-  },
-  {
-    id: 6,
-    question: "Is using an SSL certificate enough to be PCI compliant?",
-    answer:
-      "No. SSL encryption is only one part of PCI compliance. Full compliance also requires secure systems, access controls, monitoring, and proper payment data handling.",
-  },
-  {
-    id: 7,
-    question: "Does PCI compliance apply if I only use WooCommerce with PayPal or Stripe?",
-    answer:
-      "Yes. Even if third-party gateways handle payment processing, your website still plays a role in the transaction process and should follow PCI security best practices.",
-  },
-  {
-    id: 8,
-    question: "What happens if I don't comply with PCI DSS?",
-    answer:
-      "Failure to comply can lead to data breaches, financial penalties, increased transaction fees, legal risks, and damage to customer trust.",
-  },
-  {
-    id: 9,
-    question: "How often do I need to validate PCI compliance?",
-    answer:
-      "PCI compliance should be reviewed regularly through security updates, scans, audits, and ongoing monitoring to ensure your website remains protected.",
-  },
-  {
-    id: 10,
-    question: "Can I store cardholder data on my WordPress site securely?",
-    answer:
-      "It is generally recommended to avoid storing cardholder data directly on your WordPress website unless you have advanced security infrastructure and strict compliance controls in place.",
-  },
-  {
-    id: 11,
-    question: "Can I create custom themes and checkout pages on WordPress.com without losing PCI compliance?",
-    answer:
-      "Yes, but custom themes and checkout experiences must still follow PCI DSS requirements and security best practices to maintain compliance.",
-  },
-  {
-    id: 12,
-    question: "Is there an official level of PCI compliance that WordPress supports for eCommerce sites?",
-    answer:
-      "PCI compliance levels are based on transaction volume and business requirements, not WordPress itself. Your compliance obligations depend on how your ecommerce store processes payments.",
-  },
-];
 
 // ── Single FAQ accordion item ─────────────────────────────────
 function FAQItem({ faq, index, isOpen, onToggle }) {

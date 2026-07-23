@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HeroScrollDownIndicator, { defaultHeroScrollDownOnClick } from "../icomat1/HeroScrollDownIndicator";
@@ -172,11 +173,13 @@ export default function CaseStudyHeroSection({ caseStudy }) {
                 boxShadow: "0 32px 80px rgba(0, 0, 0, 0.32)",
               }}
             >
-              <img
+              <Image
                 src={caseStudy.images.hero}
                 alt={`${caseStudy.name} website responsive mockups`}
-                loading="eager"
-                decoding="async"
+                width={1200}
+                height={900}
+                priority
+                sizes="(max-width: 900px) 100vw, 55vw"
                 style={{
                   width: "100%",
                   height: "auto",

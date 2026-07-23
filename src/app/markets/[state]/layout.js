@@ -4,18 +4,20 @@ import {
 } from "../../../../components/icomat1-market/marketStates";
 import { buildPageMetadata } from "../../../../lib/siteMetadata";
 
-function stateTitle(slug) {
-  const name =
+function stateName(slug) {
+  return (
     US_STATES.find((n) => stateSlug(n) === slug) ??
-    slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-  return `WordPress Services in ${name}`;
+    slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase())
+  );
 }
 
 export async function generateMetadata({ params }) {
   const { state: slug } = await params;
+  const name = stateName(slug);
   return buildPageMetadata({
-    title: stateTitle(slug),
-    description: `WordPress design, development, and support for businesses in ${stateTitle(slug).replace("WordPress Services in ", "")}.`,
+    title: `WordPress Services in ${name}`,
+    description: `WordPress design, development, and support for businesses in ${name}.`,
+    path: `/markets/${slug}`,
   });
 }
 

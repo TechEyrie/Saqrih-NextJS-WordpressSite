@@ -3,113 +3,16 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { getServiceFaqs } from "../../lib/wordpress/serviceFaqs";
+
+const FAQS = getServiceFaqs("search-engine-optimization").map((faq, index) => ({
+  id: index + 1,
+  ...faq,
+}));
+
 
 gsap.registerPlugin(ScrollTrigger);
 
-const FAQS = [
-  {
-    id: 1,
-    question: "What are the benefits of professional WordPress SEO packages?",
-    answer:
-      "Professional SEO packages usually combine technical fixes, content improvements, and tracking setup so your rankings and conversions improve in a more consistent, measurable way.",
-  },
-  {
-    id: 2,
-    question: "How long does it take to get a response when submitting new tickets?",
-    answer:
-      "A strong agency provides clear strategy, transparent reporting, realistic timelines, and execution across technical SEO, on-page optimization, and content growth.",
-  },
-  {
-    id: 3,
-    question: "Why should I choose a WordPress SEO firm over a general digital marketing agency?",
-    answer:
-      "A WordPress-focused SEO firm understands theme/plugin behavior, Core Web Vitals bottlenecks, and CMS-specific technical issues that general agencies may overlook.",
-  },
-  {
-    id: 4,
-    question: "How does WordPress SEO consulting improve my website’s performance?",
-    answer:
-      "Consulting identifies quick wins and structural problems, then applies prioritized fixes that can improve crawlability, loading speed, content relevance, and user engagement.",
-  },
-  {
-    id: 5,
-    question: "What’s included in WordPress SEO support?",
-    answer:
-      "Support often includes audits, on-page updates, metadata improvements, internal linking, keyword tracking, performance tuning, and ongoing recommendations based on results.",
-  },
-  {
-    id: 6,
-    question: "How do I get started with a reliable SEO company?",
-    answer:
-      "Start with a discovery call, share goals and baseline data, review an initial audit, and align on a roadmap with milestones, KPIs, and communication cadence.",
-  },
-  {
-    id: 7,
-    question: "Are there affordable WordPress SEO monthly packages available?",
-    answer:
-      "Yes, many firms offer tiered monthly options so you can start with core optimization and scale into broader SEO campaigns as your budget and goals grow.",
-  },
-  {
-    id: 8,
-    question: "What is on-page SEO?",
-    answer:
-      "On-page SEO is the optimization of pages on your site, including headings, meta tags, internal links, keyword usage, URL structure, and content quality.",
-  },
-  {
-    id: 9,
-    question: "What is local SEO?",
-    answer:
-      "Local SEO focuses on helping your business appear in location-based searches through map listings, local citations, reviews, and geo-targeted content.",
-  },
-  {
-    id: 10,
-    question: "Why is my website not ranking well?",
-    answer:
-      "Common issues include weak content relevance, technical crawl/indexing errors, poor site speed, low authority backlinks, and inconsistent optimization.",
-  },
-  {
-    id: 11,
-    question: "What can I do to increase my online visibility?",
-    answer:
-      "Improve technical health, publish useful keyword-aligned content consistently, strengthen internal linking, and build authority with trusted backlinks.",
-  },
-  {
-    id: 12,
-    question: "Why am I not showing up on Google at all?",
-    answer:
-      "Your site may be blocked from indexing, recently launched, affected by technical errors, or lacking enough relevance and authority for target queries.",
-  },
-  {
-    id: 13,
-    question: "I really want to rank better, what can you guys do for me?",
-    answer:
-      "We can audit your site, prioritize fixes, optimize key pages, implement content and technical improvements, and monitor results with ongoing reporting.",
-  },
-  {
-    id: 14,
-    question: "How long after verifying my Google listing do I start ranking well?",
-    answer:
-      "Verification helps quickly for local presence, but meaningful ranking gains usually take weeks to months depending on competition and optimization quality.",
-  },
-  {
-    id: 15,
-    question: "What helps me more: on-page SEO or local SEO?",
-    answer:
-      "It depends on your business model; service-area and storefront businesses benefit heavily from local SEO, while broader markets need strong on-page SEO too.",
-  },
-  {
-    id: 16,
-    question: "What is Google Analytics?",
-    answer:
-      "Google Analytics is a reporting platform that tracks visitor behavior, traffic sources, conversions, and engagement so you can make data-driven decisions.",
-  },
-  {
-    id: 17,
-    question: "How do I navigate Google Analytics?",
-    answer:
-      "Begin with reports for acquisition, engagement, and conversions, then use filters, date ranges, and segment comparisons to uncover actionable insights.",
-  },
-];
 
 // ── Single FAQ accordion item ─────────────────────────────────
 function FAQItem({ faq, index, isOpen, onToggle }) {

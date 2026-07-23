@@ -292,28 +292,20 @@ export default function HeroSection({ onQuoteClick }) {
               fontFamily: "var(--font-inter), Inter, Arial, sans-serif",
             }}
           >
-            The WordPress
+            A Web and Software Development
             <br />
-            agency you've been looking for
-            <sup
-              style={{
-                fontSize: "0.22em",
-                verticalAlign: "super",
-                fontWeight: 400,
-                letterSpacing: "0.05em",
-                marginLeft: "0.3em",
-              }}
-            >
-              ™
-            </sup>
+            Company Built for Ambitious Businesses
           </h1>
 
-          <div ref={badgeRef} className="mt-4 max-w-[760px]">
+          <div ref={badgeRef} className="mt-4 max-w-[900px]">
             <p
               className="text-[14px] sm:text-[15px] lg:text-[17px] leading-relaxed break-words"
               style={{ color: "rgba(255,255,255,0.72)", maxWidth: "100%" }}
             >
-              Middle East Based Firm | Web design & development | WP hosting, maintenance, & support | Search engine optimization
+              From high-performance websites and e-commerce platforms to custom
+              web applications, SaaS products and mobile apps, Saqrih provides
+              the strategy, design and development expertise required to bring
+              complex digital ideas to life.
             </p>
 
             <HeroQuoteButton onClick={onQuoteClick} />

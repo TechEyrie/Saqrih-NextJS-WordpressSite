@@ -3,35 +3,16 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { getServiceFaqs } from "../../lib/wordpress/serviceFaqs";
+
+const FAQS = getServiceFaqs("hosting").map((faq, index) => ({
+  id: index + 1,
+  ...faq,
+}));
+
 
 gsap.registerPlugin(ScrollTrigger);
 
-const FAQS = [
-  {
-    id: 1,
-    question: "What is WordPress web hosting?",
-    answer:
-      "WordPress web hosting is a hosting setup tuned specifically for WordPress sites. It usually includes server-level caching, optimized databases, security hardening, and support teams familiar with WordPress issues.",
-  },
-  {
-    id: 2,
-    question: "Is Saqrih WordPress hosting shared?",
-    answer:
-      "Hosting environments can vary depending on the selected plan and workload needs. Some plans may use isolated shared infrastructure, while others are provisioned with dedicated resources for stronger performance consistency.",
-  },
-  {
-    id: 3,
-    question: "Is managed WordPress hosting worth it?",
-    answer:
-      "For most growing businesses, managed hosting is worth it because updates, monitoring, backups, and security are handled for you. It saves internal time and reduces risk from downtime, plugin conflicts, and security incidents.",
-  },
-  {
-    id: 4,
-    question: "Which hosting is best for WordPress?",
-    answer:
-      "The best WordPress hosting is fast, secure, and backed by responsive support. Look for daily backups, uptime monitoring, automatic updates, strong caching, and a team that can quickly troubleshoot WordPress-specific problems.",
-  },
-];
 
 // ── Single FAQ accordion item ─────────────────────────────────
 function FAQItem({ faq, index, isOpen, onToggle }) {

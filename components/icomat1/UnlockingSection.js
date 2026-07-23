@@ -47,40 +47,40 @@ const IconCog = () => (
 const CARDS = [
   {
     id: "build",
-    eyebrow: "Premier web design & development solutions in Qatar",
-    title: "Elite digital providers in Doha",
-    desc: "As a premier WordPress authority, we deliver high-performance, professional, and fully responsive web ecosystems engineered for your specific goals. From senior technical architects to creative design experts, our team crafts sophisticated digital experiences that elevate your brand's prestige.",
+    eyebrow: "Built around outcomes",
+    title: "Business-focused solutions",
+    desc: "Every project begins with your goals, users and operational requirements.",
     icon: null,
     isHero: true,
   },
   {
     id: "steered",
-    title: "Experienced WordPress designers & developers",
-    desc: "Our team of talented designers, developers, and WordPress specialists creates innovative, high-performance websites for businesses of all sizes. We collaborate with companies, agencies, and organizations across the Middle East to deliver custom WordPress solutions that drive results.",
+    title: "Scalable development",
+    desc: "We build solutions that can evolve as your users, content and business grow.",
     icon: <IconWaves />,
   },
   {
     id: "lighter",
-    title: "Custom WordPress web design services",
-    desc: "As an elite design studio, we specialize in engineering custom websites that mirror your unique brand identity. Our expert design team ensures every project is visually breathtaking, technically superior, and meticulously optimized for peak performance.",
+    title: "Experienced specialists",
+    desc: "Work with developers experienced across websites, applications, e-commerce and digital platforms.",
     icon: <IconLayers />,
   },
   {
     id: "speed",
-    title: "Ecommerce & WooCommerce development",
-    desc: "We deliver advanced eCommerce solutions, including WooCommerce setup and custom development tailored to your business. Our WordPress developers create smooth, user-friendly online stores designed to improve the shopping experience and increase conversions.",
+    title: "Transparent delivery",
+    desc: "Clear communication, defined milestones and visibility throughout development.",
     icon: <IconBolt />,
   },
   {
     id: "precision",
-    title: "Comprehensive managed web services",
-    desc: "Saqrih provides elite managed solutions, ensuring your WordPress ecosystem remains impenetrable, current, and performance-optimized. We oversee every technical detail - from proactive maintenance to speed enhancements - allowing you to focus exclusively on scaling your enterprise.",
+    title: "Quality assurance",
+    desc: "Structured testing across functionality, performance, security and responsiveness.",
     icon: <IconTarget />,
   },
   {
     id: "integrated",
-    title: "Consulting & strategic WordPress solutions",
-    desc: "We offer expert consulting to help businesses make the right decisions in the digital space. Whether you need a clear WordPress strategy or guidance for building a new website, our team provides practical insights and direction every step of the way.",
+    title: "Long-term support",
+    desc: "Ongoing maintenance and technical assistance after your project goes live.",
     icon: <IconCog />,
   },
 ];
@@ -501,7 +501,9 @@ export default function UnlockingSection() {
             color: "rgba(0,0,0,0.1)",
           }}
         >
-          Premier WordPress design and development services in the Middle East.
+          Premier Development Partner, Not Just a Service Provider
+          <br />
+          in the Middle East
         </h2>
       </div>
 

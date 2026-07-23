@@ -76,12 +76,14 @@ export default function IcomatPage() {
       `}</style>
 
       <Header />
-      <WhyHeroSection />
-      <WhyValueServiceSection />
-      <SEOResultSection />
-      <EndToEndSection pageKey="whySaqrih" />
-      <CTASection />
-      <FooterSection />
+      <main id="main-content">
+        <WhyHeroSection />
+        <WhyValueServiceSection />
+        <SEOResultSection />
+        <EndToEndSection pageKey="whySaqrih" />
+        <CTASection />
+        <FooterSection />
+      </main>
     </div>
   )
 }

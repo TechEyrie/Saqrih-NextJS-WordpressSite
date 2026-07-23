@@ -3,35 +3,16 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { getServiceFaqs } from "../../lib/wordpress/serviceFaqs";
+
+const FAQS = getServiceFaqs("convert").map((faq, index) => ({
+  id: index + 1,
+  ...faq,
+}));
+
 
 gsap.registerPlugin(ScrollTrigger);
 
-const FAQS = [
-  {
-    id: 1,
-    question: "Guaranteed security for your WordPress website",
-    answer:
-      "Think of this as having a safety shield around your site. We run layered checks, verify backups, and keep restore points healthy so your content remains protected if something unexpected happens.",
-  },
-  {
-    id: 2,
-    question: "Zero impact on your site's performance",
-    answer:
-      "Backups are scheduled and optimized to run quietly in the background. Visitors keep getting a smooth browsing experience while your backup routine continues without creating a bottleneck.",
-  },
-  {
-    id: 3,
-    question: "WordPress backups become effortless",
-    answer:
-      "No spreadsheets, no reminders, no manual exports. Once configured, the process is automatic and predictable, so your team can focus on product, marketing, and growth work instead.",
-  },
-  {
-    id: 4,
-    question: "Stress-free site restoration",
-    answer:
-      "If a rollback is needed, recovery is direct and fast. You can return to a known-good version without rebuilding pages one by one or spending hours troubleshooting broken changes.",
-  },
-];
 
 // ── Single FAQ accordion item ─────────────────────────────────
 function FAQItem({ faq, index, isOpen, onToggle }) {

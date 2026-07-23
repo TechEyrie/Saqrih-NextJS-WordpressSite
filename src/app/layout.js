@@ -1,9 +1,12 @@
 import { Inter, Montserrat } from "next/font/google";
 import "./globals.css";
-import Script from 'next/script'
+import Script from "next/script";
 import GlobalLoadingWrapper from "../../components/icomat1/GlobalLoadingWrapper";
 import DeferredStylesheet from "../../components/DeferredStylesheet";
+import JsonLd from "../../components/seo/JsonLd";
 import { SITE_ORIGIN } from "../../lib/siteOrigin";
+import { organizationJsonLd, websiteJsonLd } from "../../lib/jsonLd";
+
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
@@ -32,7 +35,7 @@ export const metadata = {
     type: "website",
     images: [
       {
-        url: "/logo/Saqrih_real_logo.png",
+        url: "/og-default.png",
         width: 1200,
         height: 630,
         alt: "Saqrih",
@@ -44,7 +47,7 @@ export const metadata = {
     title: SITE_TITLE,
     description:
       "Saqrih is a premier WordPress agency delivering design, development, hosting, maintenance, and ongoing support.",
-    images: ["/logo/Saqrih_real_logo.png"],
+    images: ["/og-default.png"],
   },
   icons: {
     icon: "/favicon.png",
@@ -59,12 +62,22 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <link rel="https://api.w.org/" href="/wp-json/" />
-        <link rel="alternate" type="application/rss+xml" title="Saqrih" href="/feed/" />
-        <style dangerouslySetInnerHTML={{ __html: `
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title="Saqrih"
+          href="/feed/"
+        />
+        <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
           body{margin:0;background:#e8e8e8}
           .icomat-hero-with-quote{background:#162d24;min-height:100vh}
           .skip-to-main{position:absolute;left:-9999px;z-index:100000}
-        `}} />
+        `,
+          }}
+        />
         <script
           dangerouslySetInnerHTML={{
             __html: `if("scrollRestoration"in history){history.scrollRestoration="manual";}`,
@@ -80,12 +93,12 @@ export default function RootLayout({ children }) {
           src="/wp-includes/js/wp-embed.min.js"
           strategy="lazyOnload"
         />
-        <Script 
+        <Script
           src="https://cdn.jsdelivr.net/npm/three-bas@2.0.1/dist/bas.min.js"
           strategy="lazyOnload"
         />
         <GlobalLoadingWrapper>{children}</GlobalLoadingWrapper>
       </body>
     </html>
-  )
+  );
 }

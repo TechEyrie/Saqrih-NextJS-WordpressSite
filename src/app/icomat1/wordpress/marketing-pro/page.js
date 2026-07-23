@@ -86,7 +86,7 @@ export default function IcomatWordpressMaintainancePage() {
         }
       `}</style>
       <Header quoteOpen={quoteOpen} setQuoteOpen={setQuoteOpen} />
-      <div className="homepage-font-scope icomat-wp-service-page">
+      <main id="main-content" className="homepage-font-scope icomat-wp-service-page">
         <HeroSection />
         {/* <OurAdvantageSection onQuoteClick={() => setQuoteOpen(true)} /> */}
        
@@ -111,7 +111,7 @@ export default function IcomatWordpressMaintainancePage() {
           {/* <IcomatSolutionSection pageKey="wp-marketing-pro" /> */}
       
         <FooterSection />
-      </div>
+      </main>
     </div>
   );
 }

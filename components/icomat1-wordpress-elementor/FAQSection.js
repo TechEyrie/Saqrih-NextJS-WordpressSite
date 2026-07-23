@@ -3,35 +3,16 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { getServiceFaqs } from "../../lib/wordpress/serviceFaqs";
+
+const FAQS = getServiceFaqs("elementor").map((faq, index) => ({
+  id: index + 1,
+  ...faq,
+}));
+
 
 gsap.registerPlugin(ScrollTrigger);
 
-const FAQS = [
-  {
-    id: 1,
-    question: "All of the Elementor benefits, none of the logistics",
-    answer:
-      "Get the flexibility and power of Elementor without dealing with the technical complexity behind setup, optimization, and maintenance.",
-  },
-  {
-    id: 2,
-    question: "Tried-and-true success with the WordPress Elementor page builder",
-    answer:
-      "Our team has extensive experience building and supporting Elementor-powered WordPress websites across a wide range of industries.",
-  },
-  {
-    id: 3,
-    question: "The best page builder keeps getting better",
-    answer:
-      "Elementor continues to evolve with regular updates focused on performance, security, design flexibility, and user experience improvements.",
-  },
-  {
-    id: 4,
-    question: "WordPress hosting for Elementor websites",
-    answer:
-      "We provide optimized hosting environments designed to keep Elementor websites fast, stable, and reliable.",
-  },
-];
 
 const INTRO_PARAS = [
   "If you prefer a more hands-off approach, Saqrih can manage all the updates, adjustments, and improvements your Elementor website needs. Our experience with both Elementor and WordPress allows us to make changes quickly and efficiently with minimal disruption.",

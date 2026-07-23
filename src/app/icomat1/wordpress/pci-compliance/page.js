@@ -87,7 +87,7 @@ export default function IcomatWordpressMaintainancePage() {
         }
       `}</style>
       <Header quoteOpen={quoteOpen} setQuoteOpen={setQuoteOpen} />
-      <div className="homepage-font-scope icomat-wp-service-page">
+      <main id="main-content" className="homepage-font-scope icomat-wp-service-page">
         <HeroSection />
         <ElementorPowerCtaSection onQuoteClick={() => setQuoteOpen(true)} />
           <SEOResultsSection />
@@ -117,7 +117,7 @@ export default function IcomatWordpressMaintainancePage() {
           {/* <IcomatSolutionSection pageKey="wp-pci-compliance" /> */}
       
         <FooterSection />
-      </div>
+      </main>
     </div>
   );
 }

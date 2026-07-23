@@ -1,12 +1,11 @@
-export const metadata = {
+import { buildPageMetadata } from "../../lib/siteMetadata";
+
+export const metadata = buildPageMetadata({
   title: "About Saqrih",
-  description: "Meet the Saqrih team and our WordPress expertise.",
-  openGraph: {
-    title: "About Saqrih",
-    description: "Meet the Saqrih team and our WordPress expertise.",
-    type: "website",
-  },
-};
+  description: "About Saqrih.",
+  path: "/about-us",
+  robots: { index: false, follow: false },
+});
 
 export default function Layout({ children }) {
   return children;

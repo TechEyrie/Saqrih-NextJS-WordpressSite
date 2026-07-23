@@ -88,14 +88,14 @@ export default function IcomatPage() {
 
       <MarketsPageStyles />
       <Header />
-      <div className="homepage-font-scope" style={{ width: '100%', maxWidth: '100%', overflowX: 'clip' }}>
+      <main id="main-content" className="homepage-font-scope" style={{ width: '100%', maxWidth: '100%', overflowX: 'clip' }}>
         <MarketHeroSection />
         <MarketsServingSection />
         <MarketsLocalCitiesSection />
         <MarketsUnitedStatesSection />
         <CTASection />
         <FooterSection />
-      </div>
+      </main>
     </div>
   )
 }

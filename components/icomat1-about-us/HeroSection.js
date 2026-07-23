@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -225,12 +226,16 @@ export default function HeroSection({ onQuoteClick }) {
       className="icomat-hero-with-quote relative w-full h-screen min-h-[600px] bg-[#162D24]"
       style={{ overflow: "clip" }}
     >
-      <img
-        ref={imageRef}
-        className="absolute inset-0 w-full h-full object-cover"
-        src={getPagePic("aboutUs", "hero")}
-        alt="About us hero"
-      />
+      <div ref={imageRef} className="absolute inset-0 w-full h-full">
+        <Image
+          className="object-cover"
+          src={getPagePic("aboutUs", "hero")}
+          alt="About us hero"
+          fill
+          priority
+          sizes="100vw"
+        />
+      </div>
 
       <div
         ref={overlayRef}

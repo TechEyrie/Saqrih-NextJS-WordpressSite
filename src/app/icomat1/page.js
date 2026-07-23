@@ -10,6 +10,7 @@ import LazyWhenVisible from '../../../components/LazyWhenVisible'
 const RTSSection = dynamic(() => import('../../../components/icomat1/RTSSection'), { ssr: false })
 const RTSCombinedSection = dynamic(() => import('../../../components/icomat1/RTSCombinedSection'), { ssr: false })
 const HowWeOperateSection = dynamic(() => import('../../../components/icomat1/HowWeOperateSection'), { ssr: false })
+const ServiceTechStackSection = dynamic(() => import('../../../components/services/ServiceTechStackSection'), { ssr: false })
 const OurAdvantageSection = dynamic(() => import('../../../components/icomat1/OurAdvantageSection'), { ssr: false })
 const EndToEndSection = dynamic(() => import('../../../components/icomat1/EndToEndSection'), { ssr: false })
 const CustomersSection = dynamic(() => import('../../../components/icomat1/CustomerSection'), { ssr: false })
@@ -149,6 +150,9 @@ export default function IcomatPage() {
         </LazyWhenVisible>
         <LazyWhenVisible minHeight="70vh">
           <HowWeOperateSection />
+        </LazyWhenVisible>
+        <LazyWhenVisible minHeight="90vh">
+          <ServiceTechStackSection />
         </LazyWhenVisible>
         <LazyWhenVisible minHeight="60vh">
           <OurAdvantageSection />

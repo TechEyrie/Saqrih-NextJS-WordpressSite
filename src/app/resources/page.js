@@ -64,10 +64,12 @@ export default function ResourcesPage() {
       `}</style>
 
       <Header />
-      <ResourcesHeroSection />
-      <ResourcesArticlesGridSection />
-      <CTASection />
-      <FooterSection />
+      <main id="main-content">
+        <ResourcesHeroSection />
+        <ResourcesArticlesGridSection />
+        <CTASection />
+        <FooterSection />
+      </main>
     </div>
   )
 }

@@ -74,7 +74,7 @@ export default function IcomatWordpressDevelopmentPage() {
         }
       `}</style>
       <Header quoteOpen={quoteOpen} setQuoteOpen={setQuoteOpen} />
-      <div className="homepage-font-scope icomat-wp-service-page">
+      <main id="main-content" className="homepage-font-scope icomat-wp-service-page">
         <HeroSection onQuoteClick={() => setQuoteOpen(true)} />
         <OurAdvantageSection onQuoteClick={() => setQuoteOpen(true)} />
         <EndToEndSection pageKey="wp-development" />
@@ -82,7 +82,7 @@ export default function IcomatWordpressDevelopmentPage() {
         <UnlockingSection />
         <CTASection />
         <FooterSection />
-      </div>
+      </main>
     </div>
   );
 }

@@ -17,9 +17,11 @@ export default function PrivacyPolicyPage() {
   return (
     <div className="icomat1-laygrotesk" style={{ backgroundColor: '#ffffff', minHeight: '100vh' }}>
       <Header />
-      <PrivacyPolicySection />
-      <CTASection />
-      <FooterSection />
+      <main id="main-content">
+        <PrivacyPolicySection />
+        <CTASection />
+        <FooterSection />
+      </main>
     </div>
   )
 }

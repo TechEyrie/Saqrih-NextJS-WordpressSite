@@ -59,14 +59,16 @@ export default function TigerPortfolioPage() {
         }
       `}</style>
       <Header />
-      <PortfolioHeroSection />
-      <PortfolioShowcaseSection />
-      <CustomerSection />
-      <PortfolioLayeredShowcase />
-      <CustomersSection1 />
-      <EndToEndSection pageKey="portfolio-tiger" />
-      <CTASection />
-      <FooterSection />
+      <main id="main-content">
+        <PortfolioHeroSection />
+        <PortfolioShowcaseSection />
+        <CustomerSection />
+        <PortfolioLayeredShowcase />
+        <CustomersSection1 />
+        <EndToEndSection pageKey="portfolio-tiger" />
+        <CTASection />
+        <FooterSection />
+      </main>
     </div>
   );
 }
