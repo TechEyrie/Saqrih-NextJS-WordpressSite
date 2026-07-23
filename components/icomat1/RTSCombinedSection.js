@@ -93,7 +93,7 @@ const CARD_META = [
   },
   {
     badge: "Web Apps",
-    href: "/wordpress/development",
+    href: "/services/web-application-development",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
         Web Application Development
@@ -115,7 +115,7 @@ const CARD_META = [
   },
   {
     badge: "E-commerce",
-    href: "/wordpress/woocommerce",
+    href: "/services/ecommerce-development",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
         E-commerce Development
@@ -180,18 +180,37 @@ function CrosshairDot({ top, left }) {
   );
 }
 
-export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
+export default function RTSCombinedSection({
+  pageKey: pageKeyProp,
+  cards: cardsProp,
+  servicesIntro,
+}) {
   const pathname = usePathname();
   const pageKey = pageKeyProp ?? pageKeyFromPathname(pathname) ?? "homepage";
-  const showVideoPanel = pageKey !== "homepage";
-  const cardItems = useMemo(
-    () =>
-      CARD_META.map((card, i) => ({
-        ...card,
-        src: getRtsCombinedCardVideos(pageKey)[i],
-      })),
-    [pageKey],
-  );
+  const showVideoPanel = pageKey !== "homepage" && !cardsProp;
+  const cardItems = useMemo(() => {
+    const videos = getRtsCombinedCardVideos(pageKey);
+    const meta = cardsProp?.length
+      ? cardsProp.map((card) => ({
+          badge: card.badge,
+          href: card.href,
+          footer: (
+            <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
+              {card.title}
+              <br />
+              <span className="font-normal text-[#666] block min-h-[2.4em]">
+                {card.desc}
+              </span>
+            </p>
+          ),
+        }))
+      : CARD_META;
+
+    return meta.map((card, i) => ({
+      ...card,
+      src: videos[i % videos.length],
+    }));
+  }, [pageKey, cardsProp]);
   const panelVideo = getRtsCombinedPanelVideo(pageKey);
 
   const wrapperRef = useRef(null);
@@ -437,8 +456,8 @@ export default function RTSCombinedSection({ pageKey: pageKeyProp }) {
             </div>
             <div className="max-w-lg">
               <p className="text-[14px] sm:text-[16px] md:text-[18px] font-medium text-[#111] leading-snug">
-                Website development, web applications, SaaS, e-commerce, mobile apps,
-                CMS & headless, API integrations, and ongoing support & maintenance.
+                {servicesIntro ??
+                  "Website development, web applications, SaaS, e-commerce, mobile apps, CMS & headless, API integrations, and ongoing support & maintenance."}
               </p>
             </div>
           </div>

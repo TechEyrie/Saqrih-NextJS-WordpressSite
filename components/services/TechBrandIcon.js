@@ -58,6 +58,9 @@ import {
   SiMapbox,
   SiGooglemaps,
   SiGoogleanalytics,
+  SiDhl,
+  SiFedex,
+  SiUps,
 } from "react-icons/si";
 import {
   FaAws,
@@ -71,6 +74,7 @@ import {
   FaSalesforce,
   FaFingerprint,
   FaBell,
+  FaTruck,
 } from "react-icons/fa";
 import {
   TbBrandAdobe,
@@ -99,6 +103,7 @@ import {
   TbBrandReactNative,
   TbCurrentLocation,
   TbDeviceMobile,
+  TbPackage,
 } from "react-icons/tb";
 
 const SIZE = 22;
@@ -224,6 +229,18 @@ export default function TechBrandIcon({ name, color = "#c8f04a" }) {
     "firebase analytics": <SiFirebase {...props} />,
     "google analytics": <SiGoogleanalytics {...props} />,
     "device compatibility testing": <TbDeviceMobile {...props} />,
+    "email services": <TbApi {...props} />,
+    "sms services": <FaBell {...props} />,
+    "payment gateway integrations": <TbCreditCard {...props} />,
+    "automated testing": <TbTestPipe {...props} />,
+    dhl: <SiDhl {...props} />,
+    fedex: <SiFedex {...props} />,
+    ups: <SiUps {...props} />,
+    aramex: <FaTruck {...props} />,
+    shipstation: <TbPackage {...props} />,
+    easypost: <TbPackage {...props} />,
+    "local payment gateways": <TbCreditCard {...props} />,
+    "buy now, pay later (bnpl) integrations": <TbCreditCard {...props} />,
   };
 
   return map[key] ?? <TbCode {...props} />;
@@ -346,6 +363,18 @@ export function techIconTint(name) {
     "firebase analytics": "#ffca28",
     "google analytics": "#f9ab00",
     "device compatibility testing": "#c8f04a",
+    "email services": "#c8f04a",
+    "sms services": "#c8f04a",
+    "payment gateway integrations": "#c8f04a",
+    "automated testing": "#c8f04a",
+    dhl: "#ffcc00",
+    fedex: "#4d148c",
+    ups: "#351c15",
+    aramex: "#e30613",
+    shipstation: "#3cba54",
+    easypost: "#c8f04a",
+    "local payment gateways": "#c8f04a",
+    "buy now, pay later (bnpl) integrations": "#c8f04a",
   };
   return colors[key] ?? "#c8f04a";
 }

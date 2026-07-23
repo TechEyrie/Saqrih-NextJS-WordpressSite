@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { HOMEPAGE_UNLOCKING_IMAGE_CARDS } from "../../lib/homepageImages";
+import { revealElements } from "../../lib/useRevealOnView";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
@@ -44,7 +45,7 @@ const IconCog = () => (
 );
 
 // ── Card data ───────────────────────────────────────────────────
-const CARDS = [
+const DEFAULT_CARDS = [
   {
     id: "build",
     eyebrow: "Built around outcomes",
@@ -85,6 +86,122 @@ const CARDS = [
   },
 ];
 
+const ICONS_BY_ID = {
+  steered: <IconWaves />,
+  lighter: <IconLayers />,
+  speed: <IconBolt />,
+  precision: <IconTarget />,
+  integrated: <IconCog />,
+  monitor: <IconTarget />,
+  content: <IconLayers />,
+  seo: <IconBolt />,
+  hosting: <IconCog />,
+  migrate: <IconWaves />,
+  consult: <IconLayers />,
+  corporate: <IconLayers />,
+  custom: <IconBolt />,
+  landing: <IconTarget />,
+  portfolio: <IconWaves />,
+  brochure: <IconCog />,
+  multilingual: <IconLayers />,
+  headless: <IconBolt />,
+  pwa: <IconTarget />,
+  enterprise: <IconLayers />,
+  automation: <IconBolt />,
+  "customer-portal": <IconCog />,
+  "employee-portal": <IconWaves />,
+  admin: <IconTarget />,
+  crm: <IconLayers />,
+  erp: <IconBolt />,
+  booking: <IconCog />,
+  marketplace: <IconWaves />,
+  membership: <IconTarget />,
+  lms: <IconLayers />,
+  workflow: <IconBolt />,
+  inventory: <IconCog />,
+  analytics: <IconWaves />,
+  legacy: <IconTarget />,
+  mvp: <IconBolt />,
+  "multi-tenant": <IconLayers />,
+  product: <IconTarget />,
+  modernize: <IconCog />,
+  uiux: <IconWaves />,
+  billing: <IconBolt />,
+  auth: <IconCog />,
+  dashboard: <IconTarget />,
+  api: <IconLayers />,
+  scale: <IconWaves />,
+  support: <IconCog />,
+  woo: <IconLayers />,
+  shopify: <IconBolt />,
+  magento: <IconTarget />,
+  opencart: <IconWaves />,
+  multivendor: <IconCog />,
+  b2b: <IconLayers />,
+  subscription: <IconBolt />,
+  payments: <IconTarget />,
+  shipping: <IconWaves />,
+  erp: <IconCog />,
+  perf: <IconBolt />,
+  cro: <IconTarget />,
+  crossplat: <IconLayers />,
+  android: <IconBolt />,
+  ios: <IconTarget />,
+  "enterprise-mobile": <IconCog />,
+  "ecom-mobile": <IconWaves />,
+  "saas-mobile": <IconLayers />,
+  "marketplace-mobile": <IconBolt />,
+  "booking-mobile": <IconTarget />,
+  "health-mobile": <IconCog />,
+  "fintech-mobile": <IconWaves />,
+  "api-mobile": <IconLayers />,
+  "modernize-mobile": <IconBolt />,
+  "support-mobile": <IconTarget />,
+  "cms-setup": <IconCog />,
+  "cms-migrate": <IconWaves />,
+  "enterprise-cms": <IconLayers />,
+  "cms-theme": <IconTarget />,
+  "cms-plugin": <IconBolt />,
+  "cms-api": <IconLayers />,
+  "cms-workflow": <IconCog />,
+  "cms-i18n": <IconWaves />,
+  "cms-perf": <IconBolt />,
+  "cms-support": <IconTarget />,
+  "rest-api": <IconLayers />,
+  "graphql-api": <IconBolt />,
+  "third-party": <IconWaves />,
+  "payment-api": <IconTarget />,
+  "crm-erp": <IconCog />,
+  "ecom-api": <IconLayers />,
+  "sso-auth": <IconBolt />,
+  webhooks: <IconWaves />,
+  "legacy-api": <IconTarget />,
+  "api-docs": <IconCog />,
+  "api-support": <IconLayers />,
+  "wsm-troubleshoot": <IconBolt />,
+  "wsm-security": <IconTarget />,
+  "wsm-updates": <IconCog />,
+  "wsm-perf": <IconWaves />,
+  "wsm-backup": <IconLayers />,
+  "wsm-uptime": <IconBolt />,
+  "wsm-content": <IconTarget />,
+  "wsm-seo": <IconCog />,
+  "wsm-hosting": <IconWaves />,
+  "wsm-migrate": <IconLayers />,
+  "wsm-consult": <IconBolt />,
+  redesign: <IconWaves />,
+  a11y: <IconTarget />,
+  security: <IconCog />,
+};
+
+const DEFAULT_HEADING = (
+  <>
+    Premier Development Partner, Not Just a Service Provider
+    <br />
+    in the Middle East
+  </>
+);
+
 // ── Image link cards data ───────────────────────────────────────
 const IMAGE_CARDS = HOMEPAGE_UNLOCKING_IMAGE_CARDS;
 
@@ -102,9 +219,20 @@ function FeatureCard({ card, animRef }) {
     const el = cardRef.current;
     if (!el) return;
 
-    const iconEl  = el.querySelector(".card-icon");
+    const iconEl = el.querySelector(".card-icon");
     const titleEl = el.querySelector(".card-title");
-    const descEl  = el.querySelector(".card-desc");
+    const descEl = el.querySelector(".card-desc");
+
+    const resetColors = () => {
+      gsap.set(el, { backgroundColor: "#efefed" });
+      gsap.set([iconEl, titleEl].filter(Boolean), {
+        color: "rgba(0,0,0,0.75)",
+      });
+      if (titleEl) gsap.set(titleEl, { color: "rgba(0,0,0,0.82)" });
+      if (descEl) gsap.set(descEl, { color: "rgba(0,0,0,0.42)" });
+    };
+
+    resetColors();
 
     const onEnter = () => {
       gsap.to(el, { backgroundColor: "#162D24", duration: 0.45, ease: "power1.inOut" });
@@ -116,9 +244,10 @@ function FeatureCard({ card, animRef }) {
 
     const onLeave = () => {
       gsap.to(el, { backgroundColor: "#efefed", duration: 0.65, ease: "power1.inOut" });
-      gsap.to([iconEl, titleEl].filter(Boolean), {
-        color: "rgba(0,0,0,0.75)", duration: 0.6, ease: "power1.inOut", stagger: 0.05,
+      gsap.to([iconEl].filter(Boolean), {
+        color: "rgba(0,0,0,0.75)", duration: 0.6, ease: "power1.inOut",
       });
+      if (titleEl) gsap.to(titleEl, { color: "rgba(0,0,0,0.82)", duration: 0.6, ease: "power1.inOut" });
       if (descEl) gsap.to(descEl, { color: "rgba(0,0,0,0.42)", duration: 0.6, ease: "power1.inOut" });
     };
 
@@ -127,8 +256,10 @@ function FeatureCard({ card, animRef }) {
     return () => {
       el.removeEventListener("mouseenter", onEnter);
       el.removeEventListener("mouseleave", onLeave);
+      gsap.killTweensOf([el, iconEl, titleEl, descEl].filter(Boolean));
+      resetColors();
     };
-  }, [card.isHero]);
+  }, [card.isHero, card.id]);
 
   // ── Hero card ────────────────────────────────────────────────
   if (card.isHero) {
@@ -177,7 +308,10 @@ function FeatureCard({ card, animRef }) {
           )}
         </div>
         <a
-          href="#"
+          href={card.href || "#"}
+          onClick={(e) => {
+            if (!card.href) e.preventDefault();
+          }}
           style={{
             display: "inline-flex",
             alignItems: "center",
@@ -201,10 +335,16 @@ function FeatureCard({ card, animRef }) {
   }
 
   // ── Feature card ─────────────────────────────────────────────
+  const CardTag = card.href ? "a" : "div";
+  const cardLinkProps = card.href
+    ? { href: card.href }
+    : {};
+
   return (
-    <div
+    <CardTag
       ref={setRef}
       className="unlocking-feature-card"
+      {...cardLinkProps}
       style={{
         background: "#efefed",
         borderRadius: "18px",
@@ -213,8 +353,10 @@ function FeatureCard({ card, animRef }) {
         flexDirection: "column",
         justifyContent: "space-between",
         minHeight: "280px",
-        cursor: "pointer",
+        cursor: card.href ? "pointer" : "default",
         willChange: "background-color",
+        textDecoration: "none",
+        color: "inherit",
       }}
     >
       <div className="card-icon" style={{ color: "rgba(0,0,0,0.55)" }}>
@@ -248,7 +390,7 @@ function FeatureCard({ card, animRef }) {
           </p>
         )}
       </div>
-    </div>
+    </CardTag>
   );
 }
 
@@ -415,7 +557,10 @@ function ImageLinkCard({ card, animRef }) {
 }
 
 // ── Section ─────────────────────────────────────────────────────
-export default function UnlockingSection() {
+export default function UnlockingSection({
+  heading = DEFAULT_HEADING,
+  cards = DEFAULT_CARDS,
+}) {
   const sectionRef   = useRef(null);
   const headingRef   = useRef(null);
   const gridRef      = useRef(null);
@@ -423,70 +568,122 @@ export default function UnlockingSection() {
   const cardAnimRefs = useRef([]);
   const imgCardRefs  = useRef([]);
 
-  useEffect(() => {
-    const ctx = gsap.context(() => {
+  const resolvedCards = cards.map((card) => ({
+    ...card,
+    icon: card.icon ?? ICONS_BY_ID[card.id] ?? null,
+  }));
 
+  const cardsKey = resolvedCards.map((c) => c.id || c.title).join("|");
+
+  useEffect(() => {
+    let cleanupCards = () => {};
+    const timers = [];
+    let headingIo = null;
+    let filled = false;
+
+    const ctx = gsap.context(() => {
       // ── Heading: scroll color-fill word by word ──────────────
       if (headingRef.current) {
         const split = new SplitText(headingRef.current, { type: "words" });
-        gsap.set(split.words, { color: "rgba(0,0,0,0.1)" });
+        const FILL = "rgba(0,0,0,0.9)";
+        const FAINT = "rgba(0,0,0,0.1)";
 
+        gsap.set(split.words, { color: FAINT });
+
+        const fillHeading = (animate = true) => {
+          if (filled) return;
+          filled = true;
+
+          // Kill scrub triggers so Lenis/ST refresh cannot snap words back to faint.
+          ScrollTrigger.getAll().forEach((st) => {
+            if (split.words.includes(st.trigger)) st.kill();
+          });
+          gsap.killTweensOf(split.words);
+
+          if (animate) {
+            gsap.to(split.words, {
+              color: FILL,
+              duration: 0.55,
+              stagger: 0.04,
+              ease: "power2.out",
+              overwrite: true,
+            });
+          } else {
+            gsap.set(split.words, { color: FILL });
+          }
+        };
+
+        // Scrub fill when scrolling into view (works on hard loads / long scroll).
         split.words.forEach((word) => {
           gsap.to(word, {
-            color: "rgba(0,0,0,0.9)",
+            color: FILL,
             ease: "none",
             scrollTrigger: {
               trigger: word,
               start: "top 88%",
               end: "top 55%",
               scrub: 0.8,
+              invalidateOnRefresh: true,
+              onEnter: () => {
+                filled = true;
+              },
+              onEnterBack: () => {
+                filled = true;
+              },
             },
           });
         });
+
+        // Soft-nav / Lenis safety: IO + delayed checks so heading never stays faint.
+        headingIo = new IntersectionObserver(
+          (entries) => {
+            if (entries.some((e) => e.isIntersecting)) {
+              fillHeading(true);
+              headingIo?.disconnect();
+            }
+          },
+          { root: null, rootMargin: "0px 0px -12% 0px", threshold: 0.15 }
+        );
+        headingIo.observe(headingRef.current);
+
+        const tryFillIfVisible = () => {
+          const rect = headingRef.current?.getBoundingClientRect();
+          if (!rect) return;
+          if (rect.top < window.innerHeight * 0.92 && rect.bottom > 0) {
+            fillHeading(true);
+          }
+        };
+
+        timers.push(
+          window.setTimeout(() => {
+            tryFillIfVisible();
+            ScrollTrigger.refresh();
+            ScrollTrigger.update();
+          }, 200)
+        );
+        timers.push(window.setTimeout(tryFillIfVisible, 600));
+        timers.push(window.setTimeout(tryFillIfVisible, 1200));
       }
-
-      // ── Feature cards: stagger fade-up ──────────────────────
-      const cards = cardAnimRefs.current.filter(Boolean);
-      gsap.set(cards, { opacity: 0, y: 50 });
-      ScrollTrigger.create({
-        trigger: gridRef.current,
-        start: "top 90%",
-        once: true,
-        onEnter: () => {
-          gsap.to(cards, {
-            opacity: 1,
-            y: 0,
-            duration: 0.9,
-            ease: "power3.out",
-            stagger: 0.1,
-          });
-        },
-      });
-
-      // ── Image cards: fade-up ─────────────────────────────────
-      /*
-      const imgCards = imgCardRefs.current.filter(Boolean);
-      gsap.set(imgCards, { opacity: 0, y: 40 });
-      ScrollTrigger.create({
-        trigger: imageRowRef.current,
-        start: "top 90%",
-        once: true,
-        onEnter: () => {
-          gsap.to(imgCards, {
-            opacity: 1,
-            y: 0,
-            duration: 0.9,
-            ease: "power3.out",
-            stagger: 0.15,
-          });
-        },
-      });
-      */
-
     }, sectionRef);
 
-    return () => ctx.revert();
-  }, []);
+    // Wait a frame so card refs are populated after render.
+    const raf = requestAnimationFrame(() => {
+      cleanupCards = revealElements(cardAnimRefs.current.filter(Boolean), {
+        y: 40,
+        stagger: 0.1,
+        duration: 0.9,
+        safetyMs: 250,
+      });
+    });
+
+    return () => {
+      cancelAnimationFrame(raf);
+      cleanupCards();
+      headingIo?.disconnect();
+      timers.forEach((id) => window.clearTimeout(id));
+      ctx.revert();
+    };
+  }, [cardsKey]);
 
   return (
     <section ref={sectionRef} className="unlocking-section" data-header="light">
@@ -501,15 +698,13 @@ export default function UnlockingSection() {
             color: "rgba(0,0,0,0.1)",
           }}
         >
-          Premier Development Partner, Not Just a Service Provider
-          <br />
-          in the Middle East
+          {heading}
         </h2>
       </div>
 
       {/* ── Feature cards grid ────────────────────────────────── */}
       <div ref={gridRef} className="unlocking-cards-grid">
-        {CARDS.map((card, i) => (
+        {resolvedCards.map((card, i) => (
           <FeatureCard
             key={card.id}
             card={card}

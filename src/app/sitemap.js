@@ -28,6 +28,46 @@ import {
   MOBILE_APP_DEVELOPMENT,
   MOBILE_APP_SUB_SERVICES,
 } from "../../lib/services/mobileAppDevelopment";
+import { WEBSITE_DEV_HOME } from "../../lib/services/websiteDevelopmentHome";
+import { WEB_APP_DEV_HOME } from "../../lib/services/webApplicationDevelopmentHome";
+import { SAAS_DEV_HOME } from "../../lib/services/saasDevelopmentHome";
+import { ECOM_DEV_HOME } from "../../lib/services/ecommerceDevelopmentHome";
+import { MOBILE_DEV_HOME } from "../../lib/services/mobileAppDevelopmentHome";
+import { CMS_DEV_HOME } from "../../lib/services/cmsHeadlessDevelopmentHome";
+import { API_DEV_HOME } from "../../lib/services/apiIntegrationDevelopmentHome";
+import { WSM_DEV_HOME } from "../../lib/services/websiteSupportMaintenanceHome";
+import {
+  getAllWebsiteDevSubPageSlugs,
+  WEBSITE_DEV_PARENT,
+} from "../../lib/services/websiteDevelopmentSubPages";
+import {
+  getAllWebAppDevSubPageSlugs,
+  WEB_APP_DEV_PARENT,
+} from "../../lib/services/webApplicationDevelopmentSubPages";
+import {
+  getAllSaasDevSubPageSlugs,
+  SAAS_DEV_PARENT,
+} from "../../lib/services/saasDevelopmentSubPages";
+import {
+  getAllEcomDevSubPageSlugs,
+  ECOM_DEV_PARENT,
+} from "../../lib/services/ecommerceDevelopmentSubPages";
+import {
+  getAllMobileDevSubPageSlugs,
+  MOBILE_DEV_PARENT,
+} from "../../lib/services/mobileAppDevelopmentSubPages";
+import {
+  getAllCmsDevSubPageSlugs,
+  CMS_DEV_PARENT,
+} from "../../lib/services/cmsHeadlessDevelopmentSubPages";
+import {
+  getAllApiDevSubPageSlugs,
+  API_DEV_PARENT,
+} from "../../lib/services/apiIntegrationDevelopmentSubPages";
+import {
+  getAllWsmDevSubPageSlugs,
+  WSM_DEV_PARENT,
+} from "../../lib/services/websiteSupportMaintenanceSubPages";
 
 /** Live case studies only (pages that call notFound() are excluded) */
 const CASE_STUDY_SLUGS = [
@@ -103,6 +143,39 @@ export default function sitemap() {
   urls.push(entry(WEBSITE_DEVELOPMENT.path, "monthly", 0.9));
   for (const sub of WEBSITE_DEVELOPMENT_SUB_SERVICES) {
     urls.push(entry(`${WEBSITE_DEVELOPMENT.path}/${sub.slug}`, "monthly", 0.8));
+  }
+
+  urls.push(entry(WEBSITE_DEV_HOME.path, "monthly", 0.9));
+  for (const slug of getAllWebsiteDevSubPageSlugs()) {
+    urls.push(entry(`${WEBSITE_DEV_PARENT.path}/${slug}`, "monthly", 0.8));
+  }
+  urls.push(entry(WEB_APP_DEV_HOME.path, "monthly", 0.9));
+  for (const slug of getAllWebAppDevSubPageSlugs()) {
+    urls.push(entry(`${WEB_APP_DEV_PARENT.path}/${slug}`, "monthly", 0.8));
+  }
+  urls.push(entry(SAAS_DEV_HOME.path, "monthly", 0.9));
+  for (const slug of getAllSaasDevSubPageSlugs()) {
+    urls.push(entry(`${SAAS_DEV_PARENT.path}/${slug}`, "monthly", 0.8));
+  }
+  urls.push(entry(ECOM_DEV_HOME.path, "monthly", 0.9));
+  for (const slug of getAllEcomDevSubPageSlugs()) {
+    urls.push(entry(`${ECOM_DEV_PARENT.path}/${slug}`, "monthly", 0.8));
+  }
+  urls.push(entry(MOBILE_DEV_HOME.path, "monthly", 0.9));
+  for (const slug of getAllMobileDevSubPageSlugs()) {
+    urls.push(entry(`${MOBILE_DEV_PARENT.path}/${slug}`, "monthly", 0.8));
+  }
+  urls.push(entry(CMS_DEV_HOME.path, "monthly", 0.9));
+  for (const slug of getAllCmsDevSubPageSlugs()) {
+    urls.push(entry(`${CMS_DEV_PARENT.path}/${slug}`, "monthly", 0.8));
+  }
+  urls.push(entry(API_DEV_HOME.path, "monthly", 0.9));
+  for (const slug of getAllApiDevSubPageSlugs()) {
+    urls.push(entry(`${API_DEV_PARENT.path}/${slug}`, "monthly", 0.8));
+  }
+  urls.push(entry(WSM_DEV_HOME.path, "monthly", 0.9));
+  for (const slug of getAllWsmDevSubPageSlugs()) {
+    urls.push(entry(`${WSM_DEV_PARENT.path}/${slug}`, "monthly", 0.8));
   }
 
   urls.push(entry(WEBSITE_SUPPORT_MAINTENANCE.path, "monthly", 0.9));

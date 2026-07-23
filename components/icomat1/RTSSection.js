@@ -30,7 +30,9 @@ const DOTS = [
   { x: 94, y: 65 },
 ];
 
-export default function RTSSection() {
+export default function RTSSection({
+  text = "We Build Digital Solutions That Move Businesses Forward",
+}) {
   const sectionRef = useRef(null);
   const textRef = useRef(null);
   const dotsRef = useRef([]);
@@ -142,7 +144,12 @@ export default function RTSSection() {
             hyphens: "none",
           }}
         >
-          We Build Digital Solutions That Move Businesses Forward
+          {text.split("\n").map((line, i, arr) => (
+            <span key={i}>
+              {line}
+              {i < arr.length - 1 ? <br /> : null}
+            </span>
+          ))}
         </p>
       </div>
     </section>

@@ -22,7 +22,19 @@ const FEATURES = [
   },
 ];
 
-export default function OurAdvantageSection() {
+export default function OurAdvantageSection({
+  label = "Why choose Saqrih as your trusted WordPress agency?",
+  headingLines = [
+    "Experience the",
+    "pinnacle of digital",
+    "performance and trust.",
+  ],
+  paragraphs = [
+    "Saqrih is a full-service development agency delivering exceptional websites, web applications, SaaS platforms, mobile apps, and e-commerce solutions for ambitious businesses worldwide.",
+    "We provide end-to-end strategy, design, development, integration, and ongoing support, ensuring every digital product is built for performance, security, and long-term success.",
+    "Our commitment to technical excellence, innovation, and quality enables businesses to launch faster, scale confidently, and stay ahead in an evolving digital landscape.",
+  ],
+}) {
   const sectionRef = useRef(null);
   const labelRef = useRef(null);
   const headingRef = useRef(null);
@@ -108,7 +120,7 @@ export default function OurAdvantageSection() {
             className="text-[13px] sm:text-[14px] font-medium tracking-wide"
             style={{ color: "rgba(255,255,255,0.45)" }}
           >
-            Why choose Saqrih as your trusted WordPress agency?
+            {label}
           </p>
 
           <h2
@@ -116,11 +128,12 @@ export default function OurAdvantageSection() {
             className="text-white font-bold leading-[1.0] tracking-tight"
             style={{ fontSize: "clamp(2.8rem, 4vw, 4rem)" }}
           >
-            Experience the
-            <br />
-            pinnacle of digital
-            <br />
-            performance and trust.
+            {headingLines.map((line, i) => (
+              <span key={i}>
+                {line}
+                {i < headingLines.length - 1 ? <br /> : null}
+              </span>
+            ))}
           </h2>
         </div>
 
@@ -139,31 +152,15 @@ export default function OurAdvantageSection() {
 
             {/* Body copy */}
             <div ref={rightColRef} className="flex flex-col gap-5">
-              <p
-                className="text-[13px] sm:text-[18px] font-normal leading-relaxed"
-                style={{ color: "rgba(255,255,255,0.92)" }}
-              >
-                Saqrih is a full-service development agency delivering
-                exceptional websites, web applications, SaaS platforms, mobile
-                apps, and e-commerce solutions for ambitious businesses
-                worldwide.
-              </p>
-              <p
-                className="text-[13px] sm:text-[18px] font-normal leading-relaxed"
-                style={{ color: "rgba(255,255,255,0.92)" }}
-              >
-                We provide end-to-end strategy, design, development,
-                integration, and ongoing support, ensuring every digital product
-                is built for performance, security, and long-term success.
-              </p>
-              <p
-                className="text-[13px] sm:text-[18px] font-normal leading-relaxed"
-                style={{ color: "rgba(255,255,255,0.92)" }}
-              >
-                Our commitment to technical excellence, innovation, and quality
-                enables businesses to launch faster, scale confidently, and stay
-                ahead in an evolving digital landscape.
-              </p>
+              {paragraphs.map((para, i) => (
+                <p
+                  key={i}
+                  className="text-[13px] sm:text-[18px] font-normal leading-relaxed"
+                  style={{ color: "rgba(255,255,255,0.92)" }}
+                >
+                  {para}
+                </p>
+              ))}
             </div>
 
             {/* Divider */}

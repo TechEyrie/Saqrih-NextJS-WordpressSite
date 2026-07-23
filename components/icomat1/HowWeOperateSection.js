@@ -10,7 +10,9 @@ gsap.registerPlugin(SplitText, ScrollTrigger);
 
 const OPERATE_IMAGES = HOMEPAGE_HOW_WE_OPERATE_IMAGES;
 
-export default function HowWeOperateSection() {
+export default function HowWeOperateSection({
+  text = "From high-performance websites and e‑commerce platforms to custom web applications, SaaS products and mobile apps, Saqrih provides the strategy, design and development expertise required to bring complex digital ideas to life.",
+}) {
   const sectionRef = useRef(null);
   const textRef = useRef(null);
   const img1Ref = useRef(null);
@@ -81,10 +83,7 @@ export default function HowWeOperateSection() {
           className="font-medium leading-[1.12] tracking-tight"
           style={{ fontSize: "clamp(1.2rem, 3.2vw, 3.2rem)" }}
         >
-          From high-performance websites and e‑commerce platforms to custom web
-          applications, SaaS products and mobile apps, Saqrih provides the
-          strategy, design and development expertise required to bring complex
-          digital ideas to life.
+          {text}
         </p>
       </div>
 

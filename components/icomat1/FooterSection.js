@@ -43,9 +43,12 @@ const WORDPRESS_SERVICE_LINKS = [
   { label: "Sell my web design company", href: "/wordpress/sell-my-design-company" },
   { label: "Website Support & Maintenance", href: "/services/website-support-maintenance" },
   { label: "SaaS Development", href: "/services/saas-development" },
+  { label: "E-commerce Development", href: "/services/ecommerce-development" },
   { label: "API & Integration Development", href: "/services/api-integration-development" },
   { label: "CMS & Headless Development", href: "/services/cms-headless-development" },
   { label: "Mobile App Development", href: "/services/mobile-app-development" },
+  { label: "Web Application Development", href: "/services/web-application-development" },
+  { label: "Website Development", href: "/services/website-development" },
   { label: "WordPress ADA compliance", href: "/wordpress/ada-compliance" },
   { label: "Marketing Pro", href: "/wordpress/marketing-pro" },
   { label: "WordPress Elementor builder", href: "/wordpress/elementor" },
@@ -253,11 +256,42 @@ export default function FooterSection() {
   const veilRef   = useRef(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const footer = footerRef.current;
-      const veil   = veilRef.current;
-      if (!footer || !veil) return;
+    const footer = footerRef.current;
+    const veil = veilRef.current;
+    if (!footer || !veil) return;
 
+    const timers = [];
+    let forceUnlocked = false;
+
+    const setVeil = (yPercent, animate = false) => {
+      if (animate) {
+        gsap.to(veil, {
+          yPercent,
+          duration: 0.55,
+          ease: "power2.out",
+          overwrite: true,
+          force3D: true,
+        });
+      } else {
+        gsap.set(veil, { yPercent, force3D: true });
+      }
+    };
+
+    // Tall pages (many Unlocking cards) + Lenis can leave scrub progress stuck.
+    // Force-reveal once the footer is meaningfully on screen.
+    const forceRevealIfNeeded = () => {
+      if (forceUnlocked) return;
+      const rect = footer.getBoundingClientRect();
+      const nearBottom =
+        window.scrollY + window.innerHeight >=
+        document.documentElement.scrollHeight - 80;
+      if (rect.top < window.innerHeight * 0.72 || nearBottom) {
+        forceUnlocked = true;
+        setVeil(-100, true);
+      }
+    };
+
+    const ctx = gsap.context(() => {
       gsap.set(veil, { yPercent: 0 });
 
       ScrollTrigger.create({
@@ -267,24 +301,53 @@ export default function FooterSection() {
         scrub: 1.15,
         invalidateOnRefresh: true,
         onUpdate: (self) => {
-          const p = self.progress;
-          gsap.set(veil, {
-            yPercent: -100 * p,
-            force3D: true,
-          });
+          if (forceUnlocked) {
+            setVeil(-100);
+            return;
+          }
+          setVeil(-100 * self.progress);
+        },
+        onLeave: () => {
+          forceUnlocked = true;
+          setVeil(-100);
         },
         onLeaveBack: () => {
-          gsap.to(veil, {
-            yPercent: 0,
-            duration: 0.55,
-            ease: "power2.out",
-            overwrite: true,
-          });
+          forceUnlocked = false;
+          setVeil(0, true);
         },
       });
     }, footerRef);
 
-    return () => ctx.revert();
+    const sync = () => {
+      ScrollTrigger.refresh();
+      ScrollTrigger.update();
+      forceRevealIfNeeded();
+    };
+
+    requestAnimationFrame(sync);
+    timers.push(window.setTimeout(sync, 120));
+    timers.push(window.setTimeout(sync, 450));
+    timers.push(window.setTimeout(sync, 1100));
+
+    const ro = typeof ResizeObserver !== "undefined"
+      ? new ResizeObserver(() => {
+          ScrollTrigger.refresh();
+          forceRevealIfNeeded();
+        })
+      : null;
+    ro?.observe(footer);
+    if (footer.parentElement) ro?.observe(footer.parentElement);
+
+    window.addEventListener("scroll", forceRevealIfNeeded, { passive: true });
+    window.addEventListener("resize", sync);
+
+    return () => {
+      timers.forEach((id) => window.clearTimeout(id));
+      ro?.disconnect();
+      window.removeEventListener("scroll", forceRevealIfNeeded);
+      window.removeEventListener("resize", sync);
+      ctx.revert();
+    };
   }, []);
 
   return (

@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SVC, sectionPad } from "./serviceTokens";
 import TechBrandIcon, { techIconTint, techIconColor } from "./TechBrandIcon";
+import { revealElements } from "../../lib/useRevealOnView";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -384,41 +385,26 @@ export default function ServiceTechStackSection({
   }, [categories, activeId]);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        headerRef.current,
-        { opacity: 0, y: 24 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.9,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top 78%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-      gsap.fromTo(
-        capsRef.current?.children ?? [],
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.65,
-          stagger: 0.08,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: capsRef.current,
-            start: "top 90%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
+    const capKids = capsRef.current
+      ? Array.from(capsRef.current.children)
+      : [];
+    const cleanHeader = revealElements([headerRef.current], {
+      y: 24,
+      stagger: 0,
+      duration: 0.85,
+      safetyMs: 150,
+    });
+    const cleanCaps = revealElements(capKids, {
+      y: 20,
+      stagger: 0.08,
+      duration: 0.65,
+      safetyMs: 280,
+    });
+    return () => {
+      cleanHeader();
+      cleanCaps();
+    };
+  }, [categories]);
 
   useEffect(() => {
     if (!panelRef.current) return;

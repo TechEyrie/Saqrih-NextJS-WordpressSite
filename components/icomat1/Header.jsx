@@ -50,7 +50,7 @@ const SERVICES = [
     ),
     title: "Web Application Development",
     desc: "Scalable web apps tailored to your workflows and business logic",
-    href: "/wordpress/development",
+    href: "/services/web-application-development",
   },
   {
     icon: (
@@ -74,7 +74,7 @@ const SERVICES = [
     ),
     title: "E-commerce Development",
     desc: "Online stores engineered for speed, checkout, and growth",
-    href: "/wordpress/woocommerce",
+    href: "/services/ecommerce-development",
   },
   {
     icon: (

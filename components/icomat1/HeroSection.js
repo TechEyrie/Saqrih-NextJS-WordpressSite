@@ -1,10 +1,13 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import HeroScrollDownIndicator from "./HeroScrollDownIndicator";
 import { HOMEPAGE_HERO_BACKGROUND_VIDEO } from "../../lib/siteVideos";
+import { landscapeHeroPicForPath } from "../../lib/landscapeHeroPics";
 import { useMeasuredHeight } from "../../lib/useMeasuredHeight";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -119,7 +122,21 @@ export function HeroQuoteButton({ onClick, className }) {
   );
 }
 
-export default function HeroSection({ onQuoteClick }) {
+export default function HeroSection({
+  onQuoteClick,
+  titleLine1 = "A Web and Software Development",
+  titleLine2 = "Company Built for Ambitious Businesses",
+  showTrademark = false,
+  description = "From high-performance websites and e-commerce platforms to custom web applications, SaaS products and mobile apps, Saqrih provides the strategy, design and development expertise required to bring complex digital ideas to life.",
+  /** When set, forces an image background. `/services/*` always uses images. */
+  backgroundImage,
+}) {
+  const pathname = usePathname();
+  const isServicePage = Boolean(pathname?.startsWith("/services/"));
+  const imageSrc =
+    backgroundImage ||
+    (isServicePage ? landscapeHeroPicForPath(pathname) : null);
+
   const containerRef       = useRef(null);
   const videoRef           = useRef(null);
   const overlayRef         = useRef(null);
@@ -200,6 +217,8 @@ export default function HeroSection({ onQuoteClick }) {
   }, []);
 
   useEffect(() => {
+    if (imageSrc) return;
+
     const video = videoRef.current;
     if (!video) return;
 
@@ -226,7 +245,7 @@ export default function HeroSection({ onQuoteClick }) {
       video.removeEventListener("loadeddata", tryPlay);
       video.removeEventListener("canplay", tryPlay);
     };
-  }, []);
+  }, [imageSrc]);
 
   return (
     <section
@@ -245,20 +264,32 @@ export default function HeroSection({ onQuoteClick }) {
         className="pointer-events-none absolute inset-0 z-0 overflow-hidden"
         aria-hidden="true"
       >
-        <video
-          ref={videoRef}
-          className="absolute inset-0 h-full w-full object-cover"
-          style={{ minWidth: "100%", minHeight: "100%" }}
-          src={HOMEPAGE_HERO_BACKGROUND_VIDEO}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          disablePictureInPicture
-          disableRemotePlayback
-          tabIndex={-1}
-        />
+        {imageSrc ? (
+          <Image
+            src={imageSrc}
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="absolute inset-0 h-full w-full object-cover"
+            style={{ minWidth: "100%", minHeight: "100%" }}
+          />
+        ) : (
+          <video
+            ref={videoRef}
+            className="absolute inset-0 h-full w-full object-cover"
+            style={{ minWidth: "100%", minHeight: "100%" }}
+            src={HOMEPAGE_HERO_BACKGROUND_VIDEO}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            disablePictureInPicture
+            disableRemotePlayback
+            tabIndex={-1}
+          />
+        )}
       </div>
 
       <div
@@ -292,9 +323,22 @@ export default function HeroSection({ onQuoteClick }) {
               fontFamily: "var(--font-inter), Inter, Arial, sans-serif",
             }}
           >
-            A Web and Software Development
+            {titleLine1}
             <br />
-            Company Built for Ambitious Businesses
+            {titleLine2}
+            {showTrademark ? (
+              <sup
+                style={{
+                  fontSize: "0.22em",
+                  verticalAlign: "super",
+                  fontWeight: 400,
+                  letterSpacing: "0.05em",
+                  marginLeft: "0.3em",
+                }}
+              >
+                ™
+              </sup>
+            ) : null}
           </h1>
 
           <div ref={badgeRef} className="mt-4 max-w-[900px]">
@@ -302,10 +346,7 @@ export default function HeroSection({ onQuoteClick }) {
               className="text-[14px] sm:text-[15px] lg:text-[17px] leading-relaxed break-words"
               style={{ color: "rgba(255,255,255,0.72)", maxWidth: "100%" }}
             >
-              From high-performance websites and e-commerce platforms to custom
-              web applications, SaaS products and mobile apps, Saqrih provides
-              the strategy, design and development expertise required to bring
-              complex digital ideas to life.
+              {description}
             </p>
 
             <HeroQuoteButton onClick={onQuoteClick} />
