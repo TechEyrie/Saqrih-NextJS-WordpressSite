@@ -6,6 +6,13 @@ import dynamic from 'next/dynamic'
 import HeroSection from '../../../components/icomat1/HeroSection'
 import Header from '../../../components/icomat1/Header'
 import LazyWhenVisible from '../../../components/LazyWhenVisible'
+import {
+  HOMEPAGE_TECH_CATEGORIES,
+  HOMEPAGE_TECH_STATS,
+  HOMEPAGE_TECH_CAPABILITIES,
+  HOMEPAGE_TECH_MARQUEE,
+  HOMEPAGE_TECH_COPY,
+} from '../../../lib/services/homepageTechStack'
 
 const RTSSection = dynamic(() => import('../../../components/icomat1/RTSSection'), { ssr: false })
 const RTSCombinedSection = dynamic(() => import('../../../components/icomat1/RTSCombinedSection'), { ssr: false })
@@ -152,7 +159,16 @@ export default function IcomatPage() {
           <HowWeOperateSection />
         </LazyWhenVisible>
         <LazyWhenVisible minHeight="90vh">
-          <ServiceTechStackSection />
+          <ServiceTechStackSection
+            categories={HOMEPAGE_TECH_CATEGORIES}
+            stats={HOMEPAGE_TECH_STATS}
+            capabilities={HOMEPAGE_TECH_CAPABILITIES}
+            marquee={HOMEPAGE_TECH_MARQUEE}
+            eyebrow={HOMEPAGE_TECH_COPY.eyebrow}
+            headingLine1={HOMEPAGE_TECH_COPY.headingLine1}
+            headingLine2={HOMEPAGE_TECH_COPY.headingLine2}
+            body={HOMEPAGE_TECH_COPY.body}
+          />
         </LazyWhenVisible>
         <LazyWhenVisible minHeight="60vh">
           <OurAdvantageSection />
