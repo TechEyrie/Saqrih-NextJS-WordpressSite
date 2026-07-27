@@ -3,7 +3,7 @@ import JsonLd from "../../components/seo/JsonLd";
 import { breadcrumbJsonLd, webPageJsonLd } from "../../lib/jsonLd";
 import IcomatPage from "./icomat1/page";
 
-const HOME_TITLE = "Saqrih - Web Development Agency in Doha, Qatar";
+const HOME_TITLE = "Saqrih - Web and Software Development Company in Doha, Qatar";
 const HOME_DESCRIPTION =
   "Saqrih is a Qatar-based digital agency delivering website development, web apps, SaaS, e-commerce, mobile apps, WordPress, CMS, APIs, and ongoing support.";
 

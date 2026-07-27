@@ -17,7 +17,7 @@ const montserrat = Montserrat({
 });
 
 const SITE_TITLE =
-  "Saqrih - Web Development Agency in Doha, Qatar";
+  "Saqrih - Web and Software Development Company in Doha, Qatar";
 const SITE_DESCRIPTION =
   "Saqrih is a Qatar-based digital agency delivering website development, web apps, SaaS, e-commerce, mobile apps, WordPress, CMS, APIs, and ongoing support.";
 
