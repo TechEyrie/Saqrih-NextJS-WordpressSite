@@ -3,7 +3,7 @@ export async function GET() {
     {
       name: "Saqrih",
       description:
-        "Saqrih is a premier WordPress agency delivering design, development, hosting, maintenance, and ongoing support.",
+        "Saqrih is a Qatar-based digital agency delivering website development, web apps, SaaS, e-commerce, mobile apps, WordPress, CMS, APIs, and ongoing support.",
       url: "/",
       home: "/",
       gmt_offset: "0",

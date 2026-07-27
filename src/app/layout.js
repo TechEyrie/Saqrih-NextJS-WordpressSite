@@ -16,7 +16,10 @@ const montserrat = Montserrat({
   subsets: ["latin"],
 });
 
-const SITE_TITLE = "Saqrih - Qatar - Doha Based WordPress Development Agency";
+const SITE_TITLE =
+  "Saqrih - Web Development Agency in Doha, Qatar";
+const SITE_DESCRIPTION =
+  "Saqrih is a Qatar-based digital agency delivering website development, web apps, SaaS, e-commerce, mobile apps, WordPress, CMS, APIs, and ongoing support.";
 
 export const metadata = {
   metadataBase: new URL(SITE_ORIGIN),
@@ -24,13 +27,11 @@ export const metadata = {
     default: SITE_TITLE,
     template: "%s | Saqrih",
   },
-  description:
-    "Saqrih is a premier WordPress agency delivering design, development, hosting, maintenance, and ongoing support.",
+  description: SITE_DESCRIPTION,
   applicationName: "Saqrih",
   openGraph: {
     title: SITE_TITLE,
-    description:
-      "Saqrih is a premier WordPress agency delivering design, development, hosting, maintenance, and ongoing support.",
+    description: SITE_DESCRIPTION,
     siteName: "Saqrih",
     type: "website",
     images: [
@@ -45,8 +46,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: SITE_TITLE,
-    description:
-      "Saqrih is a premier WordPress agency delivering design, development, hosting, maintenance, and ongoing support.",
+    description: SITE_DESCRIPTION,
     images: ["/og-default.png"],
   },
   icons: {
@@ -54,7 +54,6 @@ export const metadata = {
     shortcut: "/favicon.png",
     apple: "/apple-touch-icon.png",
   },
-  generator: "WordPress 6.7.2",
 };
 
 export default function RootLayout({ children }) {

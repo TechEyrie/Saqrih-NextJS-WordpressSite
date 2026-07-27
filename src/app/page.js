@@ -3,9 +3,9 @@ import JsonLd from "../../components/seo/JsonLd";
 import { breadcrumbJsonLd, webPageJsonLd } from "../../lib/jsonLd";
 import IcomatPage from "./icomat1/page";
 
-const HOME_TITLE = "Saqrih - Qatar WordPress Development Agency";
+const HOME_TITLE = "Saqrih - Web Development Agency in Doha, Qatar";
 const HOME_DESCRIPTION =
-  "Saqrih is a premier WordPress agency delivering design, development, hosting, maintenance, and ongoing support.";
+  "Saqrih is a Qatar-based digital agency delivering website development, web apps, SaaS, e-commerce, mobile apps, WordPress, CMS, APIs, and ongoing support.";
 
 export const metadata = buildPageMetadata({
   title: HOME_TITLE,

@@ -42,6 +42,7 @@ const WORDPRESS_SERVICE_LINKS = [
   { label: "WordPress theme experts", href: "/wordpress/theme" },
   { label: "Sell my web design company", href: "/wordpress/sell-my-design-company" },
   { label: "Website Support & Maintenance", href: "/services/website-support-maintenance" },
+  { label: "WordPress Development", href: "/services/wordpress-development" },
   { label: "SaaS Development", href: "/services/saas-development" },
   { label: "E-commerce Development", href: "/services/ecommerce-development" },
   { label: "API & Integration Development", href: "/services/api-integration-development" },

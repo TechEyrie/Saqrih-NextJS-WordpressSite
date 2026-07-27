@@ -36,6 +36,11 @@ import { MOBILE_DEV_HOME } from "../../lib/services/mobileAppDevelopmentHome";
 import { CMS_DEV_HOME } from "../../lib/services/cmsHeadlessDevelopmentHome";
 import { API_DEV_HOME } from "../../lib/services/apiIntegrationDevelopmentHome";
 import { WSM_DEV_HOME } from "../../lib/services/websiteSupportMaintenanceHome";
+import { WORDPRESS_DEV_HOME } from "../../lib/services/wordpressDevelopmentHome";
+import {
+  getAllWordpressDevSubPageSlugs,
+  WORDPRESS_DEV_PARENT,
+} from "../../lib/services/wordpressDevelopmentSubPages";
 import {
   getAllWebsiteDevSubPageSlugs,
   WEBSITE_DEV_PARENT,
@@ -176,6 +181,10 @@ export default function sitemap() {
   urls.push(entry(WSM_DEV_HOME.path, "monthly", 0.9));
   for (const slug of getAllWsmDevSubPageSlugs()) {
     urls.push(entry(`${WSM_DEV_PARENT.path}/${slug}`, "monthly", 0.8));
+  }
+  urls.push(entry(WORDPRESS_DEV_HOME.path, "monthly", 0.9));
+  for (const slug of getAllWordpressDevSubPageSlugs()) {
+    urls.push(entry(`${WORDPRESS_DEV_PARENT.path}/${slug}`, "monthly", 0.8));
   }
 
   urls.push(entry(WEBSITE_SUPPORT_MAINTENANCE.path, "monthly", 0.9));

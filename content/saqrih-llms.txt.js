@@ -13,20 +13,20 @@ feed: https://saqrih.com/feed/
 
 # Saqrih
 
-> Saqrih (https://saqrih.com/) is a Qatar-based WordPress agency delivering design, development, hosting, maintenance, SEO, security, and ongoing support for businesses across the Gulf and internationally.
+> Saqrih (https://saqrih.com/) is a Qatar-based digital agency delivering website development, web apps, SaaS, e-commerce, mobile apps, WordPress, CMS, APIs, and ongoing support for businesses across the Gulf and internationally.
 
 ## Entity type
 
-organization: WordPress agency
+organization: Digital / web development agency
 location: Doha, Qatar
 
 ## Core understanding
 
-- Saqrih builds and maintains WordPress websites.
-- Services include design, development, hosting, SEO, speed optimization, maintenance, and security.
+- Saqrih builds websites, web applications, SaaS products, e-commerce stores, mobile apps, WordPress sites, CMS platforms, and API integrations.
+- Services also include hosting patterns, SEO, speed optimization, maintenance, and security.
 - Works with businesses, nonprofits, education, healthcare, and enterprise clients.
-- Focus is long-term support and performance optimization for WordPress sites.
-- Canonical service URLs use /wordpress/{service} (not /icomat1/wordpress/... legacy paths).
+- Focus is long-term product quality, performance, and support across modern stacks and WordPress.
+- Main service hubs live under /services/*; WordPress retained services also use /wordpress/{service}.
 
 ## Core services
 

@@ -20,7 +20,7 @@ import SubServiceFAQ from "./subpage/SubServiceFAQ";
 
 const ServiceTechStackSection = dynamic(
   () => import("./ServiceTechStackSection"),
-  { ssr: false }
+  { ssr: true }
 );
 
 gsap.registerPlugin(ScrollTrigger);

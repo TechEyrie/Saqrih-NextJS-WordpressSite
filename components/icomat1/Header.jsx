@@ -124,6 +124,20 @@ const SERVICES = [
     desc: "Ongoing updates, monitoring, and fixes so your site stays healthy",
     href: "/services/website-support-maintenance",
   },
+  {
+    icon: (
+      <svg width="44" height="44" viewBox="0 0 28 28" fill="none">
+        <circle cx="14" cy="14" r="10" stroke="currentColor" strokeWidth="1.3"/>
+        <path d="M9.5 14c0-2.5 2-4.5 4.5-4.5S18.5 11.5 18.5 14" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+        <path d="M14 9.5v9" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+        <circle cx="20" cy="20" r="5" fill="#c8f04a" stroke="none"/>
+        <path d="M18 20l1.5 1.5L22 18" stroke="#0a3a1a" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+      </svg>
+    ),
+    title: "WordPress Development",
+    desc: "Custom WordPress design, development, WooCommerce, hosting, and care",
+    href: "/services/wordpress-development",
+  },
 ];
 
 // ── Logo color themes ─────────────────────────────────────────

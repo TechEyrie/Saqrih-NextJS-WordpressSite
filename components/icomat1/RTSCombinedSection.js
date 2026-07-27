@@ -168,6 +168,17 @@ const CARD_META = [
       </p>
     ),
   },
+  {
+    badge: "WordPress",
+    href: "/services/wordpress-development",
+    footer: (
+      <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
+        WordPress Development
+        <br />
+        <span className="font-normal text-[#666] block min-h-[2.4em]">Custom WordPress design, development, WooCommerce, hosting, and care</span>
+      </p>
+    ),
+  },
 ];
 
 function CrosshairDot({ top, left }) {
@@ -457,7 +468,7 @@ export default function RTSCombinedSection({
             <div className="max-w-lg">
               <p className="text-[14px] sm:text-[16px] md:text-[18px] font-medium text-[#111] leading-snug">
                 {servicesIntro ??
-                  "Website development, web applications, SaaS, e-commerce, mobile apps, CMS & headless, API integrations, and ongoing support & maintenance."}
+                  "Website development, web applications, SaaS, e-commerce, mobile apps, CMS & headless, API integrations, WordPress development, and ongoing support & maintenance."}
               </p>
             </div>
           </div>

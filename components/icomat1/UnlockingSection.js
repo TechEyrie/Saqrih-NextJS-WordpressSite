@@ -192,6 +192,22 @@ const ICONS_BY_ID = {
   redesign: <IconWaves />,
   a11y: <IconTarget />,
   security: <IconCog />,
+  "wp-design": <IconLayers />,
+  "wp-dev": <IconBolt />,
+  "wp-maintain": <IconCog />,
+  premium: <IconTarget />,
+  "wp-retained": <IconLayers />,
+  "wp-backups": <IconWaves />,
+  "wp-elementor": <IconBolt />,
+  "wp-divi": <IconTarget />,
+  "wp-theme": <IconLayers />,
+  "wp-convert": <IconWaves />,
+  "wp-ada": <IconTarget />,
+  "wp-gdpr": <IconCog />,
+  "wp-pci": <IconBolt />,
+  "wp-compliance": <IconLayers />,
+  "wp-marketing": <IconWaves />,
+  "wp-whitelabel": <IconCog />,
 };
 
 const DEFAULT_HEADING = (
