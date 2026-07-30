@@ -5,6 +5,7 @@ import { createPortal } from "react-dom";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import QuotePhoneInput from "../QuotePhoneInput";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -200,6 +201,14 @@ function BrandWordmark({ color = "#f8f8f8", gradient = "", opacity = 1, blendMod
   );
 }
 
+const QUOTE_COMPANY = {
+  cr: "210615",
+  vat: "5007190226",
+  phone: "+974 5992 9039",
+  phoneHref: "tel:+97459929039",
+  address: "No 16, Al Meena St, Doha",
+};
+
 // ── Get a Quote Drawer ────────────────────────────────────────
 function QuoteDrawer({ open, onClose }) {
   const overlayRef = useRef(null);
@@ -212,7 +221,11 @@ function QuoteDrawer({ open, onClose }) {
   }, []);
 
   const [form, setForm] = useState({
-    fullName: "", email: "", phone: "", company: "", project: "",
+    fullName: "",
+    email: "",
+    phone: "",
+    company: "",
+    project: "",
   });
   const [focused,   setFocused]   = useState(null);
   const [errors,    setErrors]    = useState({});
@@ -244,7 +257,13 @@ function QuoteDrawer({ open, onClose }) {
   useEffect(() => {
     if (!open) {
       const t = setTimeout(() => {
-        setForm({ fullName: "", email: "", phone: "", company: "", project: "" });
+        setForm({
+          fullName: "",
+          email: "",
+          phone: "",
+          company: "",
+          project: "",
+        });
         setErrors({});
         setSubmitted(false);
         setFocused(null);
@@ -504,22 +523,23 @@ function QuoteDrawer({ open, onClose }) {
                   {errors.fullName && <span style={errorStyle}>{errors.fullName}</span>}
                 </div>
 
-                <div className="quote-form-row-2">
-                  <div>
-                    <label style={labelStyle}>Email <span style={{ color: "#c8f04a" }}>*</span></label>
-                    <input type="email" placeholder="jane@company.com" value={form.email}
-                      onChange={handleChange("email")}
-                      onFocus={() => setFocused("email")} onBlur={() => setFocused(null)}
-                      style={fieldStyle("email")} />
-                    {errors.email && <span style={errorStyle}>{errors.email}</span>}
-                  </div>
-                  <div>
-                    <label style={labelStyle}>Phone</label>
-                    <input type="tel" placeholder="+44 7700 900000" value={form.phone}
-                      onChange={handleChange("phone")}
-                      onFocus={() => setFocused("phone")} onBlur={() => setFocused(null)}
-                      style={fieldStyle("phone")} />
-                  </div>
+                <div>
+                  <label style={labelStyle}>Email <span style={{ color: "#c8f04a" }}>*</span></label>
+                  <input type="email" placeholder="jane@company.com" value={form.email}
+                    onChange={handleChange("email")}
+                    onFocus={() => setFocused("email")} onBlur={() => setFocused(null)}
+                    style={fieldStyle("email")} />
+                  {errors.email && <span style={errorStyle}>{errors.email}</span>}
+                </div>
+
+                <div>
+                  <label style={labelStyle}>Phone</label>
+                  <QuotePhoneInput
+                    value={form.phone}
+                    onChange={(phone) => setForm((current) => ({ ...current, phone }))}
+                    onFocus={() => setFocused("phone")}
+                    onBlur={() => setFocused(null)}
+                  />
                 </div>
 
                 <div>
@@ -581,17 +601,30 @@ function QuoteDrawer({ open, onClose }) {
           <div className="quote-drawer-footer" style={{
             flexShrink: 0,
             display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
+            flexDirection: "column",
+            gap: "6px",
             marginTop: "auto",
             borderTop: "1px solid rgba(255,255,255,0.06)",
           }}>
-            <span style={{ color: "rgba(255,255,255,0.2)", fontSize: "0.57rem", fontFamily: "Inter, Arial, sans-serif", fontWeight: 400, letterSpacing: "0.06em", textTransform: "uppercase" }}>
-              COMPANY REG NO. 11771620
-            </span>
-            <span style={{ color: "rgba(255,255,255,0.2)", fontSize: "0.57rem", fontFamily: "Inter, Arial, sans-serif", fontWeight: 400, letterSpacing: "0.06em", textTransform: "uppercase" }}>
-              VAT REG. NO. 326574685
-            </span>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "8px 18px", justifyContent: "space-between" }}>
+              <span style={{ color: "rgba(255,255,255,0.2)", fontSize: "0.57rem", fontFamily: "Inter, Arial, sans-serif", fontWeight: 400, letterSpacing: "0.06em", textTransform: "uppercase", lineHeight: 1.55 }}>
+                CR No. {QUOTE_COMPANY.cr}
+              </span>
+              <span style={{ color: "rgba(255,255,255,0.2)", fontSize: "0.57rem", fontFamily: "Inter, Arial, sans-serif", fontWeight: 400, letterSpacing: "0.06em", textTransform: "uppercase", lineHeight: 1.55 }}>
+                VAT No. {QUOTE_COMPANY.vat}
+              </span>
+            </div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "8px 18px", justifyContent: "space-between" }}>
+              <a
+                href={QUOTE_COMPANY.phoneHref}
+                style={{ color: "rgba(200,240,74,0.45)", fontSize: "0.57rem", fontFamily: "Inter, Arial, sans-serif", fontWeight: 400, letterSpacing: "0.06em", textTransform: "uppercase", lineHeight: 1.55, textDecoration: "none" }}
+              >
+                {QUOTE_COMPANY.phone}
+              </a>
+              <span style={{ color: "rgba(255,255,255,0.2)", fontSize: "0.57rem", fontFamily: "Inter, Arial, sans-serif", fontWeight: 400, letterSpacing: "0.06em", textTransform: "uppercase", lineHeight: 1.55 }}>
+                {QUOTE_COMPANY.address}
+              </span>
+            </div>
           </div>
         </div>
       </div>

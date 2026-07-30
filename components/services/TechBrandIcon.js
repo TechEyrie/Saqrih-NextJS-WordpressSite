@@ -45,11 +45,8 @@ import {
   SiFirebase,
   SiAuth0,
   SiJsonwebtokens,
-  SiStripe,
-  SiPaypal,
   SiGraphql,
   SiDocker,
-  SiHubspot,
   SiPostman,
   SiStrapi,
   SiSanity,
@@ -67,6 +64,7 @@ import {
   SiNewrelic,
   SiGithubactions,
   SiComposer,
+  SiWeb3Dotjs,
 } from "react-icons/si";
 import {
   FaAws,
@@ -76,8 +74,6 @@ import {
   FaUserLock,
   FaUsersCog,
   FaApple,
-  FaGoogle,
-  FaSalesforce,
   FaFingerprint,
   FaBell,
   FaTruck,
@@ -88,7 +84,6 @@ import {
   FaCogs,
 } from "react-icons/fa";
 import {
-  TbBrandAdobe,
   TbCode,
   TbSeo,
   TbSchema,
@@ -107,7 +102,6 @@ import {
   TbApi,
   TbWebhook,
   TbFileDescription,
-  TbBuilding,
   TbTestPipe,
   TbAccessible,
   TbPuzzle,
@@ -123,6 +117,48 @@ import {
 } from "react-icons/tb";
 
 const SIZE = 22;
+
+function PaymentBrandLogo({ file, name }) {
+  return (
+    <img
+      src={`/payment-icons/${file}`}
+      alt=""
+      title={name}
+      width="26"
+      height="22"
+      loading="lazy"
+      decoding="async"
+      style={{
+        display: "block",
+        width: 26,
+        height: 22,
+        objectFit: "contain",
+        borderRadius: 3,
+      }}
+    />
+  );
+}
+
+function ErpBrandLogo({ file, name }) {
+  return (
+    <img
+      src={`/erp-icons/${file}`}
+      alt=""
+      title={name}
+      width="26"
+      height="22"
+      loading="lazy"
+      decoding="async"
+      style={{
+        display: "block",
+        width: 26,
+        height: 22,
+        objectFit: "contain",
+        borderRadius: 3,
+      }}
+    />
+  );
+}
 
 /**
  * Brand / concept icons for tech stack tiles.
@@ -186,7 +222,7 @@ export default function TechBrandIcon({ name, color = "#c8f04a" }) {
     "phpunit / playwright": <TbTestPipe {...props} />,
     drupal: <SiDrupal {...props} />,
     "craft cms": <SiCraftcms {...props} />,
-    "adobe experience manager (aem)": <TbBrandAdobe {...props} />,
+    "adobe experience manager (aem)": <ErpBrandLogo file="aem.svg" name="Adobe Experience Manager" />,
     contentful: <SiContentful {...props} />,
     webflow: <SiWebflow {...props} />,
     wix: <SiWix {...props} />,
@@ -251,10 +287,11 @@ export default function TechBrandIcon({ name, color = "#c8f04a" }) {
     "single sign-on (sso)": <FaKey {...props} />,
     "multi-factor authentication (mfa)": <FaUserLock {...props} />,
     "role-based access control (rbac)": <FaUsersCog {...props} />,
-    stripe: <SiStripe {...props} />,
-    paypal: <SiPaypal {...props} />,
-    paddle: <TbCreditCard {...props} />,
-    "lemon squeezy": <TbShoppingCart {...props} />,
+    stripe: <PaymentBrandLogo file="stripe.png" name="Stripe" />,
+    paypal: <PaymentBrandLogo file="paypal.png" name="PayPal" />,
+    paddle: <PaymentBrandLogo file="paddle.png" name="Paddle" />,
+    "lemon squeezy": <PaymentBrandLogo file="lemonsqueezy.png" name="Lemon Squeezy" />,
+    web3: <SiWeb3Dotjs {...props} />,
     "rest api": <TbApi {...props} />,
     graphql: <SiGraphql {...props} />,
     webhooks: <TbWebhook {...props} />,
@@ -262,15 +299,15 @@ export default function TechBrandIcon({ name, color = "#c8f04a" }) {
     "oauth 2.0": <SiAuth0 {...props} />,
     "openid connect": <FaKey {...props} />,
     saml: <TbShieldLock {...props} />,
-    "apple pay": <FaApple {...props} />,
-    "google pay": <FaGoogle {...props} />,
+    "apple pay": <PaymentBrandLogo file="applepay.png" name="Apple Pay" />,
+    "google pay": <PaymentBrandLogo file="googlepay.png" name="Google Pay" />,
     docker: <SiDocker {...props} />,
-    salesforce: <FaSalesforce {...props} />,
-    hubspot: <SiHubspot {...props} />,
-    "microsoft dynamics 365": <FaMicrosoft {...props} />,
-    sap: <TbBuilding {...props} />,
-    oracle: <TbDatabase {...props} />,
-    "zoho crm": <TbBuilding {...props} />,
+    salesforce: <ErpBrandLogo file="salesforce.svg" name="Salesforce" />,
+    hubspot: <ErpBrandLogo file="hubspot.svg" name="HubSpot" />,
+    "microsoft dynamics 365": <ErpBrandLogo file="dynamics365.svg" name="Microsoft Dynamics 365" />,
+    sap: <ErpBrandLogo file="sap.svg" name="SAP" />,
+    oracle: <ErpBrandLogo file="oracle.svg" name="Oracle" />,
+    "zoho crm": <ErpBrandLogo file="zoho.svg" name="Zoho CRM" />,
     postman: <SiPostman {...props} />,
     strapi: <SiStrapi {...props} />,
     sanity: <SiSanity {...props} />,
@@ -308,27 +345,27 @@ export default function TechBrandIcon({ name, color = "#c8f04a" }) {
     easypost: <TbPackage {...props} />,
     "local payment gateways": <TbCreditCard {...props} />,
     "buy now, pay later (bnpl) integrations": <TbCreditCard {...props} />,
-    sadad: <TbCreditCard {...props} />,
-    dibsy: <TbCreditCard {...props} />,
-    fatora: <TbCreditCard {...props} />,
-    qpay: <TbCreditCard {...props} />,
-    "tap payments": <TbCreditCard {...props} />,
-    paytabs: <TbCreditCard {...props} />,
-    myfatoorah: <TbCreditCard {...props} />,
-    hyperpay: <TbCreditCard {...props} />,
-    moyasar: <TbCreditCard {...props} />,
-    telr: <TbCreditCard {...props} />,
-    "network international": <TbBuilding {...props} />,
-    "stc pay": <FaBell {...props} />,
-    mada: <TbCreditCard {...props} />,
-    knet: <TbCreditCard {...props} />,
-    benefit: <TbCreditCard {...props} />,
-    omannet: <TbCreditCard {...props} />,
-    fawry: <TbCreditCard {...props} />,
-    tabby: <TbShoppingCart {...props} />,
-    tamara: <TbShoppingCart {...props} />,
-    noqoody: <TbShieldLock {...props} />,
-    skipcash: <TbCreditCard {...props} />,
+    sadad: <PaymentBrandLogo file="sadad.png" name="SADAD" />,
+    dibsy: <PaymentBrandLogo file="dibsy.jpg" name="Dibsy" />,
+    fatora: <PaymentBrandLogo file="fatora.png" name="Fatora" />,
+    qpay: <PaymentBrandLogo file="qpay.png" name="QPay" />,
+    "tap payments": <PaymentBrandLogo file="tap.png" name="Tap Payments" />,
+    paytabs: <PaymentBrandLogo file="paytabs.png" name="PayTabs" />,
+    myfatoorah: <PaymentBrandLogo file="myfatoorah.png" name="MyFatoorah" />,
+    hyperpay: <PaymentBrandLogo file="hyperpay.png" name="HyperPay" />,
+    moyasar: <PaymentBrandLogo file="moyasar.png" name="Moyasar" />,
+    telr: <PaymentBrandLogo file="telr.png" name="Telr" />,
+    "network international": <PaymentBrandLogo file="network.png" name="Network International" />,
+    "stc pay": <PaymentBrandLogo file="stcpay.png" name="STC Pay" />,
+    mada: <PaymentBrandLogo file="mada.png" name="Mada" />,
+    knet: <PaymentBrandLogo file="knet.png" name="KNET" />,
+    benefit: <PaymentBrandLogo file="benefit.png" name="BENEFIT" />,
+    omannet: <PaymentBrandLogo file="omannet.svg" name="OmanNet" />,
+    fawry: <PaymentBrandLogo file="fawry.png" name="Fawry" />,
+    tabby: <PaymentBrandLogo file="tabby.png" name="Tabby" />,
+    tamara: <PaymentBrandLogo file="tamara.png" name="Tamara" />,
+    noqoody: <PaymentBrandLogo file="noqoody.png" name="Noqoody" />,
+    skipcash: <PaymentBrandLogo file="skipcash.svg" name="SkipCash" />,
   };
 
   return map[key] ?? <TbCode {...props} />;
@@ -461,6 +498,7 @@ export function techIconTint(name) {
     paypal: "#003087",
     paddle: "#ffdd2f",
     "lemon squeezy": "#ffc233",
+    web3: "#f16822",
     "rest api": "#c8f04a",
     graphql: "#e10098",
     webhooks: "#c8f04a",
@@ -473,9 +511,9 @@ export function techIconTint(name) {
     docker: "#2496ed",
     salesforce: "#00a1e0",
     hubspot: "#ff7a59",
-    "microsoft dynamics 365": "#0078d4",
+    "microsoft dynamics 365": "#0B53CE",
     sap: "#0faaff",
-    oracle: "#f80000",
+    oracle: "#C74634",
     "zoho crm": "#e42527",
     postman: "#ff6c37",
     strapi: "#4945ff",

@@ -4,6 +4,8 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import { FOOTER_SERVICE_LINKS } from "../../lib/services/footerServiceLinks";
+
 gsap.registerPlugin(ScrollTrigger);
 
 // ── SVG: Saqrih stacked-waves logo ────────────────────────────
@@ -38,33 +40,6 @@ const YouTubeIcon = () => (
 const FOOTER_HEADING_COLOR = "#d4ff6a";
 const FOOTER_LINK_COLOR = "rgba(255,255,255,0.92)";
 
-// ── WordPress service routes (match `src/app/wordpress/<slug>/page.js`) ──
-const WORDPRESS_SERVICE_LINKS = [
-  { label: "WordPress website design", href: "/wordpress/design" },
-  { label: "WordPress retained services", href: "/wordpress/retained-services" },
-  { label: "WordPress backups", href: "/wordpress/backups" },
-  { label: "WordPress conversion", href: "/wordpress/convert" },
-  { label: "WordPress security", href: "/wordpress/security" },
-  { label: "WordPress search engine optimization", href: "/wordpress/search-engine-optimization" },
-  { label: "WordPress support", href: "/wordpress/support" },
-  { label: "WooCommerce developer", href: "/wordpress/woocommerce" },
-  { label: "WordPress development", href: "/wordpress/development" },
-  { label: "WordPress hosting", href: "/wordpress/hosting" },
-  { label: "WordPress compliance", href: "/wordpress/compliance" },
-  { label: "WordPress Divi theme", href: "/wordpress/divi" },
-  { label: "WordPress migration", href: "/wordpress/migration" },
-  { label: "WordPress GDPR compliance", href: "/wordpress/gdpr-compliance" },
-  { label: "WordPress theme experts", href: "/wordpress/theme" },
-  { label: "Sell my web design company", href: "/wordpress/sell-my-design-company" },
-  { label: "WordPress maintenance", href: "/wordpress/maintenance" },
-  { label: "WordPress ADA compliance", href: "/wordpress/ada-compliance" },
-  { label: "Marketing Pro", href: "/wordpress/marketing-pro" },
-  { label: "WordPress Elementor builder", href: "/wordpress/elementor" },
-  { label: "WordPress PCI compliance", href: "/wordpress/pci-compliance" },
-  { label: "WordPress speed optimization", href: "/wordpress/speed-optimization" },
-  { label: "WordPress white label", href: "/wordpress/white-label-wordpress" },
-];
-
 // ── Nav data ──────────────────────────────────────────────────
 const NAV_WORK_LINKS = [
   { label: "Markets we serve", href: "/markets" },
@@ -80,8 +55,8 @@ const NAV_ABOUT_LINKS = [
 const NAV_MAIN = [
   {
     label: "Our services",
-    href: "/wordpress",
-    sub: WORDPRESS_SERVICE_LINKS,
+    href: "/services/website-development",
+    sub: FOOTER_SERVICE_LINKS,
   },
   {
     label: "Our work",

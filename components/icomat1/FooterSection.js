@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { PRE_FOOTER_SURFACE } from "../../lib/preFooterSurface";
+import { FOOTER_SERVICE_LINKS } from "../../lib/services/footerServiceLinks";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -23,41 +24,6 @@ const WavesLogo = () => (
 const FOOTER_HEADING_COLOR = "#d4ff6a";
 const FOOTER_LINK_COLOR = "rgba(255,255,255,0.92)";
 
-// ── WordPress service routes (match `src/app/wordpress/<slug>/page.js`) ──
-const WORDPRESS_SERVICE_LINKS = [
-  { label: "WordPress website design", href: "/wordpress/design" },
-  { label: "WordPress retained services", href: "/wordpress/retained-services" },
-  { label: "WordPress backups", href: "/wordpress/backups" },
-  { label: "WordPress conversion", href: "/wordpress/convert" },
-  { label: "WordPress security", href: "/wordpress/security" },
-  { label: "WordPress search engine optimization", href: "/wordpress/search-engine-optimization" },
-  { label: "WordPress support", href: "/wordpress/support" },
-  { label: "WooCommerce developer", href: "/wordpress/woocommerce" },
-  { label: "WordPress development", href: "/wordpress/development" },
-  { label: "WordPress hosting", href: "/wordpress/hosting" },
-  { label: "WordPress compliance", href: "/wordpress/compliance" },
-  { label: "WordPress Divi theme", href: "/wordpress/divi" },
-  { label: "WordPress migration", href: "/wordpress/migration" },
-  { label: "WordPress GDPR compliance", href: "/wordpress/gdpr-compliance" },
-  { label: "WordPress theme experts", href: "/wordpress/theme" },
-  { label: "Sell my web design company", href: "/wordpress/sell-my-design-company" },
-  { label: "Website Support & Maintenance", href: "/services/website-support-maintenance" },
-  { label: "WordPress Development", href: "/services/wordpress-development" },
-  { label: "SaaS Development", href: "/services/saas-development" },
-  { label: "E-commerce Development", href: "/services/ecommerce-development" },
-  { label: "API & Integration Development", href: "/services/api-integration-development" },
-  { label: "CMS & Headless Development", href: "/services/cms-headless-development" },
-  { label: "Mobile App Development", href: "/services/mobile-app-development" },
-  { label: "Web Application Development", href: "/services/web-application-development" },
-  { label: "Website Development", href: "/services/website-development" },
-  { label: "WordPress ADA compliance", href: "/wordpress/ada-compliance" },
-  { label: "Marketing Pro", href: "/wordpress/marketing-pro" },
-  { label: "WordPress Elementor builder", href: "/wordpress/elementor" },
-  { label: "WordPress PCI compliance", href: "/wordpress/pci-compliance" },
-  { label: "WordPress speed optimization", href: "/wordpress/speed-optimization" },
-  { label: "WordPress white label", href: "/wordpress/white-label-wordpress" },
-];
-
 // ── Nav data ──────────────────────────────────────────────────
 const NAV_WORK_LINKS = [
   { label: "Markets we serve", href: "/markets" },
@@ -73,8 +39,8 @@ const NAV_ABOUT_LINKS = [
 const NAV_MAIN = [
   {
     label: "Our services",
-    href: "/wordpress",
-    sub: WORDPRESS_SERVICE_LINKS,
+    href: "/services/website-development",
+    sub: FOOTER_SERVICE_LINKS,
   },
   {
     label: "Our work",

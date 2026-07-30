@@ -298,6 +298,12 @@ body[data-route-loading="true"] {
   border-radius: 12px;
 }
 
+.quote-drawer-panel .quote-scroll-inner {
+  height: 100%;
+  min-height: 0;
+  overflow: hidden !important;
+}
+
 .quote-drawer-header {
   padding: 28px 32px 0;
 }
@@ -307,11 +313,87 @@ body[data-route-loading="true"] {
 }
 
 .quote-drawer-body {
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   padding: 22px 32px 28px;
+  scrollbar-color: rgba(200, 240, 74, 0.35) transparent;
+  scrollbar-width: thin;
+}
+
+.quote-drawer-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.quote-drawer-body::-webkit-scrollbar-thumb {
+  background: rgba(200, 240, 74, 0.3);
+  border-radius: 999px;
 }
 
 .quote-drawer-footer {
   padding: 16px 32px;
+}
+
+.quote-phone-input {
+  --PhoneInputCountryFlag-height: 18px;
+  display: flex;
+  min-height: 46px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+}
+
+.quote-phone-input:focus-within {
+  border-color: rgba(200, 240, 74, 0.35);
+  background: rgba(200, 240, 74, 0.05);
+  box-shadow: 0 0 0 3px rgba(200, 240, 74, 0.04);
+}
+
+.quote-phone-input .PhoneInputCountry {
+  min-width: 68px;
+  margin: 0;
+  padding: 0 15px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.quote-phone-input .PhoneInputCountrySelect {
+  cursor: pointer;
+}
+
+.quote-phone-input .PhoneInputCountryIcon {
+  width: 27px;
+  overflow: hidden;
+  border-radius: 2px;
+  background: transparent;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+
+.quote-phone-input .PhoneInputCountrySelectArrow {
+  width: 7px;
+  height: 7px;
+  margin-left: 9px;
+  border-color: #c8f04a;
+  opacity: 0.8;
+}
+
+.quote-phone-input .PhoneInputInput {
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #f8f8f4;
+  padding: 13px 17px;
+  font-family: Inter, Arial, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  caret-color: #c8f04a;
+}
+
+.quote-phone-input .PhoneInputInput::placeholder {
+  color: rgba(255, 255, 255, 0.2);
 }
 
 .quote-form-row-2 {
@@ -352,7 +434,7 @@ body[data-route-loading="true"] {
     flex-direction: column;
     align-items: flex-start;
     gap: 6px;
-    padding: 14px 20px;
+    padding: 12px 20px max(12px, env(safe-area-inset-bottom));
   }
 
   .quote-drawer-title {
@@ -363,12 +445,13 @@ body[data-route-loading="true"] {
     grid-template-columns: 1fr !important;
   }
 
-  .quote-drawer-panel .quote-scroll-inner {
+  .quote-drawer-body {
     -webkit-overflow-scrolling: touch;
   }
 
   .quote-drawer-panel input,
-  .quote-drawer-panel textarea {
+  .quote-drawer-panel textarea,
+  .quote-drawer-panel select {
     font-size: 16px; /* prevents iOS zoom on focus */
   }
 }

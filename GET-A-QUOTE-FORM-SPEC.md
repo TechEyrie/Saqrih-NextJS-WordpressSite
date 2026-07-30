@@ -104,7 +104,7 @@ Load **Inter** (Google Fonts) and optionally **Yantramanav** for the title.
 |-------|------|----------|------|-------------|
 | Full name | `fullName` | Yes | text | `Jane Smith` |
 | Email | `email` | Yes | email | `jane@company.com` |
-| Phone | `phone` | No | tel | `+44 7700 900000` |
+| Phone | `phone` | No | international tel | Qatar (`+974`) selected by default; selector includes every supported country, local flags, names, and calling codes |
 | Company | `company` | Yes | text | `Acme Ltd.` |
 | Project details | `project` | Yes | textarea | `Describe your goals, timeline, budget...` |
 
@@ -286,8 +286,10 @@ Portal → document.body
         ├── .quote-drawer-body
         │   ├── [Form] OR [Success state]
         └── .quote-drawer-footer
-            ├── COMPANY REG NO. 11771620
-            └── VAT REG. NO. 326574685
+            ├── CR No. 210615
+            ├── VAT No. 5007190226
+            ├── Phone +974 5992 9039 (tel:+97459929039)
+            └── Address: No 16, Al Meena St, Doha
 ```
 
 **Decorative glow:** absolute circle bottom-right, `320×320px`, `radial-gradient(circle, rgba(200,240,74,0.09) 0%, transparent 70%)`, `pointer-events: none`.
