@@ -63,7 +63,7 @@ export default function WebsiteDevSubServiceHomeClient({ page }) {
       techCopy={page.techCopy}
       unlockingHeading={
         <>
-          More Website Development Services
+          More Website Design Services
           <br />
           from Saqrih in Qatar
         </>

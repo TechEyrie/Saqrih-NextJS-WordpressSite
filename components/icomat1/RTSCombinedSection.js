@@ -85,7 +85,7 @@ const CARD_META = [
     href: "/services/website-development",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
-        Website Development
+        Website Design
         <br />
         <span className="font-normal text-[#666] block min-h-[2.4em]">Custom websites built for performance, clarity, and conversion</span>
       </p>

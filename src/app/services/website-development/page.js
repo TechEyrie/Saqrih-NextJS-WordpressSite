@@ -33,7 +33,7 @@ export default function WebsiteDevelopmentHomePage() {
             name: WEBSITE_DEV_HOME.title,
             description: WEBSITE_DEV_HOME.description,
             url: WEBSITE_DEV_HOME.path,
-            serviceType: "Website development",
+            serviceType: "Website design",
           }),
         ].filter(Boolean)}
       />

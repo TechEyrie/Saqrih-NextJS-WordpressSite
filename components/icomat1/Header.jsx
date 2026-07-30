@@ -38,7 +38,7 @@ const SERVICES = [
         <path d="M18 20l1.5 1.5L22 18" stroke="#0a3a1a" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
       </svg>
     ),
-    title: "Website Development",
+    title: "Website Design",
     desc: "Custom websites built for performance, clarity, and conversion",
     href: "/services/website-development",
   },
