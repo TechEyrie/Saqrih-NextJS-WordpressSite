@@ -14,11 +14,14 @@ import { debounceScrollTriggerRefresh } from "../../lib/deferScrollTriggerRefres
 
 gsap.registerPlugin(ScrollTrigger);
 
-function CardVideo({ src, badge, footerContent }) {
+function CardVideo({ src, image, badge, footerContent }) {
   const videoRef = useRef(null);
-  const handleMouseEnter = () => videoRef.current?.play();
+  const isImage = Boolean(image);
+  const handleMouseEnter = () => {
+    if (!isImage) videoRef.current?.play();
+  };
   const handleMouseLeave = () => {
-    if (videoRef.current) {
+    if (!isImage && videoRef.current) {
       videoRef.current.pause();
       videoRef.current.currentTime = 0;
     }
@@ -32,15 +35,24 @@ function CardVideo({ src, badge, footerContent }) {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <video
-          ref={videoRef}
-          src={src}
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-90 group-hover:opacity-100"
-        />
+        {isImage ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={image}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 opacity-90 group-hover:opacity-100 group-hover:scale-[1.03]"
+          />
+        ) : (
+          <video
+            ref={videoRef}
+            src={src}
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-90 group-hover:opacity-100"
+          />
+        )}
         <div className="absolute inset-0 bg-black/30 group-hover:bg-black/0 transition-all duration-500 pointer-events-none" />
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <div className="bg-[#2a2a2a]/80 backdrop-blur-sm border border-white/10 rounded-sm px-3 py-1.5 flex items-center gap-2 group-hover:opacity-60 transition-opacity duration-300">
@@ -48,15 +60,17 @@ function CardVideo({ src, badge, footerContent }) {
             <span className="w-4 h-4 rounded-sm border border-white/40 flex items-center justify-center text-white text-[9px]">+</span>
           </div>
         </div>
-        <div className="absolute bottom-3 right-3 pointer-events-none group-hover:opacity-0 transition-opacity duration-300">
-          <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-sm px-2 py-1 flex items-center gap-1">
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-2.5 h-2.5 text-white" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M8 5v14l11-7z" />
-            </svg>
-            <span className="text-white text-[9px] font-medium tracking-wide hidden sm:inline">Hover to play</span>
-            <span className="text-white text-[9px] font-medium tracking-wide sm:hidden">View</span>
+        {!isImage && (
+          <div className="absolute bottom-3 right-3 pointer-events-none group-hover:opacity-0 transition-opacity duration-300">
+            <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-sm px-2 py-1 flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-2.5 h-2.5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+              <span className="text-white text-[9px] font-medium tracking-wide hidden sm:inline">Hover to play</span>
+              <span className="text-white text-[9px] font-medium tracking-wide sm:hidden">View</span>
+            </div>
           </div>
-        </div>
+        )}
       </div>
       <div className="bg-[#f5f5f5] border border-[#e0e0e0] py-3 px-3 sm:px-4 min-h-[80px] sm:min-h-[92px] flex items-start">
         {footerContent}
@@ -83,6 +97,7 @@ const CARD_META = [
   {
     badge: "Websites",
     href: "/services/website-development",
+    image: "/services-pics/web-design.png",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
         Website Design
@@ -94,6 +109,7 @@ const CARD_META = [
   {
     badge: "Web Apps",
     href: "/services/web-application-development",
+    image: "/services-pics/web-app.png",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
         Web Application Development
@@ -105,6 +121,7 @@ const CARD_META = [
   {
     badge: "SaaS",
     href: "/services/saas-development",
+    image: "/services-pics/SAAS.png",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
         SaaS Development
@@ -116,6 +133,7 @@ const CARD_META = [
   {
     badge: "E-commerce",
     href: "/services/ecommerce-development",
+    image: "/services-pics/E-commerce.png",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
         E-commerce Development
@@ -127,6 +145,7 @@ const CARD_META = [
   {
     badge: "Mobile",
     href: "/services/mobile-app-development",
+    image: "/services-pics/mobile.png",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
         Mobile App Development
@@ -138,6 +157,7 @@ const CARD_META = [
   {
     badge: "CMS",
     href: "/services/cms-headless-development",
+    image: "/services-pics/CMS_Headless.png",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
         CMS & Headless Development
@@ -149,6 +169,7 @@ const CARD_META = [
   {
     badge: "APIs",
     href: "/services/api-integration-development",
+    image: "/services-pics/API.png",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
         API & Integration Development
@@ -160,6 +181,7 @@ const CARD_META = [
   {
     badge: "Support",
     href: "/services/website-support-maintenance",
+    image: "/services-pics/Support.png",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
         Website Support & Maintenance
@@ -171,6 +193,7 @@ const CARD_META = [
   {
     badge: "WordPress",
     href: "/services/wordpress-development",
+    image: "/services-pics/Wordpress.png",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
         WordPress Development
@@ -219,7 +242,8 @@ export default function RTSCombinedSection({
 
     return meta.map((card, i) => ({
       ...card,
-      src: videos[i % videos.length],
+      src: card.image ? undefined : videos[i % videos.length],
+      image: card.image,
     }));
   }, [pageKey, cardsProp]);
   const panelVideo = getRtsCombinedPanelVideo(pageKey);
@@ -484,6 +508,7 @@ export default function RTSCombinedSection({
                 >
                   <CardVideo
                     src={card.src}
+                    image={card.image}
                     badge={card.badge}
                     footerContent={card.footer}
                   />
