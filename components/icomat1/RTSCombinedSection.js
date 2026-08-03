@@ -97,7 +97,7 @@ const CARD_META = [
   {
     badge: "Websites",
     href: "/services/website-development",
-    image: "/services-pics/web-design.png",
+    image: "/services-pics/web-design-3d.png",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
         Website Design
@@ -109,7 +109,7 @@ const CARD_META = [
   {
     badge: "Web Apps",
     href: "/services/web-application-development",
-    image: "/services-pics/web-app.png",
+    image: "/services-pics/web-app-3d.png",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
         Web Application Development
@@ -121,7 +121,7 @@ const CARD_META = [
   {
     badge: "SaaS",
     href: "/services/saas-development",
-    image: "/services-pics/SAAS.png",
+    image: "/services-pics/saas-development-3d.png",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
         SaaS Development
@@ -133,7 +133,7 @@ const CARD_META = [
   {
     badge: "E-commerce",
     href: "/services/ecommerce-development",
-    image: "/services-pics/E-commerce.png",
+    image: "/services-pics/e-commerce-3d.png",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
         E-commerce Development
@@ -145,7 +145,7 @@ const CARD_META = [
   {
     badge: "Mobile",
     href: "/services/mobile-app-development",
-    image: "/services-pics/mobile.png",
+    image: "/services-pics/mobile-app-3d.png",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
         Mobile App Development
@@ -157,7 +157,7 @@ const CARD_META = [
   {
     badge: "CMS",
     href: "/services/cms-headless-development",
-    image: "/services-pics/CMS_Headless.png",
+    image: "/services-pics/cms-3d.png",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
         CMS & Headless Development
@@ -169,7 +169,7 @@ const CARD_META = [
   {
     badge: "APIs",
     href: "/services/api-integration-development",
-    image: "/services-pics/API.png",
+    image: "/services-pics/api-dev-3d.png",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
         API & Integration Development
@@ -181,7 +181,7 @@ const CARD_META = [
   {
     badge: "Support",
     href: "/services/website-support-maintenance",
-    image: "/services-pics/Support.png",
+    image: "/services-pics/support-and-maintenance-3d.png",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
         Website Support & Maintenance
@@ -193,7 +193,7 @@ const CARD_META = [
   {
     badge: "WordPress",
     href: "/services/wordpress-development",
-    image: "/services-pics/Wordpress.png",
+    image: "/services-pics/wordpress-3d.png",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
         WordPress Development
