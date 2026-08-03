@@ -890,12 +890,12 @@ const target = path.join(
 );
 
 const out = `/**
- * Retained-style sub-page content for /services/website-development/[slug].
+ * Retained-style sub-page content for /services/website-design/[slug].
  * Unique SEO copy per sub-service for Saqrih (Qatar).
  */
 
 export const WEBSITE_DEV_PARENT = {
-  path: "/services/website-development",
+  path: "/services/website-design",
   title: "Website Development",
 };
 

@@ -39,7 +39,7 @@ const NAV_ABOUT_LINKS = [
 const NAV_MAIN = [
   {
     label: "Our services",
-    href: "/services/website-development",
+    href: "/services/website-design",
     sub: FOOTER_SERVICE_LINKS,
   },
   {

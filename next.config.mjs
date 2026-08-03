@@ -35,6 +35,16 @@ const nextConfig = {
         destination: "/why-saqrih",
         permanent: true,
       },
+      {
+        source: "/services/website-development",
+        destination: "/services/website-design",
+        permanent: true,
+      },
+      {
+        source: "/services/website-development/:path*",
+        destination: "/services/website-design/:path*",
+        permanent: true,
+      },
       // Typo + odd service slugs → canonical
       {
         source: "/wordpress/maintainance",

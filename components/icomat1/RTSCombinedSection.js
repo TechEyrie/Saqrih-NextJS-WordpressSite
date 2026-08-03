@@ -96,7 +96,7 @@ const GRID_DOTS = [
 const CARD_META = [
   {
     badge: "Websites",
-    href: "/services/website-development",
+    href: "/services/website-design",
     image: "/services-pics/web-design-3d.png",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
@@ -228,6 +228,7 @@ export default function RTSCombinedSection({
       ? cardsProp.map((card) => ({
           badge: card.badge,
           href: card.href,
+          image: card.image,
           footer: (
             <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
               {card.title}

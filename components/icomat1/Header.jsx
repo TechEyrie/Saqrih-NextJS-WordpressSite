@@ -40,7 +40,7 @@ const SERVICES = [
     ),
     title: "Website Design",
     desc: "Custom websites built for performance, clarity, and conversion",
-    href: "/services/website-development",
+    href: "/services/website-design",
   },
   {
     icon: (

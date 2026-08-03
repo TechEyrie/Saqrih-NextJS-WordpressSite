@@ -51,7 +51,7 @@ const DEFAULT_CARDS = [
     eyebrow: "Built around outcomes",
     title: "Business-focused solutions",
     desc: "Every project begins with your goals, users and operational requirements.",
-    href: "/services/website-development/business-website-development",
+    href: "/services/website-design/business-website-development",
     icon: null,
     isHero: true,
   },
@@ -80,7 +80,7 @@ const DEFAULT_CARDS = [
     id: "precision",
     title: "Quality assurance",
     desc: "Structured testing across functionality, performance, security and responsiveness.",
-    href: "/services/website-development/website-performance-optimization",
+    href: "/services/website-design/website-performance-optimization",
     icon: <IconTarget />,
   },
   {
