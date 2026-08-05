@@ -11,7 +11,7 @@ import BlogPostSection from '../../../../components/icomat1-blog/BlogPostSection
 
 gsap.registerPlugin(ScrollTrigger)
 
-export default function BlogPostClient({ post }) {
+export default function BlogPostClient({ post, basePath = '/blog' }) {
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', 'dark')
   }, [])
@@ -64,7 +64,7 @@ export default function BlogPostClient({ post }) {
 
       <Header />
       <main id="main-content">
-        <BlogPostSection post={post} />
+        <BlogPostSection post={post} basePath={basePath} />
         <FooterSection />
       </main>
     </div>

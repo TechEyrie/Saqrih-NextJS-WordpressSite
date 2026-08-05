@@ -3,6 +3,7 @@ import { WORDPRESS_SERVICE_METADATA } from "../../lib/siteMetadata";
 import { INDUSTRY_SLUGS } from "../../lib/industries/industryRegistry";
 import { LOCATION_SLUGS } from "../../lib/locations/locationRegistry";
 import { US_STATES, stateSlug } from "../../components/icomat1-market/marketStates";
+import { fetchAllWpBlogPosts } from "../../lib/wordpressBlog";
 import { getAllBlogPosts } from "../../components/icomat1-blog/blogPostsData";
 import {
   WEBSITE_DEVELOPMENT,
@@ -132,7 +133,7 @@ function entry(path, changeFrequency, priority) {
   };
 }
 
-export default function sitemap() {
+export default async function sitemap() {
   const urls = [];
 
   for (const path of STATIC_PATHS) {
@@ -226,8 +227,15 @@ export default function sitemap() {
     urls.push(entry(`/portfolio/${slug}`, "monthly", 0.65));
   }
 
-  for (const post of getAllBlogPosts()) {
-    urls.push(entry(`/blog/${post.slug}`, "monthly", 0.7));
+  try {
+    const wpPosts = await fetchAllWpBlogPosts({ revalidate: 300 });
+    for (const post of wpPosts) {
+      urls.push(entry(`/blog/${post.slug}`, "monthly", 0.7));
+    }
+  } catch {
+    for (const post of getAllBlogPosts()) {
+      urls.push(entry(`/blog1/${post.slug}`, "monthly", 0.5));
+    }
   }
 
   for (const slug of INDUSTRY_SLUGS) {

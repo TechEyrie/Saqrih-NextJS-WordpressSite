@@ -13,14 +13,15 @@ import {
 } from "./blogTheme";
 
 /**
- * @param {{ articles: { slug: string; title: string; image: string }[] }} props
+ * @param {{ articles: { slug: string; title: string; image: string }[]; basePath?: string }} props
  */
-export default function BlogPostRelated({ articles }) {
+export default function BlogPostRelated({ articles, basePath = "/blog" }) {
   if (!articles?.length) return null;
 
   return (
     <section
       className="blog-related-section"
+      data-header="light"
       style={{
         width: "100%",
         backgroundColor: SECTION_BG_ALT,
@@ -56,7 +57,7 @@ export default function BlogPostRelated({ articles }) {
           {articles.map((article) => (
             <Link
               key={article.slug}
-              href={`/blog/${article.slug}`}
+              href={`${basePath}/${article.slug}`}
               className="blog-related-card"
               style={{ textDecoration: "none", color: TEXT }}
             >
@@ -93,7 +94,7 @@ export default function BlogPostRelated({ articles }) {
 
         <div style={{ display: "flex", justifyContent: "center", marginTop: "clamp(40px, 5vw, 56px)" }}>
           <Link
-            href="/blog"
+            href={basePath}
             className="blog-related-all-btn"
             style={{
               display: "inline-flex",

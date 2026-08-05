@@ -260,12 +260,102 @@ function NumberedStepsBlock({ items }) {
 }
 
 /**
- * @param {{ blocks: Array<object> }} props
+ * @param {{ blocks?: Array<object>; contentHtml?: string }} props
  */
-export default function BlogPostContent({ blocks }) {
+export default function BlogPostContent({ blocks = [], contentHtml }) {
+  if (contentHtml) {
+    return (
+      <div className="blog-post-blocks blog-post-wp-html">
+        <div
+          className="blog-wp-content"
+          dangerouslySetInnerHTML={{ __html: contentHtml }}
+        />
+        <style>{`
+          ${sharedPanelStyles}
+
+          .blog-wp-content {
+            color: ${TEXT_BODY};
+            font-family: ${FONT_BODY};
+            font-size: clamp(1rem, 1.08vw, 1.08rem);
+            line-height: 1.75;
+            max-width: 68ch;
+          }
+
+          .blog-wp-content > *:first-child {
+            margin-top: 0;
+          }
+
+          .blog-wp-content p {
+            margin: 0 0 clamp(18px, 2.2vw, 26px);
+          }
+
+          .blog-wp-content h1,
+          .blog-wp-content h2,
+          .blog-wp-content h3,
+          .blog-wp-content h4 {
+            color: ${TEXT};
+            font-family: ${FONT_HEADING};
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin: clamp(36px, 4vw, 52px) 0 clamp(16px, 2vw, 22px);
+          }
+
+          .blog-wp-content h2 {
+            font-size: clamp(1.45rem, 2.2vw, 1.85rem);
+          }
+
+          .blog-wp-content h3 {
+            font-size: clamp(1.2rem, 1.6vw, 1.4rem);
+          }
+
+          .blog-wp-content ul,
+          .blog-wp-content ol {
+            margin: 0 0 clamp(18px, 2.2vw, 26px);
+            padding-left: 1.35em;
+          }
+
+          .blog-wp-content li {
+            margin-bottom: 0.45em;
+          }
+
+          .blog-wp-content a {
+            color: ${GREEN_ACCENT};
+            font-weight: 600;
+            text-decoration: underline;
+          }
+
+          .blog-wp-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            margin: clamp(18px, 2.2vw, 26px) 0;
+          }
+
+          .blog-wp-content blockquote {
+            margin: clamp(24px, 2.8vw, 32px) 0;
+            padding: 12px 0 12px 18px;
+            border-left: 3px solid ${GREEN_ACCENT};
+            color: ${TEXT};
+          }
+
+          .blog-wp-content figure {
+            margin: clamp(18px, 2.2vw, 26px) 0;
+          }
+
+          .blog-wp-content figcaption {
+            margin-top: 8px;
+            font-size: 0.9rem;
+            color: ${TEXT_BODY};
+          }
+        `}</style>
+      </div>
+    );
+  }
+
   return (
     <div className="blog-post-blocks">
-      {blocks.map((block, i) => {
+      {(blocks || []).map((block, i) => {
         switch (block.type) {
           case "paragraphs":
             return <ParagraphsBlock key={i} items={block.items} />;

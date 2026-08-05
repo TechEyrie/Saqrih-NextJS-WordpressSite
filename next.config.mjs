@@ -230,6 +230,12 @@ const nextConfig = {
         pathname: "/**",
       },
        {
+        protocol: "https",
+        hostname: "blog.saqrih.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
         
         protocol: "https",
         hostname: "cdn.prod.website-files.com",

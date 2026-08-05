@@ -1,17 +1,24 @@
 import { notFound } from "next/navigation";
 import {
-  getAllBlogPosts,
-  getBlogPostBySlug,
-} from "../../../../components/icomat1-blog/blogPostsData";
+  fetchAllWpBlogPosts,
+  fetchWpBlogPostBySlug,
+} from "../../../../lib/wordpressBlog";
 import BlogPostClient from "./BlogPostClient";
 
-export function generateStaticParams() {
-  return getAllBlogPosts().map((post) => ({ slug: post.slug }));
+export const revalidate = 60;
+
+export async function generateStaticParams() {
+  try {
+    const posts = await fetchAllWpBlogPosts({ revalidate: 300 });
+    return posts.map((post) => ({ slug: post.slug }));
+  } catch {
+    return [];
+  }
 }
 
 export default async function BlogPostPage({ params }) {
   const { slug } = await params;
-  const post = getBlogPostBySlug(slug);
+  const post = await fetchWpBlogPostBySlug(slug);
   if (!post) notFound();
-  return <BlogPostClient post={post} />;
+  return <BlogPostClient post={post} basePath="/blog" />;
 }

@@ -1,7 +1,4 @@
-import {
-  getAllBlogPosts,
-  getBlogPostBySlug,
-} from "../../../../components/icomat1-blog/blogPostsData";
+import { fetchWpBlogPostBySlug } from "../../../../lib/wordpressBlog";
 import { buildPageMetadata } from "../../../../lib/siteMetadata";
 import JsonLd from "../../../../components/seo/JsonLd";
 import {
@@ -10,9 +7,11 @@ import {
   faqPageJsonLd,
 } from "../../../../lib/jsonLd";
 
+export const revalidate = 60;
+
 export async function generateMetadata({ params }) {
   const { slug } = await params;
-  const post = getBlogPostBySlug(slug);
+  const post = await fetchWpBlogPostBySlug(slug);
   if (!post) return { title: "Blog Post", robots: { index: false } };
   return buildPageMetadata({
     title: post.title,
@@ -26,7 +25,7 @@ export async function generateMetadata({ params }) {
 
 export default async function BlogPostLayout({ children, params }) {
   const { slug } = await params;
-  const post = getBlogPostBySlug(slug);
+  const post = await fetchWpBlogPostBySlug(slug);
 
   const schema = post
     ? [

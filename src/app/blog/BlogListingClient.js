@@ -12,7 +12,11 @@ import BlogListingSection from '../../../components/icomat1-blog/BlogListingSect
 
 gsap.registerPlugin(ScrollTrigger)
 
-export default function BlogListingClient() {
+export default function BlogListingClient({
+  posts,
+  totalPages,
+  basePath = '/blog',
+}) {
   const [theme] = useState('dark')
 
   useEffect(() => {
@@ -66,7 +70,11 @@ export default function BlogListingClient() {
       <Header />
       <main id="main-content">
         <BlogHeroSection />
-        <BlogListingSection />
+        <BlogListingSection
+          posts={posts}
+          totalPages={totalPages}
+          basePath={basePath}
+        />
         <FooterSection />
       </main>
     </div>

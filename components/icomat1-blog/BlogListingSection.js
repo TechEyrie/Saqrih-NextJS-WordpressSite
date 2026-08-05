@@ -80,9 +80,9 @@ const TEXT_INSET = `calc(${IMG_W} / 2 + clamp(28px, 3.6vw, 56px))`;
 /** Shift whole green card on the white canvas opposite the bleeding image. */
 const CARD_SHIFT_X = "clamp(20px, 3.2vw, 48px)";
 
-function BlogCard({ post, index }) {
+function BlogCard({ post, index, basePath = "/blog" }) {
   const imageLeft = index % 2 === 1;
-  const href = `/blog/${post.slug}`;
+  const href = `${basePath}/${post.slug}`;
 
   const imageBlock = (
     <a
@@ -168,7 +168,7 @@ function BlogCard({ post, index }) {
           }}
         >
           <Clock size={18} strokeWidth={1.75} aria-hidden />
-          <time dateTime={post.date}>{post.date}</time>
+          <time dateTime={post.dateTime || post.date}>{post.date}</time>
         </div>
 
         <h2
@@ -227,19 +227,30 @@ function BlogCard({ post, index }) {
   );
 }
 
-export default function BlogListingSection() {
+export default function BlogListingSection({
+  posts,
+  totalPages: totalPagesProp,
+  basePath = "/blog",
+  postsPerPage = POSTS_PER_PAGE,
+}) {
   const [page, setPage] = useState(1);
-  const totalPages = TOTAL_PAGES;
+  const allPosts = Array.isArray(posts) ? posts : ALL_POSTS;
+  const totalPages =
+    totalPagesProp ??
+    (Array.isArray(posts)
+      ? Math.max(1, Math.ceil(posts.length / postsPerPage) || 1)
+      : TOTAL_PAGES);
 
   const slice = useMemo(() => {
-    const start = (page - 1) * POSTS_PER_PAGE;
-    return ALL_POSTS.slice(start, start + POSTS_PER_PAGE);
-  }, [page]);
+    const start = (page - 1) * postsPerPage;
+    return allPosts.slice(start, start + postsPerPage);
+  }, [page, allPosts, postsPerPage]);
 
   const items = useMemo(() => paginationRow(page, totalPages), [page, totalPages]);
 
   return (
     <section
+      data-header="light"
       style={{
         width: "100%",
         backgroundColor: "#ffffff",
@@ -259,7 +270,12 @@ export default function BlogListingSection() {
         }}
       >
         {slice.map((post, i) => (
-          <BlogCard key={post.slug} post={post} index={(page - 1) * POSTS_PER_PAGE + i} />
+          <BlogCard
+            key={post.slug}
+            post={post}
+            index={(page - 1) * postsPerPage + i}
+            basePath={basePath}
+          />
         ))}
 
         <nav

@@ -136,12 +136,13 @@ function SidebarCard({ card }) {
 }
 
 /**
- * @param {{ post: object }} props
+ * @param {{ post: object; basePath?: string }} props
  */
-export default function BlogPostSection({ post }) {
+export default function BlogPostSection({ post, basePath = "/blog" }) {
   return (
     <>
     <section
+      data-header="light"
       style={{
         width: "100%",
         backgroundColor: SECTION_BG,
@@ -235,7 +236,7 @@ export default function BlogPostSection({ post }) {
             </span>
           </div>
 
-          <BlogPostContent blocks={post.blocks} />
+          <BlogPostContent blocks={post.blocks} contentHtml={post.contentHtml} />
           <BlogPostFaq items={post.faq} />
           <BlogPostFooter author={post.authorBio} previousPost={post.previousPost} />
         </article>
@@ -287,7 +288,7 @@ export default function BlogPostSection({ post }) {
       `}</style>
     </section>
 
-    <BlogPostRelated articles={post.relatedArticles} />
+    <BlogPostRelated articles={post.relatedArticles} basePath={basePath} />
     </>
   );
 }

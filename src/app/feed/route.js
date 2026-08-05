@@ -1,4 +1,4 @@
-import { getAllBlogPosts } from "../../../components/icomat1-blog/blogPostsData";
+import { fetchAllWpBlogPosts } from "../../../lib/wordpressBlog";
 import { SITE_ORIGIN } from "../../../lib/siteOrigin";
 import { absoluteUrl } from "../../../lib/jsonLd";
 
@@ -12,15 +12,21 @@ function escapeXml(str) {
 }
 
 export async function GET() {
-  const posts = getAllBlogPosts();
+  let posts = [];
+  try {
+    posts = await fetchAllWpBlogPosts({ revalidate: 300 });
+  } catch (err) {
+    console.error("Feed: failed to load WP posts", err);
+  }
+
   const lastBuildDate = new Date().toUTCString();
   const items = posts
     .map((post) => {
       const link = absoluteUrl(`/blog/${post.slug}`);
       const pubDate = post.dateTime
-        ? new Date(`${post.dateTime}T12:00:00Z`).toUTCString()
+        ? new Date(post.dateTime).toUTCString()
         : lastBuildDate;
-      const description = escapeXml(post.lead || post.title);
+      const description = escapeXml(post.excerpt || post.title);
       return `<item><title>${escapeXml(post.title)}</title><link>${link}</link><guid isPermaLink="true">${link}</guid><pubDate>${pubDate}</pubDate><description>${description}</description><category>${escapeXml(post.category || "Blog")}</category></item>`;
     })
     .join("");
