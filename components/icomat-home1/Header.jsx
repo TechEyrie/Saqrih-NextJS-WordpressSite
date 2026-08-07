@@ -230,6 +230,8 @@ function QuoteDrawer({ open, onClose }) {
   const [focused,   setFocused]   = useState(null);
   const [errors,    setErrors]    = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [sending,   setSending]   = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   const validate = () => {
     const e = {};
@@ -241,12 +243,35 @@ function QuoteDrawer({ open, onClose }) {
     return e;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length) { setErrors(errs); return; }
     setErrors({});
-    setSubmitted(true);
+    setSubmitError("");
+    setSending(true);
+    try {
+      const res = await fetch("/api/quote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName: form.fullName.trim(),
+          email: form.email.trim(),
+          phone: form.phone.trim(),
+          company: form.company.trim(),
+          project: form.project.trim(),
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(data.error || "Could not send your message.");
+      }
+      setSubmitted(true);
+    } catch (err) {
+      setSubmitError(err.message || "Could not send your message. Please try again.");
+    } finally {
+      setSending(false);
+    }
   };
 
   const handleChange = (field) => (e) => {
@@ -266,6 +291,8 @@ function QuoteDrawer({ open, onClose }) {
         });
         setErrors({});
         setSubmitted(false);
+        setSending(false);
+        setSubmitError("");
         setFocused(null);
       }, 500);
       return () => clearTimeout(t);
@@ -639,25 +666,50 @@ function QuoteDrawer({ open, onClose }) {
                   {errors.project && <span style={errorStyle}>{errors.project}</span>}
                 </div>
 
-                <button type="submit" style={{
+                {submitError ? (
+                  <p style={{
+                    margin: 0, color: "rgba(255,100,80,0.95)", fontSize: "0.72rem",
+                    fontFamily: "Inter, Arial, sans-serif", fontWeight: 400, lineHeight: 1.5,
+                    textAlign: "center",
+                  }}>
+                    {submitError}
+                  </p>
+                ) : null}
+
+                <button
+                  type="submit"
+                  disabled={sending}
+                  style={{
                   marginTop: "6px", width: "100%", padding: "16px 24px",
-                  background: "#c8f04a", border: "none", borderRadius: "10px",
+                  background: sending ? "rgba(200,240,74,0.55)" : "#c8f04a", border: "none", borderRadius: "10px",
                   color: "#0a2a12", fontSize: "0.7rem", fontWeight: 700,
                   fontFamily: "Inter, Arial, sans-serif", letterSpacing: "0.14em",
-                  textTransform: "uppercase", cursor: "pointer",
+                  textTransform: "uppercase", cursor: sending ? "wait" : "pointer",
                   display: "flex", alignItems: "center", justifyContent: "center", gap: "10px",
                   transition: "background 0.2s, transform 0.15s, box-shadow 0.2s",
                   boxShadow: "0 4px 20px rgba(200,240,74,0.2)",
+                  opacity: sending ? 0.85 : 1,
                 }}
-                  onMouseEnter={(e) => { e.currentTarget.style.background = "#d8ff5a"; e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 8px 28px rgba(200,240,74,0.32)"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.background = "#c8f04a"; e.currentTarget.style.transform = "translateY(0)"; e.currentTarget.style.boxShadow = "0 4px 20px rgba(200,240,74,0.2)"; }}
-                  onMouseDown={(e)  => { e.currentTarget.style.transform = "translateY(1px)"; }}
-                  onMouseUp={(e)    => { e.currentTarget.style.transform = "translateY(-2px)"; }}
+                  onMouseEnter={(e) => {
+                    if (sending) return;
+                    e.currentTarget.style.background = "#d8ff5a";
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                    e.currentTarget.style.boxShadow = "0 8px 28px rgba(200,240,74,0.32)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = sending ? "rgba(200,240,74,0.55)" : "#c8f04a";
+                    e.currentTarget.style.transform = "translateY(0)";
+                    e.currentTarget.style.boxShadow = "0 4px 20px rgba(200,240,74,0.2)";
+                  }}
+                  onMouseDown={(e)  => { if (!sending) e.currentTarget.style.transform = "translateY(1px)"; }}
+                  onMouseUp={(e)    => { if (!sending) e.currentTarget.style.transform = "translateY(-2px)"; }}
                 >
-                  Send message
-                  <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
-                    <path d="M3 9h12M11 5l4 4-4 4" stroke="#0a2a12" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
+                  {sending ? "Sending..." : "Send message"}
+                  {!sending ? (
+                    <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
+                      <path d="M3 9h12M11 5l4 4-4 4" stroke="#0a2a12" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  ) : null}
                 </button>
 
                 <p style={{
