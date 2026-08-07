@@ -8,6 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import QuotePhoneInput from "../QuotePhoneInput";
 import { useMeasuredHeight } from "../../lib/useMeasuredHeight";
 import { useHeaderThemeObserver } from "../../lib/useHeaderThemeObserver";
+import { validateQuotePayload } from "../../lib/quoteValidation";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -264,6 +265,7 @@ function QuoteDrawer({ open, onClose }) {
     phone: "",
     company: "",
     project: "",
+    website: "",
   });
   const [focused,   setFocused]   = useState(null);
   const [errors,    setErrors]    = useState({});
@@ -271,20 +273,10 @@ function QuoteDrawer({ open, onClose }) {
   const [sending,   setSending]   = useState(false);
   const [submitError, setSubmitError] = useState("");
 
-  const validate = () => {
-    const e = {};
-    if (!form.fullName.trim()) e.fullName = "Required";
-    if (!form.email.trim())    e.email    = "Required";
-    else if (!/\S+@\S+\.\S+/.test(form.email)) e.email = "Invalid email address";
-    if (!form.company.trim())  e.company  = "Required";
-    if (!form.project.trim())  e.project  = "Required";
-    return e;
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const errs = validate();
-    if (Object.keys(errs).length) { setErrors(errs); return; }
+    const { ok, fieldErrors, values } = validateQuotePayload(form);
+    if (!ok) { setErrors(fieldErrors); return; }
     setErrors({});
     setSubmitError("");
     setSending(true);
@@ -293,15 +285,17 @@ function QuoteDrawer({ open, onClose }) {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          fullName: form.fullName.trim(),
-          email: form.email.trim(),
-          phone: form.phone.trim(),
-          company: form.company.trim(),
-          project: form.project.trim(),
+          fullName: values.fullName,
+          email: values.email,
+          phone: values.phone,
+          company: values.company,
+          project: values.project,
+          website: values.website,
         }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {
+        if (data.fieldErrors) setErrors(data.fieldErrors);
         throw new Error(data.error || "Could not send your message.");
       }
       setSubmitted(true);
@@ -326,6 +320,7 @@ function QuoteDrawer({ open, onClose }) {
           phone: "",
           company: "",
           project: "",
+          website: "",
         });
         setErrors({});
         setSubmitted(false);
@@ -678,10 +673,20 @@ function QuoteDrawer({ open, onClose }) {
                   <label style={labelStyle}>Phone</label>
                   <QuotePhoneInput
                     value={form.phone}
-                    onChange={(phone) => setForm((current) => ({ ...current, phone }))}
+                    onChange={(phone) => {
+                      setForm((current) => ({ ...current, phone }));
+                      if (errors.phone) {
+                        setErrors((er) => {
+                          const next = { ...er };
+                          delete next.phone;
+                          return next;
+                        });
+                      }
+                    }}
                     onFocus={() => setFocused("phone")}
                     onBlur={() => setFocused(null)}
                   />
+                  {errors.phone && <span style={errorStyle}>{errors.phone}</span>}
                 </div>
 
                 <div>
@@ -691,6 +696,19 @@ function QuoteDrawer({ open, onClose }) {
                     onFocus={() => setFocused("company")} onBlur={() => setFocused(null)}
                     style={fieldStyle("company")} />
                   {errors.company && <span style={errorStyle}>{errors.company}</span>}
+                </div>
+
+                <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", top: "auto", width: 1, height: 1, overflow: "hidden" }}>
+                  <label htmlFor="quote-website">Website</label>
+                  <input
+                    id="quote-website"
+                    type="text"
+                    name="website"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={form.website}
+                    onChange={handleChange("website")}
+                  />
                 </div>
 
                 <div>

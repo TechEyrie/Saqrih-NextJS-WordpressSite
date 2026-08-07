@@ -1,17 +1,37 @@
 import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
+import { validateQuotePayload } from "../../../../lib/quoteValidation";
 
 export const runtime = "nodejs";
 
-function clean(value, max = 2000) {
-  return String(value ?? "")
-    .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F]/g, "")
-    .trim()
-    .slice(0, max);
+/** Simple in-memory rate limit (per server instance). */
+const RATE_WINDOW_MS = 15 * 60 * 1000;
+const RATE_MAX = 5;
+const rateMap = new Map();
+
+function getClientIp(request) {
+  const forwarded = request.headers.get("x-forwarded-for");
+  if (forwarded) return forwarded.split(",")[0].trim();
+  return (
+    request.headers.get("x-real-ip") ||
+    request.headers.get("cf-connecting-ip") ||
+    "unknown"
+  );
 }
 
-function isEmail(value) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+function checkRateLimit(ip) {
+  const now = Date.now();
+  const entry = rateMap.get(ip);
+  if (!entry || now - entry.start > RATE_WINDOW_MS) {
+    rateMap.set(ip, { start: now, count: 1 });
+    return { ok: true };
+  }
+  if (entry.count >= RATE_MAX) {
+    const retryAfterSec = Math.ceil((RATE_WINDOW_MS - (now - entry.start)) / 1000);
+    return { ok: false, retryAfterSec };
+  }
+  entry.count += 1;
+  return { ok: true };
 }
 
 function escapeHtml(value) {
@@ -24,6 +44,20 @@ function escapeHtml(value) {
 }
 
 export async function POST(request) {
+  const ip = getClientIp(request);
+  const rate = checkRateLimit(ip);
+  if (!rate.ok) {
+    return NextResponse.json(
+      {
+        error: "Too many quote requests. Please try again in a few minutes.",
+      },
+      {
+        status: 429,
+        headers: { "Retry-After": String(rate.retryAfterSec || 900) },
+      }
+    );
+  }
+
   let body;
   try {
     body = await request.json();
@@ -31,21 +65,24 @@ export async function POST(request) {
     return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
   }
 
-  const fullName = clean(body.fullName, 120);
-  const email = clean(body.email, 160).toLowerCase();
-  const phone = clean(body.phone, 40);
-  const company = clean(body.company, 160);
-  const project = clean(body.project, 5000);
+  const { ok, fieldErrors, values, isSpam } = validateQuotePayload(body);
 
-  if (!fullName || !email || !company || !project) {
+  // Honeypot tripped — pretend success so bots don't retry.
+  if (isSpam) {
+    return NextResponse.json({ ok: true });
+  }
+
+  if (!ok) {
     return NextResponse.json(
-      { error: "Please fill in all required fields." },
+      {
+        error: "Please fix the highlighted fields.",
+        fieldErrors,
+      },
       { status: 400 }
     );
   }
-  if (!isEmail(email)) {
-    return NextResponse.json({ error: "Invalid email address." }, { status: 400 });
-  }
+
+  const { fullName, email, phone, company, project } = values;
 
   const {
     SMTP_HOST,
@@ -92,6 +129,7 @@ export async function POST(request) {
     project,
     "",
     `Submitted: ${submittedAt} (Asia/Qatar)`,
+    `IP: ${ip}`,
   ].join("\n");
 
   const html = `
@@ -122,7 +160,6 @@ export async function POST(request) {
       greetingTimeout: 15000,
       socketTimeout: 20000,
       tls: {
-        // Many cPanel hosts use shared certs / server hostname mismatch.
         rejectUnauthorized: false,
       },
     });
@@ -146,8 +183,7 @@ export async function POST(request) {
     });
 
     const code = String(err?.code || "");
-    let hint =
-      "Could not send your message. Please try again shortly.";
+    let hint = "Could not send your message. Please try again shortly.";
     if (code === "ETIMEDOUT" || code === "ESOCKET" || code === "ECONNECTION") {
       hint =
         "Mail server timed out. SMTP host/port is unreachable — use your cPanel server hostname, not just the domain.";
