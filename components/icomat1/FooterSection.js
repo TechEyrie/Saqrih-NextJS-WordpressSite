@@ -482,13 +482,13 @@ export default function FooterSection() {
               fontSize: "clamp(1rem, 1.6vw, 1.35rem)",
               fontWeight: 700, lineHeight: 1.25,
               letterSpacing: "-0.01em", margin: 0,
-            }}>The WordPress</p>
+            }}>Your digital product</p>
             <p style={{
               color: "rgba(255,255,255,0.9)",
               fontSize: "clamp(1rem, 1.6vw, 1.35rem)",
               fontWeight: 700, lineHeight: 1.25,
               letterSpacing: "-0.01em", margin: 0,
-            }}>partner you've been looking for.</p>
+            }}>partner in Qatar.</p>
           </div>
           <p style={{
             color: "rgba(255,255,255,0.28)",

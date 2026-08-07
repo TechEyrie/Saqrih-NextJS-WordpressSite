@@ -314,6 +314,74 @@ function QuoteDrawer({ open, onClose }) {
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
 
+  // Lenis captures wheel on the page; keep slow, smooth scroll inside the drawer.
+  useEffect(() => {
+    if (!open) return;
+    const panel = drawerRef.current;
+    if (!panel) return;
+    const scroller = panel.querySelector(".quote-scroll-inner");
+    if (!scroller) return;
+
+    const WHEEL_SCALE = 0.32;
+    const EASE = 0.085;
+    let target = scroller.scrollTop;
+    let current = scroller.scrollTop;
+    let rafId = 0;
+
+    const clamp = (value) => {
+      const max = Math.max(0, scroller.scrollHeight - scroller.clientHeight);
+      return Math.max(0, Math.min(max, value));
+    };
+
+    const tick = () => {
+      current += (target - current) * EASE;
+      if (Math.abs(target - current) < 0.35) {
+        current = target;
+        scroller.scrollTop = current;
+        rafId = 0;
+        return;
+      }
+      scroller.scrollTop = current;
+      rafId = requestAnimationFrame(tick);
+    };
+
+    const startTick = () => {
+      if (!rafId) rafId = requestAnimationFrame(tick);
+    };
+
+    const onWheel = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (scroller.scrollHeight <= scroller.clientHeight) return;
+
+      // Sync if user dragged the scrollbar mid-momentum.
+      if (Math.abs(scroller.scrollTop - current) > 1) {
+        current = scroller.scrollTop;
+        target = scroller.scrollTop;
+      }
+
+      const delta = e.deltaMode === 1 ? e.deltaY * 16 : e.deltaY;
+      target = clamp(target + delta * WHEEL_SCALE);
+      startTick();
+    };
+
+    const onScroll = () => {
+      // Keep targets aligned when scrollbar is dragged.
+      if (!rafId) {
+        current = scroller.scrollTop;
+        target = scroller.scrollTop;
+      }
+    };
+
+    scroller.addEventListener("wheel", onWheel, { passive: false });
+    scroller.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      scroller.removeEventListener("wheel", onWheel);
+      scroller.removeEventListener("scroll", onScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
+  }, [open]);
+
   const fieldStyle = (name, isTextarea = false) => ({
     width: "100%",
     background: focused === name ? "rgba(200,240,74,0.05)" : "rgba(255,255,255,0.04)",
@@ -378,6 +446,9 @@ function QuoteDrawer({ open, onClose }) {
       <div
         ref={drawerRef}
         className="quote-drawer-panel"
+        data-lenis-prevent
+        data-lenis-prevent-wheel
+        data-lenis-prevent-touch
         style={{
           display: "none",
           position: "fixed",
@@ -404,14 +475,20 @@ function QuoteDrawer({ open, onClose }) {
 
         <div
           className="quote-scroll-inner"
+          data-lenis-prevent
+          data-lenis-prevent-wheel
+          data-lenis-prevent-touch
           style={{
             position: "relative",
             zIndex: 1,
             display: "flex",
             flexDirection: "column",
             flex: 1,
-            overflowY: "scroll",
+            minHeight: 0,
+            overflowY: "auto",
             overflowX: "hidden",
+            overscrollBehavior: "contain",
+            WebkitOverflowScrolling: "touch",
           }}
         >
           <div className="quote-drawer-header" style={{
@@ -478,7 +555,7 @@ function QuoteDrawer({ open, onClose }) {
             }} />
           </div>
 
-          <div className="quote-drawer-body" style={{ flex: 1 }}>
+          <div className="quote-drawer-body" style={{ flex: "0 0 auto" }}>
             {submitted ? (
               <div style={{
                 display: "flex", flexDirection: "column",
@@ -1405,9 +1482,6 @@ export default function Header({ quoteOpen, setQuoteOpen }) {
           backdrop-filter: blur(16px) saturate(1.15) !important;
           -webkit-backdrop-filter: blur(16px) saturate(1.15) !important;
         }
-
-        .quote-scroll-inner                     { scrollbar-width: none; }
-        .quote-scroll-inner::-webkit-scrollbar  { display: none; }
 
         input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.2); }
         input:-webkit-autofill,
