@@ -61,6 +61,7 @@ export default function IcomatPage() {
         touchMultiplier: 1.5,
         infinite: false,
       })
+      window.__lenis = lenis
 
       tickerFn = (time) => {
         lenis.raf(time * 1000)
@@ -96,6 +97,7 @@ export default function IcomatPage() {
         import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
           ScrollTrigger.getAll().forEach((t) => t.kill())
         })
+        if (window.__lenis === lenis) window.__lenis = null
         lenis?.destroy()
       }
     }
@@ -110,6 +112,7 @@ export default function IcomatPage() {
       import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
         ScrollTrigger.getAll().forEach((t) => t.kill())
       })
+      if (window.__lenis === lenis) window.__lenis = null
       lenis?.destroy()
     }
   }, [])

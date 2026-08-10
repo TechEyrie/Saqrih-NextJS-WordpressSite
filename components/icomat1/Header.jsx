@@ -1134,42 +1134,273 @@ function AnimatedMobileMenuLink({ label, href, onClose }) {
 
 // ── Mobile menu ───────────────────────────────────────────────
 function MobileMenu({ open, onClose, onQuoteClick }) {
+  const [servicesOpen, setServicesOpen] = useState(false);
+
+  useEffect(() => {
+    if (!open) setServicesOpen(false);
+  }, [open]);
+
+  // Stop Lenis so the menu can scroll with touch / wheel.
+  useEffect(() => {
+    const lenis = typeof window !== "undefined" ? window.__lenis : null;
+    if (!lenis) return;
+    if (open) lenis.stop?.();
+    else lenis.start?.();
+    return () => { lenis.start?.(); };
+  }, [open]);
+
   return (
-    <div style={{
-      position: "fixed", inset: 0, zIndex: 200,
-      background: "rgba(10,10,9,0.97)",
-      backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)",
-      display: "flex", flexDirection: "column",
-      padding: "80px 32px 48px",
-      opacity: open ? 1 : 0, pointerEvents: open ? "auto" : "none",
-      transform: open ? "translateY(0)" : "translateY(-12px)",
-      transition: "opacity 0.3s ease, transform 0.3s ease",
-    }}>
-      <button onClick={onClose} aria-label="Close menu" style={{
-        position: "absolute", top: "20px", right: "24px",
-        background: "none", border: "none",
-        color: "rgba(255,255,255,0.6)", fontSize: "1.4rem",
-        cursor: "pointer", lineHeight: 1, padding: "8px",
-      }}>✕</button>
-      <nav style={{ display: "flex", flexDirection: "column" }}>
-        {NAV_ITEMS.map((item) => (
-          <AnimatedMobileMenuLink key={item.label} label={item.label} href={item.href} onClose={onClose} />
-        ))}
-      </nav>
-      <button
-        type="button"
-        onClick={() => { onQuoteClick?.(); onClose?.(); }}
+    <div
+      data-lenis-prevent
+      data-lenis-prevent-touch
+      data-lenis-prevent-wheel
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: 200,
+        background: "linear-gradient(165deg, #0c1410 0%, #162D24 48%, #0a1210 100%)",
+        display: "flex",
+        flexDirection: "column",
+        opacity: open ? 1 : 0,
+        pointerEvents: open ? "auto" : "none",
+        transform: open ? "translateY(0)" : "translateY(-12px)",
+        transition: "opacity 0.3s ease, transform 0.3s ease",
+      }}
+    >
+      <div
+        aria-hidden
         style={{
-          marginTop: "40px", display: "inline-block",
-          padding: "14px 32px", border: "1px solid rgba(255,255,255,0.5)",
-          borderRadius: "999px", color: "#fff", fontSize: "0.7rem",
-          fontWeight: 700, letterSpacing: "0.14em", textDecoration: "none",
-          textAlign: "center", transition: "background 0.2s, border-color 0.2s",
-          background: "transparent", cursor: "pointer", font: "inherit",
+          position: "absolute",
+          inset: 0,
+          pointerEvents: "none",
+          background:
+            "radial-gradient(ellipse 70% 45% at 80% -10%, rgba(200,240,74,0.12) 0%, transparent 55%)",
         }}
-        onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(255,255,255,0.08)"; e.currentTarget.style.borderColor = "#fff"; }}
-        onMouseLeave={(e) => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.5)"; }}
-      >GET A QUOTE</button>
+      />
+
+      <button
+        onClick={onClose}
+        aria-label="Close menu"
+        style={{
+          position: "absolute",
+          top: "18px",
+          right: "18px",
+          zIndex: 2,
+          width: "42px",
+          height: "42px",
+          borderRadius: "50%",
+          border: "1px solid rgba(255,255,255,0.12)",
+          background: "rgba(255,255,255,0.04)",
+          color: "rgba(255,255,255,0.7)",
+          fontSize: "1.05rem",
+          cursor: "pointer",
+          lineHeight: 1,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        ✕
+      </button>
+
+      <div
+        style={{
+          flex: 1,
+          minHeight: 0,
+          overflowY: "auto",
+          overflowX: "hidden",
+          WebkitOverflowScrolling: "touch",
+          overscrollBehavior: "contain",
+          touchAction: "pan-y",
+          padding: "88px 22px max(40px, env(safe-area-inset-bottom))",
+          position: "relative",
+          zIndex: 1,
+        }}
+      >
+        <p style={{
+          margin: "0 0 28px",
+          color: "rgba(200,240,74,0.7)",
+          fontSize: "0.65rem",
+          fontWeight: 600,
+          letterSpacing: "0.18em",
+          textTransform: "uppercase",
+          fontFamily: "Inter, Arial, sans-serif",
+        }}>
+          Menu
+        </p>
+
+        <nav style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+          {NAV_ITEMS.map((item) => {
+            if (item.hasMega) {
+              return (
+                <div key={item.label}>
+                  <button
+                    type="button"
+                    aria-expanded={servicesOpen}
+                    onClick={() => setServicesOpen((v) => !v)}
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "space-between",
+                      gap: "14px",
+                      padding: "16px 0",
+                      background: "none",
+                      border: "none",
+                      borderBottom: servicesOpen
+                        ? "1px solid transparent"
+                        : "1px solid rgba(255,255,255,0.08)",
+                      cursor: "pointer",
+                      textAlign: "left",
+                    }}
+                  >
+                    <span style={{
+                      display: "block",
+                      lineHeight: 1.25,
+                      color: "#f8f8f4",
+                      fontSize: "clamp(1.45rem, 5.2vw, 1.9rem)",
+                      ...NAV_MONO_LABEL,
+                    }}>
+                      {item.label}
+                    </span>
+                    <span
+                      style={{
+                        flexShrink: 0,
+                        width: "36px",
+                        height: "36px",
+                        borderRadius: "50%",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        background: servicesOpen ? "#c8f04a" : "rgba(255,255,255,0.06)",
+                        border: servicesOpen
+                          ? "1px solid rgba(200,240,74,0.9)"
+                          : "1px solid rgba(255,255,255,0.12)",
+                        transition: "background 0.25s ease, border-color 0.25s ease, transform 0.25s ease",
+                        transform: servicesOpen ? "rotate(180deg)" : "rotate(0deg)",
+                      }}
+                    >
+                      <svg width="12" height="7" viewBox="0 0 12 7" fill="none" aria-hidden>
+                        <path
+                          d="M1 1l5 5 5-5"
+                          stroke={servicesOpen ? "#0a2a12" : "rgba(255,255,255,0.75)"}
+                          strokeWidth="1.7"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+
+                  {servicesOpen ? (
+                    <div
+                      style={{
+                        margin: "4px 0 18px",
+                        padding: "10px 12px",
+                        borderRadius: "16px",
+                        background: "rgba(255,255,255,0.035)",
+                        border: "1px solid rgba(200,240,74,0.14)",
+                        boxShadow: "inset 0 1px 0 rgba(255,255,255,0.04)",
+                      }}
+                    >
+                      {SERVICES.map((service, index) => (
+                        <Link
+                          key={service.href}
+                          href={service.href}
+                          onClick={onClose}
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "14px",
+                            padding: "13px 8px",
+                            borderBottom:
+                              index < SERVICES.length - 1
+                                ? "1px solid rgba(255,255,255,0.06)"
+                                : "none",
+                            textDecoration: "none",
+                          }}
+                        >
+                          <span style={{
+                            flexShrink: 0,
+                            width: "28px",
+                            color: "rgba(200,240,74,0.75)",
+                            fontSize: "0.68rem",
+                            fontWeight: 600,
+                            letterSpacing: "0.08em",
+                            fontFamily: "Inter, Arial, sans-serif",
+                          }}>
+                            {String(index + 1).padStart(2, "0")}
+                          </span>
+                          <span style={{
+                            flex: 1,
+                            color: "rgba(248,248,244,0.92)",
+                            fontSize: "0.98rem",
+                            fontWeight: 500,
+                            letterSpacing: "-0.015em",
+                            lineHeight: 1.3,
+                            fontFamily: "Inter, Arial, sans-serif",
+                          }}>
+                            {service.title}
+                          </span>
+                          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden>
+                            <path
+                              d="M3 8h9M8 4l4 4-4 4"
+                              stroke="rgba(200,240,74,0.55)"
+                              strokeWidth="1.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                          </svg>
+                        </Link>
+                      ))}
+                    </div>
+                  ) : null}
+                </div>
+              );
+            }
+
+            return (
+              <div key={item.label} style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}>
+                <AnimatedMobileMenuLink
+                  label={item.label}
+                  href={item.href}
+                  onClose={onClose}
+                />
+              </div>
+            );
+          })}
+        </nav>
+
+        <button
+          type="button"
+          onClick={() => { onQuoteClick?.(); onClose?.(); }}
+          style={{
+            marginTop: "40px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "10px",
+            width: "100%",
+            padding: "16px 28px",
+            border: "none",
+            borderRadius: "999px",
+            color: "#0a2a12",
+            fontSize: "0.72rem",
+            fontWeight: 700,
+            letterSpacing: "0.14em",
+            textAlign: "center",
+            background: "#c8f04a",
+            cursor: "pointer",
+            fontFamily: "Inter, Arial, sans-serif",
+            boxShadow: "0 10px 28px rgba(200,240,74,0.22)",
+          }}
+        >
+          GET A QUOTE
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden>
+            <path d="M3 8h9M8 4l4 4-4 4" stroke="#0a2a12" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+      </div>
     </div>
   );
 }
