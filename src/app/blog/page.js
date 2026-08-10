@@ -8,9 +8,9 @@ import BlogListingClient from "./BlogListingClient";
 
 export const revalidate = 60;
 
-const BLOG_TITLE = "Web Design Blog";
+const BLOG_TITLE = "Blog";
 const BLOG_DESCRIPTION =
-  "WordPress design, development, SEO, and performance articles from Saqrih.";
+  "Insights from Saqrih on websites, apps, SaaS, e-commerce, CMS, WordPress, and digital product strategy.";
 
 export default async function BlogPage() {
   let posts = [];

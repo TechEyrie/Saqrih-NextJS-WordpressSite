@@ -1,8 +1,9 @@
 import { buildPageMetadata } from "../../../lib/siteMetadata";
 
 export const metadata = buildPageMetadata({
-  title: "Web Design Blog",
-  description: "WordPress design, development, SEO, and performance articles from Saqrih.",
+  title: "Blog",
+  description:
+    "Insights from Saqrih on websites, apps, SaaS, e-commerce, CMS, WordPress, and digital product strategy.",
   path: "/blog",
 });
 
