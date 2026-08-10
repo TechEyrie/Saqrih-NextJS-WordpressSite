@@ -68,6 +68,7 @@ export default function WebsiteDevelopmentHomeClient() {
         touchMultiplier: 1.5,
         infinite: false,
       })
+      window.__lenis = lenis
 
       tickerFn = (time) => {
         lenis.raf(time * 1000)
@@ -103,6 +104,7 @@ export default function WebsiteDevelopmentHomeClient() {
         import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
           ScrollTrigger.getAll().forEach((t) => t.kill())
         })
+        if (window.__lenis === lenis) window.__lenis = null
         lenis?.destroy()
       }
     }
@@ -117,6 +119,7 @@ export default function WebsiteDevelopmentHomeClient() {
       import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
         ScrollTrigger.getAll().forEach((t) => t.kill())
       })
+      if (window.__lenis === lenis) window.__lenis = null
       lenis?.destroy()
     }
   }, [])
@@ -198,7 +201,7 @@ export default function WebsiteDevelopmentHomeClient() {
           <EndToEndSection pageKey="homepage" />
         </LazyWhenVisible>
         <LazyWhenVisible minHeight="80vh">
-          <CustomersSection pageKey="homepage" />
+          <CustomersSection pageKey="homepage" enableSkipControl />
         </LazyWhenVisible>
         <LazyWhenVisible minHeight="70vh">
           <UnlockingSection

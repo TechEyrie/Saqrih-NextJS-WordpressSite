@@ -19,7 +19,27 @@ export default function ScrollToTopButton() {
   }, []);
 
   const scrollTop = useCallback(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    window.dispatchEvent(new CustomEvent("saqrih:scroll-top"));
+
+    const lenis = typeof window !== "undefined" ? window.__lenis : null;
+    if (lenis && typeof lenis.scrollTo === "function") {
+      lenis.scrollTo(0, {
+        duration: 1.15,
+        force: true,
+        easing: (t) => 1 - Math.pow(1 - t, 3),
+      });
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }
+
+    window.setTimeout(() => {
+      import("gsap/ScrollTrigger")
+        .then(({ ScrollTrigger }) => {
+          ScrollTrigger.update();
+          ScrollTrigger.refresh();
+        })
+        .catch(() => {});
+    }, 1250);
   }, []);
 
   return (

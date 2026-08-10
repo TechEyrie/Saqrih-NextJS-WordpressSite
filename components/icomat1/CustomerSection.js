@@ -139,6 +139,8 @@ export default function CustomersSection({
   showVideoSection: showVideoSectionProp,
   pinAnticipate = 1,
   pinType = "fixed",
+  /** Desktop-only: Next / Skip controls to move through the pinned testimonials faster */
+  enableSkipControl = false,
 }) {
   const pathname = usePathname();
   const pageKey = pageKeyProp ?? pageKeyFromPathname(pathname) ?? "homepage";
@@ -156,8 +158,10 @@ export default function CustomersSection({
   const videoSectionRef = useRef(null);
   const videoWrapRef    = useRef(null);
   const miniCardRef     = useRef(null);
+  const skipApiRef      = useRef(null);
 
   const [modalOpen, setModalOpen] = useState(false);
+  const [skipVisible, setSkipVisible] = useState(false);
   const MODAL_SRC = modalVideo;
 
   useDeferredGsap(() => {
@@ -232,6 +236,33 @@ export default function CustomersSection({
 
       // ── Card transition ──────────────────────────────────────
       let currentActive = 0;
+      /** While set, ignore scrub-driven card changes (skip/next jumps). */
+      let lockCardUntilProgress = null;
+
+      const syncCardsToIndex = (activeIdx) => {
+        const idx = Math.max(0, Math.min(activeIdx, totalCards - 1));
+        cardRefs.current.forEach((el, i) => {
+          if (!el) return;
+          const collapsed = el.querySelector(".card-collapsed");
+          const expanded = el.querySelector(".card-expanded");
+          gsap.killTweensOf([el, collapsed, expanded]);
+          if (i === idx) {
+            gsap.set(el, { height: EXPANDED_H });
+            gsap.set(collapsed, { opacity: 0, display: "none" });
+            gsap.set(expanded, { opacity: 1, display: "flex" });
+            el.style.background = "linear-gradient(135deg,#e8eaed 0%,#d0d4da 100%)";
+            el.style.border = "1px solid rgba(255,255,255,0.2)";
+          } else {
+            gsap.set(el, { height: COLLAPSED_H });
+            gsap.set(collapsed, { opacity: 1, display: "flex" });
+            gsap.set(expanded, { opacity: 0, display: "none" });
+            el.style.background = "rgba(255,255,255,0.07)";
+            el.style.border = "1px solid rgba(255,255,255,0.1)";
+          }
+        });
+        currentActive = idx;
+      };
+
       const transitionToCard = (newIdx) => {
         if (newIdx === currentActive) return;
         const oldIdx = currentActive;
@@ -244,73 +275,47 @@ export default function CustomersSection({
         const newExp = newEl.querySelector(".card-expanded");
         const newCol = newEl.querySelector(".card-collapsed");
 
+        gsap.killTweensOf([oldEl, newEl, oldExp, oldCol, newExp, newCol]);
+
         gsap.to(oldEl, {
-          height: COLLAPSED_H, duration: 1.05, ease: "power3.inOut",
+          height: COLLAPSED_H, duration: 0.75, ease: "power3.inOut",
           onStart: () => {
             oldEl.style.background = "rgba(255,255,255,0.07)";
             oldEl.style.border = "1px solid rgba(255,255,255,0.1)";
           },
         });
         gsap.to(oldExp, {
-          opacity: 0, duration: 0.4, ease: "power2.in",
+          opacity: 0, duration: 0.28, ease: "power2.in",
           onComplete: () => {
             gsap.set(oldExp, { display: "none" });
             gsap.set(oldCol, { display: "flex", opacity: 0 });
-            gsap.to(oldCol, { opacity: 1, duration: 0.45, ease: "power2.out" });
+            gsap.to(oldCol, { opacity: 1, duration: 0.35, ease: "power2.out" });
           },
         });
         gsap.to(newEl, {
-          height: EXPANDED_H, duration: 1.1, ease: "power3.inOut", delay: 0.12,
+          height: EXPANDED_H, duration: 0.8, ease: "power3.inOut", delay: 0.06,
           onStart: () => {
             newEl.style.background = "linear-gradient(135deg,#e8eaed 0%,#d0d4da 100%)";
             newEl.style.border = "1px solid rgba(255,255,255,0.2)";
           },
         });
         gsap.to(newCol, {
-          opacity: 0, duration: 0.35, ease: "power2.in",
+          opacity: 0, duration: 0.25, ease: "power2.in",
           onComplete: () => {
             gsap.set(newCol, { display: "none" });
             gsap.set(newExp, { display: "flex", opacity: 0 });
-            gsap.to(newExp, { opacity: 1, duration: 0.7, ease: "power2.out", delay: 0.22 });
+            gsap.to(newExp, { opacity: 1, duration: 0.5, ease: "power2.out", delay: 0.12 });
           },
         });
       };
 
-      ScrollTrigger.create({
-        trigger: wrapperRef.current,
-        start: "top top",
-        end: `+=${TOTAL_PIN_SCROLL}`,
-        pin: true,
-        pinSpacing: true,
-        pinType,
-        anticipatePin: pinAnticipate,
-      });
-
-      ScrollTrigger.create({
-        trigger: wrapperRef.current,
-        start: "top top",
-        end: `+=${TOTAL_PIN_SCROLL}`,
-        scrub: 10,
-        snap: {
-          snapTo: gsap.utils.snap(1 / totalCards),
-          duration: { min: 0.85, max: 1.75 },
-          delay: 0.12,
-          ease: "power3.inOut",
-        },
-        onUpdate: (self) => {
-          const p = self.progress;
-
-          if (progressFillRef.current)
-            gsap.set(progressFillRef.current, { scaleX: p, transformOrigin: "left center" });
-
-          transitionToCard(Math.min(Math.floor(p * totalCards), totalCards - 1));
-
-          if (bgGradientRef.current) {
-            const bW = 55 + p * 126;
-            const bH = bW * 0.62;
-            const op1 = 0.45 + p * 0.5;
-            const op2 = op1 * 0.5;
-            bgGradientRef.current.style.background = `
+      const applyBgAtProgress = (p) => {
+        if (!bgGradientRef.current) return;
+        const bW = 55 + p * 126;
+        const bH = bW * 0.62;
+        const op1 = 0.45 + p * 0.5;
+        const op2 = op1 * 0.5;
+        bgGradientRef.current.style.background = `
               radial-gradient(ellipse 60% 45% at 50% 50%,
                 rgba(67, 87, 44, ${0.2 + p * 0.35}) 0%,
                 rgba(67, 87, 44, ${0.1 + p * 0.2}) 45%,
@@ -322,9 +327,157 @@ export default function CustomersSection({
                 transparent 68%
               )
             `;
+      };
+
+      const indexFromProgress = (p) =>
+        Math.min(Math.floor(Math.max(0, p) * totalCards), totalCards - 1);
+
+      const hardResyncFromScroll = () => {
+        lockCardUntilProgress = null;
+        const p = scrubST?.progress ?? 0;
+        syncCardsToIndex(indexFromProgress(p));
+        applyBgAtProgress(p);
+        if (progressFillRef.current) {
+          gsap.set(progressFillRef.current, { scaleX: p, transformOrigin: "left center" });
+        }
+      };
+
+      const scrollToY = (y, { immediate = false, duration = 0.95 } = {}) => {
+        const target = Math.max(0, y);
+        const lenis = typeof window !== "undefined" ? window.__lenis : null;
+        if (lenis && typeof lenis.scrollTo === "function") {
+          lenis.scrollTo(target, {
+            immediate,
+            force: true,
+            duration: immediate ? 0 : duration,
+            easing: (t) => 1 - Math.pow(1 - t, 3),
+          });
+        } else {
+          window.scrollTo({
+            top: target,
+            left: 0,
+            behavior: immediate ? "auto" : "smooth",
+          });
+        }
+        ScrollTrigger.update();
+      };
+
+      const scrubST = ScrollTrigger.create({
+        id: `customers-scrub-${pageKey}`,
+        trigger: wrapperRef.current,
+        start: "top top",
+        end: `+=${TOTAL_PIN_SCROLL}`,
+        scrub: enableSkipControl ? 2.4 : 10,
+        snap: enableSkipControl
+          ? {
+              snapTo: gsap.utils.snap(1 / totalCards),
+              duration: { min: 0.35, max: 0.7 },
+              delay: 0.04,
+              ease: "power3.out",
+            }
+          : {
+              snapTo: gsap.utils.snap(1 / totalCards),
+              duration: { min: 0.85, max: 1.75 },
+              delay: 0.12,
+              ease: "power3.inOut",
+            },
+        onUpdate: (self) => {
+          const p = self.progress;
+
+          if (progressFillRef.current)
+            gsap.set(progressFillRef.current, { scaleX: p, transformOrigin: "left center" });
+
+          if (lockCardUntilProgress != null) {
+            const reached = p >= lockCardUntilProgress - 0.02 || p >= 0.995;
+            // User scrolled back / jump-to-top aborted the lock
+            const aborted = p < lockCardUntilProgress - 0.12;
+            if (reached || aborted) {
+              lockCardUntilProgress = null;
+              syncCardsToIndex(indexFromProgress(p));
+              applyBgAtProgress(p);
+            }
+            return;
           }
+
+          transitionToCard(indexFromProgress(p));
+          applyBgAtProgress(p);
         },
       });
+
+      ScrollTrigger.create({
+        trigger: wrapperRef.current,
+        start: "top top",
+        end: `+=${TOTAL_PIN_SCROLL}`,
+        pin: true,
+        pinSpacing: true,
+        pinType,
+        anticipatePin: pinAnticipate,
+        onEnter: () => {
+          hardResyncFromScroll();
+          if (enableSkipControl) setSkipVisible(true);
+        },
+        onEnterBack: () => {
+          hardResyncFromScroll();
+          if (enableSkipControl) setSkipVisible(true);
+        },
+        onLeave: () => {
+          lockCardUntilProgress = null;
+          if (enableSkipControl) setSkipVisible(false);
+        },
+        onLeaveBack: () => {
+          // Leaving upward (e.g. scroll-to-top) — freeze a clean card 0 so return isn't blank
+          lockCardUntilProgress = null;
+          syncCardsToIndex(0);
+          applyBgAtProgress(0);
+          if (progressFillRef.current) {
+            gsap.set(progressFillRef.current, { scaleX: 0, transformOrigin: "left center" });
+          }
+          if (enableSkipControl) setSkipVisible(false);
+        },
+      });
+
+      const onScrollTopReset = () => {
+        lockCardUntilProgress = null;
+        syncCardsToIndex(0);
+        applyBgAtProgress(0);
+        if (progressFillRef.current) {
+          gsap.set(progressFillRef.current, { scaleX: 0, transformOrigin: "left center" });
+        }
+        if (enableSkipControl) setSkipVisible(false);
+        requestAnimationFrame(() => ScrollTrigger.update());
+      };
+      window.addEventListener("saqrih:scroll-top", onScrollTopReset);
+
+      if (enableSkipControl) {
+        skipApiRef.current = {
+          next: () => {
+            const nextIdx = Math.min(currentActive + 1, totalCards - 1);
+            if (nextIdx <= currentActive) {
+              skipApiRef.current?.skip?.();
+              return;
+            }
+            const p = (nextIdx + 0.55) / totalCards;
+            lockCardUntilProgress = p;
+            syncCardsToIndex(nextIdx);
+            if (progressFillRef.current) {
+              gsap.set(progressFillRef.current, { scaleX: p, transformOrigin: "left center" });
+            }
+            applyBgAtProgress(p);
+            const y = scrubST.start + (scrubST.end - scrubST.start) * p;
+            scrollToY(y, { immediate: false, duration: 0.85 });
+          },
+          skip: () => {
+            lockCardUntilProgress = 1;
+            syncCardsToIndex(totalCards - 1);
+            if (progressFillRef.current) {
+              gsap.set(progressFillRef.current, { scaleX: 1, transformOrigin: "left center" });
+            }
+            applyBgAtProgress(1);
+            setSkipVisible(false);
+            scrollToY(scrubST.end + 32, { immediate: false, duration: 1.05 });
+          },
+        };
+      }
 
       gsap.fromTo(
         headingRef.current,
@@ -383,9 +536,14 @@ export default function CustomersSection({
           );
       }
 
+      return () => {
+        window.removeEventListener("saqrih:scroll-top", onScrollTopReset);
+        skipApiRef.current = null;
+        if (enableSkipControl) setSkipVisible(false);
+      };
       }); // end desktop matchMedia
 
-  }, [pinAnticipate, pinType, showVideoSection, pageKey], outerRef);
+  }, [pinAnticipate, pinType, showVideoSection, pageKey, enableSkipControl], outerRef);
 
   return (
     <>
@@ -401,6 +559,78 @@ export default function CustomersSection({
         data-header="dark"
         style={{ background: "#162D24", position: "relative", overflowX: "clip", maxWidth: "100%" }}
       >
+        {enableSkipControl && skipVisible ? (
+          <div
+            className="customers-skip-controls hidden md:flex"
+            style={{
+              position: "fixed",
+              right: "max(20px, calc((100vw - 1200px) / 2 + 20px))",
+              // Sit above the global scroll-to-top control
+              bottom: "96px",
+              zIndex: 140,
+              gap: "10px",
+              alignItems: "center",
+            }}
+          >
+            <button
+              type="button"
+              onClick={() => skipApiRef.current?.next?.()}
+              aria-label="Next testimonial"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                padding: "11px 16px",
+                borderRadius: "999px",
+                border: "1px solid rgba(255,255,255,0.18)",
+                background: "rgba(22,45,36,0.82)",
+                color: "rgba(255,255,255,0.88)",
+                fontSize: "0.68rem",
+                fontWeight: 600,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                fontFamily: "Inter, Arial, sans-serif",
+                cursor: "pointer",
+                backdropFilter: "blur(10px)",
+                WebkitBackdropFilter: "blur(10px)",
+                boxShadow: "0 10px 28px rgba(0,0,0,0.28)",
+              }}
+            >
+              Next
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden>
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            <button
+              type="button"
+              onClick={() => skipApiRef.current?.skip?.()}
+              aria-label="Skip testimonials section"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                padding: "11px 18px",
+                borderRadius: "999px",
+                border: "1px solid rgba(200,240,74,0.35)",
+                background: "#c8f04a",
+                color: "#0a2a12",
+                fontSize: "0.68rem",
+                fontWeight: 700,
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                fontFamily: "Inter, Arial, sans-serif",
+                cursor: "pointer",
+                boxShadow: "0 10px 28px rgba(200,240,74,0.22)",
+              }}
+            >
+              Skip
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden>
+                <path d="M2 4l5 4-5 4V4zM9 4l5 4-5 4V4z" fill="currentColor" />
+              </svg>
+            </button>
+          </div>
+        ) : null}
+
         {/* Animated gradient */}
         <div
           ref={bgGradientRef}
