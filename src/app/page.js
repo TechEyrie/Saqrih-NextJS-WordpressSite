@@ -1,6 +1,7 @@
 import { buildPageMetadata } from "../../lib/siteMetadata";
 import JsonLd from "../../components/seo/JsonLd";
-import { breadcrumbJsonLd, webPageJsonLd } from "../../lib/jsonLd";
+import { breadcrumbJsonLd, faqPageJsonLd, webPageJsonLd } from "../../lib/jsonLd";
+import { HOMEPAGE_FAQS } from "../../lib/homepageFaqs";
 import IcomatPage from "./icomat1/page";
 
 const HOME_TITLE = "Saqrih - Web and Software Development Company in Doha, Qatar";
@@ -24,6 +25,7 @@ export default function Home() {
             url: "/",
           }),
           breadcrumbJsonLd([{ name: "Home", url: "/" }]),
+          faqPageJsonLd(HOMEPAGE_FAQS),
         ]}
       />
       <IcomatPage />

@@ -13,6 +13,7 @@ import {
   HOMEPAGE_TECH_MARQUEE,
   HOMEPAGE_TECH_COPY,
 } from '../../../lib/services/homepageTechStack'
+import { HOMEPAGE_FAQS, HOMEPAGE_FAQ_INTRO } from '../../../lib/homepageFaqs'
 
 const RTSSection = dynamic(() => import('../../../components/icomat1/RTSSection'), { ssr: false })
 const RTSCombinedSection = dynamic(() => import('../../../components/icomat1/RTSCombinedSection'), { ssr: false })
@@ -21,6 +22,7 @@ const ServiceTechStackSection = dynamic(() => import('../../../components/servic
 const OurAdvantageSection = dynamic(() => import('../../../components/icomat1/OurAdvantageSection'), { ssr: false })
 const EndToEndSection = dynamic(() => import('../../../components/icomat1/EndToEndSection'), { ssr: false })
 const CustomersSection = dynamic(() => import('../../../components/icomat1/CustomerSection'), { ssr: false })
+const ServiceFAQSection = dynamic(() => import('../../../components/services/ServiceFAQSection'), { ssr: false })
 const UnlockingSection = dynamic(() => import('../../../components/icomat1/UnlockingSection'), { ssr: false })
 const FooterSection = dynamic(() => import('../../../components/icomat1/FooterSection'), { ssr: false })
 
@@ -181,6 +183,9 @@ export default function IcomatPage() {
         </LazyWhenVisible>
         <LazyWhenVisible minHeight="80vh">
           <CustomersSection pageKey="homepage" />
+        </LazyWhenVisible>
+        <LazyWhenVisible minHeight="70vh">
+          <ServiceFAQSection faqs={HOMEPAGE_FAQS} intro={HOMEPAGE_FAQ_INTRO} />
         </LazyWhenVisible>
         <LazyWhenVisible minHeight="70vh">
           <UnlockingSection />
