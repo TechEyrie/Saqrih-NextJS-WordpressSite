@@ -50,6 +50,8 @@ const CONTACT_CARDS = [
     label: "Office",
     value: SITE_CONTACT.address,
     sub: `${SITE_CONTACT.addressLocality}, ${SITE_CONTACT.addressCountry}`,
+    href: SITE_CONTACT.addressMapsHref,
+    external: true,
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
         <path
@@ -105,6 +107,11 @@ function ContactCard({ card, index }) {
     <Tag
       ref={cardRef}
       href={isLink ? card.href : undefined}
+      target={card.external ? "_blank" : undefined}
+      rel={card.external ? "noopener noreferrer" : undefined}
+      aria-label={
+        card.external ? `Open ${card.label} location in Google Maps` : undefined
+      }
       style={{
         opacity: 0,
         height: "100%",
