@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import QuotePhoneInput from "../QuotePhoneInput";
 import { validateContactPayload } from "../../lib/contactValidation";
 import { CONTACT_INQUIRY_OPTIONS, SITE_CONTACT } from "../../lib/siteContact";
+import { PRE_FOOTER_SURFACE } from "../../lib/preFooterSurface";
 import { SVC, sectionPad, eyebrowStyle, h2Style, bodyStyle } from "../services/serviceTokens";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -368,7 +369,7 @@ export default function ContactSection() {
       id="contact"
       ref={sectionRef}
       className="w-full"
-      style={{ backgroundColor: SVC.lightAlt, ...sectionPad }}
+      style={{ backgroundColor: PRE_FOOTER_SURFACE, ...sectionPad }}
     >
       <div className="mx-auto contact-section-shell">
         <div ref={introRef} className="contact-section-intro">
