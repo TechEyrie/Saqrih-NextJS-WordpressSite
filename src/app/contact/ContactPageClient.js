@@ -7,7 +7,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import Header from '../../../components/icomat1/Header'
 import FooterSection from '../../../components/icomat1/FooterSection'
-import CTASection from '../../../components/icomat1/CTASection'
 import ContactHeroSection from '../../../components/icomat1-contact/ContactHeroSection'
 import ContactSection from '../../../components/icomat1-contact/ContactSection'
 
@@ -39,8 +38,7 @@ export default function ContactPageClient() {
 
     gsap.ticker.add(onTick)
     gsap.ticker.lagSmoothing(0)
-    lenis.on('scroll', () => ScrollTrigger.update())
-    window.__lenis = lenis
+    lenis.on('scroll', ScrollTrigger.update)
 
     const refresh = () => ScrollTrigger.refresh()
     requestAnimationFrame(refresh)
@@ -50,7 +48,6 @@ export default function ContactPageClient() {
       window.removeEventListener('load', refresh)
       gsap.ticker.remove(onTick)
       ScrollTrigger.getAll().forEach((t) => t.kill())
-      if (window.__lenis === lenis) window.__lenis = null
       lenis.destroy()
     }
   }, [])
@@ -91,7 +88,6 @@ export default function ContactPageClient() {
       <main id="main-content" className="homepage-font-scope">
         <ContactHeroSection />
         <ContactSection />
-        <CTASection onQuoteOpen={() => setQuoteOpen(true)} />
         <FooterSection />
       </main>
     </div>

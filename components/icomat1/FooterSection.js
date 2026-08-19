@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { PRE_FOOTER_SURFACE } from "../../lib/preFooterSurface";
 import { FOOTER_SERVICE_LINKS } from "../../lib/services/footerServiceLinks";
+import { debounceScrollTriggerRefresh } from "../../lib/deferScrollTriggerRefresh";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -230,6 +231,13 @@ export default function FooterSection() {
 
     const timers = [];
     let forceUnlocked = false;
+    let footerTrigger = null;
+
+    const getScrollY = () => {
+      const lenis = window.__lenis;
+      if (lenis && typeof lenis.scroll === "number") return lenis.scroll;
+      return window.scrollY;
+    };
 
     const setVeil = (yPercent, animate = false) => {
       if (animate) {
@@ -248,72 +256,99 @@ export default function FooterSection() {
     // Tall pages (many Unlocking cards) + Lenis can leave scrub progress stuck.
     // Force-reveal once the footer is meaningfully on screen.
     const forceRevealIfNeeded = () => {
-      if (forceUnlocked) return;
-      const rect = footer.getBoundingClientRect();
+      if (forceUnlocked || !footerTrigger) return;
+
+      const scrollY = getScrollY();
       const nearBottom =
-        window.scrollY + window.innerHeight >=
-        document.documentElement.scrollHeight - 80;
-      if (rect.top < window.innerHeight * 0.72 || nearBottom) {
+        scrollY + window.innerHeight >=
+        document.documentElement.scrollHeight - 96;
+
+      // Only unstick the veil when Lenis/scrub stalls at the page bottom.
+      if (nearBottom && footerTrigger.progress < 0.95) {
         forceUnlocked = true;
-        setVeil(-100, true);
+        setVeil(-100, false);
       }
+    };
+
+    const syncVeilToProgress = (progress) => {
+      if (progress >= 0.985) {
+        forceUnlocked = true;
+        setVeil(-100);
+        return;
+      }
+      if (forceUnlocked) {
+        setVeil(-100);
+        return;
+      }
+      setVeil(-100 * progress);
     };
 
     const ctx = gsap.context(() => {
       gsap.set(veil, { yPercent: 0 });
 
-      ScrollTrigger.create({
+      footerTrigger = ScrollTrigger.create({
         trigger: footer,
         start: "top bottom",
         end: "top 22%",
         scrub: 1.15,
         invalidateOnRefresh: true,
         onUpdate: (self) => {
-          if (forceUnlocked) {
-            setVeil(-100);
-            return;
+          if (self.progress <= 0.02 && self.direction < 0) {
+            forceUnlocked = false;
           }
-          setVeil(-100 * self.progress);
+          syncVeilToProgress(self.progress);
         },
         onLeave: () => {
           forceUnlocked = true;
           setVeil(-100);
         },
-        onLeaveBack: () => {
-          forceUnlocked = false;
-          setVeil(0, true);
-        },
       });
+
+      syncVeilToProgress(footerTrigger.progress);
     }, footerRef);
 
+    const debouncedRefresh = debounceScrollTriggerRefresh(180);
+
     const sync = () => {
-      ScrollTrigger.refresh();
+      debouncedRefresh();
       ScrollTrigger.update();
+      if (footerTrigger) {
+        syncVeilToProgress(footerTrigger.progress);
+      }
       forceRevealIfNeeded();
     };
 
     requestAnimationFrame(sync);
     timers.push(window.setTimeout(sync, 120));
     timers.push(window.setTimeout(sync, 450));
-    timers.push(window.setTimeout(sync, 1100));
 
     const ro = typeof ResizeObserver !== "undefined"
       ? new ResizeObserver(() => {
-          ScrollTrigger.refresh();
-          forceRevealIfNeeded();
+          debouncedRefresh();
         })
       : null;
     ro?.observe(footer);
-    if (footer.parentElement) ro?.observe(footer.parentElement);
 
-    window.addEventListener("scroll", forceRevealIfNeeded, { passive: true });
+    const onScroll = () => forceRevealIfNeeded();
+    window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", sync);
+    window.__lenis?.on?.("scroll", onScroll);
+
+    const onRefresh = () => {
+      if (!footerTrigger) return;
+      syncVeilToProgress(footerTrigger.progress);
+      forceRevealIfNeeded();
+    };
+    ScrollTrigger.addEventListener("refresh", onRefresh);
 
     return () => {
       timers.forEach((id) => window.clearTimeout(id));
       ro?.disconnect();
-      window.removeEventListener("scroll", forceRevealIfNeeded);
+      window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", sync);
+      window.__lenis?.off?.("scroll", onScroll);
+      ScrollTrigger.removeEventListener("refresh", onRefresh);
+      footerTrigger = null;
       ctx.revert();
     };
   }, []);
