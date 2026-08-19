@@ -32,6 +32,7 @@ const NAV_WORK_LINKS = [
 
 const NAV_ABOUT_LINKS = [
   { label: "Why Saqrih", href: "/why-saqrih" },
+  { label: "Contact us", href: "/contact" },
   { label: "Read the blog", href: "/blog" },
   { label: "AI disclosure (llms.txt)", href: "/llms.txt" },
 ];

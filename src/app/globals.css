@@ -398,6 +398,41 @@ body[data-route-loading="true"] {
   color: rgba(255, 255, 255, 0.2);
 }
 
+.quote-phone-input--light {
+  border: 1px solid rgba(22, 45, 36, 0.1);
+  border-radius: 12px;
+  background: #fafaf8;
+}
+
+.quote-phone-input--light:focus-within {
+  border-color: rgba(200, 240, 74, 0.65);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(200, 240, 74, 0.14);
+}
+
+.quote-phone-input--light .PhoneInputCountry {
+  border-right: 1px solid rgba(22, 45, 36, 0.1);
+}
+
+.quote-phone-input--light .PhoneInputCountryIcon {
+  box-shadow: 0 0 0 1px rgba(22, 45, 36, 0.12);
+}
+
+.quote-phone-input--light .PhoneInputCountrySelectArrow {
+  border-color: #162d24;
+  opacity: 0.55;
+}
+
+.quote-phone-input--light .PhoneInputInput {
+  color: #162d24;
+  caret-color: #162d24;
+  font-weight: 400;
+}
+
+.quote-phone-input--light .PhoneInputInput::placeholder {
+  color: rgba(22, 45, 36, 0.35);
+}
+
 .quote-form-row-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;

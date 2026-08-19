@@ -24,12 +24,13 @@ export default function QuotePhoneInput({
   onChange,
   onFocus,
   onBlur,
+  className = "quote-phone-input",
 }) {
   const phoneInputId = useId();
 
   return (
     <PhoneInput
-      className="quote-phone-input"
+      className={className}
       defaultCountry="QA"
       international
       countryCallingCodeEditable={false}

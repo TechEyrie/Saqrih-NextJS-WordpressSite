@@ -294,7 +294,7 @@ export default function NotFound() {
             </Link>
 
             <Link
-              href="/#contact"
+              href="/contact"
               className={`group flex items-center gap-3 px-6 py-3 rounded-[4px] font-semibold transition-all duration-300 border ${
                 isDark
                   ? "border-white/20 bg-black/40 text-white hover:bg-black/60 hover:border-white/30"
@@ -327,7 +327,7 @@ export default function NotFound() {
                 { label: "Work", href: "/work" },
                 { label: "About", href: "/about-us" },
                 { label: "WordPress Design", href: "/wordpress/design" },
-                { label: "Contact", href: "/#contact" },
+                { label: "Contact", href: "/contact" },
               ].map((link) => (
                 <Link
                   key={link.href}
