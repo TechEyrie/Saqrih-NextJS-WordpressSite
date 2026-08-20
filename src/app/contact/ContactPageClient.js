@@ -88,7 +88,7 @@ export default function ContactPageClient() {
       <main id="main-content" className="homepage-font-scope">
         <ContactHeroSection />
         <ContactSection />
-        <FooterSection />
+        <FooterSection animated={false} />
       </main>
     </div>
   )

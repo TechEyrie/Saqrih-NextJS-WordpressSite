@@ -220,11 +220,13 @@ function WaveLines() {
 const FOOTER_PANEL_BG = "#162D24";
 
 // ── Footer ─────────────────────────────────────────────────────
-export default function FooterSection() {
+export default function FooterSection({ animated = true } = {}) {
   const footerRef = useRef(null);
   const veilRef   = useRef(null);
 
   useEffect(() => {
+    if (!animated) return;
+
     const footer = footerRef.current;
     const veil = veilRef.current;
     if (!footer || !veil) return;
@@ -351,7 +353,7 @@ export default function FooterSection() {
       footerTrigger = null;
       ctx.revert();
     };
-  }, []);
+  }, [animated]);
 
   return (
     <footer
@@ -361,8 +363,8 @@ export default function FooterSection() {
       style={{
         position: "relative",
         width: "100%",
-        marginTop: "-3px",
-        background: PRE_FOOTER_SURFACE,
+        marginTop: animated ? "-3px" : 0,
+        background: animated ? PRE_FOOTER_SURFACE : FOOTER_PANEL_BG,
         overflow: "hidden",
       }}
     >
@@ -541,22 +543,24 @@ export default function FooterSection() {
       </div>
 
       {/* Continuation of Unlocking surface — slides up (opposite of RTS panel B rising over content). */}
-      <div
-        ref={veilRef}
-        aria-hidden="true"
-        className="icomat-footer-veil"
-        style={{
-          position: "absolute",
-          top: "-4px",
-          left: 0,
-          right: 0,
-          height: "calc(100% + 8px)",
-          zIndex: 4,
-          background: PRE_FOOTER_SURFACE,
-          pointerEvents: "none",
-          willChange: "transform",
-        }}
-      />
+      {animated ? (
+        <div
+          ref={veilRef}
+          aria-hidden="true"
+          className="icomat-footer-veil"
+          style={{
+            position: "absolute",
+            top: "-4px",
+            left: 0,
+            right: 0,
+            height: "calc(100% + 8px)",
+            zIndex: 4,
+            background: PRE_FOOTER_SURFACE,
+            pointerEvents: "none",
+            willChange: "transform",
+          }}
+        />
+      ) : null}
 
       <style>{`
         .icomat-footer-reveal {
