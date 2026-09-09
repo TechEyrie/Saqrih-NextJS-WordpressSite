@@ -2,10 +2,11 @@ import { buildPageMetadata } from "../../../../lib/siteMetadata";
 import JsonLd from "../../../../components/seo/JsonLd";
 import {
   breadcrumbJsonLd,
+  faqPageJsonLd,
   serviceJsonLd,
   webPageJsonLd,
 } from "../../../../lib/jsonLd";
-import { MOBILE_DEV_HOME } from "../../../../lib/services/mobileAppDevelopmentHome";
+import { MOBILE_DEV_HOME, MOBILE_DEV_HOME_FAQS } from "../../../../lib/services/mobileAppDevelopmentHome";
 import MobileAppDevelopmentHomeClient from "./MobileAppDevelopmentHomeClient";
 
 export const metadata = buildPageMetadata({
@@ -35,6 +36,7 @@ export default function MobileAppDevelopmentHomePage() {
             url: MOBILE_DEV_HOME.path,
             serviceType: "Mobile app development",
           }),
+          faqPageJsonLd(MOBILE_DEV_HOME_FAQS),
         ].filter(Boolean)}
       />
       <MobileAppDevelopmentHomeClient />

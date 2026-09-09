@@ -14,6 +14,9 @@ import {
   WEBSITE_DEV_HOME_OPERATE,
   WEBSITE_DEV_HOME_ADVANTAGE,
   WEBSITE_DEV_HOME_UNLOCKING,
+  WEBSITE_DEV_HOME_FAQS,
+  WEBSITE_DEV_HOME_FAQ_INTRO,
+  WEBSITE_DEV_HOME_FAQ_HEADING,
   WDH_TECH_CATEGORIES,
   WDH_TECH_STATS,
   WDH_TECH_CAPABILITIES,
@@ -29,6 +32,7 @@ const OurAdvantageSection = dynamic(() => import('../../../../components/icomat1
 const EndToEndSection = dynamic(() => import('../../../../components/icomat1/EndToEndSection'), { ssr: false })
 const CustomersSection = dynamic(() => import('../../../../components/icomat1/CustomerSection'), { ssr: false })
 const UnlockingSection = dynamic(() => import('../../../../components/icomat1/UnlockingSection'), { ssr: false })
+const ServiceFAQSection = dynamic(() => import('../../../../components/services/ServiceFAQSection'), { ssr: false })
 const FooterSection = dynamic(() => import('../../../../components/icomat1/FooterSection'), { ssr: false })
 
 export default function WebsiteDevelopmentHomeClient() {
@@ -213,6 +217,13 @@ export default function WebsiteDevelopmentHomeClient() {
               </>
             }
             cards={WEBSITE_DEV_HOME_UNLOCKING.cards}
+          />
+        </LazyWhenVisible>
+        <LazyWhenVisible minHeight="70vh">
+          <ServiceFAQSection
+            faqs={WEBSITE_DEV_HOME_FAQS}
+            intro={WEBSITE_DEV_HOME_FAQ_INTRO}
+            heading={WEBSITE_DEV_HOME_FAQ_HEADING}
           />
         </LazyWhenVisible>
         <LazyWhenVisible minHeight="50vh" rootMargin="120px 0px">

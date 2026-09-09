@@ -2,10 +2,11 @@ import { buildPageMetadata } from "../../../../lib/siteMetadata";
 import JsonLd from "../../../../components/seo/JsonLd";
 import {
   breadcrumbJsonLd,
+  faqPageJsonLd,
   serviceJsonLd,
   webPageJsonLd,
 } from "../../../../lib/jsonLd";
-import { ECOM_DEV_HOME } from "../../../../lib/services/ecommerceDevelopmentHome";
+import { ECOM_DEV_HOME, ECOM_DEV_HOME_FAQS } from "../../../../lib/services/ecommerceDevelopmentHome";
 import EcommerceDevelopmentHomeClient from "./EcommerceDevelopmentHomeClient";
 
 export const metadata = buildPageMetadata({
@@ -35,6 +36,7 @@ export default function EcommerceDevelopmentHomePage() {
             url: ECOM_DEV_HOME.path,
             serviceType: "E-commerce development",
           }),
+          faqPageJsonLd(ECOM_DEV_HOME_FAQS),
         ].filter(Boolean)}
       />
       <EcommerceDevelopmentHomeClient />

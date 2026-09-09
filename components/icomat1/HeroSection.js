@@ -316,16 +316,25 @@ export default function HeroSection({
           style={{ transformStyle: "preserve-3d", willChange: "transform" }}
         >
           <h1
-            className="text-white tracking-tight leading-[0.95]"
+            className="text-white tracking-tight"
             style={{
-              fontSize: "clamp(2rem, 4.5vw, 4rem)",
+              fontSize:
+                String(titleLine1 || "").length > 90
+                  ? "clamp(1.45rem, 3.1vw, 2.55rem)"
+                  : "clamp(2rem, 4.5vw, 4rem)",
               fontWeight: 600,
               fontFamily: "var(--font-inter), Inter, Arial, sans-serif",
+              maxWidth: String(titleLine1 || "").length > 90 ? "38rem" : undefined,
+              lineHeight: String(titleLine1 || "").length > 90 ? 1.18 : 0.95,
             }}
           >
             {titleLine1}
-            <br />
-            {titleLine2}
+            {titleLine2 ? (
+              <>
+                <br />
+                {titleLine2}
+              </>
+            ) : null}
             {showTrademark ? (
               <sup
                 style={{
@@ -342,12 +351,14 @@ export default function HeroSection({
           </h1>
 
           <div ref={badgeRef} className="mt-4 max-w-[900px]">
-            <p
-              className="text-[14px] sm:text-[15px] lg:text-[17px] leading-relaxed break-words"
-              style={{ color: "rgba(255,255,255,0.72)", maxWidth: "100%" }}
-            >
-              {description}
-            </p>
+            {description ? (
+              <p
+                className="text-[14px] sm:text-[15px] lg:text-[17px] leading-relaxed break-words"
+                style={{ color: "rgba(255,255,255,0.72)", maxWidth: "100%" }}
+              >
+                {description}
+              </p>
+            ) : null}
 
             <HeroQuoteButton onClick={onQuoteClick} />
           </div>

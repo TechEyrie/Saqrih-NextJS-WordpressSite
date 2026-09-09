@@ -2,10 +2,11 @@ import { buildPageMetadata } from "../../../../lib/siteMetadata";
 import JsonLd from "../../../../components/seo/JsonLd";
 import {
   breadcrumbJsonLd,
+  faqPageJsonLd,
   serviceJsonLd,
   webPageJsonLd,
 } from "../../../../lib/jsonLd";
-import { CMS_DEV_HOME } from "../../../../lib/services/cmsHeadlessDevelopmentHome";
+import { CMS_DEV_HOME, CMS_DEV_HOME_FAQS } from "../../../../lib/services/cmsHeadlessDevelopmentHome";
 import CmsHeadlessDevelopmentHomeClient from "./CmsHeadlessDevelopmentHomeClient";
 
 export const metadata = buildPageMetadata({
@@ -35,6 +36,7 @@ export default function CmsHeadlessDevelopmentHomePage() {
             url: CMS_DEV_HOME.path,
             serviceType: "CMS and headless development",
           }),
+          faqPageJsonLd(CMS_DEV_HOME_FAQS),
         ].filter(Boolean)}
       />
       <CmsHeadlessDevelopmentHomeClient />

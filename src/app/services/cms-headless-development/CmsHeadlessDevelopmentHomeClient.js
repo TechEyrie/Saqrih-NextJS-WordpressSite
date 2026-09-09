@@ -1,6 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import {
+  useEffect,
+  useState } from 'react'
 import dynamic from 'next/dynamic'
 
 import HeroSection from '../../../../components/icomat1/HeroSection'
@@ -19,6 +21,9 @@ import {
   CMS_HOME_TECH_CAPABILITIES,
   CMS_HOME_TECH_MARQUEE,
   CMS_HOME_TECH_COPY,
+  CMS_DEV_HOME_FAQS,
+  CMS_DEV_HOME_FAQ_INTRO,
+  CMS_DEV_HOME_FAQ_HEADING,
 } from '../../../../lib/services/cmsHeadlessDevelopmentHome'
 
 const RTSSection = dynamic(() => import('../../../../components/icomat1/RTSSection'), { ssr: false })
@@ -29,6 +34,7 @@ const OurAdvantageSection = dynamic(() => import('../../../../components/icomat1
 const EndToEndSection = dynamic(() => import('../../../../components/icomat1/EndToEndSection'), { ssr: false })
 const CustomersSection = dynamic(() => import('../../../../components/icomat1/CustomerSection'), { ssr: false })
 const UnlockingSection = dynamic(() => import('../../../../components/icomat1/UnlockingSection'), { ssr: false })
+const ServiceFAQSection = dynamic(() => import('../../../../components/services/ServiceFAQSection'), { ssr: false })
 const FooterSection = dynamic(() => import('../../../../components/icomat1/FooterSection'), { ssr: false })
 
 export default function CmsHeadlessDevelopmentHomeClient() {
@@ -212,7 +218,14 @@ export default function CmsHeadlessDevelopmentHomeClient() {
             cards={CMS_DEV_HOME_UNLOCKING.cards}
           />
         </LazyWhenVisible>
-        <LazyWhenVisible minHeight="50vh" rootMargin="120px 0px">
+                <LazyWhenVisible minHeight="70vh">
+          <ServiceFAQSection
+            faqs={CMS_DEV_HOME_FAQS}
+            intro={CMS_DEV_HOME_FAQ_INTRO}
+            heading={CMS_DEV_HOME_FAQ_HEADING}
+          />
+        </LazyWhenVisible>
+<LazyWhenVisible minHeight="50vh" rootMargin="120px 0px">
           <FooterSection />
         </LazyWhenVisible>
       </main>

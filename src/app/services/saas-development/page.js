@@ -2,10 +2,11 @@ import { buildPageMetadata } from "../../../../lib/siteMetadata";
 import JsonLd from "../../../../components/seo/JsonLd";
 import {
   breadcrumbJsonLd,
+  faqPageJsonLd,
   serviceJsonLd,
   webPageJsonLd,
 } from "../../../../lib/jsonLd";
-import { SAAS_DEV_HOME } from "../../../../lib/services/saasDevelopmentHome";
+import { SAAS_DEV_HOME, SAAS_DEV_HOME_FAQS } from "../../../../lib/services/saasDevelopmentHome";
 import SaasDevelopmentHomeClient from "./SaasDevelopmentHomeClient";
 
 export const metadata = buildPageMetadata({
@@ -35,6 +36,7 @@ export default function SaasDevelopmentHomePage() {
             url: SAAS_DEV_HOME.path,
             serviceType: "SaaS development",
           }),
+          faqPageJsonLd(SAAS_DEV_HOME_FAQS),
         ].filter(Boolean)}
       />
       <SaasDevelopmentHomeClient />

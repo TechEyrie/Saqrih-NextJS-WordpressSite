@@ -1,6 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import {
+  useEffect,
+  useState } from 'react'
 import dynamic from 'next/dynamic'
 
 import HeroSection from '../../../../components/icomat1/HeroSection'
@@ -19,6 +21,9 @@ import {
   WSM_HOME_TECH_CAPABILITIES,
   WSM_HOME_TECH_MARQUEE,
   WSM_HOME_TECH_COPY,
+  WSM_DEV_HOME_FAQS,
+  WSM_DEV_HOME_FAQ_INTRO,
+  WSM_DEV_HOME_FAQ_HEADING,
 } from '../../../../lib/services/websiteSupportMaintenanceHome'
 
 const RTSSection = dynamic(() => import('../../../../components/icomat1/RTSSection'), { ssr: false })
@@ -29,6 +34,7 @@ const OurAdvantageSection = dynamic(() => import('../../../../components/icomat1
 const EndToEndSection = dynamic(() => import('../../../../components/icomat1/EndToEndSection'), { ssr: false })
 const CustomersSection = dynamic(() => import('../../../../components/icomat1/CustomerSection'), { ssr: false })
 const UnlockingSection = dynamic(() => import('../../../../components/icomat1/UnlockingSection'), { ssr: false })
+const ServiceFAQSection = dynamic(() => import('../../../../components/services/ServiceFAQSection'), { ssr: false })
 const FooterSection = dynamic(() => import('../../../../components/icomat1/FooterSection'), { ssr: false })
 
 export default function WebsiteSupportMaintenanceHomeClient() {
@@ -212,7 +218,14 @@ export default function WebsiteSupportMaintenanceHomeClient() {
             cards={WSM_DEV_HOME_UNLOCKING.cards}
           />
         </LazyWhenVisible>
-        <LazyWhenVisible minHeight="50vh" rootMargin="120px 0px">
+                <LazyWhenVisible minHeight="70vh">
+          <ServiceFAQSection
+            faqs={WSM_DEV_HOME_FAQS}
+            intro={WSM_DEV_HOME_FAQ_INTRO}
+            heading={WSM_DEV_HOME_FAQ_HEADING}
+          />
+        </LazyWhenVisible>
+<LazyWhenVisible minHeight="50vh" rootMargin="120px 0px">
           <FooterSection />
         </LazyWhenVisible>
       </main>

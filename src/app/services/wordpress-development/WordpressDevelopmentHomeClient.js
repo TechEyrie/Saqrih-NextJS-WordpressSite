@@ -1,6 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import {
+  useEffect,
+  useState } from 'react'
 import dynamic from 'next/dynamic'
 
 import HeroSection from '../../../../components/icomat1/HeroSection'
@@ -14,6 +16,9 @@ import {
   WORDPRESS_DEV_HOME_OPERATE,
   WORDPRESS_DEV_HOME_ADVANTAGE,
   WORDPRESS_DEV_HOME_UNLOCKING,
+  WORDPRESS_DEV_HOME_FAQS,
+  WORDPRESS_DEV_HOME_FAQ_INTRO,
+  WORDPRESS_DEV_HOME_FAQ_HEADING,
 } from '../../../../lib/services/wordpressDevelopmentHome'
 import {
   WP_HOME_TECH_CATEGORIES,
@@ -31,6 +36,7 @@ const OurAdvantageSection = dynamic(() => import('../../../../components/icomat1
 const EndToEndSection = dynamic(() => import('../../../../components/icomat1/EndToEndSection'), { ssr: false })
 const CustomersSection = dynamic(() => import('../../../../components/icomat1/CustomerSection'), { ssr: false })
 const UnlockingSection = dynamic(() => import('../../../../components/icomat1/UnlockingSection'), { ssr: false })
+const ServiceFAQSection = dynamic(() => import('../../../../components/services/ServiceFAQSection'), { ssr: false })
 const FooterSection = dynamic(() => import('../../../../components/icomat1/FooterSection'), { ssr: false })
 
 export default function WordpressDevelopmentHomeClient() {
@@ -214,7 +220,14 @@ export default function WordpressDevelopmentHomeClient() {
             cards={WORDPRESS_DEV_HOME_UNLOCKING.cards}
           />
         </LazyWhenVisible>
-        <LazyWhenVisible minHeight="50vh" rootMargin="120px 0px">
+                <LazyWhenVisible minHeight="70vh">
+          <ServiceFAQSection
+            faqs={WORDPRESS_DEV_HOME_FAQS}
+            intro={WORDPRESS_DEV_HOME_FAQ_INTRO}
+            heading={WORDPRESS_DEV_HOME_FAQ_HEADING}
+          />
+        </LazyWhenVisible>
+<LazyWhenVisible minHeight="50vh" rootMargin="120px 0px">
           <FooterSection />
         </LazyWhenVisible>
       </main>

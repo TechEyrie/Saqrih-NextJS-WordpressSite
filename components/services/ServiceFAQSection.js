@@ -150,6 +150,7 @@ function FAQItem({ faq, index, isOpen, onToggle }) {
 export default function ServiceFAQSection({
   faqs = WEBSITE_DEVELOPMENT_FAQS,
   intro = "We believe in transparent communication. Here are the detailed answers to the most common questions about our web design services in Qatar.",
+  heading = "Frequently Asked Questions",
 }) {
   const FAQS = faqs.map((faq, index) => ({
     id: index + 1,
@@ -193,7 +194,7 @@ export default function ServiceFAQSection({
         <div ref={leftRef} className="lg:sticky lg:top-28 lg:self-start">
           <p style={eyebrowStyle(false)}>Transparency</p>
           <h2 style={{ ...h2Style(false), marginBottom: 16 }}>
-            Frequently Asked Questions{" "}
+            {heading}{" "}
             <span style={{ color: "rgba(22,45,36,0.4)", fontWeight: 500 }}>(FAQ)</span>
           </h2>
           <p style={{ ...bodyStyle(false), marginBottom: 28 }}>{intro}</p>

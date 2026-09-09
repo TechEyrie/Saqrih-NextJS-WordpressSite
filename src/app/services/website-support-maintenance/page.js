@@ -2,10 +2,11 @@ import { buildPageMetadata } from "../../../../lib/siteMetadata";
 import JsonLd from "../../../../components/seo/JsonLd";
 import {
   breadcrumbJsonLd,
+  faqPageJsonLd,
   serviceJsonLd,
   webPageJsonLd,
 } from "../../../../lib/jsonLd";
-import { WSM_DEV_HOME } from "../../../../lib/services/websiteSupportMaintenanceHome";
+import { WSM_DEV_HOME, WSM_DEV_HOME_FAQS } from "../../../../lib/services/websiteSupportMaintenanceHome";
 import WebsiteSupportMaintenanceHomeClient from "./WebsiteSupportMaintenanceHomeClient";
 
 export const metadata = buildPageMetadata({
@@ -35,6 +36,7 @@ export default function WebsiteSupportMaintenanceHomePage() {
             url: WSM_DEV_HOME.path,
             serviceType: "Website support and maintenance",
           }),
+          faqPageJsonLd(WSM_DEV_HOME_FAQS),
         ].filter(Boolean)}
       />
       <WebsiteSupportMaintenanceHomeClient />

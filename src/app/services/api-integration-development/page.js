@@ -2,10 +2,11 @@ import { buildPageMetadata } from "../../../../lib/siteMetadata";
 import JsonLd from "../../../../components/seo/JsonLd";
 import {
   breadcrumbJsonLd,
+  faqPageJsonLd,
   serviceJsonLd,
   webPageJsonLd,
 } from "../../../../lib/jsonLd";
-import { API_DEV_HOME } from "../../../../lib/services/apiIntegrationDevelopmentHome";
+import { API_DEV_HOME, API_DEV_HOME_FAQS } from "../../../../lib/services/apiIntegrationDevelopmentHome";
 import ApiIntegrationDevelopmentHomeClient from "./ApiIntegrationDevelopmentHomeClient";
 
 export const metadata = buildPageMetadata({
@@ -35,6 +36,7 @@ export default function ApiIntegrationDevelopmentHomePage() {
             url: API_DEV_HOME.path,
             serviceType: "API and integration development",
           }),
+          faqPageJsonLd(API_DEV_HOME_FAQS),
         ].filter(Boolean)}
       />
       <ApiIntegrationDevelopmentHomeClient />

@@ -2,10 +2,11 @@ import { buildPageMetadata } from "../../../../lib/siteMetadata";
 import JsonLd from "../../../../components/seo/JsonLd";
 import {
   breadcrumbJsonLd,
+  faqPageJsonLd,
   serviceJsonLd,
   webPageJsonLd,
 } from "../../../../lib/jsonLd";
-import { WORDPRESS_DEV_HOME } from "../../../../lib/services/wordpressDevelopmentHome";
+import { WORDPRESS_DEV_HOME, WORDPRESS_DEV_HOME_FAQS } from "../../../../lib/services/wordpressDevelopmentHome";
 import WordpressDevelopmentHomeClient from "./WordpressDevelopmentHomeClient";
 
 export const metadata = buildPageMetadata({
@@ -35,6 +36,7 @@ export default function WordpressDevelopmentHomePage() {
             url: WORDPRESS_DEV_HOME.path,
             serviceType: "WordPress development",
           }),
+          faqPageJsonLd(WORDPRESS_DEV_HOME_FAQS),
         ].filter(Boolean)}
       />
       <WordpressDevelopmentHomeClient />

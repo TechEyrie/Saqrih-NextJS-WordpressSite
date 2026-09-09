@@ -1,6 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import {
+  useEffect,
+  useState } from 'react'
 import dynamic from 'next/dynamic'
 
 import HeroSection from '../../../../components/icomat1/HeroSection'
@@ -19,6 +21,9 @@ import {
   ECOM_TECH_CAPABILITIES,
   ECOM_TECH_MARQUEE,
   ECOM_TECH_COPY,
+  ECOM_DEV_HOME_FAQS,
+  ECOM_DEV_HOME_FAQ_INTRO,
+  ECOM_DEV_HOME_FAQ_HEADING,
 } from '../../../../lib/services/ecommerceDevelopmentHome'
 
 const RTSSection = dynamic(() => import('../../../../components/icomat1/RTSSection'), { ssr: false })
@@ -29,6 +34,7 @@ const OurAdvantageSection = dynamic(() => import('../../../../components/icomat1
 const EndToEndSection = dynamic(() => import('../../../../components/icomat1/EndToEndSection'), { ssr: false })
 const CustomersSection = dynamic(() => import('../../../../components/icomat1/CustomerSection'), { ssr: false })
 const UnlockingSection = dynamic(() => import('../../../../components/icomat1/UnlockingSection'), { ssr: false })
+const ServiceFAQSection = dynamic(() => import('../../../../components/services/ServiceFAQSection'), { ssr: false })
 const FooterSection = dynamic(() => import('../../../../components/icomat1/FooterSection'), { ssr: false })
 
 export default function EcommerceDevelopmentHomeClient() {
@@ -212,7 +218,14 @@ export default function EcommerceDevelopmentHomeClient() {
             cards={ECOM_DEV_HOME_UNLOCKING.cards}
           />
         </LazyWhenVisible>
-        <LazyWhenVisible minHeight="50vh" rootMargin="120px 0px">
+                <LazyWhenVisible minHeight="70vh">
+          <ServiceFAQSection
+            faqs={ECOM_DEV_HOME_FAQS}
+            intro={ECOM_DEV_HOME_FAQ_INTRO}
+            heading={ECOM_DEV_HOME_FAQ_HEADING}
+          />
+        </LazyWhenVisible>
+<LazyWhenVisible minHeight="50vh" rootMargin="120px 0px">
           <FooterSection />
         </LazyWhenVisible>
       </main>
