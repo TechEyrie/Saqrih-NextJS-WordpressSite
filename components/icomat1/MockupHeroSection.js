@@ -13,44 +13,53 @@ function SwooshGraphic() {
   return (
     <svg
       className="mockup-hero-swoosh"
-      viewBox="0 0 720 620"
+      viewBox="0 0 800 700"
       fill="none"
       aria-hidden="true"
-      preserveAspectRatio="xMidYMid slice"
+      preserveAspectRatio="xMaxYMid slice"
     >
+      {/* Bottom-right ribbon */}
       <path
-        d="M220 560C300 420 420 360 540 320C620 290 680 220 720 120V620H160C170 590 190 575 220 560Z"
+        d="M260 640C360 480 500 400 640 350C720 320 770 240 800 140V700H200C210 670 230 655 260 640Z"
         fill="url(#swooshFill)"
         opacity="0.95"
       />
       <path
-        d="M140 580C260 430 390 360 520 310C620 270 680 190 720 90"
+        d="M180 660C320 490 470 400 620 340C720 290 770 200 800 110"
         stroke="url(#swooshStroke1)"
-        strokeWidth="72"
+        strokeWidth="78"
         strokeLinecap="round"
         opacity="0.92"
       />
       <path
-        d="M90 600C230 440 370 360 510 300C610 250 670 170 710 80"
+        d="M120 680C280 500 450 400 610 330C710 270 760 180 795 100"
         stroke="url(#swooshStroke2)"
-        strokeWidth="38"
+        strokeWidth="40"
         strokeLinecap="round"
         opacity="0.88"
       />
+      {/* Top-right accent curl */}
       <path
-        d="M60 610C210 450 360 365 500 295C600 240 655 160 700 75"
+        d="M520 20C600 40 680 90 760 170C780 195 795 230 800 270"
         stroke="url(#swooshStroke3)"
-        strokeWidth="18"
+        strokeWidth="56"
         strokeLinecap="round"
-        opacity="0.8"
+        opacity="0.9"
+      />
+      <path
+        d="M560 8C640 35 710 90 775 165"
+        stroke="url(#swooshStroke2)"
+        strokeWidth="24"
+        strokeLinecap="round"
+        opacity="0.75"
       />
       <defs>
         <linearGradient
           id="swooshFill"
-          x1="160"
-          y1="620"
-          x2="720"
-          y2="100"
+          x1="200"
+          y1="700"
+          x2="800"
+          y2="120"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#ff6b2c" />
@@ -61,10 +70,10 @@ function SwooshGraphic() {
         </linearGradient>
         <linearGradient
           id="swooshStroke1"
-          x1="140"
-          y1="580"
-          x2="720"
-          y2="90"
+          x1="180"
+          y1="660"
+          x2="800"
+          y2="110"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#ff4d1a" />
@@ -75,10 +84,10 @@ function SwooshGraphic() {
         </linearGradient>
         <linearGradient
           id="swooshStroke2"
-          x1="90"
-          y1="600"
-          x2="710"
-          y2="80"
+          x1="120"
+          y1="680"
+          x2="795"
+          y2="100"
           gradientUnits="userSpaceOnUse"
         >
           <stop stopColor="#ff7a2e" />
@@ -88,15 +97,15 @@ function SwooshGraphic() {
         </linearGradient>
         <linearGradient
           id="swooshStroke3"
-          x1="60"
-          y1="610"
-          x2="700"
-          y2="75"
+          x1="520"
+          y1="20"
+          x2="800"
+          y2="270"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#ffd36b" />
-          <stop offset="0.45" stopColor="#c8f04a" />
-          <stop offset="1" stopColor="#56c4f0" />
+          <stop stopColor="#c8f04a" />
+          <stop offset="0.45" stopColor="#56c4f0" />
+          <stop offset="1" stopColor="#6b7cff" />
         </linearGradient>
       </defs>
     </svg>
@@ -148,7 +157,6 @@ export default function MockupHeroSection({ onQuoteClick }) {
   const firstPaintRef = useRef(true);
 
   const slides = HOME2_HERO_SLIDES;
-  const active = slides[activeIndex];
 
   const animateTo = useCallback((nextIndex) => {
     const root = rootRef.current;
@@ -294,32 +302,24 @@ export default function MockupHeroSection({ onQuoteClick }) {
     >
       <div className="mockup-hero-inner">
         <div className="mockup-hero-copy">
-          <p className="mockup-hero-eyebrow">Saqrih · Doha, Qatar</p>
           <h1 className="mockup-hero-title">
-            Impressive Digital Products,{" "}
+            Impressive Digital Products,
+            <br />
             <span className="mockup-hero-accent">Built to Scale.</span>
           </h1>
           <p className="mockup-hero-sub">
-            From high-performance websites and e-commerce to custom web apps,
-            SaaS, and mobile — strategy, design, and engineering for ambitious
-            businesses.
+            Strategy, design &amp; engineering for ambitious businesses
           </p>
           <div className="mockup-hero-actions">
             <button
               type="button"
-              className="mockup-hero-cta"
+              className="mockup-hero-link"
               onClick={onQuoteClick}
             >
               Get a Quote
             </button>
             <Link href="/work" className="mockup-hero-link">
               View our work
-            </Link>
-            <Link
-              href={active.href}
-              className="mockup-hero-link mockup-hero-link--muted"
-            >
-              {active.label} case study
             </Link>
           </div>
         </div>
@@ -337,16 +337,16 @@ export default function MockupHeroSection({ onQuoteClick }) {
                     kind="desktop"
                   />
                 </div>
-              </div>
 
-              <div className="mockup-hero-phone">
-                <div className="mockup-hero-phone-bezel">
-                  <div className="mockup-hero-phone-notch" aria-hidden="true" />
-                  <DeviceScreen
-                    slides={slides}
-                    activeIndex={activeIndex}
-                    kind="mobile"
-                  />
+                {/* Phone overlaps desktop left edge, vertically centered */}
+                <div className="mockup-hero-phone">
+                  <div className="mockup-hero-phone-bezel">
+                    <DeviceScreen
+                      slides={slides}
+                      activeIndex={activeIndex}
+                      kind="mobile"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -406,13 +406,7 @@ export default function MockupHeroSection({ onQuoteClick }) {
           height: 100vh;
           height: 100dvh;
           max-height: 100dvh;
-          background:
-            radial-gradient(
-              ellipse 80% 60% at 85% 35%,
-              rgba(200, 240, 74, 0.12) 0%,
-              transparent 55%
-            ),
-            linear-gradient(165deg, #ffffff 0%, #f4f7f2 48%, #eef3ea 100%);
+          background: #ffffff;
           overflow: hidden;
           display: flex;
           align-items: stretch;
@@ -423,140 +417,105 @@ export default function MockupHeroSection({ onQuoteClick }) {
           max-width: none;
           margin: 0;
           display: grid;
-          grid-template-columns: minmax(260px, 36vw) minmax(0, 1fr);
-          gap: 0;
+          /* Breathing room | compact text docked to visuals | big visuals */
+          grid-template-columns: minmax(4vw, 0.45fr) minmax(260px, 28rem) minmax(0, 1.85fr);
+          gap: clamp(0.5rem, 1.25vw, 1.25rem);
           align-items: center;
           height: 100%;
           min-height: 0;
-          padding: clamp(4.75rem, 8vh, 6rem) 0 clamp(0.75rem, 2vh, 1.25rem);
+          padding: clamp(5rem, 9vh, 6.5rem) 0 clamp(1rem, 2.5vh, 1.75rem) 0;
           box-sizing: border-box;
         }
 
         .mockup-hero-copy {
           position: relative;
           z-index: 2;
-          max-width: 34rem;
-          padding-left: clamp(1.25rem, 4vw, 3.5rem);
-          padding-right: clamp(1rem, 2vw, 1.75rem);
+          grid-column: 2;
+          max-width: 28rem;
+          width: 100%;
+          justify-self: end;
+          padding-left: 0;
+          padding-right: clamp(0.25rem, 1vw, 0.75rem);
+          box-sizing: border-box;
         }
 
-        .mockup-hero-eyebrow {
-          margin: 0 0 0.85rem;
-          font-size: 0.72rem;
-          font-weight: 600;
-          letter-spacing: 0.14em;
-          text-transform: uppercase;
-          color: rgba(22, 45, 36, 0.55);
-          font-family: var(--font-inter), Inter, Arial, sans-serif;
+        .mockup-hero-visual {
+          position: relative;
+          grid-column: 3;
+          align-self: stretch;
+          height: 100%;
+          min-height: 0;
+          width: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          overflow: hidden;
+          padding-right: 0;
+          padding-left: clamp(1.75rem, 4vw, 3rem);
+          box-sizing: border-box;
         }
 
         .mockup-hero-title {
           margin: 0;
-          font-size: clamp(2.15rem, 4.2vw, 3.55rem);
-          line-height: 1.05;
-          letter-spacing: -0.03em;
+          font-size: clamp(2.45rem, 4.6vw, 3.85rem);
+          line-height: 1.02;
+          letter-spacing: -0.035em;
           font-weight: 700;
           color: #162d24;
           font-family: var(--font-inter), Inter, Arial, sans-serif;
         }
 
         .mockup-hero-accent {
-          background: linear-gradient(
-            120deg,
-            #5f8a12 0%,
-            #8fb82a 45%,
-            #c8f04a 100%
-          );
-          -webkit-background-clip: text;
-          background-clip: text;
-          color: transparent;
-        }
-
-        @supports not (-webkit-background-clip: text) {
-          .mockup-hero-accent {
-            color: #6b9218;
-          }
+          color: #6b9a18;
         }
 
         .mockup-hero-sub {
-          margin: 1.15rem 0 0;
-          font-size: clamp(0.95rem, 1.35vw, 1.1rem);
-          line-height: 1.55;
-          color: rgba(22, 45, 36, 0.72);
-          max-width: 32rem;
+          margin: 1rem 0 0;
+          font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+          line-height: 1.45;
+          font-style: italic;
+          font-weight: 600;
+          color: #162d24;
+          max-width: 36rem;
           font-family: var(--font-inter), Inter, Arial, sans-serif;
         }
 
         .mockup-hero-actions {
-          margin-top: 1.75rem;
+          margin-top: 1.5rem;
           display: flex;
-          flex-wrap: wrap;
-          align-items: center;
-          gap: 0.85rem 1.25rem;
-        }
-
-        .mockup-hero-cta {
-          appearance: none;
-          border: none;
-          cursor: pointer;
-          padding: 0.9rem 1.65rem;
-          border-radius: 12px;
-          background: #162d24;
-          color: #ffffff;
-          font-size: 0.84rem;
-          font-weight: 650;
-          letter-spacing: 0.06em;
-          text-transform: uppercase;
-          font-family: var(--font-inter), Inter, Arial, sans-serif;
-          box-shadow: 0 10px 28px rgba(22, 45, 36, 0.22);
-          transition: transform 0.25s ease, background 0.25s ease;
-        }
-
-        .mockup-hero-cta:hover {
-          background: #1b3a2e;
-          transform: translateY(-1px);
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0.55rem;
         }
 
         .mockup-hero-link {
-          color: #162d24;
-          font-size: 0.95rem;
+          appearance: none;
+          border: none;
+          background: none;
+          padding: 0;
+          cursor: pointer;
+          color: #5f8f1a;
+          font-size: 1.05rem;
           font-weight: 600;
           text-decoration: underline;
           text-decoration-color: #c8f04a;
-          text-underline-offset: 0.28em;
+          text-underline-offset: 0.3em;
           text-decoration-thickness: 2px;
           font-family: var(--font-inter), Inter, Arial, sans-serif;
           transition: color 0.2s ease;
+          line-height: 1.35;
         }
 
         .mockup-hero-link:hover {
-          color: #0f1f18;
-        }
-
-        .mockup-hero-link--muted {
-          color: rgba(22, 45, 36, 0.55);
-          text-decoration-color: rgba(200, 240, 74, 0.55);
-          font-weight: 500;
-          font-size: 0.88rem;
-        }
-
-        .mockup-hero-visual {
-          position: relative;
-          align-self: stretch;
-          height: 100%;
-          min-height: 0;
-          display: flex;
-          align-items: center;
-          justify-content: flex-end;
-          overflow: hidden;
+          color: #162d24;
         }
 
         :global(.mockup-hero-swoosh) {
           position: absolute;
-          right: -6%;
-          bottom: -8%;
-          width: 118%;
-          height: 108%;
+          right: -8%;
+          top: -4%;
+          width: 115%;
+          height: 112%;
           pointer-events: none;
           z-index: 0;
         }
@@ -569,79 +528,66 @@ export default function MockupHeroSection({ onQuoteClick }) {
           display: flex;
           align-items: center;
           justify-content: flex-end;
-          padding: 0 0 0 clamp(1.5rem, 3vw, 2.5rem);
+          padding: 0;
           box-sizing: border-box;
           container-type: size;
         }
 
-        /* Desktop + phone as one composition, like the reference */
         .mockup-hero-cluster {
           position: relative;
-          /* Room for phone overhang on the left of a ~16:9.5 laptop shot */
-          width: min(92%, calc(100cqh * 1.58));
-          max-width: 100%;
-          height: min(100%, 78cqh);
+          width: 100%;
+          max-width: none;
+          height: min(100%, 84cqh);
           max-height: 100%;
-          aspect-ratio: 1.72 / 1;
-          margin-left: auto;
-          margin-right: clamp(0.5rem, 1.5vw, 1.25rem);
+          aspect-ratio: auto;
+          margin-left: 0;
+          margin-right: 0;
         }
 
         .mockup-hero-desktop {
           position: absolute;
           right: 0;
-          top: 6%;
-          width: 86%;
-          /* Match laptop.png ~753x450 so landscape shows in full */
+          top: 50%;
+          transform: translateY(-50%);
+          width: 92%;
           aspect-ratio: 753 / 450;
           height: auto;
-          max-height: 86%;
+          max-height: 88%;
           z-index: 1;
-          filter: drop-shadow(0 22px 40px rgba(20, 24, 40, 0.22));
+          filter: drop-shadow(0 20px 36px rgba(20, 24, 40, 0.18));
         }
 
         .mockup-hero-desktop-bezel {
           position: relative;
           width: 100%;
           height: 100%;
-          border-radius: 10px;
+          border-radius: 18px;
           overflow: hidden;
           background: #ffffff;
-          border: 5px solid #ffffff;
-          box-shadow: 0 18px 40px rgba(15, 20, 30, 0.16);
+          border: 6px solid #ffffff;
+          box-shadow: 0 14px 36px rgba(15, 20, 30, 0.14);
         }
 
+        /* Vertically centered; hangs over desktop left — padding keeps it visible */
         .mockup-hero-phone {
           position: absolute;
-          left: 0;
-          bottom: 2%;
+          left: -11%;
+          top: 50%;
+          transform: translateY(-50%);
           width: 26%;
-          max-width: 180px;
+          max-width: 172px;
           z-index: 3;
-          filter: drop-shadow(0 16px 28px rgba(15, 20, 30, 0.22));
+          filter: drop-shadow(0 14px 26px rgba(15, 20, 30, 0.2));
         }
 
         .mockup-hero-phone-bezel {
           position: relative;
           width: 100%;
-          border-radius: 18px;
+          border-radius: 22px;
           overflow: hidden;
           background: #ffffff;
-          border: 5px solid #ffffff;
-          box-shadow: none;
+          border: 6px solid #ffffff;
           aspect-ratio: 9 / 18.8;
-        }
-
-        .mockup-hero-phone-notch {
-          position: absolute;
-          top: 7px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 36%;
-          height: 8px;
-          border-radius: 999px;
-          background: #111;
-          z-index: 4;
         }
 
         :global(.mockup-hero-screen) {
@@ -657,11 +603,6 @@ export default function MockupHeroSection({ onQuoteClick }) {
           opacity: 0;
         }
 
-        :global(.mockup-hero-slide-img) {
-          object-position: top center;
-        }
-
-        /* Fill the frame fully — no letterbox / tinted gaps */
         :global(.mockup-hero-slide-img--desktop) {
           object-fit: cover;
           object-position: center top;
@@ -674,27 +615,25 @@ export default function MockupHeroSection({ onQuoteClick }) {
 
         .mockup-hero-pause {
           position: absolute;
-          left: clamp(1.5rem, 3vw, 2.5rem);
-          bottom: 0.85rem;
-          width: 30px;
-          height: 30px;
+          left: 6%;
+          bottom: 8%;
+          width: 28px;
+          height: 28px;
           border-radius: 999px;
-          border: 1px solid rgba(22, 45, 36, 0.14);
-          background: rgba(255, 255, 255, 0.72);
-          color: rgba(22, 45, 36, 0.7);
+          border: 1px solid rgba(22, 45, 36, 0.12);
+          background: rgba(255, 255, 255, 0.85);
+          color: rgba(22, 45, 36, 0.65);
           display: inline-flex;
           align-items: center;
           justify-content: center;
           cursor: pointer;
-          backdrop-filter: blur(8px);
           z-index: 5;
-          transition: background 0.2s ease, border-color 0.2s ease, opacity 0.2s ease;
-          opacity: 0.75;
+          transition: opacity 0.2s ease, background 0.2s ease;
+          opacity: 0.7;
         }
 
         .mockup-hero-pause:hover {
           background: #ffffff;
-          border-color: rgba(22, 45, 36, 0.3);
           opacity: 1;
         }
 
@@ -704,48 +643,55 @@ export default function MockupHeroSection({ onQuoteClick }) {
             max-height: none;
             min-height: 100vh;
             min-height: 100dvh;
-            overflow: hidden;
           }
 
           .mockup-hero-inner {
             grid-template-columns: 1fr;
             height: auto;
+            max-width: none;
             padding: 5.25rem clamp(1.25rem, 4vw, 2rem) 2.25rem;
             gap: 1.5rem;
           }
 
           .mockup-hero-copy {
+            grid-column: 1;
+            justify-self: start;
             max-width: 40rem;
             padding-left: 0;
             padding-right: 0;
           }
 
           .mockup-hero-visual {
+            grid-column: 1;
             height: auto;
             min-height: 340px;
             max-height: 56vh;
             justify-content: center;
-          }
-
-          .mockup-hero-stage {
-            padding: 0 0.5rem 2.25rem;
-            justify-content: center;
-            height: 100%;
-            max-height: 56vh;
-            container-type: size;
+            padding-left: 0.5rem;
           }
 
           .mockup-hero-cluster {
             width: min(100%, 640px);
             height: auto;
             max-height: 100%;
-            aspect-ratio: 1.65 / 1;
+            aspect-ratio: 1.6 / 1;
             margin: 0 auto;
           }
 
+          .mockup-hero-desktop {
+            width: 84%;
+          }
+
           .mockup-hero-phone {
+            left: -8%;
             width: 28%;
-            max-width: 150px;
+            max-width: 140px;
+          }
+
+          .mockup-hero-phone {
+            width: 30%;
+            max-width: 140px;
+            left: -8%;
           }
 
           .mockup-hero-pause {
@@ -754,19 +700,12 @@ export default function MockupHeroSection({ onQuoteClick }) {
           }
 
           :global(.mockup-hero-swoosh) {
-            right: -14%;
-            bottom: -10%;
-            width: 125%;
-            opacity: 0.95;
+            right: -16%;
+            width: 128%;
           }
         }
 
         @media (max-width: 640px) {
-          .mockup-hero-actions {
-            flex-direction: column;
-            align-items: flex-start;
-          }
-
           .mockup-hero-visual,
           .mockup-hero-stage {
             max-height: 46vh;
@@ -774,13 +713,17 @@ export default function MockupHeroSection({ onQuoteClick }) {
           }
 
           .mockup-hero-phone {
-            width: 30%;
-            max-width: 120px;
+            width: 32%;
+            max-width: 118px;
+          }
+
+          .mockup-hero-title {
+            font-size: clamp(2rem, 8vw, 2.5rem);
           }
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .mockup-hero-cta {
+          .mockup-hero-link {
             transition: none;
           }
         }
