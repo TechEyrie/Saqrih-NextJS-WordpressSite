@@ -7,6 +7,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import Header from '../../../components/icomat1/Header'
 import FooterSection from '../../../components/icomat1/FooterSection'
+import MapSection from '../../../components/icomat1/MapSection'
 import ContactHeroSection from '../../../components/icomat1-contact/ContactHeroSection'
 import ContactSection from '../../../components/icomat1-contact/ContactSection'
 
@@ -88,6 +89,11 @@ export default function ContactPageClient() {
       <main id="main-content" className="homepage-font-scope">
         <ContactHeroSection />
         <ContactSection />
+        <MapSection
+          eyebrow="Our location"
+          title="Come see us in Qatar"
+          description="Prefer to meet in person? Find Saqrih on the map and get directions in one click."
+        />
         <FooterSection animated={false} />
       </main>
     </div>

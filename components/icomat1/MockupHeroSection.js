@@ -406,7 +406,7 @@ export default function MockupHeroSection({ onQuoteClick }) {
           height: 100vh;
           height: 100dvh;
           max-height: 100dvh;
-          background: #ffffff;
+          background: #f5f5f5;
           overflow: hidden;
           display: flex;
           align-items: stretch;

@@ -24,6 +24,7 @@ const EndToEndSection = dynamic(() => import('../../../components/icomat1/EndToE
 const CustomersSection = dynamic(() => import('../../../components/icomat1/CustomerSection'), { ssr: false })
 const ServiceFAQSection = dynamic(() => import('../../../components/services/ServiceFAQSection'), { ssr: false })
 const UnlockingSection = dynamic(() => import('../../../components/icomat1/UnlockingSection'), { ssr: false })
+const MapSection = dynamic(() => import('../../../components/icomat1/MapSection'), { ssr: false })
 const FooterSection = dynamic(() => import('../../../components/icomat1/FooterSection'), { ssr: false })
 
 export default function IcomatPage() {
@@ -189,6 +190,9 @@ export default function IcomatPage() {
         </LazyWhenVisible>
         <LazyWhenVisible minHeight="70vh">
           <UnlockingSection />
+        </LazyWhenVisible>
+        <LazyWhenVisible minHeight="60vh" rootMargin="100px 0px">
+          <MapSection />
         </LazyWhenVisible>
         <LazyWhenVisible minHeight="50vh" rootMargin="120px 0px">
           <FooterSection />
