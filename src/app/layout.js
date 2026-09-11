@@ -74,6 +74,8 @@ export default function RootLayout({ children }) {
           body{margin:0;background:#e8e8e8}
           .icomat-hero-with-quote{background:#162d24;min-height:100vh}
           .skip-to-main{position:absolute;left:-9999px;z-index:100000}
+          .global-loading-content[data-loading="true"]{visibility:hidden;pointer-events:none;overflow:hidden}
+          .loading-screen-overlay{position:fixed;inset:0;z-index:9999}
         `,
           }}
         />

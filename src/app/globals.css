@@ -241,11 +241,12 @@ body[data-route-loading="true"] {
   background-color: #e8ebe9;
 }
 
-/* Keep page painted for LCP while route loader overlay is visible */
+/* Hide page under route loader — prevents FOUC of hero images on refresh */
 .global-loading-content[data-loading="true"] {
   pointer-events: none;
   user-select: none;
   overflow: hidden;
+  visibility: hidden;
 }
 
 /* Loading screen — true viewport center on mobile (iOS address bar / dvh) */

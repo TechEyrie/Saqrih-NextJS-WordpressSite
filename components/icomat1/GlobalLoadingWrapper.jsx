@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
-import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
 import LoadingScreen from "./LoadingScreen";
 import ScrollToTopButton from "./ScrollToTopButton";
@@ -19,7 +18,6 @@ export default function GlobalLoadingWrapper({ children }) {
   const [settledPath, setSettledPath] = useState(pathname);
   const [initialDone, setInitialDone] = useState(skipInitialLoader);
   const [loaderKey, setLoaderKey] = useState(0);
-  const [portalTarget, setPortalTarget] = useState(null);
   const wasLoadingRef = useRef(false);
   const prevPathnameRef = useRef(pathname);
 
@@ -45,10 +43,6 @@ export default function GlobalLoadingWrapper({ children }) {
       scheduleScrollReset();
     }
   }, [showLoader, pathname]);
-
-  useLayoutEffect(() => {
-    setPortalTarget(document.body);
-  }, []);
 
   useLayoutEffect(() => {
     if (showLoader && !wasLoadingRef.current) {
@@ -78,17 +72,16 @@ export default function GlobalLoadingWrapper({ children }) {
     setInitialDone(true);
   }, [pathname]);
 
-  const loader =
-    showLoader && portalTarget ? (
-      <LoadingScreen
-        key={`${pathname}-${loaderKey}`}
-        onComplete={handleLoaderComplete}
-      />
-    ) : null;
-
+  // Render overlay in-tree (not portaled) so SSR + first paint already cover
+  // the page — avoids a flash of hero images before the loader mounts.
   return (
     <>
-      {portalTarget && loader ? createPortal(loader, portalTarget) : loader}
+      {showLoader ? (
+        <LoadingScreen
+          key={`${pathname}-${loaderKey}`}
+          onComplete={handleLoaderComplete}
+        />
+      ) : null}
       <div
         className="global-loading-content"
         data-loading={showLoader ? "true" : "false"}
