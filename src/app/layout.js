@@ -60,10 +60,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <meta
-          name="trustpilot-one-time-domain-verification-id"
-          content="c7a695f3-838a-4a66-861d-52caab7e5a72"
-        />
         <link rel="https://api.w.org/" href="/wp-json/" />
         <link
           rel="alternate"
