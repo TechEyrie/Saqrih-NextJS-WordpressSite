@@ -528,7 +528,8 @@ export default function MockupHeroSection({ onQuoteClick }) {
           display: flex;
           align-items: center;
           justify-content: flex-end;
-          padding: 0;
+          /* Room for device chrome + phone overhang */
+          padding: 12px 12px 12px 18px;
           box-sizing: border-box;
           container-type: size;
         }
@@ -549,10 +550,9 @@ export default function MockupHeroSection({ onQuoteClick }) {
           right: 0;
           top: 50%;
           transform: translateY(-50%);
-          width: 92%;
-          aspect-ratio: 753 / 450;
+          width: 94%;
           height: auto;
-          max-height: 88%;
+          max-height: 90%;
           z-index: 1;
           filter: drop-shadow(0 20px 36px rgba(20, 24, 40, 0.18));
         }
@@ -560,22 +560,27 @@ export default function MockupHeroSection({ onQuoteClick }) {
         .mockup-hero-desktop-bezel {
           position: relative;
           width: 100%;
-          height: 100%;
-          border-radius: 18px;
+          height: auto;
+          max-height: 100%;
+          border-radius: 16px;
           overflow: hidden;
           background: #ffffff;
-          border: 6px solid #ffffff;
-          box-shadow: 0 14px 36px rgba(15, 20, 30, 0.14);
+          /* Inset white chrome — stays visible at flush-right edge */
+          padding: 8px;
+          box-sizing: border-box;
+          box-shadow:
+            0 0 0 1px rgba(15, 20, 30, 0.1),
+            0 14px 36px rgba(15, 20, 30, 0.14);
         }
 
         /* Vertically centered; hangs over desktop left — padding keeps it visible */
         .mockup-hero-phone {
           position: absolute;
-          left: -11%;
+          left: -10%;
           top: 50%;
           transform: translateY(-50%);
-          width: 26%;
-          max-width: 172px;
+          width: 24%;
+          max-width: 168px;
           z-index: 3;
           filter: drop-shadow(0 14px 26px rgba(15, 20, 30, 0.2));
         }
@@ -583,18 +588,34 @@ export default function MockupHeroSection({ onQuoteClick }) {
         .mockup-hero-phone-bezel {
           position: relative;
           width: 100%;
-          border-radius: 22px;
+          border-radius: 20px;
           overflow: hidden;
           background: #ffffff;
-          border: 6px solid #ffffff;
-          aspect-ratio: 9 / 18.8;
+          padding: 7px;
+          box-sizing: border-box;
+          box-shadow:
+            0 0 0 1px rgba(15, 20, 30, 0.1),
+            0 10px 24px rgba(15, 20, 30, 0.16);
         }
 
         :global(.mockup-hero-screen) {
-          position: absolute;
-          inset: 0;
+          position: relative;
+          width: 100%;
           overflow: hidden;
-          background: #ffffff;
+          background: #0f1419;
+          border-radius: 8px;
+        }
+
+        /* Exact screenshot ratios so object-fit:cover fills edge-to-edge */
+        :global(.mockup-hero-screen--desktop) {
+          aspect-ratio: 1350 / 633;
+          height: auto;
+        }
+
+        :global(.mockup-hero-screen--mobile) {
+          aspect-ratio: 304 / 540;
+          height: auto;
+          border-radius: 12px;
         }
 
         :global(.mockup-hero-slide) {
@@ -605,7 +626,7 @@ export default function MockupHeroSection({ onQuoteClick }) {
 
         :global(.mockup-hero-slide-img--desktop) {
           object-fit: cover;
-          object-position: center top;
+          object-position: center center;
         }
 
         :global(.mockup-hero-slide-img--mobile) {
