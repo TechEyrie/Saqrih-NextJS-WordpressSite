@@ -534,15 +534,6 @@ export default function FooterSection({ animated = true } = {}) {
             fontWeight: 500, letterSpacing: "0.04em", margin: 0,
           }}>
             ©2026 Saqrih. All rights reserved.
-            {" · "}
-            <a
-              href="https://startupfa.me"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ color: "rgba(255,255,255,0.4)", textDecoration: "underline" }}
-            >
-              Startup Fame
-            </a>
           </p>
         </div>
       </div>

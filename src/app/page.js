@@ -29,25 +29,6 @@ export default function Home() {
         ]}
       />
       <IcomatPage />
-      <p
-        style={{
-          margin: 0,
-          padding: "10px 16px 18px",
-          textAlign: "center",
-          background: "#162D24",
-          fontSize: "12px",
-          lineHeight: 1.4,
-        }}
-      >
-        <a
-          href="https://startupfa.me"
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{ color: "rgba(255,255,255,0.45)", textDecoration: "underline" }}
-        >
-          Startup Fame
-        </a>
-      </p>
     </>
   );
 }
