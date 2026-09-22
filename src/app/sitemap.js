@@ -74,6 +74,7 @@ import {
   getAllWsmDevSubPageSlugs,
   WSM_DEV_PARENT,
 } from "../../lib/services/websiteSupportMaintenanceSubPages";
+import { getAllQatarAliasPaths } from "../../lib/qatarAliasRoutes";
 
 /** Live case studies only (pages that call notFound() are excluded) */
 const CASE_STUDY_SLUGS = [
@@ -221,6 +222,10 @@ export default async function sitemap() {
 
   for (const slug of CASE_STUDY_SLUGS) {
     urls.push(entry(`/case-studies/${slug}`, "monthly", 0.7));
+  }
+
+  for (const path of getAllQatarAliasPaths()) {
+    urls.push(entry(path, "monthly", 0.85));
   }
 
   for (const slug of PORTFOLIO_SLUGS) {
