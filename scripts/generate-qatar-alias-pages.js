@@ -89,7 +89,7 @@ const page = getWebAppDevSubPage("software-development");
   },
 ];
 
-const SUFFIXES = ["qatar", "qaatar"];
+const SUFFIXES = ["qatar"];
 
 function fileFor(base, suffix, cfg) {
   const routePath = `/${base}-${suffix}`;
