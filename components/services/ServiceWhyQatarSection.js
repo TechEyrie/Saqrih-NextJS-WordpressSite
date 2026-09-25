@@ -247,7 +247,7 @@ export default function ServiceWhyQatarSection({
                     letterSpacing: "-0.04em",
                   }}
                 >
-                  15+
+                  6+
                 </div>
                 <div
                   style={{
@@ -296,7 +296,7 @@ export default function ServiceWhyQatarSection({
                     margin: 0,
                   }}
                 >
-                  For over 15 years, we have been delivering digital excellence
+                  For over 6 years, we have been delivering digital excellence
                   specifically tailored to the unique requirements of the Qatar
                   market.
                 </p>

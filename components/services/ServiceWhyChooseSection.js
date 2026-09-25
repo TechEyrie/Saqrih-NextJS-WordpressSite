@@ -31,7 +31,7 @@ const FEATURES = [
 ];
 
 const STATS = [
-  { value: 15, suffix: "+", label: "Years of Excellence" },
+  { value: 6, suffix: "+", label: "Years of Excellence" },
   { value: 2400, suffix: "+", label: "Satisfied Clients" },
 ];
 

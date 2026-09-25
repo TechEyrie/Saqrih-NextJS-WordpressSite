@@ -29,7 +29,7 @@ function lerpForestLime(t) {
 export default function ServiceIntroSection({
   imageSrc = saqrihPic(33),
   imageAlt = "Saqrih website development team at work",
-  badgeValue = "15+",
+  badgeValue = "6+",
   badgeLabel = "Years in Qatar",
   heading = "Website Development Company in Qatar—Transform Your Digital Presence",
   paragraphs = [

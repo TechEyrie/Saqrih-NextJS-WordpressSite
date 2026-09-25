@@ -126,7 +126,7 @@ const CATEGORIES = [
 const STATS = [
   { value: "35+", label: "Technologies in play" },
   { value: "7", label: "Core practice areas" },
-  { value: "15+", label: "Years shipping products" },
+  { value: "6+", label: "Years shipping products" },
 ];
 
 const CAPABILITIES = [
