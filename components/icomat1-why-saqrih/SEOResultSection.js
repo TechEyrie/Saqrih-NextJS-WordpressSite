@@ -233,7 +233,7 @@ export default function SEOResultsSection() {
             lineHeight: 1.75,
           }}
         >
-          We combine advanced optimization techniques with years of WordPress experience to deliver faster, smoother, and
+          We combine advanced optimization techniques with 6 years of WordPress experience to deliver faster, smoother, and
           more reliable website performance for your users.
         </p>
       </div>

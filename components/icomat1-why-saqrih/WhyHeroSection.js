@@ -13,7 +13,7 @@ export default function WhyHeroSection() {
         </h1>
 
         <p className="wp-service-hero-lead" style={{ maxWidth: "68ch" }}>
-          We&apos;ve spent years refining our WordPress website design and development process to
+          We&apos;ve spent 6 years refining our WordPress website design and development process to
           deliver high-quality digital experiences that consistently exceed client expectations.
         </p>
       </div>
