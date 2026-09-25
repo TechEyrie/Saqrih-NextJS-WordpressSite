@@ -275,7 +275,7 @@ export default function HeroSection({ onQuoteClick }) {
               className="text-[14px] sm:text-[15px] lg:text-[17px] leading-relaxed"
               style={{ color: "rgba(255,255,255,0.72)" }}
             >
-              We&apos;ve spent the last 15 years perfecting our website design and
+              We&apos;ve spent the last 6 years perfecting our website design and
               development process so that each project exceeds client
               expectations.
             </p>
