@@ -167,13 +167,13 @@ export default function EndToEndSection({
     <section
       ref={wrapperRef}
       data-header="dark"
-      className="w-full overflow-hidden pb-16 sm:pb-20 md:pb-24"
+      className="case-studies-e2e w-full overflow-hidden pb-16 sm:pb-20 md:pb-24"
       style={{
         minHeight: "100vh",
         backgroundColor: colors.sectionBg,
       }}
     >
-      <div className="flex items-center justify-center pt-16 sm:pt-20 md:pt-28 pb-10 sm:pb-12 md:pb-14 px-4 sm:px-6">
+      <div className="case-studies-e2e-heading flex items-center justify-center pt-16 sm:pt-20 md:pt-28 pb-10 sm:pb-12 md:pb-14 px-4 sm:px-6">
         <h2
           ref={headingRef}
           className="font-semibold text-center leading-[0.95] tracking-tight"
@@ -185,7 +185,7 @@ export default function EndToEndSection({
 
       <div
         ref={trackOuterRef}
-        className={`relative w-full overflow-visible px-4 sm:px-6 md:px-10 lg:px-20${pinScope === "track" ? " pb-16 sm:pb-20" : ""}`}
+        className={`case-studies-e2e-track relative w-full overflow-visible px-4 sm:px-6 md:px-10 lg:px-20${pinScope === "track" ? " pb-16 sm:pb-20" : ""}`}
       >
         <div
           ref={trackRef}
@@ -217,9 +217,8 @@ export default function EndToEndSection({
                 </div>
 
                 <div
-                  className="relative w-full overflow-hidden rounded-xl"
+                  className="case-studies-e2e-media relative w-full overflow-hidden rounded-xl"
                   style={{
-                    aspectRatio: "4 / 3",
                     backgroundColor: colors.cardBg,
                   }}
                 >

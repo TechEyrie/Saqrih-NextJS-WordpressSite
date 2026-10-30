@@ -1159,3 +1159,27 @@ body[data-route-loading="true"] {
   overflow: visible;
 }
 
+/* Case Studies: desktop default. Laptop scales same 4:3 layout to fit vh — no tiny-card look. */
+.case-studies-e2e-media {
+  aspect-ratio: 4 / 3;
+}
+
+/* ponytail: width gate only (keeps 1920+ untouched). Card width tracks available height so stack fills screen like desktop. */
+@media (min-width: 768px) and (max-width: 1440px) {
+  .case-studies-e2e-heading {
+    padding-top: clamp(1.25rem, 3vh, 2.5rem);
+    padding-bottom: clamp(0.5rem, 1.25vh, 1rem);
+  }
+
+  .case-studies-e2e .case-study-card {
+    /* same visual as desktop 620/4:3 — shrink only enough for heading + caption + CTA */
+    width: min(580px, 68vw, calc((100svh - 20rem) * 4 / 3));
+    max-width: min(580px, 68vw, calc((100svh - 20rem) * 4 / 3));
+  }
+
+  .case-studies-e2e-media {
+    aspect-ratio: 4 / 3;
+    width: 100%;
+    height: auto;
+  }
+}
