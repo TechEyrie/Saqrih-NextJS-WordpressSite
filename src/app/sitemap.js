@@ -89,6 +89,8 @@ const CASE_STUDY_SLUGS = [
   "amazed-home-care",
   "expedition-labs",
   "kala-holdings",
+  "v2",
+  "araq-and-kahraman-auctions",
 ];
 
 const PORTFOLIO_SLUGS = ["tiger", "acertus", "azelis-aes", "hrchitect"];

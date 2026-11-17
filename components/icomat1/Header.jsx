@@ -242,7 +242,7 @@ function BrandWordmark({ color = "#f8f8f8", gradient = "", opacity = 1, blendMod
 }
 
 const QUOTE_COMPANY = {
-  cr: "210615",
+  cr: "257569",
   vat: "5007190226",
   phone: "+974 5992 9039",
   phoneHref: "tel:+97459929039",

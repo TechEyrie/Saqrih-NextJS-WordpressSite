@@ -513,28 +513,54 @@ export default function FooterSection({ animated = true } = {}) {
           marginBottom: "28px",
         }} />
 
-        <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-          <div>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            alignItems: "flex-end",
+            justifyContent: "space-between",
+            gap: "20px",
+          }}
+        >
+          <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+            <div>
+              <p style={{
+                color: "rgba(255,255,255,0.9)",
+                fontSize: "clamp(1rem, 1.6vw, 1.35rem)",
+                fontWeight: 700, lineHeight: 1.25,
+                letterSpacing: "-0.01em", margin: 0,
+              }}>Your digital product</p>
+              <p style={{
+                color: "rgba(255,255,255,0.9)",
+                fontSize: "clamp(1rem, 1.6vw, 1.35rem)",
+                fontWeight: 700, lineHeight: 1.25,
+                letterSpacing: "-0.01em", margin: 0,
+              }}>partner in Qatar.</p>
+            </div>
             <p style={{
-              color: "rgba(255,255,255,0.9)",
-              fontSize: "clamp(1rem, 1.6vw, 1.35rem)",
-              fontWeight: 700, lineHeight: 1.25,
-              letterSpacing: "-0.01em", margin: 0,
-            }}>Your digital product</p>
-            <p style={{
-              color: "rgba(255,255,255,0.9)",
-              fontSize: "clamp(1rem, 1.6vw, 1.35rem)",
-              fontWeight: 700, lineHeight: 1.25,
-              letterSpacing: "-0.01em", margin: 0,
-            }}>partner in Qatar.</p>
+              color: "rgba(255,255,255,0.28)",
+              fontSize: "clamp(0.58rem, 0.65vw, 0.65rem)",
+              fontWeight: 500, letterSpacing: "0.04em", margin: 0,
+            }}>
+              ©2026 Saqrih. All rights reserved.
+            </p>
           </div>
-          <p style={{
-            color: "rgba(255,255,255,0.28)",
-            fontSize: "clamp(0.58rem, 0.65vw, 0.65rem)",
-            fontWeight: 500, letterSpacing: "0.04em", margin: 0,
-          }}>
-            ©2026 Saqrih. All rights reserved.
-          </p>
+          <a
+            href="https://www.scrolllaunch.com/products/saqrih?ref=badge"
+            target="_blank"
+            rel="noopener"
+            aria-label="Featured on ScrollLaunch"
+            style={{ display: "inline-block", lineHeight: 0, flexShrink: 0 }}
+          >
+            <img
+              src="https://www.scrolllaunch.com/api/badge/saqrih"
+              alt="Featured on ScrollLaunch"
+              width={220}
+              height={48}
+              loading="lazy"
+              style={{ display: "block", width: 220, height: 48, maxWidth: "100%" }}
+            />
+          </a>
         </div>
       </div>
 
