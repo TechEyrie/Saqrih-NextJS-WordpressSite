@@ -45,6 +45,11 @@ const nextConfig = {
         destination: "/services/website-design/:path*",
         permanent: true,
       },
+      {
+        source: "/services/web-application-development/ai-and-automation",
+        destination: "/services/ai-automation",
+        permanent: true,
+      },
       // Typo + odd service slugs → canonical
       {
         source: "/wordpress/maintainance",

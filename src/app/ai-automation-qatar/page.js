@@ -1,30 +1,27 @@
 import { buildPageMetadata } from "../../../lib/siteMetadata";
 import QatarAliasPage from "../../../components/services/QatarAliasPage";
-import { getWebAppDevSubPage } from "../../../lib/services/webApplicationDevelopmentSubPages";
-import WebAppDevSubServiceHomeClient from "../services/web-application-development/[slug]/WebAppDevSubServiceHomeClient";
-
-const page = getWebAppDevSubPage("ai-and-automation");
+import { AI_AUTOMATION_HOME, AI_AUTOMATION_HOME_FAQS } from "../../../lib/services/aiAutomationHome";
+import AiAutomationHomeClient from "../services/ai-automation/AiAutomationHomeClient";
 
 const PATH = "/ai-automation-qatar";
-const TITLE = `${page.title} in Qatar`;
+const TITLE = `${AI_AUTOMATION_HOME.title} in Qatar`;
 
 export const metadata = buildPageMetadata({
   title: TITLE,
-  description: page.description,
+  description: AI_AUTOMATION_HOME.description,
   path: PATH,
 });
 
 export default function Page() {
-  if (!page) return null;
   return (
     <QatarAliasPage
       path={PATH}
       title={TITLE}
-      description={page.description}
-      serviceType="AI and Automation"
-      faqs={page.faqs}
+      description={AI_AUTOMATION_HOME.description}
+      serviceType="AI automation"
+      faqs={AI_AUTOMATION_HOME_FAQS}
     >
-      <WebAppDevSubServiceHomeClient page={page} />
+      <AiAutomationHomeClient />
     </QatarAliasPage>
   );
 }

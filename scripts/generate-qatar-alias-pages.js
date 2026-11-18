@@ -59,18 +59,15 @@ import EcommerceDevelopmentHomeClient from "../services/ecommerce-development/Ec
   },
   {
     base: "ai-automation",
-    titleExpr: "page.title",
-    descExpr: "page.description",
-    faqsExpr: "page.faqs",
-    serviceType: "AI and Automation",
+    titleExpr: "AI_AUTOMATION_HOME.title",
+    descExpr: "AI_AUTOMATION_HOME.description",
+    faqsExpr: "AI_AUTOMATION_HOME_FAQS",
+    serviceType: "AI automation",
     imports: `
-import { getWebAppDevSubPage } from "../../../lib/services/webApplicationDevelopmentSubPages";
-import WebAppDevSubServiceHomeClient from "../services/web-application-development/[slug]/WebAppDevSubServiceHomeClient";
-
-const page = getWebAppDevSubPage("ai-and-automation");
+import { AI_AUTOMATION_HOME, AI_AUTOMATION_HOME_FAQS } from "../../../lib/services/aiAutomationHome";
+import AiAutomationHomeClient from "../services/ai-automation/AiAutomationHomeClient";
 `,
-    child: "<WebAppDevSubServiceHomeClient page={page} />",
-    needsPageGuard: true,
+    child: "<AiAutomationHomeClient />",
   },
   {
     base: "software-development",

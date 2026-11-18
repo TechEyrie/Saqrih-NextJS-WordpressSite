@@ -85,9 +85,9 @@ const DEFAULT_CARDS = [
   },
   {
     id: "integrated",
-    title: "Long-term support",
-    desc: "Ongoing maintenance and technical assistance after your project goes live.",
-    href: "/services/website-support-maintenance/ongoing-support-technical-consultation",
+    title: "AI products & agents",
+    desc: "Custom agents, copilots, and automation products that keep delivering after launch.",
+    href: "/services/ai-automation",
     icon: <IconCog />,
   },
 ];

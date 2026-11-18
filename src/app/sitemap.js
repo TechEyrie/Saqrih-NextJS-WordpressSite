@@ -37,6 +37,7 @@ import { MOBILE_DEV_HOME } from "../../lib/services/mobileAppDevelopmentHome";
 import { CMS_DEV_HOME } from "../../lib/services/cmsHeadlessDevelopmentHome";
 import { API_DEV_HOME } from "../../lib/services/apiIntegrationDevelopmentHome";
 import { WSM_DEV_HOME } from "../../lib/services/websiteSupportMaintenanceHome";
+import { AI_AUTOMATION_HOME } from "../../lib/services/aiAutomationHome";
 import { WORDPRESS_DEV_HOME } from "../../lib/services/wordpressDevelopmentHome";
 import {
   getAllWordpressDevSubPageSlugs,
@@ -74,6 +75,10 @@ import {
   getAllWsmDevSubPageSlugs,
   WSM_DEV_PARENT,
 } from "../../lib/services/websiteSupportMaintenanceSubPages";
+import {
+  getAllAiAutomationSubPageSlugs,
+  AI_AUTOMATION_PARENT,
+} from "../../lib/services/aiAutomationSubPages";
 import { getAllQatarAliasPaths } from "../../lib/qatarAliasRoutes";
 
 /** Live case studies only (pages that call notFound() are excluded) */
@@ -185,6 +190,10 @@ export default async function sitemap() {
   urls.push(entry(WSM_DEV_HOME.path, "monthly", 0.9));
   for (const slug of getAllWsmDevSubPageSlugs()) {
     urls.push(entry(`${WSM_DEV_PARENT.path}/${slug}`, "monthly", 0.8));
+  }
+  urls.push(entry(AI_AUTOMATION_HOME.path, "monthly", 0.9));
+  for (const slug of getAllAiAutomationSubPageSlugs()) {
+    urls.push(entry(`${AI_AUTOMATION_PARENT.path}/${slug}`, "monthly", 0.8));
   }
   urls.push(entry(WORDPRESS_DEV_HOME.path, "monthly", 0.9));
   for (const slug of getAllWordpressDevSubPageSlugs()) {

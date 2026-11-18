@@ -117,14 +117,17 @@ const SERVICES = [
   {
     icon: (
       <svg width="44" height="44" viewBox="0 0 28 28" fill="none">
-        <path d="M6 8h16v12H6z" stroke="currentColor" strokeWidth="1.3" strokeLinejoin="round"/>
-        <path d="M10 22h8M14 20v2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
-        <path d="M10 12h8M10 15h5" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round"/>
+        <circle cx="14" cy="14" r="10" stroke="currentColor" strokeWidth="1.3"/>
+        <path d="M10 12.5c1 2 2.5 3 4 3s3-1 4-3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+        <circle cx="11" cy="11" r="1" fill="currentColor"/>
+        <circle cx="17" cy="11" r="1" fill="currentColor"/>
+        <path d="M9 17.5h10M12 20h4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round"/>
+        <circle cx="21" cy="7" r="3" fill="#c8f04a" stroke="none"/>
       </svg>
     ),
-    title: "Website Support & Maintenance",
-    desc: "Ongoing updates, monitoring, and fixes so your site stays healthy",
-    href: "/services/website-support-maintenance",
+    title: "AI Automation",
+    desc: "Agents, copilots, RAG, and workflow automation for Qatar teams",
+    href: "/services/ai-automation",
   },
   {
     icon: (

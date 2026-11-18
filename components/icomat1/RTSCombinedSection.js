@@ -179,14 +179,14 @@ const CARD_META = [
     ),
   },
   {
-    badge: "Support",
-    href: "/services/website-support-maintenance",
-    image: "/services-pics/support-and-maintenance-3d-clean.png",
+    badge: "AI",
+    href: "/services/ai-automation",
+    image: "/services-pics/ai-automation/power-bi-analytics.jpg",
     footer: (
       <p className="text-[13px] sm:text-[14px] md:text-[15px] font-semibold text-[#111] leading-snug m-0">
-        Website Support & Maintenance
+        AI Automation
         <br />
-        <span className="font-normal text-[#666] block min-h-[2.4em]">Ongoing updates, monitoring, and fixes so your site stays healthy</span>
+        <span className="font-normal text-[#666] block min-h-[2.4em]">AI products, agents, and copilots that automate work and unlock new capabilities</span>
       </p>
     ),
   },
