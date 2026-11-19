@@ -76,8 +76,8 @@ import {
   WSM_DEV_PARENT,
 } from "../../lib/services/websiteSupportMaintenanceSubPages";
 import {
-  getAllAiAutomationSubPageSlugs,
   AI_AUTOMATION_PARENT,
+  AI_AUTOMATION_SUB_PAGES,
 } from "../../lib/services/aiAutomationSubPages";
 import { getAllQatarAliasPaths } from "../../lib/qatarAliasRoutes";
 
@@ -192,8 +192,10 @@ export default async function sitemap() {
     urls.push(entry(`${WSM_DEV_PARENT.path}/${slug}`, "monthly", 0.8));
   }
   urls.push(entry(AI_AUTOMATION_HOME.path, "monthly", 0.9));
-  for (const slug of getAllAiAutomationSubPageSlugs()) {
-    urls.push(entry(`${AI_AUTOMATION_PARENT.path}/${slug}`, "monthly", 0.8));
+  for (const page of AI_AUTOMATION_SUB_PAGES) {
+    urls.push(
+      entry(`${AI_AUTOMATION_PARENT.path}/${page.slug}`, "monthly", 0.8)
+    );
   }
   urls.push(entry(WORDPRESS_DEV_HOME.path, "monthly", 0.9));
   for (const slug of getAllWordpressDevSubPageSlugs()) {

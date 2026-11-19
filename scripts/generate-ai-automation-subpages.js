@@ -400,36 +400,49 @@ function metaDesc(d) {
   return raw.length > 158 ? `${raw.slice(0, 155)}...` : raw;
 }
 
-const pages = defs.map((d) => ({
-  slug: d.slug,
-  title: d.title,
-  shortDesc: d.shortDesc,
-  description: metaDesc(d),
-  serviceType: d.title,
-  heroTitle: d.heroTitle,
-  heroLead: d.heroLead,
-  heroTitleMaxCh: d.heroTitleMaxCh,
-  advantage: {
-    label: `Why choose Saqrih for ${d.title.toLowerCase()} in Doha`,
-    heading: d.heading2,
-    intro: `Saqrih delivers ${d.title.toLowerCase()} as part of our AI Automation practice in Qatar. ${d.shortDesc} We combine product thinking, integrations, and engineering so you ship AI products and agents that teams actually use.`,
-    rightTitle: `${d.title} engineered for clarity, governance, and measurable outcomes`,
-    features: featureSets[d.focus],
-  },
-  process: {
-    title: "How it works",
-    items: processSets[d.focus],
-  },
-  faqs: faqsFor(d),
-  faqHeading: "Questions? We have answers",
-  faqSubtitle: `Common questions about ${d.title.toLowerCase()} for businesses in Qatar and the wider Middle East.`,
-  techCopy: {
-    eyebrow: "Technologies we use",
-    headingLine1: "Technology Stack &",
-    headingLine2: d.techLine2,
-    body: `LLMs, orchestration, vector search, APIs, and cloud tooling we use for ${d.title.toLowerCase()}.`,
-  },
-}));
+/** Full page body lives in a dedicated route + lib/services/powerBiAnalyticsPage.js */
+const DEDICATED_FULL_PAGE_SLUGS = new Set(["power-bi-analytics"]);
+
+function buildSubPage(d) {
+  const base = {
+    slug: d.slug,
+    title: d.title,
+    shortDesc: d.shortDesc,
+    description: metaDesc(d),
+    serviceType: d.title,
+  };
+  if (DEDICATED_FULL_PAGE_SLUGS.has(d.slug)) {
+    return base;
+  }
+  return {
+    ...base,
+    heroTitle: d.heroTitle,
+    heroLead: d.heroLead,
+    heroTitleMaxCh: d.heroTitleMaxCh,
+    advantage: {
+      label: `Why choose Saqrih for ${d.title.toLowerCase()} in Doha`,
+      heading: d.heading2,
+      intro: `Saqrih delivers ${d.title.toLowerCase()} as part of our AI Automation practice in Qatar. ${d.shortDesc} We combine product thinking, integrations, and engineering so you ship AI products and agents that teams actually use.`,
+      rightTitle: `${d.title} engineered for clarity, governance, and measurable outcomes`,
+      features: featureSets[d.focus],
+    },
+    process: {
+      title: "How it works",
+      items: processSets[d.focus],
+    },
+    faqs: faqsFor(d),
+    faqHeading: "Questions? We have answers",
+    faqSubtitle: `Common questions about ${d.title.toLowerCase()} for businesses in Qatar and the wider Middle East.`,
+    techCopy: {
+      eyebrow: "Technologies we use",
+      headingLine1: "Technology Stack &",
+      headingLine2: d.techLine2,
+      body: `LLMs, orchestration, vector search, APIs, and cloud tooling we use for ${d.title.toLowerCase()}.`,
+    },
+  };
+}
+
+const pages = defs.map(buildSubPage);
 
 const target = path.join("lib", "services", "aiAutomationSubPages.js");
 const out = `/**
